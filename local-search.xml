@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>how To Use This Blog</title>
+    <link href="/2023/01/13/howToUseThisBlog/"/>
+    <url>/2023/01/13/howToUseThisBlog/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h1><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">标题</span><br><span class="hljs-attr">tags:</span> [<span class="hljs-string">Hexo</span>, <span class="hljs-string">Fluid</span>]<br><span class="hljs-attr">excerpt:</span> <span class="hljs-string">关于这个个人博客的文章的一些使用说明</span><br><span class="hljs-attr">index_img:</span> <span class="hljs-string">/img/Azureus.jpg</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2023-1</span><span class="hljs-number">-13</span> <span class="hljs-number">23</span><span class="hljs-string">:51:00</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><p>以下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p><table><thead><tr><th align="left">参数</th><th align="left">描述</th><th align="left">默认值</th></tr></thead><tbody><tr><td align="left"><code>layout</code></td><td align="left">布局</td><td align="left"><a href="https://hexo.io/zh-cn/docs/configuration#%E6%96%87%E7%AB%A0"><code>config.default_layout</code></a></td></tr><tr><td align="left"><code>title</code></td><td align="left">标题</td><td align="left">文章的文件名</td></tr><tr><td align="left"><code>date</code></td><td align="left">建立日期</td><td align="left">文件建立日期</td></tr><tr><td align="left"><code>updated</code></td><td align="left">更新日期</td><td align="left">文件更新日期</td></tr><tr><td align="left"><code>comments</code></td><td align="left">开启文章的评论功能</td><td align="left">true</td></tr><tr><td align="left"><code>tags</code></td><td align="left">标签（不适用于分页）</td><td align="left"></td></tr><tr><td align="left"><code>categories</code></td><td align="left">分类（不适用于分页）</td><td align="left"></td></tr><tr><td align="left"><code>permalink</code></td><td align="left">覆盖文章网址</td><td align="left"></td></tr><tr><td align="left"><code>excerpt</code></td><td align="left">纯文本的页面摘要。使用 <a href="https://hexo.io/zh-cn/docs/tag-plugins#%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81%E5%92%8C%E6%88%AA%E6%96%AD">该插件</a> 来格式化文本</td><td align="left"></td></tr><tr><td align="left"><code>disableNunjucks</code></td><td align="left">启用时禁用 Nunjucks 标签 <code>&#123;&#123; &#125;&#125;</code>&#x2F;<code>&#123;% %&#125;</code> 和 <a href="https://hexo.io/zh-cn/docs/tag-plugins">标签插件</a> 的渲染功能</td><td align="left"></td></tr><tr><td align="left"><code>lang</code></td><td align="left">设置语言以覆盖 <a href="https://hexo.io/zh-cn/docs/internationalization#%E8%B7%AF%E5%BE%84">自动检测</a></td><td align="left">继承自 <code>_config.yml</code></td></tr><tr><td align="left"><code>index_img</code></td><td align="left">封面</td><td align="left">无</td></tr></tbody></table><h1 id="博客修改"><a href="#博客修改" class="headerlink" title="博客修改"></a>博客修改</h1><p><a href="https://hexo.fluid-dev.com/docs/guide">参考文档</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Fluid</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2023/01/10/hello-world/"/>
     <url>/2023/01/10/hello-world/</url>
