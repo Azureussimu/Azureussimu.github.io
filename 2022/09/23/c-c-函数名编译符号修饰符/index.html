@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="函数的名字修饰相关知识学习记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c c++函数名编译符号修饰符">
+<meta property="og:url" content="http://example.com/2022/09/23/c-c-%E5%87%BD%E6%95%B0%E5%90%8D%E7%BC%96%E8%AF%91%E7%AC%A6%E5%8F%B7%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="函数的名字修饰相关知识学习记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/c&cpp_function.jpg">
+<meta property="article:published_time" content="2022-09-23T09:46:22.000Z">
+<meta property="article:modified_time" content="2023-01-15T03:15:26.999Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Re">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/c&cpp_function.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>c c++函数名编译符号修饰符 - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/c&cpp_function.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="c c++函数名编译符号修饰符"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-23 17:46" pubdate>
+          2022年9月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="语言知识"
+        id="heading-b2fe6f20bab9fc97430e8ea5e206aa35" role="tab" data-toggle="collapse" href="#collapse-b2fe6f20bab9fc97430e8ea5e206aa35"
+        aria-expanded="true"
+      >
+        语言知识
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-b2fe6f20bab9fc97430e8ea5e206aa35"
+           role="tabpanel" aria-labelledby="heading-b2fe6f20bab9fc97430e8ea5e206aa35">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/09/23/c-c-%E5%87%BD%E6%95%B0%E5%90%8D%E7%BC%96%E8%AF%91%E7%AC%A6%E5%8F%B7%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="c c++函数名编译符号修饰符"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">c c++函数名编译符号修饰符</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/01/14/gcc%E7%BC%96%E8%AF%91/" title="gcc编译"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">gcc编译</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/05/23/py%E7%BC%96%E8%AF%91%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" title="py编译逆向学习"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">py编译逆向学习</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">c c++函数名编译符号修饰符</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>函数的名字修饰（Decorated Name）就是编译器在编译期间创建的一个字符串。用来指明函数的定义或原型。</p>
+<p>LINK程序或其它工具有时须要指定函数的名字修饰来定位函数的正确位置。</p>
+<p>多数情况下程序猿并不须要知道函数的名字修饰。LINK程序或其它工具会自己主动区分他们。</p>
+<p>当然，在某些情况下须要指定函数的名字修饰，比如在C++程序中， 为了让LINK程序或其它工具可以匹配到正确的函数名字，就必须为重载函数和一些特殊的函数（如构造函数和析构函数）指定名字装饰。</p>
+<p>还有一种须要指定函数的 名字修饰的情况是在汇编程序中调用C或C++的函数。</p>
+<p>假设函数名字，调用约定。返回值类型或函数參数有不论什么改变，原来的名字修饰就不再有效，必须指定新的 名字修饰。</p>
+<p>C和C++程序的函数在内部使用不同的名字修饰方式，以下将分别介绍这两种方式</p>
+<h2 id="1、C编译器的函数名修饰规则"><a href="#1、C编译器的函数名修饰规则" class="headerlink" title="1、C编译器的函数名修饰规则"></a>1、C编译器的函数名修饰规则</h2><p>​	对于__stdcall调用约定，编译器和链接器会在输出函数名前加上一个下划线前缀，函数名后面加上一个“@”符号和其參数的字节数。比如 _functionname@number。</p>
+<h2 id="2-C-编译器的函数名修饰规则"><a href="#2-C-编译器的函数名修饰规则" class="headerlink" title="2. C++编译器的函数名修饰规则"></a>2. C++编译器的函数名修饰规则</h2><p>无论 __cdecl，__fastcall还是__stdcall调用方式，函数修饰都是以一个“?”開始，后面紧跟函数的名字。再后面是參数表的開始标识和 依照參数类型代号拼出的參数表。</p>
+<h4 id="參数表标识"><a href="#參数表标识" class="headerlink" title="參数表标识:"></a>參数表标识:</h4><p>__stdcall方式，是“@@YG”;</p>
+<p>__cdecl方式，是“@@YA”;</p>
+<p> __fastcall方式，是“@@YI;</p>
+<table>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>拼写代号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>X</td>
+</tr>
+<tr>
+<td>char</td>
+<td>D</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>E</td>
+</tr>
+<tr>
+<td>short</td>
+<td>F</td>
+</tr>
+<tr>
+<td>int</td>
+<td>H</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>I</td>
+</tr>
+<tr>
+<td>long</td>
+<td>J</td>
+</tr>
+<tr>
+<td>unsigned long(DWORD)</td>
+<td>K</td>
+</tr>
+<tr>
+<td>float</td>
+<td>M</td>
+</tr>
+<tr>
+<td>double</td>
+<td>N</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>_N</td>
+</tr>
+<tr>
+<td>struct</td>
+<td>U</td>
+</tr>
+<tr>
+<td>指针</td>
+<td>PA</td>
+</tr>
+<tr>
+<td>const指针</td>
+<td>PB</td>
+</tr>
+</tbody></table>
+<p>PA or PB后面的代号表明指针类型。</p>
+<p>假设同样类型的指针连续出现，以“0”取代，一 个“0”代表一次反复。</p>
+<p>U表示结构类型。通常后跟结构体的类型名，用“@@”表示结构类型名的结束。</p>
+<p>參数表后以“@Z”标识整个名字的结束。假设该函数无參数，则 以“Z”标识结束。</p>
+<p>对于C++的类成员函数（其调用方式是thiscall）。函数的名字修饰与非成员的C++函数稍有不同，首先就是在函数名字和參数表之间插入以“@”字 符引导的类名。其次是參数表的開始标识不同，公有（<em>public</em>）成员函数的标识是<strong>“@@QAE”</strong>,保护（<em>protected</em>）成员函数的标识是 <strong>“@@IAE”</strong>,私有（<em>private</em>）成员函数的标识是<strong>“@@AAE”</strong>，假设函数声明使用了constkeyword，则对应的标识应分别为 <strong>“@@QBE”</strong>，<strong>“@@IBE”</strong>和<strong>“@@ABE”</strong>。</p>
+<p>假设參数类型是类实例的引用。则使用<strong>“AAV1”</strong>，对于const类型的引用。则使用<strong>“ABV1”</strong>。</p>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Function1</span> <span class="hljs-params">(<span class="hljs-type">char</span> *var1,<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span>)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>其函数修饰名为: <strong>?Function1@@YGHPADK@Z</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Function2</span><span class="hljs-params">()</span></span>; <br></code></pre></td></tr></table></figure>
+
+<p>其函数修饰名则为**?Function2@@YGXXZ**</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CTest</span> <br>&#123; <br>...... <br><span class="hljs-keyword">private</span>: <br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Function</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>; <br><span class="hljs-keyword">protected</span>: <br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CopyInfo</span><span class="hljs-params">(<span class="hljs-type">const</span> CTest &amp;src)</span></span>; <br><span class="hljs-keyword">public</span>: <br>    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">DrawText</span><span class="hljs-params">(HDC hdc, <span class="hljs-type">long</span> pos, <span class="hljs-type">const</span> TCHAR* text, RGBQUAD color, BYTE bUnder, <span class="hljs-type">bool</span> bSet)</span></span>; <br>    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">InsightClass</span><span class="hljs-params">(DWORD dwClass)</span> <span class="hljs-type">const</span></span>; <br>...... <br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>对于成员函数Function，其函数修饰名为**?Function@CTest@@AAEXH@Z**<br>对于成员函数CopyInfo，其函数修饰名为 <strong>“?CopyInfo@CTest@@IAEXABV1@@Z”</strong><br>DrawText是一个比較复杂的函数声明。不仅有<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>參数。还有结构体參数和HDC 句柄參数。须要指出的是HDC实际上是一个HDC结构类型的指针，这个參数的表示就是“PAUHDC@@”，其完整的函数修饰名为<br><strong>“?DrawText@CTest@@QAEJPAUHDC__@@JPBDUtagRGBQUAD@@E_N@Z”。</strong><br>对于InsightClass是一个共有的const函数。它的成员函数标识是“@@QBE”，完整的修饰名就是<br><strong>“?InsightClass@CTest@@QBEJK@Z”。</strong></p>
+<blockquote>
+<p>不管是C函数名修饰方式还是C++函数名修饰方式均不改变输出函数名中的字符大写和小写。这和PASCAL调用约定不同，PASCAL约定输出的函数名无不论什么修饰且所有大写。</p>
+</blockquote>
+<h2 id="3、相关函数"><a href="#3、相关函数" class="headerlink" title="3、相关函数"></a>3、相关函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">DWORD IMAGEAPI <span class="hljs-title">UnDecorateSymbolName</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">  [in]  PCSTR name,</span></span><br><span class="hljs-params"><span class="hljs-function">  [out] PSTR  outputString,</span></span><br><span class="hljs-params"><span class="hljs-function">  [in]  DWORD maxStringLength,</span></span><br><span class="hljs-params"><span class="hljs-function">  [in]  DWORD flags</span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>被包含于头文件&lt;dbghelp.h&gt; </p>
+<h4 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">[in] name:<br><span class="hljs-comment">//已修饰的 C++ 符号名。此名称能以始终为问号 (?) 的首字符鉴别。</span><br><br>[out]   outputString<br><span class="hljs-comment">//指向字符串缓冲区的指针，该缓冲区接收未修饰的名字。</span><br><br>[in]  maxStringLength<br><span class="hljs-comment">//outputString缓冲区的大小，为字符数。</span><br>    <br>[in] flags<br><span class="hljs-comment">//用于反修饰已修饰名称的方式的选项。此参数能为零或更多个下列值。</span><br></code></pre></td></tr></table></figure>
+
+<p>flag值：</p>
+<table>
+<thead>
+<tr>
+<th><strong>值</strong></th>
+<th><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>UNDNAME_32_BIT_DECODE</strong><br />0x0800</td>
+<td>反修饰 32 位已修饰名。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_COMPLETE</strong><br />0x0000</td>
+<td>启用完全的反修饰。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NAME_ONLY</strong><br />0x1000</td>
+<td>只反修饰初等声明的名称。返回 [作用域::]名称 。不展开模板形参。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_ACCESS_SPECIFIERS</strong><br />0x0080</td>
+<td>禁用成员的访问指定符的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_ALLOCATION_LANGUAGE</strong><br />0x0010</td>
+<td>禁用声明语言说明符的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_ALLOCATION_MODEL</strong><br />0x0008</td>
+<td>禁用声明模型的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_ARGUMENTS</strong><br />0x2000</td>
+<td>不反修饰函数参数。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_CV_THISTYPE</strong><br />0x0040</td>
+<td>禁用初等声明的 <strong>this</strong> 类型上的 CodeView 修饰符的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_FUNCTION_RETURNS</strong><br />0x0004</td>
+<td>禁用初等声明的返回类型展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_LEADING_UNDERSCORES</strong><br />0x0001</td>
+<td>从 Microsoft 关键字中移除前导下划线。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_MEMBER_TYPE</strong><br />0x0200</td>
+<td>禁用成员的 static 或 virtual 属性的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_MS_KEYWORDS</strong><br />0x0002</td>
+<td>禁用 Microsoft 关键字的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_MS_THISTYPE</strong><br />0x0020</td>
+<td>禁用初等声明的 <strong>this</strong> 类型上的 Microsoft 关键字的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_RETURN_UDT_MODEL</strong><br />0x0400</td>
+<td>禁用用户定义类型返回的 Microsoft 模型的展开。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_SPECIAL_SYMS</strong><br />0x4000</td>
+<td>不反修饰特殊名称，如 vtable 、 vcall 、 vector 和 metatype 等。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_THISTYPE</strong><br />0x0060</td>
+<td>禁用 <strong>this</strong> 类型上的所有修饰符。</td>
+</tr>
+<tr>
+<td><strong>UNDNAME_NO_THROW_SIGNATURES</strong><br />0x0100</td>
+<td>禁用函数和函数指针的 throw 签名的展开。</td>
+</tr>
+</tbody></table>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>若函数成功，则返回 UnDecoratedName 缓冲区中的字符数，不包括 NULL 终止符。</p>
+<p>若函数失败，则返回值为零。欲取得额外的错误信息，需调用 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/GetLastError/4278820?fromModule=lemma_inlink">GetLastError</a> 。</p>
+<p>若函数失败且返回零，则 UnDecoratedName 缓冲区的内容不确定。</p>
+<h4 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">name = <span class="hljs-string">&quot;?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z&quot;</span><br><span class="hljs-built_in">UnDecorateSymbolName</span>(name, outputString, <span class="hljs-number">0x100</span>u, <span class="hljs-number">0</span>)<br>cout&lt;&lt;outputString;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">private: char * __thiscall R0Pxx::My_Aut0_PWN(unsigned char *)</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">__FUNCDNAME__<br></code></pre></td></tr></table></figure>
+
+<h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">char</span>* __thiscall <span class="hljs-title">R0Pxx::My_Aut0_PWN</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>*)</span> </span>&#123;<br>    std::cout &lt;&lt; __FUNCDNAME__ &lt;&lt; std::endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4、神奇的事"><a href="#4、神奇的事" class="headerlink" title="4、神奇的事"></a>4、神奇的事</h2><p>因为C的编译方式和C++有点不同，所以会导致同一个函数，各自在两种语言的的环境下名字修饰会不一样<br>例如：</p>
+<p><code>long MakeFun(long lFun); </code>在C下是<code>_MakeFun@4</code>，但是在CPP下则是<code>MakeFun@@YGJJ@Z</code></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">语言知识</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/">#CTF</a>
+      
+        <a href="/tags/Re/">#Re</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/14/base%E5%AE%B6%E6%97%8F/" title="base家族">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">base家族</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/06/%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" title="图床搭建记录">
+                        <span class="hidden-mobile">图床搭建记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
