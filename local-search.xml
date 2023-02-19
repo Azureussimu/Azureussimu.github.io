@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Sha散列家族</title>
+    <link href="/2023/02/19/Sha%E6%95%A3%E5%88%97%E5%AE%B6%E6%97%8F/"/>
+    <url>/2023/02/19/Sha%E6%95%A3%E5%88%97%E5%AE%B6%E6%97%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Sha家族离散"><a href="#Sha家族离散" class="headerlink" title="Sha家族离散"></a>Sha家族离散</h1><h2 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h2><h3 id="流程概况"><a href="#流程概况" class="headerlink" title="流程概况"></a>流程概况</h3><p>对于任意长度的明文，SHA1首先对其进行分组，使得每一组的长度为<strong>512位</strong>，然后对这些明文分组反复重复处理。对于每个明文分组的摘要生成过程如下：</p><ol><li><p>将512位的明文分组划分为16个子明文分组，每个子明文分组为32位。</p></li><li><p>申请5个32位的链接变量，记为A、B、C、D、E。</p></li><li><p>16份子明文分组扩展为80份。</p></li><li><p>80份子明文分组进行4轮运算。</p></li><li><p>链接变量与初始链接变量进行求和运算。</p></li><li><p>链接变量作为下一个明文分组的输入重复进行以上操作。</p></li><li><p>最后，5个链接变量里面的数据就是SHA1摘要。</p></li></ol><h3 id="1-分组"><a href="#1-分组" class="headerlink" title="1. 分组"></a>1. 分组</h3><p>对任意长度的明文，先是先将明文填充到448(mod512)位，然后再将真正的明文的长度(未填充到448位之前的)以64位表示，附加在以填充到448位的明文之后。</p><div class="note note-info">            <p> 与MD5不同的是，SHA1的原始报长不能超过$2^{64}$，而且SHA1的明文长度从低位开始填充。</p><table><thead><tr><th>差异处</th><th>MD5</th><th>SHA1</th></tr></thead><tbody><tr><td>摘要长度</td><td>128位</td><td>160位</td></tr><tr><td>运算步骤数</td><td>64</td><td>80</td></tr><tr><td>基本逻辑函数数目</td><td>4</td><td>4</td></tr><tr><td>常数数目</td><td>64</td><td>4</td></tr></tbody></table>          </div><p>对于512位的明文分组，SHA1将其再分成16份子明文分组（sub-block），每份子明文分组为32位，我们使用M[k]（k&#x3D; 0, 1,……15）来表示这16份子明文分组。之后还要将这16份子明文分组扩充到80份子明文分组，我们记为W[k]（k&#x3D; 0, 1,……79），扩充的方法如下。<br>$$<br>W <em>t &#x3D; M_t \ 当0\leq t\leq 15\<br>W_t &#x3D; (W</em>{t-3} \oplus W_{t-8} \oplus W_{t-14} \oplus W_{t-16}) &lt;&lt;&lt; \ 1\<br>[&lt;&lt;&lt;] \rightarrow 循环左移<br>$$<br>SHA1有4轮运算，每一轮包括20个步骤（一共80步），最后产生160位摘要，这160位摘要存放在5个32位的链接变量中，分别标记为A、B、C、D、E。这5个链接变量的初始值以16进制位表示如下。</p><div class="note note-success">            <p>A&#x3D;0x67452301<br>B&#x3D;0xEFCDAB89<br>C&#x3D;0x98BADCFE<br>D&#x3D;0x10325476<br>E&#x3D;0xC3D2E1F0</p>          </div><h3 id="2-4轮运算"><a href="#2-4轮运算" class="headerlink" title="2. 4轮运算"></a>2. 4轮运算</h3><p>SHA1有4轮运算，每一轮包括20个步骤，一共80步，当第1轮运算中的第1步骤开始处理时，A、B、C、D、E五个链接变量中的值先赋值到另外5个记录单元A′，B′，C′，D′，E′中。这5个值将保留，用于在第4轮的最后一个步骤完成之后与链接变量A，B，C，D，E进行求和操作。</p><p>SHA1的4轮运算，共80个步骤使用同一个操作程序，如下：</p><p>$$<br>A,B,C,D,E←[(A&lt;&lt;&lt;5)+ ft(B,C,D)+E+W_t+K_t],A,(B&lt;&lt;&lt;30),C,D\<br>其中 ft(B,C,D)为逻辑函数，W_t为子明文分组W[t]，K_t为固定常数。<br>$$<br>这个操作程序的意义为:</p><p>● 将$[(A&lt;&lt;&lt;5)+ ft(B,C,D)+E+W_t+K_t]$的结果赋值给链接变量A；</p><p>● 将链接变量A初始值赋值给链接变量B；</p><p>● 将链接变量B初始值循环左移30位赋值给链接变量C；</p><p>● 将链接变量C初始值赋值给链接变量D；</p><p>● 将链接变量D初始值赋值给链接变量E。</p><p>$ft(B,C,D)$:</p><table><thead><tr><th>轮</th><th>步骤</th><th>函数定义</th></tr></thead><tbody><tr><td>1</td><td>0≤t≤19</td><td>ft(B,C,D)&#x3D;(B and C)or((not B)and D)</td></tr><tr><td>2</td><td>20≤t≤39</td><td>ft(B,C,D)&#x3D;B⊕C⊕D</td></tr><tr><td>3</td><td>40≤t≤59</td><td>ft(B,C,D)&#x3D;(B and C)or(B and D)or(C and D)</td></tr><tr><td>4</td><td>60≤t≤79</td><td>ft(B,C,D)&#x3D;B⊕C⊕D</td></tr></tbody></table><p>在操作程序中需要使用固定常数$K_i$（i&#x3D; 0，1，2，……79）</p><table><thead><tr><th>轮</th><th>步骤</th><th>$K_t$</th></tr></thead><tbody><tr><td>1</td><td>0≤t≤19</td><td>5A827999</td></tr><tr><td>2</td><td>20≤t≤39</td><td>6ED9EBA1</td></tr><tr><td>3</td><td>40≤t≤59</td><td>8F188CDC</td></tr><tr><td>4</td><td>60≤t≤79</td><td>CA62C1D6</td></tr></tbody></table><h3 id="3-添加"><a href="#3-添加" class="headerlink" title="3. 添加"></a>3. 添加</h3><p>$$<br>h_0 &#x3D; A + A^′，h_1 &#x3D; B + B^′，h_2 &#x3D; C + C^′，h_3 &#x3D; D + D^′，h_4 &#x3D; E + E^′<br>$$</p><p>$h_0$~$h_4$作为输入成为下一个512位明文分组的链接变量A，B，C，D，E。当最后一个明文分组计算完成以后</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">result = (A &lt;&lt; <span class="hljs-number">32</span>*<span class="hljs-number">4</span>) | (B &lt;&lt; <span class="hljs-number">32</span>*<span class="hljs-number">3</span>) | (C &lt;&lt; <span class="hljs-number">32</span>*<span class="hljs-number">2</span>) | (D &lt;&lt; <span class="hljs-number">32</span>) | E<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>加密算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF</tag>
+      
+      <tag>Re</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>HGAME 2023 week3 wp</title>
     <link href="/2023/02/04/hgame2023-week3/"/>
     <url>/2023/02/04/hgame2023-week3/</url>
