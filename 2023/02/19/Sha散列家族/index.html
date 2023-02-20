@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/blogimg/SHA.jpg">
 <meta property="article:published_time" content="2023-02-19T12:03:54.000Z">
-<meta property="article:modified_time" content="2023-02-20T03:45:24.288Z">
+<meta property="article:modified_time" content="2023-02-20T03:49:33.725Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Re">
@@ -248,7 +248,7 @@
         
         
         
-          144 分钟
+          145 分钟
         
       </span>
     
@@ -532,7 +532,7 @@
 <p>以上所有的操作都是针对32位字节.</p>
 <h4 id="常量初始化"><a href="#常量初始化" class="headerlink" title="常量初始化"></a>常量初始化</h4><p>初始哈希值$H^{(0)}$取自自然数中前面8个素数(2,3,5,7,11,13,17,19)的平方根的小数部分, 并且取前面的32位. </p>
 <p>于是, 质数2的平方根的小数部分取前32位就对应<code>0x6a09e667</code>.</p>
-<p>如此类推, 初始哈希值由以下8个32位的哈希初值构成:<br>$$<br>H_1^{(0)}&#x3D;6a09e667\<br>H_2^{(0)}&#x3D;bb67ae85\<br>H_3^{(0)}&#x3D;3c6ef372\<br>H_4^{(0)}&#x3D;a54ff53a\<br>H_5^{(0)}&#x3D;510e527f\<br>H_6^{(0)}&#x3D;9b05688c\<br>H_7^{(0)}&#x3D;1f83d9ab\<br>H_8^{(0)}&#x3D;5be0cd19<br>$$<br>SHA256算法当中还使用到64个常数, 取自自然数中前面64个素数的立方根的小数部分的前32位, 如果用16进制表示, 则相应的常数序列如下:</p>
+<p>如此类推, 初始哈希值由以下8个32位的哈希初值构成:<br>$$<br>H_1^{(0)}&#x3D;6a09e667\\<br>H_2^{(0)}&#x3D;bb67ae85\\<br>H_3^{(0)}&#x3D;3c6ef372\\<br>H_4^{(0)}&#x3D;a54ff53a\\<br>H_5^{(0)}&#x3D;510e527f\\<br>H_6^{(0)}&#x3D;9b05688c\\<br>H_7^{(0)}&#x3D;1f83d9ab\\<br>H_8^{(0)}&#x3D;5be0cd19<br>$$<br>SHA256算法当中还使用到64个常数, 取自自然数中前面64个素数的立方根的小数部分的前32位, 如果用16进制表示, 则相应的常数序列如下:</p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs dns">[<span class="hljs-number">428a2f98</span> <span class="hljs-number">71374491</span> b5c0fbcf e9b5dba5<br> <span class="hljs-number">3956</span>c25b <span class="hljs-number">59f111f1</span> <span class="hljs-number">923f82a4</span> ab1c5ed5<br> d807aa<span class="hljs-number">98 12835b01</span> <span class="hljs-number">243185</span>be <span class="hljs-number">550</span>c7dc3<br> <span class="hljs-number">72</span>be5d74 <span class="hljs-number">80d</span>eb1fe <span class="hljs-number">9</span>bdc06a7 c19bf174<br> e49b69c1 efbe4786 <span class="hljs-number">0</span>fc19dc6 <span class="hljs-number">240</span>ca1cc<br> <span class="hljs-number">2d</span>e92c6f <span class="hljs-number">4</span>a7484aa <span class="hljs-number">5</span>cb0a9dc <span class="hljs-number">76</span>f988da<br> <span class="hljs-number">983e5152</span> a831c66d b<span class="hljs-number">00327c8</span> bf597fc7<br> c6e00bf3 d<span class="hljs-number">5a79147</span> <span class="hljs-number">06</span>ca63<span class="hljs-number">51 14292967</span><br> <span class="hljs-number">27</span>b70a85 <span class="hljs-number">2e1b2138</span> <span class="hljs-number">4d</span>2c6dfc <span class="hljs-number">53380d13</span><br> <span class="hljs-number">650a7354</span> <span class="hljs-number">766</span>a0abb <span class="hljs-number">81</span>c2c92e <span class="hljs-number">92722c85</span><br> a2bfe8a1 a81a664b c24b8b70 c76c51a3<br> d<span class="hljs-number">192e819</span> d<span class="hljs-number">6990624</span> f40e3585 <span class="hljs-number">106</span>aa070<br> <span class="hljs-number">19a4c116</span> <span class="hljs-number">1e376c08</span> <span class="hljs-number">2748774</span>c <span class="hljs-number">34</span>b0bcb5<br> <span class="hljs-number">391</span>c0cb3 <span class="hljs-number">4</span>ed8aa4a <span class="hljs-number">5</span>b9cca4f <span class="hljs-number">682</span>e6ff3<br> <span class="hljs-number">748</span>f82ee <span class="hljs-number">78</span>a5636f <span class="hljs-number">84c87814</span> <span class="hljs-number">8</span>cc70208<br> <span class="hljs-number">90</span>befffa a4506ceb bef9a3f7 c<span class="hljs-number">67178f2</span>]<br></code></pre></td></tr></table></figure>
 
 <h4 id="消息补全"><a href="#消息补全" class="headerlink" title="消息补全"></a>消息补全</h4><p>和SHA-1相同的补全方法。</p>
@@ -543,25 +543,25 @@
 <ul>
 <li><p>$For\ i &#x3D; i\rightarrow N$(N&#x3D;是补全后消息块个数)</p>
 <ul>
-<li><p>用第$(i-1)$个中间哈希值来对$a,b,c,d,e,f,g,h$进行初始化，当$i&#x3D;1$时，就初始化哈希，即<br>$$<br>a\ \leftarrow H_1^{(i-1)}\<br>b\ \leftarrow H_2^{(i-1)}\\vdots\<br>h\ \leftarrow H_8^{(i-1)}<br>$$</p>
+<li><p>用第$(i-1)$个中间哈希值来对$a,b,c,d,e,f,g,h$进行初始化，当$i&#x3D;1$时，就初始化哈希，即<br>$$<br>a\ \leftarrow H_1^{(i-1)}\\<br>b\ \leftarrow H_2^{(i-1)}\\\vdots\\<br>h\ \leftarrow H_8^{(i-1)}<br>$$</p>
 </li>
 <li><p>应用SHA256压缩函数来更新$a,b,c,d,e,f,g,h$</p>
 <ul>
 <li><p>$Forj &#x3D; 0 \rightarrow 63$</p>
 <ul>
-<li>计算$Ch(e,f,g),M_{aj}(a,b,c),\Sigma_0(a),\Sigma_1(e),W_j$<br>$$<br>T_1 \leftarrow h +\Sigma_1(e)+Ch(e,f,g)+K_j+W_j\<br>T_2 \leftarrow \Sigma_0(a)+M_{aj}(a,b,c)\<br>h \leftarrow g\<br>g \leftarrow f\<br>f \leftarrow e\<br>e \leftarrow d+T_1\<br>d \leftarrow c\<br>c \leftarrow b\<br>b \leftarrow a\<br>a \leftarrow T_1 + T_2<br>$$</li>
+<li>计算$Ch(e,f,g),M_{aj}(a,b,c),\Sigma_0(a),\Sigma_1(e),W_j$<br>$$<br>T_1 \leftarrow h +\Sigma_1(e)+Ch(e,f,g)+K_j+W_j\\<br>T_2 \leftarrow \Sigma_0(a)+M_{aj}(a,b,c)\\<br>h \leftarrow g\\<br>g \leftarrow f\\<br>f \leftarrow e\\<br>e \leftarrow d+T_1\\<br>d \leftarrow c\\<br>c \leftarrow b\\<br>b \leftarrow a\\<br>a \leftarrow T_1 + T_2<br>$$</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>计算第$i$个中间哈希值$H^{(i)}$<br>  $$<br>  H_1^{(i-1)}\ \leftarrow a+H_1^{(i-1)}\<br>  H_2^{(i-1)}\ \leftarrow b+H_2^{(i-1)}\·\·\<br>  H_8^{(i-1)}\ \leftarrow h+H_8^{(i-1)}<br>  $$</p>
+<li><p>计算第$i$个中间哈希值$H^{(i)}$<br>  $$<br>  H_1^{(i-1)}\ \leftarrow a+H_1^{(i-1)}\\<br>  H_2^{(i-1)}\ \leftarrow b+H_2^{(i-1)}\\\vdots\\<br>  H_8^{(i-1)}\ \leftarrow h+H_8^{(i-1)}<br>  $$</p>
 </li>
 </ul>
 </li>
 <li><p>$H^{(N)}&#x3D;(H_1^{(N)},H_2^{(N)},…,H_8^{(N)})$为最终的哈希值$M$;</p>
 </li>
 </ul>
-<h4 id="逻辑函数定义"><a href="#逻辑函数定义" class="headerlink" title="逻辑函数定义"></a>逻辑函数定义</h4><p>SHA256算法当中所使用到的6个逻辑函数如下：每个函数都对32位字节进行操纵，并输出32位字节。<br>$$<br>Ch(x,y,z)&#x3D;(x\and y)\oplus(¬x\and z)\<br>M_{aj}(x,y,z) &#x3D; (x\and y)\oplus(x\and z)\oplus(y\and z)\<br>\Sigma_0(x) &#x3D; S^2(x)\oplus S^{13}(x)\oplus S^{22}(x)\<br>\Sigma_1(x) &#x3D; S^6(x)\oplus S^{11}(x)\oplus S^{25}(x)\<br>\sigma_0(x) &#x3D; S^7(x)\oplus S^{18}(x)\oplus R^{3}(x)\<br>\sigma_1(x) &#x3D; S^{17}(x)\oplus S^{19}(x)\oplus R^{10}(x)\<br>$$<br>扩展消息块$W_0,W_1,…,W_{63}$通过以下方式进行计算：</p>
+<h4 id="逻辑函数定义"><a href="#逻辑函数定义" class="headerlink" title="逻辑函数定义"></a>逻辑函数定义</h4><p>SHA256算法当中所使用到的6个逻辑函数如下：每个函数都对32位字节进行操纵，并输出32位字节。<br>$$<br>Ch(x,y,z)&#x3D;(x\and y)\oplus(¬x\and z)\\<br>M_{aj}(x,y,z) &#x3D; (x\and y)\oplus(x\and z)\oplus(y\and z)\\<br>\Sigma_0(x) &#x3D; S^2(x)\oplus S^{13}(x)\oplus S^{22}(x)\\<br>\Sigma_1(x) &#x3D; S^6(x)\oplus S^{11}(x)\oplus S^{25}(x)\\<br>\sigma_0(x) &#x3D; S^7(x)\oplus S^{18}(x)\oplus R^{3}(x)\\<br>\sigma_1(x) &#x3D; S^{17}(x)\oplus S^{19}(x)\oplus R^{10}(x)<br>$$<br>扩展消息块$W_0,W_1,…,W_{63}$通过以下方式进行计算：</p>
 <ul>
 <li><p>$W_j &#x3D; M_j^{(i)}\ forj &#x3D; 0,1,2,..,15$</p>
 </li>
