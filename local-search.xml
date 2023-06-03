@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>PE结构学习笔记</title>
+    <link href="/2023/06/04/PE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2023/06/04/PE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="PE文件结构学习笔记"><a href="#PE文件结构学习笔记" class="headerlink" title="PE文件结构学习笔记"></a>PE文件结构学习笔记</h1><h1 id="结构图片"><a href="#结构图片" class="headerlink" title="结构图片"></a>结构图片</h1><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PE%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="PE结构示意图"></p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PE%E6%96%87%E4%BB%B6%E5%A4%B4.jpg" alt="PE文件头"></p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PE%E5%A4%B4.png" alt="PE头"></p><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><table><thead><tr><th>名称</th><th>描述</th></tr></thead><tbody><tr><td>地址</td><td>是“<strong>虚拟地址</strong>” 而不是“<strong>物理地址</strong>”。</td></tr><tr><td>镜像文件</td><td>包含以 EXE 文件为代表的 “可执行文件”、以DLL文件为代表的“动态链接库”。</td></tr><tr><td>RVA</td><td>英文全称 Relatively Virtual Address。偏移（又称“相对虚拟地址”）。相对镜像基址的偏移。</td></tr><tr><td>节</td><td><strong>节</strong>是PE文件中<strong>代码</strong>或<strong>数据</strong>的基本单元。原则上讲，节只分为“<strong>代码节</strong>”和“<strong>数据节</strong>”。</td></tr><tr><td>VA</td><td>英文全称 Virtual Address。基址</td></tr></tbody></table><p>​PE（ Portable Execute）文件是Windows下可执行文件的总称，常见的有 <strong>DLL，EXE，OCX，SYS</strong> 等。它是微软在 UNIX 平台的 COFF（通用对象文件格式）基础上制作而成。<strong>最初设计用来提高程序在不同操作系统上的移植性，但实际上这种文件格式仅用在 Windows 系列操作系统下</strong>。</p><div class="note note-info">            <p>​**PE文件是指 32 位可执行文件，也称为PE32。64位的可执行文件称为 PE+ 或 PE32+，是PE(PE32)的一种扩展形式（不是PE64)**。</p>          </div><hr><p>PE文件的结构一般来说如下图所示：从起始位置开始依次是 <strong>DOS头</strong>，<strong>NT头</strong>，<strong>节表</strong> 以及 <strong>具体的节</strong>。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220130914221950000" alt="img"></p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo220191026221922478.png" alt="img"></p><h2 id="PE-文件的执行顺序"><a href="#PE-文件的执行顺序" class="headerlink" title="PE 文件的执行顺序"></a>PE 文件的执行顺序</h2><ol><li><p>当一个PE文件被执行时, <strong>PE装载器</strong>首先检查DOS header里的PE header的偏移量。如果找到，则直接跳转到PE header的位置。</p></li><li><p>当<strong>PE装载器</strong>跳转到PE header后，第二步要做的就是检查PE header是否有效。如果该PE header有效，就跳转到PE header的尾部。</p></li><li><p>紧跟PE header尾部的是节表。PE装载器执行完第二步后开始读取节表中的节段信息，并采用文件映射的方法将这些节段映射到内存，<strong>同时附上节表里指定节段的读写属性</strong>。</p><div class="note note-info">            <p>在执行一个PE文件的时候，Windows并不在一开始就将整个文件读入内存，而是采用与内存映射的机制，也就是说，<strong>Windows装载器在装载的时候仅仅建立好虚拟地址和PE文件之间的映射关系，只有真正执行到某个内存页中的指令或者访问某一页中的数据时，这个页面才会被从磁盘提交到物理内存</strong>，这种机制使文件装入的速度和文件大小没有太大的关系。</p>          </div></li><li><p>PE文件映射入内存后，PE装载器将继续处理PE文件中类似import table(输入表)的逻辑部分。</p></li></ol><h2 id="PE-文件结构说明"><a href="#PE-文件结构说明" class="headerlink" title="PE 文件结构说明"></a>PE 文件结构说明</h2><h3 id="1-DOS头"><a href="#1-DOS头" class="headerlink" title="1. DOS头"></a>1. DOS头</h3><p>用来兼容 MS-DOS 操作系统的，目的是当这个文件在 MS-DOS 上运行时提示一段文字，大部分情况下是：This program cannot be run in DOS mode. 还有一个目的，就是指明 NT 头在文件中的位置。</p><h3 id="2-NT头"><a href="#2-NT头" class="headerlink" title="2. NT头"></a>2. NT头</h3><p>包含windows PE文件的主要信息，其中包括一个 <strong>‘PE’ 字样的签名</strong>,**PE文件头(IMAGE_FILE_HEADER)**和 <strong>PE可选头(IMAGE_OPTIONAL_HEADER32)。</strong></p><h3 id="3-节表"><a href="#3-节表" class="headerlink" title="3. 节表"></a>3. 节表</h3><p>是 PE 文件后续节的描述，windows 根据节表的描述加载每个节。</p><h3 id="4-节"><a href="#4-节" class="headerlink" title="4. 节"></a>4. 节</h3><p>每个节实际上是一个容器，可以包含代码、数据等等，每个节可以有独立的内存权限，比如代码节默认有读&#x2F;执行权限，节的名字和数量可以自己定义，未必是上图中的三个。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220191026013517622.png" alt="img"></p><h2 id="相对虚拟地址RVA和虚拟地址VA"><a href="#相对虚拟地址RVA和虚拟地址VA" class="headerlink" title="相对虚拟地址RVA和虚拟地址VA"></a>相对虚拟地址RVA和虚拟地址VA</h2><p>当一个 PE 文件被加载到内存中以后，我们称之为 “ 映象 “（image）。</p><div class="note note-info">            <p><strong>一般来说，PE文件在硬盘上和在内存里是不完全一样的</strong>，<strong>被加载到内存以后其占用的虚拟地址空间要比在硬盘上占用的空间大一些</strong>，<strong>这是因为各个节在硬盘上是连续的，而在内存中是按页对齐的，所以加载到内存以后节之间会出现一些 “空洞” 。</strong></p>          </div><p>因为存在这种对齐，所以在 PE 结构内部，表示某个位置的地址采用了两种方式：</p><ol><li>针对在硬盘上存储文件中的地址，称为 <strong>原始存储地址</strong> 或 <strong>物理地址,表示距离文件头的偏移。</strong></li><li>针对加载到内存以后映象中的地址，称为 <strong>相对虚拟地址（RVA），表示相对内存映象头的偏移</strong>。</li></ol><p><strong>堆栈</strong>：堆栈里面的数据都是临时存储的数据，作为参数、局部变量、计算的中间值等临时的存储位置。使用数据时，用pop出栈使用数据，并清除堆栈上对应数据。</p><p>然而 CPU 的某些指令是需要使用绝对地址的，比如取全局变量的地址，传递函数的地址，以及编译后的汇编指令中肯定需要用到绝对地址而不是相对映象头的偏移，因此 PE 文件会建议操作系统将其加载到某个<strong>内存地址</strong>，这个叫基地址。段地址其实就是一种基地址，但基地址并不等于就是段地址。</p><p>所谓基地址(可以理解为汇编中全局变量)，顾名思义就可以理解为基本地址，他是相对偏移量的计算基准，即参考位置。</p><p>基地址可以理解为内存中整个PE文件的头地址文件最开始的位置，编译器便根据这个地址求出代码中一些全局变量和函数的地址，并将这些地址用到对应的指令中。</p><p>这种表示方式叫做 <strong>虚拟地址（VA）</strong>。</p><hr><p>未完待续</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF</tag>
+      
+      <tag>Re</tag>
+      
+      <tag>学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ACTF新生赛2020_Splendid_MineCraft刷题记录</title>
     <link href="/2023/05/19/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-Splendid-MineCraft%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <url>/2023/05/19/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-Splendid-MineCraft%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
