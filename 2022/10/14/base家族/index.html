@@ -48,6 +48,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -405,18 +407,16 @@
             
               <div class="markdown-body">
                 
-                <h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><h2 id="换表的情况"><a href="#换表的情况" class="headerlink" title="换表的情况"></a>换表的情况</h2><p>无法直接使用<code>base64.b64decode(enc)</code>来直接解出，但是可以将密文排序为原表的密文再解</p>
+                <h1 id="base64">base64</h1>
+<h2 id="换表的情况">换表的情况</h2>
+<p>无法直接使用<code>base64.b64decode(enc)</code>来直接解出，但是可以将密文排序为原表的密文再解</p>
 <p>例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><br>enc = <span class="hljs-string">&#x27;AMHo7dLxUEabf6Z3PdWr6cOy75i4fdfeUzL17kaV7rG=&#x27;</span><br><br>model = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>  <span class="hljs-comment">#正常表</span><br><br><span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;qaCpwYM2tO/RP0XeSZv8kLd6nfA7UHJ1No4gF5zr3VsBQbl9juhEGymc+WTxIiDK&#x27;</span>	<span class="hljs-comment">#被改变了的base64的表</span><br><span class="hljs-comment">#这段是排序归位</span><br>dnc = <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(enc)):<br>    dnc += model[<span class="hljs-built_in">str</span>.find(enc[i])]<br><br><span class="hljs-built_in">print</span>(base64.b64decode(dnc).decode())<br></code></pre></td></tr></table></figure>
-
 <p>或者通过建立映射字典的方式来还原(感谢青丝独奏)：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><br>newtable = <span class="hljs-built_in">bytes</span>(i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>, <span class="hljs-number">32</span>+<span class="hljs-number">64</span>))<br><span class="hljs-comment"># print(newtable)</span><br>table = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span><br>bbb = <span class="hljs-built_in">str</span>.maketrans(<span class="hljs-built_in">dict</span>(<span class="hljs-built_in">zip</span>(newtable, table)))<br><span class="hljs-comment"># print(bbb)</span><br>flag = <span class="hljs-built_in">bytes</span>(flag).decode()<br>fff = flag.translate(bbb)<br><span class="hljs-comment"># print(fff)</span><br>res = base64.b64decode(fff)<br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="base58"><a href="#base58" class="headerlink" title="base58"></a>base58</h1><p>md，整了不少，装不上，那就毛一个脚本：</p>
+<h1 id="base58">base58</h1>
+<p>md，整了不少，装不上，那就毛一个脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">b58encode</span>(<span class="hljs-params">tmp: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    tmp = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">ord</span>, tmp))<br>    temp = tmp[<span class="hljs-number">0</span>]<br>    base58 = <span class="hljs-string">&quot;123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(tmp) - <span class="hljs-number">1</span>):<br>        temp = temp * <span class="hljs-number">256</span> + tmp[i + <span class="hljs-number">1</span>]<br>    tmp = []<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        tmp.insert(<span class="hljs-number">0</span>, temp % <span class="hljs-number">58</span>)<br>        temp = temp // <span class="hljs-number">58</span><br>        <span class="hljs-keyword">if</span> temp == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">break</span><br>    temp = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tmp:<br>        temp += base58[i]<br>    <span class="hljs-keyword">return</span> temp<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">b58decode</span>(<span class="hljs-params">tmp: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-keyword">import</span> binascii<br>    base58 = <span class="hljs-string">&quot;123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz&quot;</span><br>    temp = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tmp:<br>        temp.append(base58.index(i))<br>    tmp = temp[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(temp) - <span class="hljs-number">1</span>):<br>        tmp = tmp * <span class="hljs-number">58</span> + temp[i + <span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">return</span> binascii.unhexlify(<span class="hljs-built_in">hex</span>(tmp)[<span class="hljs-number">2</span>:].encode(<span class="hljs-string">&quot;utf-8&quot;</span>)).decode(<span class="hljs-string">&quot;UTF-8&quot;</span>)<br></code></pre></td></tr></table></figure>
-
 
                 
               </div>
@@ -534,6 +534,11 @@
 
 
   
+
+
+  
+  
+
 
 
 

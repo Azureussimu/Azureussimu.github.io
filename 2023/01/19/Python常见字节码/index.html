@@ -48,6 +48,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -237,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.3k 字
         
       </span>
     
@@ -306,7 +308,7 @@
         aria-expanded="true"
       >
         语言知识
-        <span class="list-group-count">(4)</span>
+        <span class="list-group-count">(5)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -354,6 +356,15 @@
         </a>
       
     
+      
+      
+        <a href="/2023/07/11/unicode%E5%B8%B8%E7%94%A8%E8%8C%83%E5%9B%B4/" title="unicode常用范围"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">unicode常用范围</span>
+        </a>
+      
+    
   </div>
 
         
@@ -378,162 +389,167 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Python字节码"><a href="#Python字节码" class="headerlink" title="Python字节码"></a>Python字节码</h1><p>虽然python作为解释型语言，但是其也不是直接对源码进行解释</p>
+                <h1 id="python字节码">Python字节码</h1>
+<p>虽然python作为解释型语言，但是其也不是直接对源码进行解释</p>
 <p>python解释器会将源码处理成字节码后，再借助python解释器运行程序</p>
 <div class="note note-info">
             <p>通过python自带的dis包可以将目标函数转化为字节码</p>
           </div>
-
 <p>例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> dis<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fun</span>(<span class="hljs-params">x,y,z</span>):<br>    a = <span class="hljs-number">1</span><br>    a += <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;aaa&quot;</span>)<br>    fun(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)<br>    <span class="hljs-keyword">return</span><br><br>dis.dis(fun)<br></code></pre></td></tr></table></figure>
-
 <p>得到</p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs tap"><span class="hljs-number"> 46 </span>         <span class="hljs-number"> 0 </span>LOAD_CONST              <span class="hljs-number"> 1 </span>(1)<br>             <span class="hljs-number"> 2 </span>STORE_FAST              <span class="hljs-number"> 3 </span>(a)<br><br><span class="hljs-number"> 47 </span>         <span class="hljs-number"> 4 </span>LOAD_FAST               <span class="hljs-number"> 3 </span>(a)<br>             <span class="hljs-number"> 6 </span>LOAD_CONST              <span class="hljs-number"> 1 </span>(1)<br>             <span class="hljs-number"> 8 </span>INPLACE_ADD<br>            <span class="hljs-number"> 10 </span>STORE_FAST              <span class="hljs-number"> 3 </span>(a)<br><br><span class="hljs-number"> 48 </span>        <span class="hljs-number"> 12 </span>LOAD_GLOBAL             <span class="hljs-number"> 0 </span>(print)<br>            <span class="hljs-number"> 14 </span>LOAD_CONST              <span class="hljs-number"> 2 </span>(&#x27;aaa&#x27;)<br>            <span class="hljs-number"> 16 </span>CALL_FUNCTION            1<br>            <span class="hljs-number"> 18 </span>POP_TOP<br><br><span class="hljs-number"> 49 </span>        <span class="hljs-number"> 20 </span>LOAD_GLOBAL             <span class="hljs-number"> 1 </span>(fun)<br>            <span class="hljs-number"> 22 </span>LOAD_CONST              <span class="hljs-number"> 1 </span>(1)<br>            <span class="hljs-number"> 24 </span>LOAD_CONST              <span class="hljs-number"> 3 </span>(2)<br>            <span class="hljs-number"> 26 </span>LOAD_CONST              <span class="hljs-number"> 4 </span>(3)<br>            <span class="hljs-number"> 28 </span>CALL_FUNCTION            3<br>            <span class="hljs-number"> 30 </span>POP_TOP<br><br><span class="hljs-number"> 50 </span>        <span class="hljs-number"> 32 </span>LOAD_CONST              <span class="hljs-number"> 0 </span>(None)<br>            <span class="hljs-number"> 34 </span>RETURN_VALUE<br><br>进程已结束,退出代码0<br></code></pre></td></tr></table></figure>
-
-<h1 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h1><h2 id="一般指令与一元操作指令"><a href="#一般指令与一元操作指令" class="headerlink" title="一般指令与一元操作指令"></a>一般指令与一元操作指令</h2><table>
+<h1 id="常见指令">常见指令</h1>
+<h2 id="一般指令与一元操作指令">一般指令与一元操作指令</h2>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>NOP</td>
 <td>无作用，用于占位</td>
 </tr>
-<tr>
+<tr class="even">
 <td>POP_TOP</td>
 <td>弹出栈顶元素</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>LOAD_CONST</td>
 <td>将读取的值推入栈</td>
 </tr>
-<tr>
+<tr class="even">
 <td>LOAD_GLOBAL</td>
 <td>将全局变量压入栈</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>STORE_FAST</td>
 <td>将栈顶指令存入对应的局部变量</td>
 </tr>
-<tr>
+<tr class="even">
 <td>COMPARE_OP</td>
 <td>比较操作符</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>CALL_FUNCTION</td>
 <td>调用函数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BUILD_SLICE</td>
 <td>调用切片，跟的参数为切片的值的个数一般上到下为[Val1:Val2:Val3]</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>JUMP_ABSOLUTE</td>
 <td>向下跳转几句操作符，变量为跳转偏移量</td>
 </tr>
-<tr>
+<tr class="even">
 <td>UNARY_POSITIVE</td>
-<td>实现Val1 &#x3D; +Val1</td>
+<td>实现Val1 = +Val1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>UNARY_NEGATIVE</td>
-<td>实现Val1 &#x3D; -Val1</td>
+<td>实现Val1 = -Val1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>UNARY_NOT</td>
-<td>实现Val1 &#x3D; not Val1</td>
+<td>实现Val1 = not Val1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>UNARY_INVERT</td>
-<td>实现Val1 &#x3D; ~Val1</td>
+<td>实现Val1 = ~Val1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FOR_ITER</td>
 <td>for循环</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GET_ITER</td>
 <td>获取迭代器(一般后面跟循环)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>GET_YIELD_FROM_ITER</td>
 <td>获取yield生成器</td>
 </tr>
-</tbody></table>
-<h2 id="二元操作指令"><a href="#二元操作指令" class="headerlink" title="二元操作指令"></a>二元操作指令</h2><table>
+</tbody>
+</table>
+<h2 id="二元操作指令">二元操作指令</h2>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>BINARY_POWER</td>
 <td>乘方，栈顶为指数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_MULTIPLY</td>
 <td>乘法</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_MATRIX_MULTIPLY</td>
 <td>矩阵乘法，3.5引入的新功能</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_FLOOR_DIVIDE</td>
 <td>除法，向下取整</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_TRUE_DIVIDE</td>
 <td>除法</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_MODULO</td>
 <td>取余</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_ADD</td>
 <td>加法</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_SUBTRACT</td>
 <td>减法</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_SUBSCR</td>
 <td>数组取下标，栈顶为下标</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_LSHIFT</td>
 <td>左移操作符</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_RSHIFT</td>
 <td>右移操作符(除二向下取整)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_AND</td>
 <td>按位与</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BINARY_XOR</td>
 <td>异或</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BINARY_OR</td>
 <td>按位或</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>STORE_SUBSCR</td>
-<td>列表下标存储，如Val1[Val2] &#x3D; Val3</td>
+<td>列表下标存储，如Val1[Val2] = Val3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>DELETE_SUBSCR</td>
 <td>列表下标存储，如del Val1[Val2]</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li><p>自身操作指令，类似<code>b += 1</code>，就是上面有BINARY的指令将BINARY改为INPLACE</p>
 <div class="note note-info">
@@ -657,6 +673,11 @@
 
 
   
+
+
+  
+  
+
 
 
 

@@ -16,27 +16,26 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="py编译逆向学习笔记">
+    <meta name="description" content="常用的Unicode范围">
 <meta property="og:type" content="article">
-<meta property="og:title" content="py编译逆向学习">
-<meta property="og:url" content="http://example.com/2022/05/23/py%E7%BC%96%E8%AF%91%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="unicode常用范围">
+<meta property="og:url" content="http://example.com/2023/07/11/unicode%E5%B8%B8%E7%94%A8%E8%8C%83%E5%9B%B4/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="py编译逆向学习笔记">
+<meta property="og:description" content="常用的Unicode范围">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/pyRe.jpg">
-<meta property="article:published_time" content="2022-05-23T09:51:50.000Z">
-<meta property="article:modified_time" content="2023-01-15T03:16:09.092Z">
+<meta property="og:image" content="http://example.com/img/blogimg/unicode.jpg">
+<meta property="article:published_time" content="2023-07-11T10:12:56.000Z">
+<meta property="article:modified_time" content="2023-07-11T10:17:19.837Z">
 <meta property="article:author" content="3zureus">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="Re">
+<meta property="article:tag" content="奇怪的知识增加了">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/pyRe.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/unicode.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>py编译逆向学习 - 3zureusの小屋</title>
+  <title>unicode常用范围 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +209,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/pyRe.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/unicode.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="py编译逆向学习"></span>
+            <span id="subtitle" data-typed-text="unicode常用范围"></span>
           
         </div>
 
@@ -227,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-23 17:51" pubdate>
-          2022年5月23日 下午
+        <time datetime="2023-07-11 18:12" pubdate>
+          2023年7月11日 晚上
         </time>
       </span>
     
@@ -239,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          1.5k 字
         
       </span>
     
@@ -250,7 +249,7 @@
         
         
         
-          25 分钟
+          13 分钟
         
       </span>
     
@@ -351,7 +350,7 @@
       
         <a href="/2022/05/23/py%E7%BC%96%E8%AF%91%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" title="py编译逆向学习"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">py编译逆向学习</span>
         </a>
       
@@ -360,7 +359,7 @@
       
         <a href="/2023/07/11/unicode%E5%B8%B8%E7%94%A8%E8%8C%83%E5%9B%B4/" title="unicode常用范围"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">unicode常用范围</span>
         </a>
       
@@ -384,126 +383,271 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">py编译逆向学习</h1>
+            <h1 style="display: none">unicode常用范围</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="pyc-文件">PYC 文件</h1>
-<p>pyc 文件是 python 在编译过程中出现的主要中间过程文件。pyc 文件是二进制的，类似 java 的字节码，可以由 python 虚拟机直接执行的。</p>
-<h2 id="pycodeobject">PyCodeObject</h2>
-<p>实际上，pyc 文件就是 PyCodeObject 对象在硬盘上的保存形式。</p>
-<p>而 PyCodeObject 的结构如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> &#123;<br>    PyObject_HEAD<br>    <span class="hljs-type">int</span> co_argcount;        <span class="hljs-comment">/* 位置参数个数 */</span><br>    <span class="hljs-type">int</span> co_nlocals;         <span class="hljs-comment">/* 局部变量个数 */</span><br>    <span class="hljs-type">int</span> co_stacksize;       <span class="hljs-comment">/* 栈大小 */</span><br>    <span class="hljs-type">int</span> co_flags;   <br>    PyObject *co_code;      <span class="hljs-comment">/* 字节码指令序列 */</span><br>    PyObject *co_consts;    <span class="hljs-comment">/* 所有常量集合 */</span><br>    PyObject *co_names;     <span class="hljs-comment">/* 所有符号名称集合 */</span><br>    PyObject *co_varnames;  <span class="hljs-comment">/* 局部变量名称集合 */</span><br>    PyObject *co_freevars;  <span class="hljs-comment">/* 闭包用的的变量名集合 */</span><br>    PyObject *co_cellvars;  <span class="hljs-comment">/* 内部嵌套函数引用的变量名集合 */</span><br>    <span class="hljs-comment">/* The rest doesn’t count for hash/cmp */</span><br>    PyObject *co_filename;  <span class="hljs-comment">/* 代码所在文件名 */</span><br>    PyObject *co_name;      <span class="hljs-comment">/* 模块名|函数名|类名 */</span><br>    <span class="hljs-type">int</span> co_firstlineno;     <span class="hljs-comment">/* 代码块在文件中的起始行号 */</span><br>    PyObject *co_lnotab;    <span class="hljs-comment">/* 字节码指令和行号的对应关系 */</span><br>    <span class="hljs-type">void</span> *co_zombieframe;   <span class="hljs-comment">/* for optimization only (see frameobject.c) */</span><br>&#125; PyCodeObject;<br></code></pre></td></tr></table></figure>
-<h2 id="pyobject_head">PyObject_HEAD</h2>
-<p>不同的 Python 版本会有不同的 PyObject_HEAD，以下是各版本的文件头：</p>
+                <blockquote>
+<p>爬虫从网站上爬取的内容在读写操作时经常会报以下错误：</p>
+<p>UnicodeEncodeError: 'gbk' codec can't encode character '00b' in position 7: illegal multibyte sequence</p>
+<p>所以需要我们对数据Unicode进行清洗，排除文章内异常的Unicode符号。</p>
+</blockquote>
+<h1 id="清洗思路">清洗思路</h1>
+<p>我的思路是用正则表达式来匹配常用字，不在范围内的Unicode编码则去除。</p>
+<p>.compile(u"[^常用字范围]+")匹配到非范围内字符后，</p>
+<p>.sub()方法将特殊字符替换成空</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">illegal_char</span>(<span class="hljs-params">s</span>):<br>    s = re \<br>        .<span class="hljs-built_in">compile</span>( <br>        <span class="hljs-string">u&quot;[^&quot;</span><br>        <span class="hljs-string">u&quot;\u4e00-\u9fa5&quot;</span><br>        <span class="hljs-string">u&quot;\u0041-\u005A&quot;</span><br>        <span class="hljs-string">u&quot;\u0061-\u007A&quot;</span><br>        <span class="hljs-string">u&quot;\u0030-\u0039&quot;</span><br>        <span class="hljs-string">u&quot;\u3002\uFF1F\uFF01\uFF0C\u3001\uFF1B\uFF1A\u300C\u300D\u300E\u300F\u2018\u2019\u201C\u201D\uFF08\uFF09\u3014\u3015\u3010\u3011\u2014\u2026\u2013\uFF0E\u300A\u300B\u3008\u3009&quot;</span><br>        <span class="hljs-string">u&quot;\!\@\#\$\%\^\&amp;\*\(\)\-\=\[\]\&#123;\&#125;\\\|\;\&#x27;\:\&quot;\,\.\/\&lt;\&gt;\?\/\*\+&quot;</span><br>        <span class="hljs-string">u&quot;]+&quot;</span>) \<br>        .sub(<span class="hljs-string">&#x27;&#x27;</span>, s)<br>    <span class="hljs-keyword">return</span> s<br></code></pre></td></tr></table></figure>
+<h1 id="unicode范围">Unicode范围</h1>
+<h2 id="常用范围"><strong>常用范围</strong></h2>
 <table>
 <thead>
 <tr class="header">
-<th>Python 版本</th>
-<th>十六进制文件头</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">范围</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Python 2.7</td>
-<td><code>03f30d0a00000000</code></td>
+<td style="text-align: left;">中文</td>
+<td style="text-align: left;">e00-fa5</td>
 </tr>
 <tr class="even">
-<td>Python 3.0</td>
-<td><code>3b0c0d0a00000000</code></td>
+<td style="text-align: left;">日文平假名</td>
+<td style="text-align: left;">040-09f</td>
 </tr>
 <tr class="odd">
-<td>Python 3.1</td>
-<td><code>4f0c0d0a00000000</code></td>
+<td style="text-align: left;">日文片假名</td>
+<td style="text-align: left;">0a0-0ff</td>
 </tr>
 <tr class="even">
-<td>Python 3.2</td>
-<td><code>6c0c0d0a00000000</code></td>
+<td style="text-align: left;">韩文</td>
+<td style="text-align: left;">-7ff</td>
 </tr>
 <tr class="odd">
-<td>Python 3.3</td>
-<td><code>9e0c0d0a0000000000000000</code></td>
+<td style="text-align: left;">英文字母</td>
+<td style="text-align: left;">041-05A06107A</td>
 </tr>
 <tr class="even">
-<td>Python 3.4</td>
-<td><code>ee0c0d0a0000000000000000</code></td>
+<td style="text-align: left;">数字</td>
+<td style="text-align: left;">030-039</td>
 </tr>
 <tr class="odd">
-<td>Python 3.5</td>
-<td><code>170d0d0a0000000000000000</code></td>
+<td style="text-align: left;">英文标点</td>
+<td style="text-align: left;">!@#$%^&amp;<em>()-=<span></span>;':",./&lt;&gt;?/</em>+</td>
 </tr>
 <tr class="even">
-<td>Python 3.6</td>
-<td><code>330d0d0a0000000000000000</code></td>
-</tr>
-<tr class="odd">
-<td>Python 3.7</td>
-<td><code>420d0d0a000000000000000000000000</code></td>
-</tr>
-<tr class="even">
-<td>Python 3.8</td>
-<td><code>55 0d 0d 0a 00 00 00 00 00 00 00 00 00 00 00 00</code></td>
-</tr>
-<tr class="odd">
-<td>Python 3.9</td>
-<td><code>610d0d0a000000000000000000000000</code></td>
-</tr>
-<tr class="even">
-<td>Python 3.10</td>
-<td><code>6f0d0d0a000000000000000000000000</code></td>
+<td style="text-align: left;">中文标点</td>
+<td style="text-align: left;">使用下面的中文标点挨个匹配</td>
 </tr>
 </tbody>
 </table>
-<h2 id="反反编译">反反编译</h2>
-<h3 id="更改魔术头">更改魔术头</h3>
-<p>当想要保护我们的 pyc 文件不被反编译，最简单的做法就是更改魔术头，即 PyObject_HEAD。</p>
-<p>可能是完全删除魔术头，也可能是修改为不是原生版本的魔术头，我们只需要根据情况添加或修改即可。</p>
-<h1 id="pyd-文件">PYD 文件</h1>
-<p>pyd 文件相当于 python 的运行时 dll，在 python 代码中可以直接使用 <code>import</code> 将 pyd 文件当作模块导入。</p>
-<p>对于 pyd 的逆向，我们需要借助 ida 的 <code>attach</code> 动态调试跟静态分析。</p>
-<h1 id="pyexe的逆向">pyexe的逆向</h1>
-<p>PyInstaller打包后，pyc文件的前8个字节会被抹掉，所以最后要自己添加回去</p>
-<p>逆向：</p>
-<p>用pyinstxtractor来解pyc包</p>
-<p>安装</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install pyinstxtractor<br></code></pre></td></tr></table></figure>
-<p>执行脚本</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">python pyinstxtractor.py **.exe<br></code></pre></td></tr></table></figure>
-<p>就会解包得到一个文件夹(一般命名为<strong>**.exe_extracted</strong>)</p>
-<p>里面只用注意两个文件，其他的一般是库脚本</p>
-<p>一个是<strong><em>1.pyc</em></strong>，另一个是<strong><em>struct.pyc</em></strong>,</p>
-<p>同时会有提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs \">PE:<br>[+] Processing pyre.exe<br>[+] Pyinstaller version: 2.1+<br>[+] Python version: 37<br>[+] Length of package: 5796250 bytes<br>[+] Found 61 files in CArchive<br>[+] Beginning extraction...please standby<br>[+] Possible entry point: pyiboot01_bootstrap.pyc<br>[+] Possible entry point: 1.pyc<br>[!] Warning: This script is running in a different Python version than the one used to build the executable.<br>[!] Please run this script in Python37 to prevent extraction errors during unmarshalling<br>[!] Skipping pyz extraction<br>[+] Successfully extracted pyinstaller archive: pyre.exe<br></code></pre></td></tr></table></figure>
-<p>如果解包出来发现原来的pyc脚本是用与自己的python的版本不一样的话，会有警告：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">[!] Warning: This script is running <span class="hljs-keyword">in</span> a different Python version than the one used to build the executable.<br></code></pre></td></tr></table></figure>
-<p>这个是告诉你版本号不同，魔术头被修改了；</p>
-<p>只需要自己将魔术头给改正，一般struct.pyc的前16字节就是所要的魔术头；</p>
-<p>魔术头依照版本号来确定：</p>
-<p>在刚刚的提示里面就含有这个文件对应的版本号</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[+]</span> Python version: <span class="hljs-number">37</span><br></code></pre></td></tr></table></figure>
-<p>E.P.:</p>
-<p>原：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203628458.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203628458" /><figcaption aria-hidden="true">image-20220919203628458</figcaption>
-</figure>
-<p>改：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203711306.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203711306" /><figcaption aria-hidden="true">image-20220919203711306</figcaption>
-</figure>
-<p>​ E3这个是个可以作为本文件的标记，所以可见多了4个字节，复制粘贴struct.pyc的头时顺便把那4个给覆盖了。</p>
-<p>修改完之后就简单了，对1.pyc使用 uncompyle 可以将 pyc 文件完美反编译。<a target="_blank" rel="noopener" href="https://github.com/rocky/python-uncompyle6">uncompyle6 Github主页</a></p>
-<p>安装：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip3 <span class="hljs-keyword">install</span> uncompyle<br></code></pre></td></tr></table></figure>
-<p>而 uncompyle 用法如下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">uncompyle6</span> <span class="hljs-regexp">*.pyc</span><br></code></pre></td></tr></table></figure>
-<p>uncomyle6 会直接将反编译后的源码输出在标准输出中，推荐用法：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">uncompyle6</span> <span class="hljs-regexp">*.pyc</span> &gt; filename<br></code></pre></td></tr></table></figure>
-<p>将源码输出到文件里面，比如说：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">uncompyle6</span> <span class="hljs-number">1</span>.pyc &gt; <span class="hljs-number">1</span>.py<br></code></pre></td></tr></table></figure>
-<p>输出后就直接看1.py即可。</p>
-<h1 id="直接输出pyc">直接输出pyc</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> dis<br><span class="hljs-keyword">import</span> marshal<br><span class="hljs-keyword">import</span> os<br><br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br><br>os.chdir(<span class="hljs-string">r&#x27;C:\Users\74592\Desktop\hgame2023\week2\stream&#x27;</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;stream.pyc&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>    code = marshal.load(file)<br><br><span class="hljs-built_in">print</span>(dis.disassemble(code))<br></code></pre></td></tr></table></figure>
+<p>注:网上有种方法写的中文标点匹配是 000-03f-，但01c，仍然会报错，建议将中文标点挨个匹配</p>
+<h2 id="中文标点对应"><strong>中文标点对应</strong></h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">Unicode</th>
+<th style="text-align: left;">符号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">句号</td>
+<td style="text-align: left;">002</td>
+<td style="text-align: left;">。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">问号</td>
+<td style="text-align: left;">1F</td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">叹号</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">！</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">逗号</td>
+<td style="text-align: left;">0C</td>
+<td style="text-align: left;">，</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">顿号</td>
+<td style="text-align: left;">001</td>
+<td style="text-align: left;">、</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">分号</td>
+<td style="text-align: left;">1B</td>
+<td style="text-align: left;">；</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">冒号</td>
+<td style="text-align: left;">1A</td>
+<td style="text-align: left;">：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">引号</td>
+<td style="text-align: left;">00C</td>
+<td style="text-align: left;">「</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">00D</td>
+<td style="text-align: left;">」</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">00E</td>
+<td style="text-align: left;">『</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">00F</td>
+<td style="text-align: left;">』</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">018</td>
+<td style="text-align: left;">‘</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">019</td>
+<td style="text-align: left;">’</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">01C</td>
+<td style="text-align: left;">“</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">01D</td>
+<td style="text-align: left;">”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">括号</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">（</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">014</td>
+<td style="text-align: left;">〔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">015</td>
+<td style="text-align: left;">〕</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">010</td>
+<td style="text-align: left;">【</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">011</td>
+<td style="text-align: left;">】</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">破折号</td>
+<td style="text-align: left;">014</td>
+<td style="text-align: left;">——</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">省略号</td>
+<td style="text-align: left;">026</td>
+<td style="text-align: left;">……</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">连接号</td>
+<td style="text-align: left;">013</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">间隔号</td>
+<td style="text-align: left;">0E</td>
+<td style="text-align: left;">．</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">书名号</td>
+<td style="text-align: left;">00A</td>
+<td style="text-align: left;">《</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">00B</td>
+<td style="text-align: left;">》</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">008</td>
+<td style="text-align: left;">〈</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">009</td>
+<td style="text-align: left;">〉</td>
+</tr>
+</tbody>
+</table>
+<h2 id="非英文语系字符范围"><strong>非英文语系字符范围</strong></h2>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: left;">范围</th>
+<th style="text-align: left;">编码</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2E80~33FFh</td>
+<td style="text-align: left;">中日韩符号区</td>
+<td style="text-align: left;">收容康熙字典部首、中日韩辅助部首、注音符号、日本假名、韩文音符，中日韩的符号、标点、带圈或带括符文数字、月份，以及日本的假名组合、单位、年号、月份、日期、时间等。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3400~4DFFh</td>
+<td style="text-align: left;">中日韩认同文字扩充A区</td>
+<td style="text-align: left;">中日韩认同表意文字扩充A区，总计收容6,582个中日韩汉字。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4E00~9FFFh</td>
+<td style="text-align: left;">中日韩认同表意文字区</td>
+<td style="text-align: left;">中日韩认同表意文字区，总计收容20,902个中日韩汉字。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A000~A4FFh</td>
+<td style="text-align: left;">彝族文字区</td>
+<td style="text-align: left;">收容中国南方彝族文字和字根</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AC00~D7FFh</td>
+<td style="text-align: left;">韩文拼音组合字区</td>
+<td style="text-align: left;">收容以韩文音符拼成的文字</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F900~FAFFh</td>
+<td style="text-align: left;">中日韩兼容表意文字区</td>
+<td style="text-align: left;">总计收容302个中日韩汉字</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FB00~FFFDh</td>
+<td style="text-align: left;">文字表现形式区</td>
+<td style="text-align: left;">收容组合拉丁文字、希伯来文、阿拉伯文、中日韩直式标点、小符号、半角符号、全角符号等。</td>
+</tr>
+</tbody>
+</table>
 
                 
               </div>
@@ -537,9 +681,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CTF/">#CTF</a>
-      
-        <a href="/tags/Re/">#Re</a>
+        <a href="/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%8A%A0%E4%BA%86/">#奇怪的知识增加了</a>
       
     </div>
   
@@ -553,18 +695,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/01/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E5%87%BD%E6%95%B001/" title="奇奇怪怪的函数01">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">奇奇怪怪的函数01</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/30/RC4/" title="RC4">
-                        <span class="hidden-mobile">RC4</span>
+                      <a href="/2023/06/27/%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/" title="公式测试">
+                        <span class="hidden-mobile">公式测试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -48,6 +48,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -237,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          21k 字
         
       </span>
     
@@ -248,7 +250,7 @@
         
         
         
-          155 分钟
+          173 分钟
         
       </span>
     
@@ -360,110 +362,140 @@
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好难。。。</p>
-<h1 id="网络概述"><a href="#网络概述" class="headerlink" title="网络概述"></a>网络概述</h1><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230613220649764.png" srcset="/img/mokou.gif" lazyload alt="image-20230613220649764"></p>
+                <h1 id="前言">前言</h1>
+<p>好难。。。</p>
+<h1 id="网络概述">网络概述</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230613220649764.png" srcset="/img/mokou.gif" lazyload alt="image-20230613220649764" /><figcaption aria-hidden="true">image-20230613220649764</figcaption>
+</figure>
 <p><strong>Internet</strong>最早起源于ARPAnet</p>
-<p>公用数据网大多采用<strong>分组交换方式</strong><br>IP电话使用的数据交换技术是<strong>分组交换</strong></p>
+<p>公用数据网大多采用<strong>分组交换方式</strong> IP电话使用的数据交换技术是<strong>分组交换</strong></p>
 <p>电路交换技术不采用<strong>“存储-转发”</strong>方式</p>
-<h2 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614170155575.png" srcset="/img/mokou.gif" lazyload alt="image-20230614170155575"></p>
-<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>（1）建立数据通信</p>
+<h2 id="拓扑结构">拓扑结构</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614170155575.png" srcset="/img/mokou.gif" lazyload alt="image-20230614170155575" /><figcaption aria-hidden="true">image-20230614170155575</figcaption>
+</figure>
+<h2 id="主要功能">主要功能</h2>
+<p>（1）建立数据通信</p>
 <p>（2）实现资源共享</p>
 <p>（3）增加可靠性</p>
 <p>（4）提高系统处理能力</p>
-<h2 id="网络协议三要素"><a href="#网络协议三要素" class="headerlink" title="网络协议三要素"></a>网络协议三要素</h2><p>语法、语义、时序</p>
-<h2 id="网络体系结构"><a href="#网络体系结构" class="headerlink" title="网络体系结构"></a>网络体系结构</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614164008520.png" srcset="/img/mokou.gif" lazyload alt="image-20230614164008520"></p>
+<h2 id="网络协议三要素">网络协议三要素</h2>
+<p>语法、语义、时序</p>
+<h2 id="网络体系结构">网络体系结构</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614164008520.png" srcset="/img/mokou.gif" lazyload alt="image-20230614164008520" /><figcaption aria-hidden="true">image-20230614164008520</figcaption>
+</figure>
 <p>（1）物理层：规定物理接口，比特流透明传输。</p>
 <p>（2）数据链路层：实现逻辑链路上无差错的数据帧传输。</p>
 <p>（3）网络层：实现网络分组传输，解决寻址、路由、转发。</p>
-<p>（4）传输层：实现进程之间可靠&#x2F;无差错的端到端通信。</p>
+<p>（4）传输层：实现进程之间可靠/无差错的端到端通信。</p>
 <p>（5）应用层：根据应用进程通信要求，满足用户的需要。</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614164940939.png" srcset="/img/mokou.gif" lazyload alt="image-20230614164940939"></p>
-<h3 id="TCP-x2F-IP"><a href="#TCP-x2F-IP" class="headerlink" title="TCP&#x2F;IP"></a>TCP&#x2F;IP</h3><p>主要特点：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614164940939.png" srcset="/img/mokou.gif" lazyload alt="image-20230614164940939" /><figcaption aria-hidden="true">image-20230614164940939</figcaption>
+</figure>
+<h3 id="tcpip">TCP/IP</h3>
+<p>主要特点：</p>
 <ul>
-<li><p>在互联网应用层提供丰富的网络应用服务（C&#x2F;S、P2P）</p>
-</li>
-<li><p>在传输层支持面向连接&#x2F;可靠&#x2F;无差错服务（TCP）和无连接&#x2F;快速&#x2F;高效服务（UDP）</p>
-</li>
-<li><p>较少的协议层次，实现简单、高效</p>
-</li>
-<li><p>实现多种异构网的互连问题，网际协议IP为互联网核心</p>
-</li>
+<li><p>在互联网应用层提供丰富的网络应用服务（C/S、P2P）</p></li>
+<li><p>在传输层支持面向连接/可靠/无差错服务（TCP）和无连接/快速/高效服务（UDP）</p></li>
+<li><p>较少的协议层次，实现简单、高效</p></li>
+<li><p>实现多种异构网的互连问题，网际协议IP为互联网核心</p></li>
 </ul>
-<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614171225134.png" srcset="/img/mokou.gif" lazyload alt="image-20230614171225134"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614171504583.png" srcset="/img/mokou.gif" lazyload alt="image-20230614171504583"></p>
-<h2 id="2-1-应用程序体系结构的分类"><a href="#2-1-应用程序体系结构的分类" class="headerlink" title="2.1 应用程序体系结构的分类"></a>2.1 应用程序体系结构的分类</h2><p>网络应用模式</p>
+<h1 id="应用层">应用层</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614171225134.png" srcset="/img/mokou.gif" lazyload alt="image-20230614171225134" /><figcaption aria-hidden="true">image-20230614171225134</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614171504583.png" srcset="/img/mokou.gif" lazyload alt="image-20230614171504583" /><figcaption aria-hidden="true">image-20230614171504583</figcaption>
+</figure>
+<h2 id="应用程序体系结构的分类">2.1 应用程序体系结构的分类</h2>
+<p>网络应用模式</p>
 <ul>
-<li>客户机&#x2F;服务器结构（Client&#x2F;Server, C&#x2F;S）</li>
+<li>客户机/服务器结构（Client/Server, C/S）</li>
 <li>点对点结构（Peer to Peer, P2P）</li>
 <li>混合结构（Hybrid）</li>
 </ul>
-<h2 id="网络应用与应用层协议"><a href="#网络应用与应用层协议" class="headerlink" title="网络应用与应用层协议"></a>网络应用与应用层协议</h2><h3 id="网络应用与应用层协议的基本概念"><a href="#网络应用与应用层协议的基本概念" class="headerlink" title="网络应用与应用层协议的基本概念"></a>网络应用与应用层协议的基本概念</h3><p><strong>网络应用：</strong>基于网络的金融应用系统、电子政务、电子商务、远程医疗、远程数据存储等。</p>
+<h2 id="网络应用与应用层协议">网络应用与应用层协议</h2>
+<h3 id="网络应用与应用层协议的基本概念">网络应用与应用层协议的基本概念</h3>
+<p><strong>网络应用：</strong>基于网络的金融应用系统、电子政务、电子商务、远程医疗、远程数据存储等。</p>
 <p><strong>应用层协议：</strong>网络应用主要组成部分。规定应用程序进程之间通信所遵循的通信规则，包括：如何构造进程通信报文、报文应包括的字段、每个字段意义、交互过程等。</p>
-<h3 id="应用层协议的基本内容"><a href="#应用层协议的基本内容" class="headerlink" title="应用层协议的基本内容"></a>应用层协议的基本内容</h3><ul>
+<h3 id="应用层协议的基本内容">应用层协议的基本内容</h3>
+<ul>
 <li>交换报文的类型。如请求报文与应答报文</li>
 <li>各种报文格式与包含的字段类型</li>
 <li>对每个字段意义的描述</li>
 <li>进程在什么时间、如何发送报文，以及如何响应</li>
 </ul>
-<h3 id="应用层协议的类型"><a href="#应用层协议的类型" class="headerlink" title="应用层协议的类型"></a>应用层协议的类型</h3><p>标准网络应用：E-mail、FTP、TELNET、Web等</p>
+<h3 id="应用层协议的类型">应用层协议的类型</h3>
+<p>标准网络应用：E-mail、FTP、TELNET、Web等</p>
 <p>专用应用层协议：很多P2P共享文件的应用层协议属于专用协议</p>
-<h3 id="网络应用对传输层协议的选择"><a href="#网络应用对传输层协议的选择" class="headerlink" title="网络应用对传输层协议的选择"></a>网络应用对传输层协议的选择</h3><p>有TCP和UDP</p>
-<h4 id="TCP：-功能完善、面向连接、可靠传输服务"><a href="#TCP：-功能完善、面向连接、可靠传输服务" class="headerlink" title="TCP：  功能完善、面向连接、可靠传输服务"></a>TCP：  功能完善、面向连接、可靠传输服务</h4><ul>
+<h3 id="网络应用对传输层协议的选择">网络应用对传输层协议的选择</h3>
+<p>有TCP和UDP</p>
+<h4 id="tcp-功能完善面向连接可靠传输服务">TCP： 功能完善、面向连接、可靠传输服务</h4>
+<ul>
 <li>支持可靠的面向连接服务</li>
 <li>支持字节流传输服务</li>
 <li>支持全双工服务</li>
 <li>进程在什么时间、如何发送报文，以及如何响应</li>
 </ul>
-<h4 id="UDP：-简单、高效传输服务"><a href="#UDP：-简单、高效传输服务" class="headerlink" title="UDP：  简单、高效传输服务"></a>UDP：  <strong>简单、高效传输服务</strong></h4><ul>
+<h4 id="udp-简单高效传输服务">UDP： <strong>简单、高效传输服务</strong></h4>
+<ul>
 <li>无连接、不可靠的传输</li>
 <li>无提供拥塞控制机制</li>
 <li>不提供最小延时保证</li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th><strong>网络应用类型</strong></th>
 <th><strong>应用层协议</strong></th>
 <th><strong>传输层协议</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>E-mail</td>
 <td>SMTP</td>
 <td>TCP</td>
 </tr>
-<tr>
+<tr class="even">
 <td>TELNET</td>
 <td>TELNET</td>
 <td>TCP</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Web</td>
 <td>HTTP</td>
 <td>TCP</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FTP</td>
 <td>FTP</td>
 <td>TCP</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>DNS</td>
 <td>DNS</td>
 <td>UDP或TCP</td>
 </tr>
-<tr>
+<tr class="even">
 <td>流媒体</td>
 <td>Real Network</td>
 <td>UDP或TCP</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>VoIP</td>
 <td>Net2phone</td>
 <td>UDP</td>
 </tr>
-</tbody></table>
-<h2 id="2-2-Web服务"><a href="#2-2-Web服务" class="headerlink" title="2.2 Web服务"></a>2.2 Web服务</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614173810042.png" srcset="/img/mokou.gif" lazyload alt="image-20230614173810042"></p>
+</tbody>
+</table>
+<h2 id="web服务">2.2 Web服务</h2>
+<h3 id="基本概念">基本概念</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614173810042.png" srcset="/img/mokou.gif" lazyload alt="image-20230614173810042" /><figcaption aria-hidden="true">image-20230614173810042</figcaption>
+</figure>
 <p><strong>超文本传输协议HTTP：</strong></p>
 <p>Web服务应用层协议，超文本在浏览器与Web服务器之间的传输协议。</p>
 <p><strong>超文本标记语言HTML：</strong></p>
@@ -473,50 +505,73 @@
 <p><strong>超文本与超媒体：</strong></p>
 <p>在Web系统中，信息按超文本方式组织；超媒体进一步扩展了超文本所链接的信息类型</p>
 <p><strong>Web的工作方式：</strong></p>
-<p>C&#x2F;S</p>
+<p>C/S</p>
 <p>原因：<strong>网络资源分布的不均匀性</strong></p>
-<h3 id="HTTP工作机制"><a href="#HTTP工作机制" class="headerlink" title="HTTP工作机制"></a>HTTP工作机制</h3><h4 id="URL格式"><a href="#URL格式" class="headerlink" title="URL格式"></a>URL格式</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614175735160.png" srcset="/img/mokou.gif" lazyload alt="image-20230614175735160"></p>
-<h4 id="URL与信息资源定位"><a href="#URL与信息资源定位" class="headerlink" title="URL与信息资源定位"></a>URL与信息资源定位</h4><ul>
+<h3 id="http工作机制">HTTP工作机制</h3>
+<h4 id="url格式">URL格式</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230614175735160.png" srcset="/img/mokou.gif" lazyload alt="image-20230614175735160" /><figcaption aria-hidden="true">image-20230614175735160</figcaption>
+</figure>
+<h4 id="url与信息资源定位">URL与信息资源定位</h4>
+<ul>
 <li>访问Web网站要使用的HTTP协议 ，其形式为：</li>
-<li>http:&#x2F;&#x2F;服务器名[:端口号]&#x2F;路径&#x2F;文件名</li>
+<li>http://服务器名[:端口号]/路径/文件名</li>
 <li>URL（:冒号左边）指明了URL的访问方式</li>
 <li>http：超文本传输协议（HTTP）</li>
 <li>ftp：文件传输协议（FTP）</li>
 <li>telnet：交互式会话</li>
 <li>mailto：电子邮件地址</li>
 <li>HTTP的默认端口号是80（可以省略）</li>
-<li>路径&#x2F;文件名用于直接指向服务器中的某一个文件</li>
+<li>路径/文件名用于直接指向服务器中的某一个文件</li>
 <li>省略路径和文件名，则URL就指向了Internet上的某个主页</li>
 </ul>
-<hr>
+<hr />
 <p>HTTP使用面向连接的TCP协议，客户端Web浏览器要与Web服务器之间建立一个TCP连接</p>
-<h4 id="HTTP协议两种状态：非持续连接、持续连接"><a href="#HTTP协议两种状态：非持续连接、持续连接" class="headerlink" title="HTTP协议两种状态：非持续连接、持续连接"></a>HTTP协议两种状态：非持续连接、持续连接</h4><ul>
-<li>非持续连接（HTTP1.0）<br>每次请求&#x2F;响应都要建立一次TCP连接</li>
+<h4 id="http协议两种状态非持续连接持续连接">HTTP协议两种状态：非持续连接、持续连接</h4>
+<ul>
+<li>非持续连接（HTTP1.0） 每次请求/响应都要建立一次TCP连接</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617014949833.png" srcset="/img/mokou.gif" lazyload alt="image-20230617014949833"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617014949833.png" srcset="/img/mokou.gif" lazyload alt="image-20230617014949833" /><figcaption aria-hidden="true">image-20230617014949833</figcaption>
+</figure>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs applescript">RTT: <span class="hljs-built_in">round</span> trip <span class="hljs-built_in">time</span><br><br>在 HTTP 中，RTT 指的是从客户端向服务器发送一个请求并接收到服务器响应的时间。<br><br>TT 通常由以下两个部分组成：<br><br><span class="hljs-number">1.</span>发送请求的时间：客户端发送请求到服务器的时间，包括将请求发送到网络中所需的时间。<br><br><span class="hljs-number">2.</span>接收响应的时间：服务器响应到客户端的时间，包括将响应发送到网络中所需的时间。<br><br></code></pre></td></tr></table></figure>
-
 <ul>
 <li><p>持续连接</p>
 <p>持续连接时，服务器在发出响应后保持该TCP连接，相同的客户端进程与服务器端之间的后续报文都通过该连接传送</p>
 <p>持续连接工作有两种：<strong>非流水线和流水线</strong></p>
 <p>非流水线：客户端只有在接收到前一个响应时才能发出新的请求</p>
 <p>流水线：客户端在没有收到前一个响应时就发出新的请求</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015351404.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015351404"></p>
-</li>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015351404.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015351404" /><figcaption aria-hidden="true">image-20230617015351404</figcaption>
+</figure></li>
 </ul>
-<h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015853238.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015853238"></p>
-<h4 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015706680.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015706680"></p>
-<h4 id="应答报文"><a href="#应答报文" class="headerlink" title="应答报文"></a>应答报文</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015720480.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015720480"></p>
-<h4 id="应答状态码"><a href="#应答状态码" class="headerlink" title="应答状态码"></a>应答状态码</h4><p>常见：</p>
+<h3 id="http报文格式">HTTP报文格式</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015853238.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015853238" /><figcaption aria-hidden="true">image-20230617015853238</figcaption>
+</figure>
+<h4 id="请求报文">请求报文</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015706680.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015706680" /><figcaption aria-hidden="true">image-20230617015706680</figcaption>
+</figure>
+<h4 id="应答报文">应答报文</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230617015720480.png" srcset="/img/mokou.gif" lazyload alt="image-20230617015720480" /><figcaption aria-hidden="true">image-20230617015720480</figcaption>
+</figure>
+<h4 id="应答状态码">应答状态码</h4>
+<p>常见：</p>
 <p>200：请求成功</p>
 <p>202：请求被接受但是没有马上起作用</p>
 <p>403：请求拒绝</p>
 <p>404：not found</p>
-<h2 id="2-3-电子邮件"><a href="#2-3-电子邮件" class="headerlink" title="2.3 电子邮件"></a>2.3 电子邮件</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618202406298.png" srcset="/img/mokou.gif" lazyload alt="image-20230618202406298"></p>
+<h2 id="电子邮件">2.3 电子邮件</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618202406298.png" srcset="/img/mokou.gif" lazyload alt="image-20230618202406298" /><figcaption aria-hidden="true">image-20230618202406298</figcaption>
+</figure>
 <p>电子邮箱由提供电子邮件服务的机构（ISP）为用户建立。</p>
-<h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><p>用户代理<br>邮件服务器<br>邮件传输协议：SMTP&#x2F;MIME<br>邮件存储访问协议：POP、IMAP</p>
-<h3 id="邮件协议"><a href="#邮件协议" class="headerlink" title="邮件协议"></a>邮件协议</h3><p><strong>邮件传输协议</strong></p>
+<h3 id="基本组成">基本组成</h3>
+<p>用户代理 邮件服务器 邮件传输协议：SMTP/MIME 邮件存储访问协议：POP、IMAP</p>
+<h3 id="邮件协议">邮件协议</h3>
+<p><strong>邮件传输协议</strong></p>
 <ul>
 <li>客户端到邮件服务器、邮件服务器之间简单邮件传输协议STMP</li>
 <li>通用Internet邮件扩展协议<strong>MIME</strong></li>
@@ -527,7 +582,9 @@
 <li>Internet邮件访问协议第4版IMAP-4</li>
 </ul>
 <p><strong>STMP邮件报文封装</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618202825435.png" srcset="/img/mokou.gif" lazyload alt="image-20230618202825435"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618202825435.png" srcset="/img/mokou.gif" lazyload alt="image-20230618202825435" /><figcaption aria-hidden="true">image-20230618202825435</figcaption>
+</figure>
 <ul>
 <li>所有报文都是由ASCII码组成</li>
 <li>报文由报文行组成，各行之间用回车、换行符分隔</li>
@@ -539,14 +596,20 @@
 </ul>
 <p><strong>报文的传输</strong></p>
 <p>先发源地址，等待<code>250确认</code>再发送目的地址，等待<code>250确认</code>再发送DATA块，等待<code>354确认</code>再将首部+空行+主体发送，最后发送终结符，收到<code>250确认</code></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618203401603.png" srcset="/img/mokou.gif" lazyload alt="image-20230618203401603"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618203401603.png" srcset="/img/mokou.gif" lazyload alt="image-20230618203401603" /><figcaption aria-hidden="true">image-20230618203401603</figcaption>
+</figure>
 <p><strong>MIME协议基本内容</strong></p>
 <ul>
 <li>允许非7位ASCII码数据通过SMTP传输</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618204128868.png" srcset="/img/mokou.gif" lazyload alt="image-20230618204128868"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618204128868.png" srcset="/img/mokou.gif" lazyload alt="image-20230618204128868" /><figcaption aria-hidden="true">image-20230618204128868</figcaption>
+</figure>
 <p><strong>POP3协议</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618204224485.png" srcset="/img/mokou.gif" lazyload alt="image-20230618204224485"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618204224485.png" srcset="/img/mokou.gif" lazyload alt="image-20230618204224485" /><figcaption aria-hidden="true">image-20230618204224485</figcaption>
+</figure>
 <p><strong>IMAP4协议</strong></p>
 <ul>
 <li>与POP3类似，但功能更强</li>
@@ -555,230 +618,281 @@
 <li>可以下载部分电子邮件</li>
 <li>可以在邮件服务器上创建、删除、更名邮箱</li>
 </ul>
-<h3 id="基于Web的电子邮件"><a href="#基于Web的电子邮件" class="headerlink" title="基于Web的电子邮件"></a>基于Web的电子邮件</h3><p>基于Web电子邮件，用户代理就是Web浏览器，<strong>用户与远程邮箱之间的通信使用的是HTTP协议，而不是POP3或IMAP4协议</strong></p>
+<h3 id="基于web的电子邮件">基于Web的电子邮件</h3>
+<p>基于Web电子邮件，用户代理就是Web浏览器，<strong>用户与远程邮箱之间的通信使用的是HTTP协议，而不是POP3或IMAP4协议</strong></p>
 <p><strong>邮件服务器之间</strong>的通信仍然使用<strong>SMTP协议</strong></p>
-<h2 id="2-4-文件传输服务"><a href="#2-4-文件传输服务" class="headerlink" title="2.4 文件传输服务"></a>2.4 文件传输服务</h2><h3 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h3><ul>
+<h2 id="文件传输服务">2.4 文件传输服务</h2>
+<h3 id="ftp">FTP</h3>
+<ul>
 <li>FTP允许用户将文件从一台计算机保证<strong>可靠</strong>传输到另一台计算机</li>
 <li>FTP服务使用户可以方便地访问网络文件资源，无需对文件进行转换，服务效率高</li>
 <li>FTP服务器：提供FTP服务的计算机; FTP客户端：请求FTP服务器的计算机</li>
-<li>服务模式：C&#x2F;S模式; 传输层协议：<strong>TCP(FTP协议)、UDP(TFTP协议)</strong></li>
+<li>服务模式：C/S模式; 传输层协议：<strong>TCP(FTP协议)、UDP(TFTP协议)</strong></li>
 <li>控制进程使用<strong>端口21</strong>，数据进程使用<strong>端口20</strong></li>
 <li>控制连接先于数据连接被建立，并晚于数据连接被释放</li>
 </ul>
-<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618205332865.png" srcset="/img/mokou.gif" lazyload alt="image-20230618205332865"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618205335890.png" srcset="/img/mokou.gif" lazyload alt="image-20230618205335890"></p>
-<h3 id="FTP和TFTP的特点对比"><a href="#FTP和TFTP的特点对比" class="headerlink" title="FTP和TFTP的特点对比"></a>FTP和TFTP的特点对比</h3><h4 id="FTP特点："><a href="#FTP特点：" class="headerlink" title="FTP特点："></a>FTP特点：</h4><ul>
+<h4 id="工作原理">工作原理</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618205332865.png" srcset="/img/mokou.gif" lazyload alt="image-20230618205332865" /><figcaption aria-hidden="true">image-20230618205332865</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618205335890.png" srcset="/img/mokou.gif" lazyload alt="image-20230618205335890" /><figcaption aria-hidden="true">image-20230618205335890</figcaption>
+</figure>
+<h3 id="ftp和tftp的特点对比">FTP和TFTP的特点对比</h3>
+<h4 id="ftp特点">FTP特点：</h4>
+<ul>
 <li><strong>交互式用户界面</strong>：利用FTP命令方便与服务器对话</li>
 <li><strong>对文件格式说明</strong>：允许指定数据类型和格式（文本方式、二进制方式）</li>
 <li><strong>权限控制</strong>：文件传输之前，向服务器提供登录用户名和口令</li>
 </ul>
-<h4 id="TFTP特点："><a href="#TFTP特点：" class="headerlink" title="TFTP特点：(!!)"></a>TFTP特点：(!!)</h4><ul>
+<h4 id="tftp特点">TFTP特点：(!!)</h4>
+<ul>
 <li><strong>传输可靠性</strong>：FTP面向连接的可靠传输，采用TCP；TFTP简洁、采用UDP</li>
-<li><strong>协议命令集</strong>：FTP包含<strong>发送&#x2F;接收文件、列出目录与删除文件等复杂命令</strong>，TFTP协议只定义<strong>文件发送&#x2F;接收基本命令</strong></li>
+<li><strong>协议命令集</strong>：FTP包含<strong>发送/接收文件、列出目录与删除文件等复杂命令</strong>，TFTP协议只定义<strong>文件发送/接收基本命令</strong></li>
 <li><strong>数据表示</strong>：FTP可指定数据类型，TFTP只允许传输ASCII码或二进制文本文件</li>
 <li><strong>用户鉴别</strong>：FTP有登录用户鉴别功能，TFTP不提供用户鉴别功能</li>
 </ul>
-<h3 id="注"><a href="#注" class="headerlink" title="注"></a>注</h3><p>匿名FTP访问通常使用Anonymous作为用户名</p>
+<h3 id="注">注</h3>
+<p>匿名FTP访问通常使用Anonymous作为用户名</p>
 <p>浏览器软件支持访问FTP服务器，可以直接登录到FTP服务器并下载文件(x),下载可以匿名下载，无需登录</p>
-<h2 id="2-5-域名系统与DNS服务"><a href="#2-5-域名系统与DNS服务" class="headerlink" title="2.5 域名系统与DNS服务"></a>2.5 域名系统与DNS服务</h2><p>DNS基于C&#x2F;S模式的分布系统</p>
-<h3 id="DNS的作用"><a href="#DNS的作用" class="headerlink" title="DNS的作用"></a>DNS的作用</h3><ul>
+<h2 id="域名系统与dns服务">2.5 域名系统与DNS服务</h2>
+<p>DNS基于C/S模式的分布系统</p>
+<h3 id="dns的作用">DNS的作用</h3>
+<ul>
 <li>主机域名转换成IP地址</li>
 <li>能够方便访问各种网络资源和服务</li>
 <li>实现互联网应用层协议的基础</li>
 </ul>
 <p><strong>例子</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618210624273.png" srcset="/img/mokou.gif" lazyload alt="image-20230618210624273"></p>
-<h3 id="域名结构"><a href="#域名结构" class="headerlink" title="域名结构"></a>域名结构</h3><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618210624273.png" srcset="/img/mokou.gif" lazyload alt="image-20230618210624273" /><figcaption aria-hidden="true">image-20230618210624273</figcaption>
+</figure>
+<h3 id="域名结构">域名结构</h3>
+<ul>
 <li>主机名字要求全局唯一，能在整个互联网通用</li>
 <li>便于管理（名字分配、确认、回收）</li>
 <li>便于映射，域名与IP地址之间映射（关键问题映射效率）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618210949704.png" srcset="/img/mokou.gif" lazyload alt="image-20230618210949704"></p>
-<h3 id="DNS的基本原理"><a href="#DNS的基本原理" class="headerlink" title="DNS的基本原理"></a>DNS的基本原理</h3><p>域名解析器：将域名转换为对应的IP地址的过程</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230618211115105.png" srcset="/img/mokou.gif" lazyload alt="image-20230618211115105"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618210949704.png" srcset="/img/mokou.gif" lazyload alt="image-20230618210949704" /><figcaption aria-hidden="true">image-20230618210949704</figcaption>
+</figure>
+<h3 id="dns的基本原理">DNS的基本原理</h3>
+<p>域名解析器：将域名转换为对应的IP地址的过程</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230618211115105.png" srcset="/img/mokou.gif" lazyload alt="image-20230618211115105" /><figcaption aria-hidden="true">image-20230618211115105</figcaption>
+</figure>
 <p><strong>域名解析算法</strong></p>
 <ul>
-<li>递归解析!<br><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618211147603.png" srcset="/img/mokou.gif" lazyload></li>
+<li>递归解析! <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618211147603.png" srcset="/img/mokou.gif" lazyload /></li>
 <li>迭代解析</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618211237138.png" srcset="/img/mokou.gif" lazyload alt="image-20230618211237138"></p>
-<h3 id="DNS的高速缓存"><a href="#DNS的高速缓存" class="headerlink" title="DNS的高速缓存"></a>DNS的高速缓存</h3><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618211237138.png" srcset="/img/mokou.gif" lazyload alt="image-20230618211237138" /><figcaption aria-hidden="true">image-20230618211237138</figcaption>
+</figure>
+<h3 id="dns的高速缓存">DNS的高速缓存</h3>
+<ul>
 <li>复制：每个根目录被复制，该服务器副本存放在整个网络上。当一个新的网络加入互联网时，在本地的DNS服务器中配置一个根服务器表</li>
 <li>缓存：使用高速缓存优化查询开销。每个服务器都保留了一个域名缓存，查询一个新的域名时，服务器将该绑定的一个副本置于它的缓存中</li>
 </ul>
-<h3 id="注-1"><a href="#注-1" class="headerlink" title="注"></a>注</h3><p>DNS可以使用传输层无连接服务(DNS)</p>
-<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p>通过报文段传输</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618212009479.png" srcset="/img/mokou.gif" lazyload alt="image-20230618212009479"></p>
-<h2 id="3-1-基本功能"><a href="#3-1-基本功能" class="headerlink" title="3.1 基本功能"></a>3.1 基本功能</h2><p>根本目的：在网络层提供的数据通信服务基础上，实现主机<strong>进程间可靠</strong>服务，实现“端到端”服务（主机-主机 → 端-端），UDP的可靠性弱于TCP的可靠性</p>
-<h4 id="传输层与应用层和网络层的关系"><a href="#传输层与应用层和网络层的关系" class="headerlink" title="传输层与应用层和网络层的关系"></a>传输层与应用层和网络层的关系</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618214601740.png" srcset="/img/mokou.gif" lazyload alt="image-20230618214601740"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618214636931.png" srcset="/img/mokou.gif" lazyload alt="image-20230618214636931"></p>
-<hr>
+<h3 id="注-1">注</h3>
+<p>DNS可以使用传输层无连接服务(DNS)</p>
+<h1 id="传输层">传输层</h1>
+<p>通过报文段传输</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618212009479.png" srcset="/img/mokou.gif" lazyload alt="image-20230618212009479" /><figcaption aria-hidden="true">image-20230618212009479</figcaption>
+</figure>
+<h2 id="基本功能">3.1 基本功能</h2>
+<p>根本目的：在网络层提供的数据通信服务基础上，实现主机<strong>进程间可靠</strong>服务，实现“端到端”服务（主机-主机 → 端-端），UDP的可靠性弱于TCP的可靠性</p>
+<h4 id="传输层与应用层和网络层的关系">传输层与应用层和网络层的关系</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618214601740.png" srcset="/img/mokou.gif" lazyload alt="image-20230618214601740" /><figcaption aria-hidden="true">image-20230618214601740</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618214636931.png" srcset="/img/mokou.gif" lazyload alt="image-20230618214636931" /><figcaption aria-hidden="true">image-20230618214636931</figcaption>
+</figure>
+<hr />
 <p>传输层协议在本地主机操作系统控制下，为应用程序提供确定的服务</p>
 <ul>
 <li>网络层解决IP地址，传输层解决进程标识</li>
 </ul>
-<p>套接字：建立网络应用程序的可编程接口（应用编程接口API）(socket)<br>        IP地址+端口号，比如：202.1.2.5:80</p>
+<p>套接字：建立网络应用程序的可编程接口（应用编程接口API）(socket) IP地址+端口号，比如：202.1.2.5:80</p>
 <p><strong>进程标识三元组</strong>：协议、本地地址、本地端口，也叫半相关</p>
 <p><strong>进程通信标识五元组</strong>：协议、本地地址、本地端口、远程地址、远程端口号，也叫全相关</p>
-<h3 id="端口号-16bits"><a href="#端口号-16bits" class="headerlink" title="端口号(16bits)"></a>端口号(16bits)</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618233944599.png" srcset="/img/mokou.gif" lazyload alt="image-20230618233944599"></p>
+<h3 id="端口号16bits">端口号(16bits)</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618233944599.png" srcset="/img/mokou.gif" lazyload alt="image-20230618233944599" /><figcaption aria-hidden="true">image-20230618233944599</figcaption>
+</figure>
 <ul>
 <li><strong>熟知端口号：</strong>给每种服务器分配的确定的全局端口号，也叫公认端口号，范围在0~1023，统一分配与控制</li>
 <li><strong>注册端口号：</strong>在IANA注册的端口号，没有明确的定义服务对象，不同程序可根据实际需要自己定义，范围在1024~49152</li>
-<li><strong>临时端口号：</strong>客户端程序使用的临时端口号，由客户端上TCP&#x2F;IP软件随机选取，范围在49152~65535</li>
+<li><strong>临时端口号：</strong>客户端程序使用的临时端口号，由客户端上TCP/IP软件随机选取，范围在49152~65535</li>
 </ul>
-<h4 id="常见端口号"><a href="#常见端口号" class="headerlink" title="常见端口号"></a>常见端口号</h4><p>表5-1 UDP常用的熟知端口号</p>
+<h4 id="常见端口号">常见端口号</h4>
+<p>表5-1 UDP常用的熟知端口号</p>
 <p>DNS协议运行在UDP协议之上，使用端口号<strong>53</strong></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>端口号</th>
 <th>服务进程</th>
-<th>说   明</th>
+<th>说 明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td><strong>53</strong></td>
 <td><strong>Domain(DNS)</strong></td>
-<td><strong>域名服务</strong>  (!!)</td>
+<td><strong>域名服务</strong> (!!)</td>
 </tr>
-<tr>
-<td>67&#x2F;68</td>
+<tr class="even">
+<td>67/68</td>
 <td>DHCP</td>
 <td>动态主机配置协议</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>69</strong></td>
 <td><strong>TFTP</strong></td>
-<td><strong>简单文件传输协议</strong>  (!!)</td>
+<td><strong>简单文件传输协议</strong> (!!)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>111</td>
 <td>RPC</td>
 <td>远程过程调用</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>123</td>
 <td>NTP</td>
 <td>网络时间协议</td>
 </tr>
-<tr>
-<td>161&#x2F;162</td>
+<tr class="even">
+<td>161/162</td>
 <td>SNMP</td>
 <td>简单网络管理协议</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>520</td>
 <td>RIP</td>
 <td>路由信息协议</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>表5-2 TCP常用的熟知端口号</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>端口号</th>
 <th>服务进程</th>
-<th>说   明</th>
+<th>说 明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td><strong>20</strong></td>
 <td><strong>FTP</strong></td>
 <td><strong>文件传输（数据连接）</strong> (!!)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>21</strong></td>
 <td><strong>FTP</strong></td>
-<td><strong>文件传输（控制连接）</strong>  (!!)</td>
+<td><strong>文件传输（控制连接）</strong> (!!)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>23</td>
 <td>TELNET</td>
 <td>网络虚拟终端协议</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>25</strong></td>
 <td><strong>SMTP</strong></td>
-<td><strong>简单邮件传输协议</strong>  (!!)</td>
+<td><strong>简单邮件传输协议</strong> (!!)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>80</strong></td>
 <td><strong>HTTP</strong></td>
-<td><strong>超文本传输协议</strong>  (!!)</td>
+<td><strong>超文本传输协议</strong> (!!)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>119</td>
 <td>NNTP</td>
 <td>网络新闻传输协议</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>179</td>
 <td>BGP</td>
 <td>边界路由协议</td>
 </tr>
-</tbody></table>
-<h2 id="TCP和UDP比较"><a href="#TCP和UDP比较" class="headerlink" title="TCP和UDP比较"></a>TCP和UDP比较</h2><table>
+</tbody>
+</table>
+<h2 id="tcp和udp比较">TCP和UDP比较</h2>
+<table>
 <thead>
-<tr>
-<th><strong>特征</strong>&#x2F;<strong>描述</strong></th>
+<tr class="header">
+<th><strong>特征</strong>/<strong>描述</strong></th>
 <th><strong>TCP</strong></th>
 <th><strong>UDP</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>一般描述</td>
 <td>允许应用程序<strong>可靠</strong>地发送数据，<strong>功能齐全</strong></td>
 <td><strong>简单</strong>、<strong>高速</strong>，只负责将应用层与网络层衔接起来</td>
 </tr>
-<tr>
+<tr class="even">
 <td>面向连接与无连接</td>
 <td><strong>面向连接</strong>，在TPDU传输之前需要建立TCP连接</td>
 <td><strong>无连接</strong>，在TPDU传输之前不需要建立UDP连接</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>与应用层的数据接口</td>
 <td><strong>基于字节流</strong>，应用层不需要规定特点的数据格式</td>
 <td><strong>基于报文</strong>，应用层需要将数据分成包来传送</td>
 </tr>
-<tr>
+<tr class="even">
 <td>可靠性与确认</td>
 <td><strong>可靠</strong>报文传输，对所有的数据均要确认</td>
 <td><strong>不可靠</strong>，不需要对传输的数据确认，尽力而为地交付</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>重传</td>
 <td><strong>自动重传</strong>丢失的数据</td>
 <td><strong>不负责检查</strong>是否丢失数据和重传</td>
 </tr>
-<tr>
+<tr class="even">
 <td>开销</td>
 <td><strong>低</strong>，但高于UDP</td>
 <td><strong>很低</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>传输速率</td>
 <td><strong>高</strong>，但低于UDP</td>
 <td><strong>很高</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>适用的数据量</td>
 <td>从少量到几个GB的数据</td>
 <td>从少量到几百个字节的数据</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>适用的应用类型</td>
 <td>对数据传输可靠性要求较高的应用，例如文件与报文传输</td>
 <td>发送数量比较少，对数据传输可靠性要求低的应用，例如IP电话、视频会议、多播与广播</td>
 </tr>
-</tbody></table>
-<h2 id="3-2-UDP"><a href="#3-2-UDP" class="headerlink" title="3.2 UDP"></a>3.2 UDP</h2><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+</tbody>
+</table>
+<h2 id="udp">3.2 UDP</h2>
+<h4 id="特点">特点</h4>
+<ul>
 <li><strong>无连接、不可靠</strong>：开销低、尽力而为</li>
 <li><strong>面向报文的传输层协议</strong>：UDP 对应用层传递下来的报文，既不合并，也不拆分，而是保留这些报文的边界。UDP 层一次向对方交付一个完整的报文</li>
 <li><strong>没有拥塞控制</strong>：网络出现的拥塞时，UDP不会使源主机的发送速率降低，适合实时通信应用</li>
 <li><strong>首部开销小</strong>：只有8字节</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618235503309.png" srcset="/img/mokou.gif" lazyload></p>
-<h4 id="数据报格式"><a href="#数据报格式" class="headerlink" title="数据报格式"></a>数据报格式</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618235649210.png" srcset="/img/mokou.gif" lazyload alt="image-20230618235649210"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618235503309.png" srcset="/img/mokou.gif" lazyload /></p>
+<h4 id="数据报格式">数据报格式</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230618235649210.png" srcset="/img/mokou.gif" lazyload alt="image-20230618235649210" /><figcaption aria-hidden="true">image-20230618235649210</figcaption>
+</figure>
 <ul>
 <li>端口号：包括源端口号和目的端口号，分别表示发送方和接收方的进程端口号，各为2字节</li>
 <li>长度：包括报头在内的用户数据报的总长度，2字节</li>
@@ -792,26 +906,28 @@
 </ul>
 <p>直观点看代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">udpCheckSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>	<span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums) &#123;<br>		res += num;<br>		<span class="hljs-keyword">if</span> (res &gt;&gt;&gt; <span class="hljs-number">16</span> != <span class="hljs-number">0</span>) &#123;<br>            res = (res &gt;&gt;&gt; <span class="hljs-number">16</span>) + (res &amp; <span class="hljs-number">0xffff</span>);<br>        &#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> Integer.toHexString(~res).substring(<span class="hljs-number">4</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="3-3-TCP"><a href="#3-3-TCP" class="headerlink" title="3.3 TCP"></a>3.3 TCP</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<h2 id="tcp">3.3 TCP</h2>
+<h3 id="特点-1">特点</h3>
+<ul>
 <li><strong>支持面向连接的服务</strong>：打电话式、会话式通信</li>
 <li><strong>支持字节流传输</strong>：字节管道、字节按序传输和到达</li>
 <li><strong>支持全双工服务</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="全双工：同时收发">[1]</span></a></sup>：一个应用进程可以同时收发数据、捎带确认</li>
 <li>支持建立多个<strong>并发的TCP连接</strong>（服务器同时响应多个连接）</li>
 <li><strong>支持可靠传输服务</strong>：不丢失、不重复、有序</li>
 </ul>
-<hr>
-<h3 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h3><p>TCP报头长度</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619011346114.png" srcset="/img/mokou.gif" lazyload alt="image-20230619011346114"></p>
+<hr />
+<h3 id="报文格式">报文格式</h3>
+<p>TCP报头长度</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619011346114.png" srcset="/img/mokou.gif" lazyload alt="image-20230619011346114" /><figcaption aria-hidden="true">image-20230619011346114</figcaption>
+</figure>
 <ul>
 <li><p><strong>发送序号（seq）</strong>：表示TCP数据字段的第一个字节的序号</p>
-<p>连接建立时（<strong>即SYN&#x3D;1</strong>），初始序号（ISN）由随机数生成器生成，发送端和接收端独立产生，可能不一样 </p>
-</li>
-<li><p><strong>确认序号（ack）</strong>：只有当<strong>ACK位&#x3D;1</strong>时有效，表示发送此报文段的进程期望接收的下一个新字节的序号。</p>
-<p><strong>确认序号&#x3D;N+1</strong>，表示接收方已经成功接收了序号为N及之前的所有字节，要求发送方接下来应该发送起始序号为N+1的字节段。</p>
-</li>
+<p>连接建立时（<strong>即SYN=1</strong>），初始序号（ISN）由随机数生成器生成，发送端和接收端独立产生，可能不一样</p></li>
+<li><p><strong>确认序号（ack）</strong>：只有当<strong>ACK位=1</strong>时有效，表示发送此报文段的进程期望接收的下一个新字节的序号。</p>
+<p><strong>确认序号=N+1</strong>，表示接收方已经成功接收了序号为N及之前的所有字节，要求发送方接下来应该发送起始序号为N+1的字节段。</p></li>
 </ul>
-<p>(注：这个是发送报文，接收方的确认报文的ack&#x3D;接收的发送报文的ack，seq&#x3D;发送报文的seq+1；若是双方互通传数据，确认序号表示已经接收的最后一位数据的序号，序号为接收的确认序号+1，即请求发送的序号的第一位)</p>
+<p>(注：这个是发送报文，接收方的确认报文的ack=接收的发送报文的ack，seq=发送报文的seq+1；若是双方互通传数据，确认序号表示已经接收的最后一位数据的序号，序号为接收的确认序号+1，即请求发送的序号的第一位)</p>
 <ul>
 <li><strong>窗口值</strong>：指示当前进程可以接收的数据长度 (单位: 字节)。</li>
 </ul>
@@ -820,180 +936,214 @@
 <li><p><strong>报头长度</strong>：表示TCP报文首部的大小，单位是4字节</p>
 <ul>
 <li>该字段的取值范围是[5,15]</li>
-<li>TCP头部的固定部分（除了TCP头部的选项）为4*5&#x3D;20Byte</li>
-</ul>
-</li>
+<li>TCP头部的固定部分（除了TCP头部的选项）为4*5=20Byte</li>
+</ul></li>
 <li><p><strong>校验和</strong>：</p>
 <p><strong>与UDP校验和的相同点</strong>：</p>
 <p>1）计算方式相同；</p>
 <p>2）也需要伪首部。</p>
 <p><strong>与UDP校验和的不同点</strong>：</p>
 <p>1）UDP校验和可选，TCP校验和必须；</p>
-<p>2）伪首部协议字段值为6。</p>
-</li>
+<p>2）伪首部协议字段值为6。</p></li>
 </ul>
 <table>
+
 <thead>
-<tr>
+<tr class="header">
 <th><strong>标志</strong></th>
 <th><strong>说明(注重前三位)</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td><strong>SYN</strong></td>
 <td>当SYN＝1，而ACK＝0时，表明这是一个建立连接请求报文，若对方同意建立该连接，则应在发回的报文中将SYN和ACK标志位同时置1。实质上，就是用SYN来代表Connection Request和Connection Accepted，用ACK位来区分这两种情况。</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>ACK</strong></td>
 <td>确认号字段的值有效。只有当ACK＝1时，确认序号字段才有意义。当ACK＝0时，确认序号没有意义。</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>FIN</strong></td>
 <td>终止连接。当FIN＝1时，表明数据已经发送完毕，并请求释放连接。</td>
 </tr>
-<tr>
+<tr class="even">
 <td>RST</td>
 <td>连接必须复位。当RST＝1时，表明出现严重差错，必须释放连接，然后重新建立连接。</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>URG</td>
 <td>此报文是紧急数据，应尽快传送出去。此标志位要与紧急指针字段配合使用，由紧急指针指出在本报文段中的紧急数据的最后一个字节的编号。</td>
 </tr>
-<tr>
+<tr class="even">
 <td>PSH</td>
 <td>将数据推向前。当PSH＝1时，请求接收方TCP软件将该报文立即推送给应用程序。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>TCP最大段长度（MSS）</strong></p>
 <p>TCP报文数据部分的最大长度，不包括TCP报头长度。默认值为<strong>536字节</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619012552441.png" srcset="/img/mokou.gif" lazyload alt="image-20230619012552441"></p>
-<hr>
-<h2 id="3-4-TCP基本通信过程"><a href="#3-4-TCP基本通信过程" class="headerlink" title="3.4 TCP基本通信过程"></a>3.4 TCP基本通信过程</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014224795.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014224795"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619012552441.png" srcset="/img/mokou.gif" lazyload alt="image-20230619012552441" /><figcaption aria-hidden="true">image-20230619012552441</figcaption>
+</figure>
+<hr />
+<h2 id="tcp基本通信过程">3.4 TCP基本通信过程</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014224795.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014224795" /><figcaption aria-hidden="true">image-20230619014224795</figcaption>
+</figure>
 <ul>
-<li>通信建立—三次握手</li>
+<li>通信建立---三次握手</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014351540.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014351540"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014351540.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014351540" /><figcaption aria-hidden="true">image-20230619014351540</figcaption>
+</figure>
 <ul>
-<li>通信释放—四次挥手<br><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014508304.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014508304"></li>
+<li>通信释放---四次挥手 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014508304.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014508304" /></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014458352.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014458352"></p>
-<h2 id="3-5-TCP滑动窗口与确认重传机制"><a href="#3-5-TCP滑动窗口与确认重传机制" class="headerlink" title="3.5 TCP滑动窗口与确认重传机制"></a>3.5 TCP滑动窗口与确认重传机制</h2><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619014458352.png" srcset="/img/mokou.gif" lazyload alt="image-20230619014458352" /><figcaption aria-hidden="true">image-20230619014458352</figcaption>
+</figure>
+<h2 id="tcp滑动窗口与确认重传机制">3.5 TCP滑动窗口与确认重传机制</h2>
+<ul>
 <li><p>2个缓存、2个窗口</p>
 <ul>
 <li>发送方缓存：用于存储准备发送的数据</li>
 <li>发送窗口：窗口值不为0，可以发送报文段</li>
 <li>接收方缓存：将正确接收的字节流写入缓存，等待接收读取</li>
 <li>接收窗口：窗口值等于接收缓存可以接收的字节流</li>
+</ul></li>
+<li><p>字节流<strong>分段</strong><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="由MSS控制">[3]</span></a></sup>，按段（序号）传输，捎带确认（确认号）</p></li>
 </ul>
-</li>
-<li><p>字节流<strong>分段</strong><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="由MSS控制">[3]</span></a></sup>，按段（序号）传输，捎带确认（确认号）</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619135428683.png" srcset="/img/mokou.gif" lazyload alt="image-20230619135428683"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619135613194.png" srcset="/img/mokou.gif" lazyload alt="image-20230619135613194"></p>
-<h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619135428683.png" srcset="/img/mokou.gif" lazyload alt="image-20230619135428683" /><figcaption aria-hidden="true">image-20230619135428683</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619135613194.png" srcset="/img/mokou.gif" lazyload alt="image-20230619135613194" /><figcaption aria-hidden="true">image-20230619135613194</figcaption>
+</figure>
+<h3 id="特点-2">特点</h3>
+<ul>
 <li>使用发送和接受缓冲区，以及滑动窗口机制控制TCP连接上的字节传输</li>
 <li>TCP滑动窗口面向字节流，可以起到<strong>差错控制</strong>和<strong>流量控制</strong>作用</li>
 <li>接收方可以在任何时候发送确认，窗口大小可由接收方根据需要增大或减少</li>
 <li>发送窗口值<strong>不能超过</strong>接收窗口值，发送方可以根据自身需要来决定</li>
 </ul>
-<h3 id="重传定时器"><a href="#重传定时器" class="headerlink" title="重传定时器"></a>重传定时器</h3><p>TCP滑动窗口使用超时重传机制</p>
+<h3 id="重传定时器">重传定时器</h3>
+<p>TCP滑动窗口使用超时重传机制</p>
 <p>定时器设置与报文段往返时间RTT紧密相关。RTT表示一个报文段自发出到收到ACK的时间间隔。</p>
 <ul>
 <li>RTT随网络状态而随机波动，既非定值，也无规律</li>
 <li>发送数据报的同时，需要对该报文的RTT进行估计</li>
 </ul>
-<p>$$<br>Timeout&#x3D;\beta \times RTT<br>$$</p>
+<p><span class="math display">\[
+Timeout=\beta \times RTT
+\]</span></p>
 <p>其中：</p>
 <ul>
 <li>Timeout：本次定时器的时间值</li>
 <li>RTT：对本次发出报文段的往返时间的估计值</li>
 <li>β：常数值，大于1，推荐值为2</li>
 </ul>
-<p>$$<br>RTT &#x3D; \alpha \times 旧RTT+(1-\alpha)\times 最新RTT测量值<br>$$</p>
+<p><span class="math display">\[
+RTT = \alpha \times 旧RTT+(1-\alpha)\times 最新RTT测量值
+\]</span></p>
 <p>其中：</p>
 <ul>
 <li>α为常数值，小于1，推荐值为0.125</li>
 </ul>
-<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>由发送方控制发送速率，使之不超过接收速率，防止接收方来不及接收字节流，而出现报文丢失现象</p>
-<h4 id="基本过程："><a href="#基本过程：" class="headerlink" title="基本过程："></a>基本过程：</h4><ul>
-<li><p>接收方从缓存中读取速度大于等于字节到达速度，接收方在每个确认中发出一个<strong>非零窗口</strong>通告</p>
-</li>
-<li><p>如果发送方发送速度比接收方读取速度快，将造成缓冲区被全部占用，之后到达的字节因缓冲区溢出而丢弃。此时，接收方必须发出一个“<strong>零窗口</strong>”<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="纯ACK报文段(数据长度=0，窗口字段=0)">[4]</span></a></sup>的通告。告知当发送方停止发送（直到接收“非零窗口”通告为止）。</p>
-</li>
+<h3 id="流量控制">流量控制</h3>
+<p>由发送方控制发送速率，使之不超过接收速率，防止接收方来不及接收字节流，而出现报文丢失现象</p>
+<h4 id="基本过程">基本过程：</h4>
+<ul>
+<li><p>接收方从缓存中读取速度大于等于字节到达速度，接收方在每个确认中发出一个<strong>非零窗口</strong>通告</p></li>
+<li><p>如果发送方发送速度比接收方读取速度快，将造成缓冲区被全部占用，之后到达的字节因缓冲区溢出而丢弃。此时，接收方必须发出一个“<strong>零窗口</strong>”<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="纯ACK报文段(数据长度=0，窗口字段=0)">[4]</span></a></sup>的通告。告知当发送方停止发送（直到接收“非零窗口”通告为止）。</p></li>
 <li><p>接收方需要接收能力给出一个合适的<strong>接收窗口</strong>，并将它写入TCP报头中，通知发送方。接收窗口又称为<strong>通知窗口</strong>。</p>
-<p>  为避免活锁，发送方使用一种叫坚持定时器(persist timer)来定期触发：发送方往接收方发送窗口探测报文段(数据长度&gt;0, 保证被TCP递送)。作为响应，接收方将自己的缓冲区可用空间大小放入ACK报文段的窗口字段，由此，发送方获知接收方是否能继续接收数据。</p>
-</li>
+<p>为避免活锁，发送方使用一种叫坚持定时器(persist timer)来定期触发：发送方往接收方发送窗口探测报文段(数据长度&gt;0, 保证被TCP递送)。作为响应，接收方将自己的缓冲区可用空间大小放入ACK报文段的窗口字段，由此，发送方获知接收方是否能继续接收数据。</p></li>
 </ul>
-<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><h4 id="1-拥塞现象"><a href="#1-拥塞现象" class="headerlink" title="1 拥塞现象"></a>1 拥塞现象</h4><p>当多个主机端点通过TCP向整个网络注入数据时，TCP如果不对注入数据的速率进行控制，将导致整个网络出现拥堵：</p>
+<h3 id="拥塞控制">拥塞控制</h3>
+<h4 id="拥塞现象">1 拥塞现象</h4>
+<p>当多个主机端点通过TCP向整个网络注入数据时，TCP如果不对注入数据的速率进行控制，将导致整个网络出现拥堵：</p>
 <ul>
 <li>往返时延增大导致TCP重传，进一步增加拥堵</li>
 <li>中间路由器的缓冲容量有限。当IP数据报的到达率持续超过发出率时，中间路由器的缓冲变满, 只好丢弃新进的数据包，导致TCP重传。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619141120054.png" srcset="/img/mokou.gif" lazyload alt="image-20230619141120054"></p>
-<h4 id="2-拥塞控制"><a href="#2-拥塞控制" class="headerlink" title="2 拥塞控制"></a>2 拥塞控制</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619141120054.png" srcset="/img/mokou.gif" lazyload alt="image-20230619141120054" /><figcaption aria-hidden="true">image-20230619141120054</figcaption>
+</figure>
+<h4 id="拥塞控制-1">2 拥塞控制</h4>
+<ul>
 <li>实现拥塞控制最基本手段：TCP滑动窗口技术</li>
 <li>发送数据，既要考虑接收能力，又要避免网络发生拥塞</li>
-<li>发送窗口计算      <code>发送窗口 = Min（通知窗口，拥塞窗口）</code></li>
+<li>发送窗口计算 <code>发送窗口 = Min（通知窗口，拥塞窗口）</code></li>
 <li>通知窗口<strong>rwnd</strong>：接收方允许接收的能力，来自接收方流量控制（将“通知窗口”值放在TCP报头中，传送给发送端）</li>
 <li>拥塞窗口<strong>cwnd</strong>：发送方根据网络拥塞情况得出的窗口值，来自发送方的流量控制</li>
 </ul>
-<h4 id="拥塞控制判定"><a href="#拥塞控制判定" class="headerlink" title="拥塞控制判定"></a>拥塞控制判定</h4><ul>
-<li>重传定时器超时<br>现在通信线路的传输质量一般都很好，因传输出差错而丢弃分组的概率是很小的（远小于 1 %）。只要出现了超时，就可以猜想网络可能出现了拥塞)</li>
-<li>收到三个相同（重复）的 ACK<br>个别报文段会在网络中丢失，预示可能会出现拥塞（实际未发生拥塞），因此可以尽快采取控制措施，避免拥塞</li>
-</ul>
-<h4 id="3-TCP拥塞控制算法"><a href="#3-TCP拥塞控制算法" class="headerlink" title="3 TCP拥塞控制算法"></a>3 TCP拥塞控制算法</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619141351174.png" srcset="/img/mokou.gif" lazyload alt="image-20230619141351174"></p>
+<h4 id="拥塞控制判定">拥塞控制判定</h4>
 <ul>
-<li><p>慢开始阔值SST：慢开始阶段和拥塞避免阶段的分界线，初始值有算法设定</p>
-</li>
-<li><p>慢开始阶段：cwnd≤SST。在该阶段，cwnd初始值为1，且每结束一个RTT，cwnd翻倍</p>
-</li>
-<li><p>当cwnd&#x3D;SST时：进入拥塞避免阶段</p>
-</li>
+<li>重传定时器超时 现在通信线路的传输质量一般都很好，因传输出差错而丢弃分组的概率是很小的（远小于 1 %）。只要出现了超时，就可以猜想网络可能出现了拥塞)</li>
+<li>收到三个相同（重复）的 ACK 个别报文段会在网络中丢失，预示可能会出现拥塞（实际未发生拥塞），因此可以尽快采取控制措施，避免拥塞</li>
+</ul>
+<h4 id="tcp拥塞控制算法">3 TCP拥塞控制算法</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230619141351174.png" srcset="/img/mokou.gif" lazyload alt="image-20230619141351174" /><figcaption aria-hidden="true">image-20230619141351174</figcaption>
+</figure>
+<ul>
+<li><p>慢开始阔值SST：慢开始阶段和拥塞避免阶段的分界线，初始值有算法设定</p></li>
+<li><p>慢开始阶段：cwnd≤SST。在该阶段，cwnd初始值为1，且每结束一个RTT，cwnd翻倍</p></li>
+<li><p>当cwnd=SST时：进入拥塞避免阶段</p></li>
 </ul>
 <p><strong>发生拥塞时：</strong></p>
-<ol>
+<ol type="1">
 <li>拥塞避免阶段结束</li>
-<li>设置SST&#x3D;cwnd&#x2F;2</li>
+<li>设置SST=cwnd/2</li>
 <li>cwnd重为1，进入新的慢开始阶段(Tahoe版本)或者cwnd减半，进入快恢复阶段(Reno版本)</li>
 </ol>
-<hr>
-<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154349263.png" srcset="/img/mokou.gif" lazyload alt="image-20230620154349263"></p>
-<h2 id="4-1-IPv4"><a href="#4-1-IPv4" class="headerlink" title="4.1 IPv4"></a>4.1 IPv4</h2><h3 id="网络层的功能"><a href="#网络层的功能" class="headerlink" title="网络层的功能"></a>网络层的功能</h3><ul>
-<li><p><strong>路径决策</strong>：为分组在收发双方之间确定路径， 路由选择算法</p>
-</li>
-<li><p><strong>交换</strong>：在路由器的输入、输出端口传递分组</p>
-</li>
-<li><p>在网络层<strong>没有联接建立</strong>过程</p>
-</li>
-<li><p>路由器: 没有端对端的连接状态：在网络层<strong>不存在“连接”</strong>的概念</p>
-</li>
+<hr />
+<h1 id="网络层">网络层</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154349263.png" srcset="/img/mokou.gif" lazyload alt="image-20230620154349263" /><figcaption aria-hidden="true">image-20230620154349263</figcaption>
+</figure>
+<h2 id="ipv4">4.1 IPv4</h2>
+<h3 id="网络层的功能">网络层的功能</h3>
+<ul>
+<li><p><strong>路径决策</strong>：为分组在收发双方之间确定路径， 路由选择算法</p></li>
+<li><p><strong>交换</strong>：在路由器的输入、输出端口传递分组</p></li>
+<li><p>在网络层<strong>没有联接建立</strong>过程</p></li>
+<li><p>路由器: 没有端对端的连接状态：在网络层<strong>不存在“连接”</strong>的概念</p></li>
 </ul>
-<h3 id="网络层的定位"><a href="#网络层的定位" class="headerlink" title="网络层的定位"></a>网络层的定位</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154626567.png" srcset="/img/mokou.gif" lazyload></p>
-<p><strong>网际协议 IP</strong> 是 TCP&#x2F;IP 体系中两个最主要的协议之一。</p>
+<h3 id="网络层的定位">网络层的定位</h3>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154626567.png" srcset="/img/mokou.gif" lazyload /></p>
+<p><strong>网际协议 IP</strong> 是 TCP/IP 体系中两个最主要的协议之一。</p>
 <p>与 IP 协议配套使用的还有三个协议：</p>
 <ul>
 <li>地址解析协议 <strong>ARP</strong> (Address Resolution Protocol)</li>
 <li>网际控制报文协议 <strong>ICMP</strong> (Internet Control Message Protocol)</li>
 <li>网际组管理协议 <strong>IGMP</strong> (Internet Group Management Protocol)</li>
 </ul>
-<h2 id="4-2-IPv4协议"><a href="#4-2-IPv4协议" class="headerlink" title="4.2 IPv4协议"></a>4.2 IPv4协议</h2><h3 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>无连接、不可靠（尽力而为的服务）<ul>
+<h2 id="ipv4协议">4.2 IPv4协议</h2>
+<h3 id="特点-3">特点</h3>
+<ul>
+<li>无连接、不可靠（尽力而为的服务）
+<ul>
 <li>不维护 分组发送的状态信息，分组独立发送</li>
 <li>不保证 不丢失、按序等</li>
+</ul></li>
+<li>为传输层屏蔽了物理网络的差异： 掩盖各种不同物理网和协议差异性，实现异构互连</li>
 </ul>
-</li>
-<li>为传输层屏蔽了物理网络的差异：<br>掩盖各种不同物理网和协议差异性，实现异构互连</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154836413.png" srcset="/img/mokou.gif" lazyload alt="image-20230620154836413"></p>
-<h2 id="4-3-IPv4地址结构"><a href="#4-3-IPv4地址结构" class="headerlink" title="4.3 IPv4地址结构"></a>4.3 IPv4地址结构</h2><h3 id="IPv4地址标准分类"><a href="#IPv4地址标准分类" class="headerlink" title="IPv4地址标准分类"></a>IPv4地址标准分类</h3><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620154836413.png" srcset="/img/mokou.gif" lazyload alt="image-20230620154836413" /><figcaption aria-hidden="true">image-20230620154836413</figcaption>
+</figure>
+<h2 id="ipv4地址结构">4.3 IPv4地址结构</h2>
+<h3 id="ipv4地址标准分类">IPv4地址标准分类</h3>
+<ul>
 <li>IP地址的点分十进制表示法：地址长度为32位，采用点分十进制（X.X.X.X，X在[0,255]之间，占8位）表示</li>
 <li>标准分类：网络号+主机号，根据网络号前缀和位数的差异，分为A、B、C、D和E五类</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620155012852.png" srcset="/img/mokou.gif" lazyload alt="image-20230620155012852"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620155012852.png" srcset="/img/mokou.gif" lazyload alt="image-20230620155012852" /><figcaption aria-hidden="true">image-20230620155012852</figcaption>
+</figure>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>网络类别</th>
 <th>网络标识</th>
 <th>二进制</th>
@@ -1005,7 +1155,8 @@
 <th>使用范围</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>A</td>
 <td>0</td>
 <td>0xxxxxxx</td>
@@ -1016,7 +1167,7 @@
 <td>16777214</td>
 <td>大型网络</td>
 </tr>
-<tr>
+<tr class="even">
 <td>B</td>
 <td>10</td>
 <td>10xxxxxx</td>
@@ -1027,7 +1178,7 @@
 <td>65534</td>
 <td>中型网络</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>C</td>
 <td>110</td>
 <td>110xxxxx</td>
@@ -1038,7 +1189,7 @@
 <td>254</td>
 <td>小型网络</td>
 </tr>
-<tr>
+<tr class="even">
 <td>D</td>
 <td>1110</td>
 <td>1110xxxx</td>
@@ -1049,7 +1200,7 @@
 <td></td>
 <td>多播传送</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>E</td>
 <td>1110</td>
 <td>11110xxx</td>
@@ -1060,132 +1211,149 @@
 <td></td>
 <td>保留</td>
 </tr>
-</tbody></table>
-<h4 id="特殊IP地址"><a href="#特殊IP地址" class="headerlink" title="特殊IP地址"></a>特殊IP地址</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620155310665.png" srcset="/img/mokou.gif" lazyload alt="image-20230620155310665"></p>
-<h4 id="专用IP地址"><a href="#专用IP地址" class="headerlink" title="专用IP地址"></a>专用IP地址</h4><table>
+</tbody>
+</table>
+<h4 id="特殊ip地址">特殊IP地址</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620155310665.png" srcset="/img/mokou.gif" lazyload alt="image-20230620155310665" /><figcaption aria-hidden="true">image-20230620155310665</figcaption>
+</figure>
+<h4 id="专用ip地址">专用IP地址</h4>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th><strong>类别</strong></th>
 <th><strong>网络号</strong></th>
 <th><strong>总 数</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>A</td>
 <td>10</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>B</td>
 <td>172.16 ~ 172.31</td>
 <td>16</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>C</td>
 <td>192.168.0 ~ 192.168.255</td>
 <td>256</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>IP 地址是一种分等级的地址结构。分两个等级的好处是：</p>
 <ul>
 <li>IP 地址管理机构在分配 IP 地址时只分配网络号，而剩下的主机号则由得到该网络号的单位自行分配。这样就方便了 IP 地址的管理。</li>
 <li>路由器仅根据目的主机所连接的网络号来转发分组（而不考虑目的主机号），这样就可以使路由表中的项目数大幅度减少，从而减小了路由表所占的存储空间。</li>
 </ul>
-<h3 id="IPv4划分"><a href="#IPv4划分" class="headerlink" title="IPv4划分"></a>IPv4划分</h3><p>由两级划分变为三级划分：从主机位中拿出若干位作为<strong>子网位</strong>（也叫<strong>子网号字段</strong>），从而将一个网络进一步划分成多个子网</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620172353239.png" srcset="/img/mokou.gif" lazyload alt="image-20230620172353239"></p>
+<h3 id="ipv4划分">IPv4划分</h3>
+<p>由两级划分变为三级划分：从主机位中拿出若干位作为<strong>子网位</strong>（也叫<strong>子网号字段</strong>），从而将一个网络进一步划分成多个子网</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620172353239.png" srcset="/img/mokou.gif" lazyload alt="image-20230620172353239" /><figcaption aria-hidden="true">image-20230620172353239</figcaption>
+</figure>
 <p>子网位不能全为“0”，也不能全为“1”；</p>
 <p>主机位不能全为“0”，也不能全为“1”。</p>
-<h3 id="无类别域间路由"><a href="#无类别域间路由" class="headerlink" title="无类别域间路由"></a>无类别域间路由</h3><p>不限制于标准分类（A&#x2F;B&#x2F;C）的地址结构，而是根据对地址管理需要灵活决定（使用<strong>可变长度子网掩码</strong>）</p>
-<p>网络掩码采用：“<strong>IP地址&#x2F;掩码</strong>”</p>
-<h3 id="NAT技术-网络地址转换技术"><a href="#NAT技术-网络地址转换技术" class="headerlink" title="NAT技术(网络地址转换技术)"></a>NAT技术(<strong>网络地址转换</strong>技术)</h3><p>目的是解决IP地址短缺，有效快速补救办法</p>
-<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620183624669.png" srcset="/img/mokou.gif" lazyload alt="image-20230620183624669"></p>
+<h3 id="无类别域间路由">无类别域间路由</h3>
+<p>不限制于标准分类（A/B/C）的地址结构，而是根据对地址管理需要灵活决定（使用<strong>可变长度子网掩码</strong>）</p>
+<p>网络掩码采用：“<strong>IP地址/掩码</strong>”</p>
+<h3 id="nat技术网络地址转换技术">NAT技术(<strong>网络地址转换</strong>技术)</h3>
+<p>目的是解决IP地址短缺，有效快速补救办法</p>
+<h4 id="概念">概念</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620183624669.png" srcset="/img/mokou.gif" lazyload alt="image-20230620183624669" /><figcaption aria-hidden="true">image-20230620183624669</figcaption>
+</figure>
 <p>NAT软件通过维护一张源(IP地址,端口)到目的(IP地址,端口)的转换表，就可以完成互联网IP数据报到专用网IP数据报的内容转发</p>
 <ul>
 <li>“一对一”（静态NAT）</li>
 <li>“多对多”（动态NAT）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620185023807.png" srcset="/img/mokou.gif" lazyload alt="image-20230620185023807"></p>
-<h2 id="4-4-IPv4分组格式"><a href="#4-4-IPv4分组格式" class="headerlink" title="4.4 IPv4分组格式"></a>4.4 IPv4分组格式</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230621015548522.png" srcset="/img/mokou.gif" lazyload alt="image-20230621015548522"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230620185023807.png" srcset="/img/mokou.gif" lazyload alt="image-20230620185023807" /><figcaption aria-hidden="true">image-20230620185023807</figcaption>
+</figure>
+<h2 id="ipv4分组格式">4.4 IPv4分组格式</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230621015548522.png" srcset="/img/mokou.gif" lazyload alt="image-20230621015548522" /><figcaption aria-hidden="true">image-20230621015548522</figcaption>
+</figure>
 <p><strong>第一行：</strong></p>
 <ul>
 <li><strong>版本字段</strong>：占4bit，4代表IPv4，6代表IPv6</li>
 <li><strong>分组头长度</strong>：占4bit，单位4B，范围[5,15] (当说首部固定长度，默认20B)</li>
-<li><strong>服务类型字段</strong>：占8bit，指示路由器如何处理分组<ul>
+<li><strong>服务类型字段</strong>：占8bit，指示路由器如何处理分组
+<ul>
 <li>优先级：分组传输时，需要网络提供优先服务</li>
 <li>延迟D（delay），（delay）、可靠性R（reliability）、吞吐量T（throughput）、成本C（cost）</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>总长度</strong>：占16bit，单位是字节，表示分组头长度和数据长度之和</li>
 </ul>
 <p><strong>第二行：</strong></p>
 <ul>
-<li><p><strong>标识</strong>：占16bit，用来标识不同的IP分段，最多能分配216-1个ID</p>
-</li>
+<li><p><strong>标识</strong>：占16bit，用来标识不同的IP分段，最多能分配216-1个ID</p></li>
 <li><p><strong>标志</strong>：占3bit，最高位固定为0，中间位为DF，最低位为MF</p>
 <ul>
-<li>DF&#x3D;1，表示接收节点不能对分组进行分段。反之，则可</li>
-<li>MF&#x3D;0，表示接收的是最后一个分段。反之，则不是</li>
-</ul>
-</li>
-<li><p><strong>段偏移</strong>：占13bit，表示分段在整个分组中的相对位置，以8字节为单位进行计数，因此分段长度应为8字节的整数倍</p>
-</li>
+<li>DF=1，表示接收节点不能对分组进行分段。反之，则可</li>
+<li>MF=0，表示接收的是最后一个分段。反之，则不是</li>
+</ul></li>
+<li><p><strong>段偏移</strong>：占13bit，表示分段在整个分组中的相对位置，以8字节为单位进行计数，因此分段长度应为8字节的整数倍</p></li>
 </ul>
 <p><strong>第三行</strong>：</p>
 <ul>
-<li><p><strong>生存时间TTL</strong>：占8bit，表示分组在网络中的存活时间，以跳数来计数</p>
-</li>
-<li><p><strong>协议</strong>：占8bit，表示IP的高层协议类型，可选值如表中所示</p>
-</li>
+<li><p><strong>生存时间TTL</strong>：占8bit，表示分组在网络中的存活时间，以跳数来计数</p></li>
+<li><p><strong>协议</strong>：占8bit，表示IP的高层协议类型，可选值如表中所示</p></li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th><strong>值</strong></th>
 <th><strong>上层协议</strong></th>
 <th><strong>值</strong></th>
 <th><strong>上层协议</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>1</td>
 <td>ICMP</td>
 <td>50</td>
 <td>ESP(IPSec)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>IGMP</td>
 <td>51</td>
 <td>AH(IPSec)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>6</td>
 <td>TCP</td>
 <td>89</td>
 <td>OSPF</td>
 </tr>
-<tr>
+<tr class="even">
 <td>8</td>
 <td>EGP</td>
 <td>41</td>
 <td>IPv6</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>17</td>
 <td>UDP</td>
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li><p><strong>头部校验和</strong>：用于头部校验</p>
 <ul>
 <li>不负责数据校验</li>
 <li>降低延迟，提高效率</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="分段与组装"><a href="#分段与组装" class="headerlink" title="分段与组装"></a>分段与组装</h3><ul>
+<h3 id="分段与组装">分段与组装</h3>
+<ul>
 <li><p><strong>最大传输单元（MTU）</strong></p>
 <p>链路帧的数据字段的最大长度，也就是封装链路帧时允许的IP分组大小上限</p>
 <p><strong>特点</strong></p>
@@ -1193,33 +1361,35 @@
 <li>不同网络的MTU大小不同；</li>
 <li>规定IP分组的最大长度为65535字节；</li>
 <li>MTU一般小于IP分组长度，因此需要将IP分组分割成若干个较小的段，每个段的长度不超过MTU</li>
-</ul>
-</li>
+</ul></li>
 <li><p>TCP最大段长度（MSS）</p>
-<p>TCP报文数据部分的最大长度，不包括TCP报头长度，默认值为536字节</p>
-</li>
+<p>TCP报文数据部分的最大长度，不包括TCP报头长度，默认值为536字节</p></li>
 </ul>
-<h2 id="4-5-路由算法的选择和分组转发"><a href="#4-5-路由算法的选择和分组转发" class="headerlink" title="4.5 路由算法的选择和分组转发"></a>4.5 路由算法的选择和分组转发</h2><p><strong>分组转发</strong>：</p>
+<h2 id="路由算法的选择和分组转发">4.5 路由算法的选择和分组转发</h2>
+<p><strong>分组转发</strong>：</p>
 <p>互联网中主机、路由器转发IP分组的过程</p>
 <ul>
-<li><p>默认路由（网关）：也叫第一跳路由，即主机所在局域网与互联网相连的网关</p>
-</li>
-<li><p>源（目的）路由器：发送（接收）主机的默认路由器</p>
-</li>
+<li><p>默认路由（网关）：也叫第一跳路由，即主机所在局域网与互联网相连的网关</p></li>
+<li><p>源（目的）路由器：发送（接收）主机的默认路由器</p></li>
 </ul>
 <p><strong>分组转发分类：</strong></p>
 <ul>
 <li>直接转发：源主机与目的主机在同一个网络或目的路由向目的主机转发分组</li>
 <li>间接转发：源主机与目的主机不在一个网络</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004204762.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004204762"></p>
-<h3 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h3><h4 id="评价依据"><a href="#评价依据" class="headerlink" title="评价依据"></a>评价依据</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004204762.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004204762" /><figcaption aria-hidden="true">image-20230622004204762</figcaption>
+</figure>
+<h3 id="路由算法">路由算法</h3>
+<h4 id="评价依据">评价依据</h4>
+<ul>
 <li>算法必须是正确、稳定和公平的</li>
 <li>算法应该尽量简单</li>
 <li>算法必须能够适应网络拓扑和通信量的变化</li>
 <li>算法应该是最佳的</li>
 </ul>
-<h4 id="量化指标"><a href="#量化指标" class="headerlink" title="量化指标"></a>量化指标</h4><ul>
+<h4 id="量化指标">量化指标</h4>
+<ul>
 <li>跳数（hop count），跳数越少，路径越好</li>
 <li>带宽（bandwidth），链路传输速率</li>
 <li>延时（delay），从源结点到达目的结点时间开销</li>
@@ -1227,174 +1397,248 @@
 <li>可靠性（reliability），传输过程中误码率</li>
 <li>开销（overhead），传输过程中耗</li>
 </ul>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><ul>
+<h4 id="类型">类型</h4>
+<ul>
 <li><p><strong>静态路由选择算法</strong>：</p>
 <p>将到每个目的地址的路径都固定存储在路由表中，唯一地确定了从源主机到目的主机的路径</p>
 <ul>
 <li>路由表无法自动更新；路由表的更新由管理员手动完成</li>
-</ul>
-</li>
+</ul></li>
 <li><p><strong>动态路由选择算法</strong>：</p>
 <p>网络系统运行时，系统自行运行动态路由选择协议建立路由表</p>
 <ul>
 <li>网络结构变化时，可自动更新路径</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h4><p><strong>路由表二元组（N，R）</strong></p>
+<h4 id="路由表">路由表</h4>
+<p><strong>路由表二元组（N，R）</strong></p>
 <p>其中N：目标网络地址，R：网络N的下一跳路由器地址</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004922942.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004922942"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004955330.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004955330"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004922942.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004922942" /><figcaption aria-hidden="true">image-20230622004922942</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004955330.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004955330" /><figcaption aria-hidden="true">image-20230622004955330</figcaption>
+</figure>
 <p><strong>路由表二元组（M，N，R）</strong></p>
 <p>M是目标网络子网掩码</p>
 <p>取出<strong>目的地址</strong>，逐项与路由表中的子网掩码做位与操作，得到目的<strong>子网地址</strong>，找到匹配条目</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004926874.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004926874"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004931758.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004931758"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004926874.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004926874" /><figcaption aria-hidden="true">image-20230622004926874</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622004931758.png" srcset="/img/mokou.gif" lazyload alt="image-20230622004931758" /><figcaption aria-hidden="true">image-20230622004931758</figcaption>
+</figure>
 <p><strong>特殊路由</strong></p>
 <ul>
 <li><strong>默认路由</strong>：路由选择过程中，若路由表中没有明确指明到达目的网络的路由信息，则将该分组转发到默认路由指定的路由器地址</li>
 <li><strong>特定主机路由</strong>：路由表是基于网络地址，但允许为一个<strong>特定主机</strong>地址建立路由表项</li>
 </ul>
-<h3 id="IP路由汇聚"><a href="#IP路由汇聚" class="headerlink" title="IP路由汇聚(!!)"></a>IP路由汇聚(!!)</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622010344825.png" srcset="/img/mokou.gif" lazyload alt="image-20230622010344825"></p>
+<h3 id="ip路由汇聚">IP路由汇聚(!!)</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622010344825.png" srcset="/img/mokou.gif" lazyload alt="image-20230622010344825" /><figcaption aria-hidden="true">image-20230622010344825</figcaption>
+</figure>
 <ul>
 <li>减少路由表项数量重要手段</li>
 <li>基于CIDR，网络前缀越长，主机地址数越少，寻址目的主机越容易</li>
 <li>路由表项由（“网络前缀”、“下一跳地址”）组成</li>
 <li>最长前缀匹配：路由选择具有最长网络前缀的路由</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622010445296.png" srcset="/img/mokou.gif" lazyload alt="image-20230622010445296"></p>
-<h3 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h3><p>采用分层思想，用“化整为零、分而治之”办法解决路由选择问题</p>
-<h4 id="自治系统-AS"><a href="#自治系统-AS" class="headerlink" title="自治系统(AS)"></a>自治系统(AS)</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622010445296.png" srcset="/img/mokou.gif" lazyload alt="image-20230622010445296" /><figcaption aria-hidden="true">image-20230622010445296</figcaption>
+</figure>
+<h3 id="路由协议">路由协议</h3>
+<p>采用分层思想，用“化整为零、分而治之”办法解决路由选择问题</p>
+<h4 id="自治系统as">自治系统(AS)</h4>
+<ul>
 <li>互联网由自治系统互联而成，“自治”管理（大学、公司、部门等），有权自主地定内部采用何种路由协议</li>
 <li>域内路由选择：自治系统内部的路由选择</li>
 <li>域间路由选择：不同自治系统之间的路由选择</li>
 </ul>
-<h5 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h5><ul>
+<h5 id="协议">协议</h5>
+<ul>
 <li>内部网关协议（IGP）：AS内部使用的路由选择协议，RIP和OSPF协议</li>
 <li>外部网关协议（EGP）：不同AS边界路由器之间交换路由信息，BGP协议</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622011229221.png" srcset="/img/mokou.gif" lazyload alt="image-20230622011229221"></p>
-<h3 id="路由信息协议RIP"><a href="#路由信息协议RIP" class="headerlink" title="路由信息协议RIP"></a>路由信息协议RIP</h3><h4 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622011229221.png" srcset="/img/mokou.gif" lazyload alt="image-20230622011229221" /><figcaption aria-hidden="true">image-20230622011229221</figcaption>
+</figure>
+<h3 id="路由信息协议rip">路由信息协议RIP</h3>
+<h4 id="算法思想">算法思想</h4>
+<ul>
 <li>周期性向相邻路由器告知本地路由器可以到达的网络，以及到达该网络的距离（跳数）</li>
 <li>路由向量（V，D）中，V-该路由器到达的目的网络地址；D-代表距离（跳数）</li>
 <li>按照最短路径原则，刷新路由表</li>
 </ul>
-<h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><ul>
+<h4 id="算法步骤">算法步骤</h4>
+<ul>
 <li><strong>初始化路由表</strong>：只包含与该路由器有直接相连的路由信息，距离均为0（本地路由）</li>
-<li><strong>更新路由表</strong>（若路由器X到目的网络Y的距离为n）<ul>
+<li><strong>更新路由表</strong>（若路由器X到目的网络Y的距离为n）
+<ul>
 <li>若原路由表中没有到网络Y的表项，则增加一个到网络Y的表项</li>
 <li>若原路由表中已有到网络Y的表项（到目的网络Y经过路由器Z距离为m），则只要m＞n＋l，都进行更新。否则不变。更新后的下一站路由器应为X</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622011427547.png" srcset="/img/mokou.gif" lazyload alt="image-20230622011427547"></p>
-<h4 id="细节补充"><a href="#细节补充" class="headerlink" title="细节补充"></a>细节补充</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622011427547.png" srcset="/img/mokou.gif" lazyload alt="image-20230622011427547" /><figcaption aria-hidden="true">image-20230622011427547</figcaption>
+</figure>
+<h4 id="细节补充">细节补充</h4>
+<ul>
 <li>设置<strong>周期更新定时器</strong>，每隔30s在相邻路由器之间交换一次路由信息</li>
 <li>如果接收到同一网络有多条距离相同的路径，将按照“先入为主”原则，取用<strong>第一条路径</strong>信息（直到该路径失效，或被更短路径取代）</li>
 <li>根据向量距离路由选择算法，当有开销小的路径出现时，修改表中路由记录，否则一直保持下去</li>
 <li>每个路由表项设有<strong>超时定时器</strong>，在路由表项被修改时开始计时，若<strong>180s</strong>后没有收到刷新信息时，表示<strong>该路径已经出现故障</strong>，将该项纪录置为“无效”（不删除该项路由记录）</li>
 <li>RIP协议基于<strong>距离向量路由选择算法</strong>（Bellham-Ford）（DistanceVectorAlgorithms），使用“跳数” (即metric)来衡量到达目标地址的距离。（不是链路状态法！！！）</li>
 </ul>
-<h3 id="最短路径优先协议OSPF"><a href="#最短路径优先协议OSPF" class="headerlink" title="最短路径优先协议OSPF"></a>最短路径优先协议OSPF</h3><h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><ul>
+<h3 id="最短路径优先协议ospf">最短路径优先协议OSPF</h3>
+<h4 id="主要特点">主要特点</h4>
+<ul>
 <li>使用<strong>链路状态协议</strong>（非RIP的向量距离路由协议）</li>
 <li>路由器<strong>周期性地发送链路状态信息</strong>，AS内<strong>所有路由器</strong>都能形成链路状态数据库（可用端口、已知可达路由、链路状态信息）</li>
 <li>在<strong>链路状态发生变化</strong>时，用<strong>洪泛法</strong>向<strong>所有路由器</strong>发送该信息（<strong>RIP仅向相邻路由器通报</strong>）</li>
 <li>按照<strong>最短路径</strong>原则，刷新路由器之间交换链路状态信息有：费用、距离、延时、带宽等</li>
 </ul>
-<h4 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h4><p>使用<strong>Dijkstra算法</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012331428.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012331428"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012439469.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012439469"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012446131.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012446131"></p>
-<h3 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<h4 id="算法过程">算法过程</h4>
+<p>使用<strong>Dijkstra算法</strong></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012331428.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012331428" /><figcaption aria-hidden="true">image-20230622012331428</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012439469.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012439469" /><figcaption aria-hidden="true">image-20230622012439469</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622012446131.png" srcset="/img/mokou.gif" lazyload alt="image-20230622012446131" /><figcaption aria-hidden="true">image-20230622012446131</figcaption>
+</figure>
+<h3 id="外部网关协议bgp">外部网关协议BGP</h3>
+<h4 id="基本思想">基本思想</h4>
+<ul>
 <li>不同AS路由器之间交换路由信息</li>
 <li>采用路径向量路由协议（<strong>不同于RIP、OSPF协议</strong>）</li>
 <li>在<strong>链路状态发生变化</strong>时，用<strong>洪泛法</strong>向<strong>所有路由器</strong>发送该信息（RIP仅向相邻路由器通报）</li>
 <li>每个AS至少有一个路由器作为该AS的“BGP发言人”</li>
 </ul>
-<h4 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h4><ul>
-<li><p>边界路由器初始化过程</p>
-</li>
+<h4 id="工作过程">工作过程</h4>
+<ul>
+<li><p>边界路由器初始化过程</p></li>
 <li><p>BGP协议分组数据</p>
 <ul>
 <li>打开分组。用来与相邻的另一个BGP发言人建立关系</li>
 <li>更新分组。发送路由信息，列出要撤销多条路由</li>
 <li>保活分组。确认打开分组、周期性地证实相邻边界路由器存在</li>
 <li>通知分组。用来发送检测到的差错</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="路由器与第三层交换技术"><a href="#路由器与第三层交换技术" class="headerlink" title="路由器与第三层交换技术"></a>路由器与第三层交换技术</h3><h4 id="主要功能-1"><a href="#主要功能-1" class="headerlink" title="主要功能"></a>主要功能</h4><ul>
+<h3 id="路由器与第三层交换技术">路由器与第三层交换技术</h3>
+<h4 id="主要功能-1">主要功能</h4>
+<ul>
 <li>建立、维护路由表</li>
 <li>提供网络间分组转发功能</li>
 </ul>
-<h2 id="4-6-互联网控制报文协议ICMP"><a href="#4-6-互联网控制报文协议ICMP" class="headerlink" title="4.6 互联网控制报文协议ICMP"></a>4.6 互联网控制报文协议ICMP</h2><h3 id="ICMP报文结构"><a href="#ICMP报文结构" class="headerlink" title="ICMP报文结构"></a>ICMP报文结构</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014427440.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014427440"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014533153.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014533153"></p>
-<h3 id="ICMP差错报文"><a href="#ICMP差错报文" class="headerlink" title="ICMP差错报文"></a>ICMP差错报文</h3><h4 id="1-路由重定向报文-type-5"><a href="#1-路由重定向报文-type-5" class="headerlink" title="1 路由重定向报文(type: 5)"></a>1 路由重定向报文(type: 5)</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014606363.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014606363"></p>
-<h4 id="2-超时报文-type-11"><a href="#2-超时报文-type-11" class="headerlink" title="2 超时报文(type: 11)"></a>2 超时报文(type: 11)</h4><ul>
+<h2 id="互联网控制报文协议icmp">4.6 互联网控制报文协议ICMP</h2>
+<h3 id="icmp报文结构">ICMP报文结构</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014427440.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014427440" /><figcaption aria-hidden="true">image-20230622014427440</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014533153.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014533153" /><figcaption aria-hidden="true">image-20230622014533153</figcaption>
+</figure>
+<h3 id="icmp差错报文">ICMP差错报文</h3>
+<h4 id="路由重定向报文type-5">1 路由重定向报文(type: 5)</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622014606363.png" srcset="/img/mokou.gif" lazyload alt="image-20230622014606363" /><figcaption aria-hidden="true">image-20230622014606363</figcaption>
+</figure>
+<h4 id="超时报文type-11">2 超时报文(type: 11)</h4>
+<ul>
 <li>路由器转发分组时，TTL字段值减1后为0，则丢弃该分组，同时向源主机发送超时报文</li>
 <li>分组所有分段在限定时间内（当第1个分段到达，启动定时器）未能到达目的主机时（分组无法组装），若多个分组出现这种情况，导致目的主机不能接收新的分组，从而出现“死锁”，将丢弃接收到的分段，并向源主机发送超时报文</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015239258.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015239258"></p>
-<h4 id="3-参数出错报文-type-12"><a href="#3-参数出错报文-type-12" class="headerlink" title="3 参数出错报文(type: 12)"></a>3 参数出错报文(type: 12)</h4><p>路由器发现以上4种差错情况以外的错误字段，丢弃该分组，向源结点发送参数出错报文。</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015320663.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015320663"></p>
-<h3 id="ICMP查询报文"><a href="#ICMP查询报文" class="headerlink" title="ICMP查询报文"></a>ICMP查询报文</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015405476.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015405476"></p>
-<h4 id="1-时间戳请求和应答-type-13-x2F-14"><a href="#1-时间戳请求和应答-type-13-x2F-14" class="headerlink" title="1 时间戳请求和应答(type 13&#x2F;14)"></a>1 时间戳请求和应答(type 13&#x2F;14)</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015239258.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015239258" /><figcaption aria-hidden="true">image-20230622015239258</figcaption>
+</figure>
+<h4 id="参数出错报文type-12">3 参数出错报文(type: 12)</h4>
+<p>路由器发现以上4种差错情况以外的错误字段，丢弃该分组，向源结点发送参数出错报文。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015320663.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015320663" /><figcaption aria-hidden="true">image-20230622015320663</figcaption>
+</figure>
+<h3 id="icmp查询报文">ICMP查询报文</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015405476.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015405476" /><figcaption aria-hidden="true">image-20230622015405476</figcaption>
+</figure>
+<h4 id="时间戳请求和应答type-1314">1 时间戳请求和应答(type 13/14)</h4>
+<ul>
 <li>提供基本简单的网络时钟同步</li>
 <li>用来确定IP分组在两个机器之间往返所需时间（时钟同步）</li>
-<li>时间戳：<ul>
+<li>时间戳：
+<ul>
 <li>初始时间戳：源主机发出请求的时间</li>
 <li>接收时间戳：目的主机收到请求的时间</li>
 <li>发送时间戳：目的主机发送应答时间</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015634891.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015634891"></p>
-<h4 id="2-回应请求与应答-type-8-x2F-0"><a href="#2-回应请求与应答-type-8-x2F-0" class="headerlink" title="2 回应请求与应答(type: 8&#x2F;0)"></a>2 回应请求与应答(type: 8&#x2F;0)</h4><ul>
-<li>测试能否到达目的主机&#x2F;路由器（网络连通性）</li>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015634891.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015634891" /><figcaption aria-hidden="true">image-20230622015634891</figcaption>
+</figure>
+<h4 id="回应请求与应答type-80">2 回应请求与应答(type: 8/0)</h4>
+<ul>
+<li>测试能否到达目的主机/路由器（网络连通性）</li>
 <li>由主机发出请求，检查另一个主机能否可达（<strong>ping</strong>命令）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015727476.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015727476"></p>
-<h4 id="3-地址掩码请求与应答-type-17-x2F-18"><a href="#3-地址掩码请求与应答-type-17-x2F-18" class="headerlink" title="3 地址掩码请求与应答(type: 17&#x2F;18)"></a>3 地址掩码请求与应答(type: 17&#x2F;18)</h4><p>要得到网络子网掩码，主机向目标路由器发送地址掩码请求报文。路由器回送应答报文，向主机提供所需的掩码</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015817484.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015817484"></p>
-<h4 id="4-路由查询与通告-type-10-x2F-9"><a href="#4-路由查询与通告-type-10-x2F-9" class="headerlink" title="4 路由查询与通告(type: 10&#x2F;9)"></a>4 路由查询与通告(type: 10&#x2F;9)</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622015727476.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015727476" /><figcaption aria-hidden="true">image-20230622015727476</figcaption>
+</figure>
+<h4 id="地址掩码请求与应答type-1718">3 地址掩码请求与应答(type: 17/18)</h4>
+<p>要得到网络子网掩码，主机向目标路由器发送地址掩码请求报文。路由器回送应答报文，向主机提供所需的掩码</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622015817484.png" srcset="/img/mokou.gif" lazyload alt="image-20230622015817484" /><figcaption aria-hidden="true">image-20230622015817484</figcaption>
+</figure>
+<h4 id="路由查询与通告type-109">4 路由查询与通告(type: 10/9)</h4>
+<ul>
 <li>主机要获取目标路由器是否正常工作，向目标路由器发送“询问与通告报文”。</li>
-<li>主机广播&#x2F;多播“路由器询问报文”，收到询问报文的路由器回送“通告报文”，广播其路由信息。</li>
+<li>主机广播/多播“路由器询问报文”，收到询问报文的路由器回送“通告报文”，广播其路由信息。</li>
 <li>在没有主机询问时，路由器也可以周期性地发送路由器通告报文，不仅通告自己的存在，而且通告它所知道的网络中所有路由器。</li>
 </ul>
-<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><ul>
+<h4 id="细节">细节</h4>
+<ul>
 <li>ICMP报文作为IP分组数据转发（被封装在IP分组的数据段中）</li>
 <li>包含ICMP报文的IP分组头的<strong>协议类型</strong>字段值设为：1</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020021495.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020021495"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020021495.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020021495" /><figcaption aria-hidden="true">image-20230622020021495</figcaption>
+</figure>
 <ul>
 <li><p>源站(点)抑制报文：</p>
-<p>用于通知源主机其发送的数据包已被路由器丢弃。这种报文是由路由器生成的，用于告诉源主机减慢其发送速度。</p>
-</li>
-<li><p>CRC校验错误时，路由器不会发送ICMP报文</p>
-</li>
+<p>用于通知源主机其发送的数据包已被路由器丢弃。这种报文是由路由器生成的，用于告诉源主机减慢其发送速度。</p></li>
+<li><p>CRC校验错误时，路由器不会发送ICMP报文</p></li>
 </ul>
-<h2 id="4-7-地址解析协议ARP"><a href="#4-7-地址解析协议ARP" class="headerlink" title="4.7 地址解析协议ARP"></a>4.7 地址解析协议ARP</h2><ul>
+<h2 id="地址解析协议arp">4.7 地址解析协议ARP</h2>
+<ul>
 <li>IP逻辑地址：实现不同物理网设备（主机、路由器等）地址统一</li>
 <li>分组数据包最终在物理网络上传输（使用物理地址MAC）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020442492.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020442492"></p>
-<h3 id="地址映射方法"><a href="#地址映射方法" class="headerlink" title="地址映射方法"></a>地址映射方法</h3><ul>
-<li>静态映射（人工维护地址映射表）不足：<ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020442492.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020442492" /><figcaption aria-hidden="true">image-20230622020442492</figcaption>
+</figure>
+<h3 id="地址映射方法">地址映射方法</h3>
+<ul>
+<li>静态映射（人工维护地址映射表）不足：
+<ul>
 <li>映射表不能及时反映网络设备变化（新添加了主机或路由器）</li>
 <li>IP地址不变情况下更换网卡，重新映射（设备物理地址变化）</li>
 <li>主机物理位置发生变化（IP地址变），但物理地址不变（IP变了）</li>
-</ul>
-</li>
+</ul></li>
 <li>动态映射（ARP建立映射）</li>
 </ul>
-<h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><ul>
+<h3 id="arp协议">ARP协议</h3>
+<ul>
 <li><strong>正向地址解析协议</strong>（ARP）：从已知IP地址解析对应的物理地址（MAC）的映射关系过程，从IP地址到物理地址</li>
 <li><strong>反向地址解析</strong>（RARP）：从已知的物理地址解析对应的IP地址，从 IP地址到物理地址</li>
 <li>解析过程：使用ARP请求分组、应答分组</li>
 </ul>
 <p><strong>下图中:B -&gt; byte</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020619008.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020619008"></p>
-<h4 id="字段意义"><a href="#字段意义" class="headerlink" title="字段意义"></a>字段意义</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020619008.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020619008" /><figcaption aria-hidden="true">image-20230622020619008</figcaption>
+</figure>
+<h4 id="字段意义">字段意义</h4>
+<ul>
 <li>硬件类型：16位，物理网络类型（1-以太网）</li>
 <li>协议类型：16位，网络协议类型（08000x-IPv4协议）</li>
 <li>硬件地址长度：8位，物理地址长度（6-以太网地址）</li>
@@ -1404,40 +1648,59 @@
 <li>源（目的）结点IP地址：4B，源（目的）结点IP地址</li>
 <li>补充数据段：18B，ARP分组长度达到46B（最小帧64B要求）</li>
 </ul>
-<h4 id="分组的封装"><a href="#分组的封装" class="headerlink" title="分组的封装"></a>分组的封装</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020906681.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020906681"></p>
-<h4 id="地址解析过程"><a href="#地址解析过程" class="headerlink" title="地址解析过程"></a>地址解析过程</h4><h5 id="工作过程-1"><a href="#工作过程-1" class="headerlink" title="工作过程"></a>工作过程</h5><p>目的mac地址不知道就填0<br>然后广播(FF:FF:FF:FF:FF:FF)<br>接收的主机跟自己的进行匹配，匹配上了就定向发回主机a</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622021206692.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021206692"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622021211247.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021211247"></p>
-<h5 id="本地ARP高速缓存"><a href="#本地ARP高速缓存" class="headerlink" title="本地ARP高速缓存"></a>本地ARP高速缓存</h5><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021320763.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021320763"></p>
-<h4 id="ARP欺骗与防范-选修"><a href="#ARP欺骗与防范-选修" class="headerlink" title="ARP欺骗与防范(选修)"></a>ARP欺骗与防范(选修)</h4><h5 id="1-ARP协议缺陷"><a href="#1-ARP协议缺陷" class="headerlink" title="1. ARP协议缺陷"></a>1. ARP协议缺陷</h5><ul>
+<h4 id="分组的封装">分组的封装</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622020906681.png" srcset="/img/mokou.gif" lazyload alt="image-20230622020906681" /><figcaption aria-hidden="true">image-20230622020906681</figcaption>
+</figure>
+<h4 id="地址解析过程">地址解析过程</h4>
+<h5 id="工作过程-1">工作过程</h5>
+<p>目的mac地址不知道就填0 然后广播(FF:FF:FF:FF:FF:FF) 接收的主机跟自己的进行匹配，匹配上了就定向发回主机a</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622021206692.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021206692" /><figcaption aria-hidden="true">image-20230622021206692</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622021211247.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021211247" /><figcaption aria-hidden="true">image-20230622021211247</figcaption>
+</figure>
+<h5 id="本地arp高速缓存">本地ARP高速缓存</h5>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021320763.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021320763" /><figcaption aria-hidden="true">image-20230622021320763</figcaption>
+</figure>
+<h4 id="arp欺骗与防范选修">ARP欺骗与防范(选修)</h4>
+<h5 id="arp协议缺陷">1. ARP协议缺陷</h5>
+<ul>
 <li>ARP高速缓存根据所接收的ARP协议包，随时进行动态更新</li>
 <li>ARP协议无需连接，任意主机在无ARP请求时，也可以做出应答</li>
 <li>ARP协议没有认证机制，只要接收的协议包有效，主机无条件根据协议包内容刷新本机ARP缓存，并不检查该协议包的合法性</li>
 </ul>
-<h5 id="2-ARP欺骗过程"><a href="#2-ARP欺骗过程" class="headerlink" title="2. ARP欺骗过程"></a>2. ARP欺骗过程</h5><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021442055.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021442055"></p>
-<h5 id="3-ARP欺骗防范"><a href="#3-ARP欺骗防范" class="headerlink" title="3. ARP欺骗防范"></a>3. ARP欺骗防范</h5><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021528566.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021528566"></p>
-<h1 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h1><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622153241667.png" srcset="/img/mokou.gif" lazyload alt="image-20230622153241667"></p>
-<h2 id="5-1-链路"><a href="#5-1-链路" class="headerlink" title="5.1 链路"></a>5.1 链路</h2><ul>
-<li><p>链路：一条点到点的物理线路（中间没有任何其它交换结点），也叫物理链路</p>
-</li>
-<li><p>数据链路：物理线路&#x2F;传输设备+规程（软硬件）保证数据传输正确性，也叫逻辑链路</p>
-</li>
-<li><p>通路：由许多链路串接而成（链路是通路的组成部分）</p>
-</li>
-<li><p>物理层：为数据传输提供所需要的物理链路。</p>
-</li>
+<h5 id="arp欺骗过程">2. ARP欺骗过程</h5>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021442055.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021442055" /><figcaption aria-hidden="true">image-20230622021442055</figcaption>
+</figure>
+<h5 id="arp欺骗防范">3. ARP欺骗防范</h5>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622021528566.png" srcset="/img/mokou.gif" lazyload alt="image-20230622021528566" /><figcaption aria-hidden="true">image-20230622021528566</figcaption>
+</figure>
+<h1 id="链路层">链路层</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622153241667.png" srcset="/img/mokou.gif" lazyload alt="image-20230622153241667" /><figcaption aria-hidden="true">image-20230622153241667</figcaption>
+</figure>
+<h2 id="链路">5.1 链路</h2>
+<ul>
+<li><p>链路：一条点到点的物理线路（中间没有任何其它交换结点），也叫物理链路</p></li>
+<li><p>数据链路：物理线路/传输设备+规程（软硬件）保证数据传输正确性，也叫逻辑链路</p></li>
+<li><p>通路：由许多链路串接而成（链路是通路的组成部分）</p></li>
+<li><p>物理层：为数据传输提供所需要的物理链路。</p></li>
 <li><p>数据链路层：将数据从物理链路的一个节点传送到下一个节点</p>
 <ul>
 <li>不同的链路采用不同的链路层协议，提供的服务不同</li>
-</ul>
-</li>
+</ul></li>
 <li><p>网络层：将数据从数据链路的源主机传送到目的主机</p>
 <ul>
 <li>能够在各段链路层提供异构服务的情况下，完成端到端的工作</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="5-2-差错产生原因"><a href="#5-2-差错产生原因" class="headerlink" title="5.2 差错产生原因"></a>5.2 差错产生原因</h2><p>信道存在底噪，数据就会被影响</p>
+<h2 id="差错产生原因">5.2 差错产生原因</h2>
+<p>信道存在底噪，数据就会被影响</p>
 <ul>
 <li>在物理通信线路上传输数据信号<strong>一定</strong>存在差错（收发数据不一致！）</li>
 <li>在原始、有差错物理线路上层，采取差错检测、差错控制等方法，将物理线路改造成无差错的数据链路（向网络层提供高质量服务）</li>
@@ -1449,37 +1712,39 @@
 <li>热（白）噪声：由热噪声引起的差错是随机差错，或随机差错。是由电子热运动引起的，具有“<strong>幅度小，不能够消除</strong>”等特点</li>
 <li>冲击噪声：引起的差错是突发差错，具有“呈突发状，常由外界因素引起，幅度可能相当大，<strong>无法靠提高信噪比</strong>来避免”，是主要差错原因</li>
 </ul>
-<h3 id="信噪比-SNR"><a href="#信噪比-SNR" class="headerlink" title="信噪比(SNR)"></a>信噪比(SNR)</h3><p><strong>定义</strong></p>
+<h3 id="信噪比snr">信噪比(SNR)</h3>
+<p><strong>定义</strong></p>
 <p>所需的信号强度与背景噪声的强度。其定义为信号功率与噪声功率的比例，以分贝为单位</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622154625740.png" srcset="/img/mokou.gif" lazyload alt="image-20230622154625740"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622154625740.png" srcset="/img/mokou.gif" lazyload alt="image-20230622154625740" /><figcaption aria-hidden="true">image-20230622154625740</figcaption>
+</figure>
 <p><strong>要点</strong></p>
 <ul>
 <li>一般来说，信噪比越大，说明混在信号里的噪声越小，信号质量越好</li>
 <li>信噪比越高，接收端误码率越低</li>
 <li>提高信噪比的手段：提高信号发射功率、降低环境干扰</li>
 </ul>
-<h3 id="误码率-BER"><a href="#误码率-BER" class="headerlink" title="误码率(BER)"></a>误码率(BER)</h3><p><strong>定义</strong></p>
+<h3 id="误码率ber">误码率(BER)</h3>
+<p><strong>定义</strong></p>
 <p>表示二进制比特流在数据传输系统中被传错的概率</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622155138258.png" srcset="/img/mokou.gif" lazyload alt="image-20230622155138258"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622155138258.png" srcset="/img/mokou.gif" lazyload alt="image-20230622155138258" /><figcaption aria-hidden="true">image-20230622155138258</figcaption>
+</figure>
 <p><strong>要点</strong></p>
 <ul>
-<li><p>误码率是衡量数据传输系统正常工作状态下<strong>传输可靠性</strong>的参数</p>
-</li>
-<li><p>传输出现误码是正常且<strong>不可避免</strong>的，只要控制在一个合理的范围内</p>
-</li>
-<li><p>误码率只是衡量通信系统的一个指标，<strong>并非越低越好</strong></p>
-</li>
-<li><p>非二进制数据传输系统的误码率计算，需<strong>折合成二进制</strong></p>
-</li>
+<li><p>误码率是衡量数据传输系统正常工作状态下<strong>传输可靠性</strong>的参数</p></li>
+<li><p>传输出现误码是正常且<strong>不可避免</strong>的，只要控制在一个合理的范围内</p></li>
+<li><p>误码率只是衡量通信系统的一个指标，<strong>并非越低越好</strong></p></li>
+<li><p>非二进制数据传输系统的误码率计算，需<strong>折合成二进制</strong></p></li>
 </ul>
-<h3 id="差错校验与纠正-检错码-EDC-和纠错码-ECC"><a href="#差错校验与纠正-检错码-EDC-和纠错码-ECC" class="headerlink" title="差错校验与纠正-检错码(EDC)和纠错码(ECC)"></a>差错校验与纠正-检错码(EDC)和纠错码(ECC)</h3><p>检错码：自动发现差错的编码</p>
+<h3 id="差错校验与纠正-检错码edc和纠错码ecc">差错校验与纠正-检错码(EDC)和纠错码(ECC)</h3>
+<p>检错码：自动发现差错的编码</p>
 <p>纠错码：不仅能发现差错，还能自动纠正差错的编码</p>
-<h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><p>在向信道发送数据之前，先按某种关系加上一定的<strong>冗余位</strong>（差错控制编码），构成<strong>码字</strong>再发送。接收方收到码字后查看<strong>信息位</strong>和冗余位，并检查它们的关系（<strong>校验</strong>），以发现传输中是否存在差错</p>
+<h4 id="思想">思想</h4>
+<p>在向信道发送数据之前，先按某种关系加上一定的<strong>冗余位</strong>（差错控制编码），构成<strong>码字</strong>再发送。接收方收到码字后查看<strong>信息位</strong>和冗余位，并检查它们的关系（<strong>校验</strong>），以发现传输中是否存在差错</p>
 <ul>
-<li><p>码字（n比特）&#x3D;信息位（k比特）+ 冗余位（r比特）</p>
-</li>
-<li><p>编码效率$R&#x3D;\frac{k}{n}&#x3D;\frac{k}{k+r}$,R越大，编码效率越高</p>
-</li>
+<li><p>码字（n比特）=信息位（k比特）+ 冗余位（r比特）</p></li>
+<li><p>编码效率<span class="math inline">\(R=\frac{k}{n}=\frac{k}{k+r}\)</span>,R越大，编码效率越高</p></li>
 </ul>
 <p>常见的检错纠错：</p>
 <ul>
@@ -1493,9 +1758,14 @@
 <li>差错检测和纠正技术<strong>不能保证</strong>接收方检测到所有的比特差错，即可能出现未检测到的比特差错，而接收方并未发现。</li>
 <li>选择一个合适的差错检测方案使未检测到的情况发生的概率很小</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622161228968.png" srcset="/img/mokou.gif" lazyload alt="image-20230622161228968"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622161246890.png" srcset="/img/mokou.gif" lazyload alt="image-20230622161246890"></p>
-<h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><p>常用于<strong>传输层</strong>，TCP&#x2F;UCP报文的差错检测。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622161228968.png" srcset="/img/mokou.gif" lazyload alt="image-20230622161228968" /><figcaption aria-hidden="true">image-20230622161228968</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622161246890.png" srcset="/img/mokou.gif" lazyload alt="image-20230622161246890" /><figcaption aria-hidden="true">image-20230622161246890</figcaption>
+</figure>
+<h3 id="校验和">校验和</h3>
+<p>常用于<strong>传输层</strong>，TCP/UCP报文的差错检测。</p>
 <p><strong>校验位的计算</strong>：将要发送的数据看成是一个16位整数的序列，将这些16 位整数加起来，得到的和作为检验位。</p>
 <p><strong>发送端</strong></p>
 <ul>
@@ -1509,109 +1779,158 @@
 <li>等于“0”：收到的数据无差错</li>
 <li>不等于“0”：收到的数据出现差错</li>
 </ul>
-<h3 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h3><ul>
+<h3 id="奇偶校验码">奇偶校验码</h3>
+<ul>
 <li>奇偶校验：在信息位后面加上<strong>一位</strong>校验位使得码字中“1”的个数为奇(偶)数</li>
 </ul>
-<h3 id="海明码-纠错"><a href="#海明码-纠错" class="headerlink" title="海明码(纠错)"></a>海明码(纠错)</h3><p>利用<strong>一个以上</strong>的校验位，不仅可以验证是否有错，还能在数据出错时指明出错的位置</p>
-<p>若用r个监督关系式产生r个校正因子，区分无错、码字中n个不同位置的位错，则要求$2^r \geqslant n+1$，即$2^r \geqslant k+r+1$</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622162520708.png" srcset="/img/mokou.gif" lazyload alt="image-20230622162520708"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622162555463.png" srcset="/img/mokou.gif" lazyload alt="image-20230622162555463"></p>
-<h3 id="循环冗余校验码-CRC校验码"><a href="#循环冗余校验码-CRC校验码" class="headerlink" title="循环冗余校验码(CRC校验码)"></a>循环冗余校验码(CRC校验码)</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622163111670.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163111670"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622163149628.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163149628"></p>
+<h3 id="海明码纠错">海明码(纠错)</h3>
+<p>利用<strong>一个以上</strong>的校验位，不仅可以验证是否有错，还能在数据出错时指明出错的位置</p>
+<p>若用r个监督关系式产生r个校正因子，区分无错、码字中n个不同位置的位错，则要求<span class="math inline">\(2^r \geqslant n+1\)</span>，即<span class="math inline">\(2^r \geqslant k+r+1\)</span></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622162520708.png" srcset="/img/mokou.gif" lazyload alt="image-20230622162520708" /><figcaption aria-hidden="true">image-20230622162520708</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622162555463.png" srcset="/img/mokou.gif" lazyload alt="image-20230622162555463" /><figcaption aria-hidden="true">image-20230622162555463</figcaption>
+</figure>
+<h3 id="循环冗余校验码crc校验码">循环冗余校验码(CRC校验码)</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622163111670.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163111670" /><figcaption aria-hidden="true">image-20230622163111670</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622163149628.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163149628" /><figcaption aria-hidden="true">image-20230622163149628</figcaption>
+</figure>
 <ul>
-<li>自动反馈重发（ARR纠错）：收发双方在发现帧传输错误时，采用反馈&#x2F;重发方法纠正错误</li>
+<li>自动反馈重发（ARR纠错）：收发双方在发现帧传输错误时，采用反馈/重发方法纠正错误</li>
 <li>接收方通过检错码检查接收数据是否正确，发现传输错误就采用ARR纠错</li>
 </ul>
-<h2 id="5-3-流量控制"><a href="#5-3-流量控制" class="headerlink" title="5.3 流量控制"></a>5.3 流量控制</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622163905837.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163905837"></p>
-<h3 id="单帧停止等待协议"><a href="#单帧停止等待协议" class="headerlink" title="单帧停止等待协议"></a>单帧停止等待协议</h3><ul>
+<h2 id="流量控制-1">5.3 流量控制</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622163905837.png" srcset="/img/mokou.gif" lazyload alt="image-20230622163905837" /><figcaption aria-hidden="true">image-20230622163905837</figcaption>
+</figure>
+<h3 id="单帧停止等待协议">单帧停止等待协议</h3>
+<ul>
 <li>发送方每次发送一帧后，需要等待确认帧返回，再发送下一帧</li>
 <li>发送方收到否认帧（数据帧错），重新发送出错的数据帧</li>
 <li>优点：协议简单、容易实现</li>
 <li>缺点：帧传输效率低下</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165021957.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165021957"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165035094.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165035094"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165054816.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165054816"></p>
-<p>帧传输总延时 &#x3D; 2*传播延时+(数据帧处理延时+确认帧处理延时)+数据帧发送延时+确认帧发送延时</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165021957.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165021957" /><figcaption aria-hidden="true">image-20230622165021957</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165035094.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165035094" /><figcaption aria-hidden="true">image-20230622165035094</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622165054816.png" srcset="/img/mokou.gif" lazyload alt="image-20230622165054816" /><figcaption aria-hidden="true">image-20230622165054816</figcaption>
+</figure>
+<p>帧传输总延时 = 2*传播延时+(数据帧处理延时+确认帧处理延时)+数据帧发送延时+确认帧发送延时</p>
 <p>tT ≈tf+2tp ，因为处理延时和确认报文很短，<strong>忽略不计</strong></p>
-<p>帧传播效率 &#x3D; 数据帧发送延时 &#x2F; 帧传输总延时</p>
-<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3><h4 id="拉回重发-GBN"><a href="#拉回重发-GBN" class="headerlink" title="拉回重发(GBN)"></a>拉回重发(GBN)</h4><p>（1）发送方发送N个帧以后，若发现该N个帧的前一个帧在计时器超时后仍未返回其确认信息，则该帧被判断为出错或丢失，此时将重发该出错帧及随后的N个帧；</p>
+<p>帧传播效率 = 数据帧发送延时 / 帧传输总延时</p>
+<h3 id="连续arq协议">连续ARQ协议</h3>
+<h4 id="拉回重发gbn">拉回重发(GBN)</h4>
+<p>（1）发送方发送N个帧以后，若发现该N个帧的前一个帧在计时器超时后仍未返回其确认信息，则该帧被判断为出错或丢失，此时将重发该出错帧及随后的N个帧；</p>
 <p>（2）采用<strong>累积确认</strong>的方法，即对某一数据帧的确认即表明该数据帧及这以前所有的数据帧均已正确接收</p>
-<h4 id="选择重发-SR"><a href="#选择重发-SR" class="headerlink" title="选择重发(SR)"></a>选择重发(SR)</h4><p>（1）每一个发送缓冲区有一个计时器，当计时器超时时，缓冲区的帧就会重传；</p>
+<h4 id="选择重发sr">选择重发(SR)</h4>
+<p>（1）每一个发送缓冲区有一个计时器，当计时器超时时，缓冲区的帧就会重传；</p>
 <p>（2）如果接收方怀疑帧出错，就会发一个否定帧NAK给发送方，要求重传NAK中指定的帧</p>
-<h3 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h3><p>链路层滑动窗口与传输层TCP滑动窗口原理相同</p>
+<h3 id="滑动窗口协议">滑动窗口协议</h3>
+<p>链路层滑动窗口与传输层TCP滑动窗口原理相同</p>
 <ul>
 <li>一个是针对于帧的传送</li>
 <li>另一个是针对字节数据的传送</li>
 </ul>
 <p>详情见TCP滑动窗口</p>
-<h2 id="5-4-局域网参考模型与以太网工作原理"><a href="#5-4-局域网参考模型与以太网工作原理" class="headerlink" title="5.4 局域网参考模型与以太网工作原理"></a>5.4 局域网参考模型与以太网工作原理</h2><h3 id="介质控制访问"><a href="#介质控制访问" class="headerlink" title="介质控制访问"></a>介质控制访问</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>用来决定广播信道中<strong>信道分配</strong>的协议，属于数据链路层的一个子层，称为介质访问控制（Medium Access Control，MAC）子层</p>
-<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a><strong>任务</strong></h4><p>为使用介质的每个节点隔离来自同一信道上其它节点所传送的信号，以协调活动节点的传输</p>
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>信道划分介质访问控制：<strong>频分多路复用、时分多路复用</strong>、波分多路复用、码分多路复用【静态划分】<br>随机访问介质访问控制：ALOHA、<strong>CSMA&#x2F;CD</strong>、CSMA&#x2F;CA 【动态划分】<br>轮询访问介质访问控制：令牌传递协议【动态划分】</p>
-<h4 id="频分多路复用与时分多路复用"><a href="#频分多路复用与时分多路复用" class="headerlink" title="频分多路复用与时分多路复用"></a>频分多路复用与时分多路复用</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170652817.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170652817"></p>
-<h4 id="随机介质控制访问-纯ALOHA"><a href="#随机介质控制访问-纯ALOHA" class="headerlink" title="随机介质控制访问-纯ALOHA"></a>随机介质控制访问-纯ALOHA</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170717146.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170717146"></p>
+<h2 id="局域网参考模型与以太网工作原理">5.4 局域网参考模型与以太网工作原理</h2>
+<h3 id="介质控制访问">介质控制访问</h3>
+<h4 id="定义">定义</h4>
+<p>用来决定广播信道中<strong>信道分配</strong>的协议，属于数据链路层的一个子层，称为介质访问控制（Medium Access Control，MAC）子层</p>
+<h4 id="任务"><strong>任务</strong></h4>
+<p>为使用介质的每个节点隔离来自同一信道上其它节点所传送的信号，以协调活动节点的传输</p>
+<h4 id="分类">分类</h4>
+<p>信道划分介质访问控制：<strong>频分多路复用、时分多路复用</strong>、波分多路复用、码分多路复用【静态划分】 随机访问介质访问控制：ALOHA、<strong>CSMA/CD</strong>、CSMA/CA 【动态划分】 轮询访问介质访问控制：令牌传递协议【动态划分】</p>
+<h4 id="频分多路复用与时分多路复用">频分多路复用与时分多路复用</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170652817.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170652817" /><figcaption aria-hidden="true">image-20230622170652817</figcaption>
+</figure>
+<h4 id="随机介质控制访问-纯aloha">随机介质控制访问-纯ALOHA</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170717146.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170717146" /><figcaption aria-hidden="true">image-20230622170717146</figcaption>
+</figure>
 <ul>
 <li>每个主机均自由地发送数据帧</li>
 <li>不考虑由于信道不良引起的误码</li>
 <li>碰撞后，各主机等待一段随机的时间，然后再进行重传。若再发生碰撞，则需要再等待一段随机的时间，直到重传成功为止</li>
 <li>效率较低</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170826354.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170826354"></p>
-<h4 id="时隙ALOHA"><a href="#时隙ALOHA" class="headerlink" title="时隙ALOHA"></a>时隙ALOHA</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622170846497.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170846497"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622170826354.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170826354" /><figcaption aria-hidden="true">image-20230622170826354</figcaption>
+</figure>
+<h4 id="时隙aloha">时隙ALOHA</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622170846497.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170846497" /><figcaption aria-hidden="true">image-20230622170846497</figcaption>
+</figure>
 <ul>
 <li>将所有主机进行时间同步，并将时间划分为一段段等长的时隙（time slot）</li>
 <li>只能在每个时隙的开始时才能发送一个数据帧</li>
 <li>时隙长度T0使得每个帧正好在一个时隙内发送完毕</li>
 <li>每个帧到达后，一般都要在缓存中等待一段小于T0然后才发送出去</li>
 </ul>
-<h4 id="CSMA-x2F-CD"><a href="#CSMA-x2F-CD" class="headerlink" title="CSMA&#x2F;CD"></a>CSMA&#x2F;CD</h4><ul>
+<h4 id="csmacd">CSMA/CD</h4>
+<ul>
 <li>以太网数据传输特点</li>
-<li>载波侦听多路访问&#x2F;冲突检测（CSMA&#x2F;CD）技术<ul>
+<li>载波侦听多路访问/冲突检测（CSMA/CD）技术
+<ul>
 <li>载波侦听：监听总线占用</li>
 <li>多路访问：平等访问总线</li>
 <li>冲突检测：冲突不可避免</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622170942626.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170942626"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622170942626.png" srcset="/img/mokou.gif" lazyload alt="image-20230622170942626" /><figcaption aria-hidden="true">image-20230622170942626</figcaption>
+</figure>
 <p><strong>冲突窗口概念</strong></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622171007290.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171007290"></p>
-<h3 id="以太网帧结构"><a href="#以太网帧结构" class="headerlink" title="以太网帧结构"></a>以太网帧结构</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622171349067.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171349067"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622171007290.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171007290" /><figcaption aria-hidden="true">image-20230622171007290</figcaption>
+</figure>
+<h3 id="以太网帧结构">以太网帧结构</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230622171349067.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171349067" /><figcaption aria-hidden="true">image-20230622171349067</figcaption>
+</figure>
 <ul>
-<li>前导符&#x2F;帧前定界符：由10101010比特流组成</li>
+<li>前导符/帧前定界符：由10101010比特流组成</li>
 <li>目的地址、源地址：MAC地址（6字节）</li>
 <li>类型：网络层协议类型（0x800表示IP协议；0x8137表示IPX协议</li>
 <li>数据：46B~1500B（帧头长度为18B）</li>
 <li>帧校验：32位CRC校验（目的地址、源地址、类型、帧数据）</li>
 </ul>
-<h3 id="以太网卡结构"><a href="#以太网卡结构" class="headerlink" title="以太网卡结构"></a>以太网卡结构</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171454297.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171454297"></p>
-<h2 id="5-5-局域网技术与数据链路层协议"><a href="#5-5-局域网技术与数据链路层协议" class="headerlink" title="5.5 局域网技术与数据链路层协议"></a>5.5 局域网技术与数据链路层协议</h2><ul>
-<li><p>现代以太网技术: 交换式局域网</p>
-</li>
+<h3 id="以太网卡结构">以太网卡结构</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171454297.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171454297" /><figcaption aria-hidden="true">image-20230622171454297</figcaption>
+</figure>
+<h2 id="局域网技术与数据链路层协议">5.5 局域网技术与数据链路层协议</h2>
+<ul>
+<li><p>现代以太网技术: 交换式局域网</p></li>
 <li><p>交换技术应用于高性能局域网技术</p>
 <ul>
-<li><p>传统共享介质局域网（所有结点共享一条传输介质）不可避免发生冲突（结点数量不断增加，网络负荷加重，网络效率急剧下降）</p>
-</li>
-<li><p>克服网络规模与网络性能矛盾，将共享介质改为交换方式，即二层交换技术</p>
-</li>
+<li><p>传统共享介质局域网（所有结点共享一条传输介质）不可避免发生冲突（结点数量不断增加，网络负荷加重，网络效率急剧下降）</p></li>
+<li><p>克服网络规模与网络性能矛盾，将共享介质改为交换方式，即二层交换技术</p></li>
 <li><p>二层交换技术不关心三层协议</p>
 <ul>
-<li><p>不会检查网络层，IPV4、IPV6等三层协议分组均可以穿越二层交换机</p>
-</li>
-<li><p>网桥、交换机</p>
-</li>
+<li><p>不会检查网络层，IPV4、IPV6等三层协议分组均可以穿越二层交换机</p></li>
+<li><p>网桥、交换机</p></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h3><h4 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h4><ul>
+<h3 id="网桥">网桥</h3>
+<h4 id="基本特征">基本特征</h4>
+<ul>
 <li>互联两个不同数据链路层协议（不同传输介质、不同传输率）</li>
 <li>以接收、存储、地址过滤与转发方式实现网络之间通信</li>
 <li>需要互联网络在数据链路层以上采用相同协议</li>
 <li>分隔两个网络之间的广播通信量，改善互联网络性能与安全性</li>
 </ul>
-<h4 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h4><p>从802.X到802.Y的网桥</p>
+<h4 id="层次结构">层次结构</h4>
+<p>从802.X到802.Y的网桥</p>
 <ul>
 <li>不同的帧格式-重新封装</li>
 <li>不同的传输速率-缓存</li>
@@ -1619,60 +1938,79 @@
 <li>不同的安全策略</li>
 <li>不同的服务质量要求</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171647475.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171647475"></p>
-<h4 id="透明网桥"><a href="#透明网桥" class="headerlink" title="透明网桥"></a>透明网桥</h4><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171647475.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171647475" /><figcaption aria-hidden="true">image-20230622171647475</figcaption>
+</figure>
+<h4 id="透明网桥">透明网桥</h4>
+<ul>
 <li>通过透明网桥，将多个局域网连接起来，硬件和软件不需要做任何变化。</li>
 <li>透明网桥工作在混杂模式，接受所有的帧</li>
 <li>当一个帧到达网桥时，它必须做出丢弃还是转发的决策。</li>
 <li>决策通过在网桥内部的地址表中，查找目的MAC地址而做出的。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171748929.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171748929"></p>
-<h4 id="网桥的内部结构"><a href="#网桥的内部结构" class="headerlink" title="网桥的内部结构"></a>网桥的内部结构</h4><p>当一个帧到达网桥时：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622171748929.png" srcset="/img/mokou.gif" lazyload alt="image-20230622171748929" /><figcaption aria-hidden="true">image-20230622171748929</figcaption>
+</figure>
+<h4 id="网桥的内部结构">网桥的内部结构</h4>
+<p>当一个帧到达网桥时：</p>
 <ul>
-<li>源地址是否有匹配：有-&gt;检查更新  &#x2F;  没有-&gt;逆向学习</li>
-<li>目的地址是否有匹配：有-&gt;转发   &#x2F;  没有-&gt;广播</li>
+<li>源地址是否有匹配：有-&gt;检查更新 / 没有-&gt;逆向学习</li>
+<li>目的地址是否有匹配：有-&gt;转发 / 没有-&gt;广播</li>
 </ul>
-<h4 id="变化拓扑的适应"><a href="#变化拓扑的适应" class="headerlink" title="变化拓扑的适应"></a>变化拓扑的适应</h4><ol>
+<h4 id="变化拓扑的适应">变化拓扑的适应</h4>
+<ol type="1">
 <li>当网桥往表中加入记录时，必须要打时间戳，</li>
 <li>如果收到帧的源地址在表中有记录，也要更新时间戳，</li>
 <li>网桥需要周期性的扫描转发表，把超时的记录从表中面删除</li>
 </ol>
-<h4 id="网桥转发的原理"><a href="#网桥转发的原理" class="headerlink" title="网桥转发的原理"></a>网桥转发的原理</h4><ul>
+<h4 id="网桥转发的原理">网桥转发的原理</h4>
+<ul>
 <li>如果查到目的端口和源端口是相同，就会丢弃这一帧，</li>
 <li>如果目的端口和源端口不同，就会转发这一帧，</li>
 <li>如果这个目的地址没有在表里面查到，就会广播这一帧。</li>
 </ul>
-<h3 id="局域网交换机"><a href="#局域网交换机" class="headerlink" title="局域网交换机"></a>局域网交换机</h3><h4 id="结构与工作原理"><a href="#结构与工作原理" class="headerlink" title="结构与工作原理"></a>结构与工作原理</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172145089.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172145089"></p>
+<h3 id="局域网交换机">局域网交换机</h3>
+<h4 id="结构与工作原理">结构与工作原理</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172145089.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172145089" /><figcaption aria-hidden="true">image-20230622172145089</figcaption>
+</figure>
 <ul>
-<li>泛洪广播<br>目的地址未知，或广播地址，除源端口外在其他所有的端口进行转发 </li>
-<li>转发<br>对于已经学习到的目的地址，直接转发到相应的端口。</li>
-<li>过滤<br>目的地址和源地址所处的端口是相同的，将帧丢弃。</li>
-<li>逆向学习<br>读取真的源地址和达到端口进行学习，补充更新转发表。</li>
+<li>泛洪广播 目的地址未知，或广播地址，除源端口外在其他所有的端口进行转发</li>
+<li>转发 对于已经学习到的目的地址，直接转发到相应的端口。</li>
+<li>过滤 目的地址和源地址所处的端口是相同的，将帧丢弃。</li>
+<li>逆向学习 读取真的源地址和达到端口进行学习，补充更新转发表。</li>
 </ul>
-<h4 id="三种交换方式"><a href="#三种交换方式" class="headerlink" title="三种交换方式"></a>三种交换方式</h4><ul>
-<li>直接交换方式<ul>
+<h4 id="三种交换方式">三种交换方式</h4>
+<ul>
+<li>直接交换方式
+<ul>
 <li>交换机只接收数据帧头部，检测目的地址，立即转发（无论帧是否出错）</li>
 <li>帧出错检测由结点主机完成（延迟小，缺乏差错检测）</li>
-</ul>
-</li>
-<li>存储转发交换方式<ul>
+</ul></li>
+<li>存储转发交换方式
+<ul>
 <li>交换机完整地接收数据帧，并检测差错。若帧正确，则根据帧目的地址确定输出端口，进行转发出</li>
 <li>具有帧差错检测能力，延迟大</li>
-</ul>
-</li>
-<li>改进的直接交换方式（二者结合）<ul>
+</ul></li>
+<li>改进的直接交换方式（二者结合）
+<ul>
 <li>检查帧的长度是否够64个字节，如果小于64字节则丢弃（碎片帧）；如果大于64字节，则转发。</li>
 <li>不提供差错检测，但是出错的机会比直接转发小，数据处理速度比存储转发方式快</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h4><ul>
+<h4 id="vlan">VLAN</h4>
+<ul>
 <li>一种网络服务（不是组网技术）</li>
 <li>交换式局域网技术是实现VLAN基础（用户与局域网资源一种逻辑组合）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172332590.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172332590"></p>
-<h1 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h1><p>IPv6地址使用<strong>128位</strong>地址</p>
-<h2 id="7-1-IPv6的优势与特点"><a href="#7-1-IPv6的优势与特点" class="headerlink" title="7.1 IPv6的优势与特点"></a>7.1 IPv6的优势与特点</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172332590.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172332590" /><figcaption aria-hidden="true">image-20230622172332590</figcaption>
+</figure>
+<h1 id="ipv6">IPv6</h1>
+<p>IPv6地址使用<strong>128位</strong>地址</p>
+<h2 id="ipv6的优势与特点">7.1 IPv6的优势与特点</h2>
+<h3 id="优势">优势</h3>
+<ul>
 <li>解决<strong>地址耗尽</strong>问题：IPv6采用128位的地址空间，几乎能够做到不受任何限制地提供IP地址。 “地球上的每一粒沙子都拥有一个IPv6地址”。</li>
 <li>改善<strong>网络性能</strong>：IPv6数据包远远大于IPv4数据包的64KB，应用程序可以利用最大传输单元MTU获得更高效的数据传输速率</li>
 <li>方便各项业务开展：充足的IPv6地址保证了通信终端都可以获得外网IP地址，无需NAT的中转</li>
@@ -1680,7 +2018,8 @@
 <li>安全性更高：内置了安全机制IPSec，确保端到端通信的完整性和保密性</li>
 <li>支持移动性：保证在通信不中断的情况下，漫游到其他网络</li>
 </ul>
-<h3 id="特点-4"><a href="#特点-4" class="headerlink" title="特点"></a>特点</h3><ul>
+<h3 id="特点-4">特点</h3>
+<ul>
 <li>新的协议头格式</li>
 <li>巨大的地址空间</li>
 <li>有效的分级寻址和路由结构</li>
@@ -1688,31 +2027,81 @@
 <li>内置的安全机制</li>
 <li>更好地支持QoS</li>
 </ul>
-<h2 id="7-2-IPv6地址格式"><a href="#7-2-IPv6地址格式" class="headerlink" title="7.2 IPv6地址格式"></a>7.2 IPv6地址格式</h2><h3 id="冒分十六进制地址表示法"><a href="#冒分十六进制地址表示法" class="headerlink" title="冒分十六进制地址表示法"></a>冒分十六进制地址表示法</h3><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172638348.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172638348"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172658673.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172658673"></p>
-<h3 id="内嵌IPv4地址表示法"><a href="#内嵌IPv4地址表示法" class="headerlink" title="内嵌IPv4地址表示法"></a>内嵌IPv4地址表示法</h3><p>将IPv4地址嵌入于IPv6地址中，形式如下</p>
-<p>$$<br>x: x: x: x: x: x:d.d.d.d<br>$$<br>其前96位采用冒分十六进制表示，后32位地址使用IPv4的点分十进制表示。<br>例如：<br>$$<br>::192.168.0.1  与  ::FFFF:192.168.0.1<br>$$</p>
-<h3 id="IPv6前缀格式"><a href="#IPv6前缀格式" class="headerlink" title="IPv6前缀格式"></a>IPv6前缀格式</h3><ul>
+<h2 id="ipv6地址格式">7.2 IPv6地址格式</h2>
+<h3 id="冒分十六进制地址表示法">冒分十六进制地址表示法</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172638348.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172638348" /><figcaption aria-hidden="true">image-20230622172638348</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172658673.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172658673" /><figcaption aria-hidden="true">image-20230622172658673</figcaption>
+</figure>
+<h3 id="内嵌ipv4地址表示法">内嵌IPv4地址表示法</h3>
+<p>将IPv4地址嵌入于IPv6地址中，形式如下</p>
+<p><span class="math display">\[
+x: x: x: x: x: x:d.d.d.d
+\]</span> 其前96位采用冒分十六进制表示，后32位地址使用IPv4的点分十进制表示。 例如： <span class="math display">\[
+::192.168.0.1  与  ::FFFF:192.168.0.1
+\]</span></p>
+<h3 id="ipv6前缀格式">IPv6前缀格式</h3>
+<ul>
 <li>IPv6不支持子网掩码，它只支持前缀长度表示法</li>
-<li>前缀是IPv6地址的一部分，用作IPv6路由或子网标识。其格式为： IPv6地址&#x2F;前缀长度n，例如：60位前缀20010DB80000CD30，可以写为：2001:0DB8:0:CD30::&#x2F;60</li>
+<li>前缀是IPv6地址的一部分，用作IPv6路由或子网标识。其格式为： IPv6地址/前缀长度n，例如：60位前缀20010DB80000CD30，可以写为：2001:0DB8:0:CD30::/60</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172907391.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172907391"></p>
-<h2 id="7-3-IPv6地址分类"><a href="#7-3-IPv6地址分类" class="headerlink" title="7.3 IPv6地址分类"></a>7.3 IPv6地址分类</h2><p>IPv6地址主要分为：单播地址、组播地址、任意播地址</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172943585.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172943585"></p>
-<h2 id="7-4-IPv6的分组结构"><a href="#7-4-IPv6的分组结构" class="headerlink" title="7.4 IPv6的分组结构"></a>7.4 IPv6的分组结构</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173016382.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173016382"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173024470.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173024470"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172907391.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172907391" /><figcaption aria-hidden="true">image-20230622172907391</figcaption>
+</figure>
+<h2 id="ipv6地址分类">7.3 IPv6地址分类</h2>
+<p>IPv6地址主要分为：单播地址、组播地址、任意播地址</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622172943585.png" srcset="/img/mokou.gif" lazyload alt="image-20230622172943585" /><figcaption aria-hidden="true">image-20230622172943585</figcaption>
+</figure>
+<h2 id="ipv6的分组结构">7.4 IPv6的分组结构</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173016382.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173016382" /><figcaption aria-hidden="true">image-20230622173016382</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173024470.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173024470" /><figcaption aria-hidden="true">image-20230622173024470</figcaption>
+</figure>
 <p><strong>IPv6扩展头部的特点包括</strong>：逐跳选项报头、目的选项报头、路由选项报头、分段选项报头、认证选项报头、封装安全有效载荷报头。</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173050288.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173050288"></p>
-<h3 id="扩展头部各字段含义"><a href="#扩展头部各字段含义" class="headerlink" title="扩展头部各字段含义"></a>扩展头部各字段含义</h3><h4 id="1-逐跳选项报头（hop-by-hop-option-header）"><a href="#1-逐跳选项报头（hop-by-hop-option-header）" class="headerlink" title="1. 逐跳选项报头（hop-by-hop option header）"></a>1. 逐跳选项报头（hop-by-hop option header）</h4><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173146365.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173146365"></p>
-<h4 id="2-目的选项报头（destination-option-header）"><a href="#2-目的选项报头（destination-option-header）" class="headerlink" title="2.目的选项报头（destination option header）"></a>2.目的选项报头（destination option header）</h4><p>用于指定中间结点或目的结点的分组转发参数。有两种使用方式：<br>（1）如果存在路由选项报头，那么目的选项报头指定每个中间结点都要转发或处理的选项。在这种情况下，目的选项报头出现在路由选项报头之前。<br>（2）如果不存在路由选项报头，或目的选项报头出现在路由选项报头之后，则目的选项报头指定在最后的路由结点要转发或处理的选项</p>
-<h2 id="7-5-IPv6与IPv4分组头的对比"><a href="#7-5-IPv6与IPv4分组头的对比" class="headerlink" title="7.5 IPv6与IPv4分组头的对比"></a>7.5 IPv6与IPv4分组头的对比</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173237016.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173237016"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173245332.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173245332"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173251453.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173251453"></p>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>全双工：同时收发
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>具体的查看拥塞控制
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>由MSS控制
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>纯ACK报文段(数据长度&#x3D;0，窗口字段&#x3D;0)
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173050288.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173050288" /><figcaption aria-hidden="true">image-20230622173050288</figcaption>
+</figure>
+<h3 id="扩展头部各字段含义">扩展头部各字段含义</h3>
+<h4 id="逐跳选项报头hop-by-hop-option-header">1. 逐跳选项报头（hop-by-hop option header）</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173146365.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173146365" /><figcaption aria-hidden="true">image-20230622173146365</figcaption>
+</figure>
+<h4 id="目的选项报头destination-option-header">2.目的选项报头（destination option header）</h4>
+<p>用于指定中间结点或目的结点的分组转发参数。有两种使用方式： （1）如果存在路由选项报头，那么目的选项报头指定每个中间结点都要转发或处理的选项。在这种情况下，目的选项报头出现在路由选项报头之前。 （2）如果不存在路由选项报头，或目的选项报头出现在路由选项报头之后，则目的选项报头指定在最后的路由结点要转发或处理的选项</p>
+<h2 id="ipv6与ipv4分组头的对比">7.5 IPv6与IPv4分组头的对比</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173237016.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173237016" /><figcaption aria-hidden="true">image-20230622173237016</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173245332.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173245332" /><figcaption aria-hidden="true">image-20230622173245332</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230622173251453.png" srcset="/img/mokou.gif" lazyload alt="image-20230622173251453" /><figcaption aria-hidden="true">image-20230622173251453</figcaption>
+</figure>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>全双工：同时收发 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>具体的查看拥塞控制 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3" class="footnote-text"><span>由MSS控制 <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4" class="footnote-text"><span>纯ACK报文段(数据长度=0，窗口字段=0) <a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
                 
               </div>
             
@@ -1829,6 +2218,11 @@
 
 
   
+
+
+  
+  
+
 
 
 

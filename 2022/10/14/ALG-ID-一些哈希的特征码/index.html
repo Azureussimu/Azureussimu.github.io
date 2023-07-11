@@ -48,6 +48,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -406,264 +408,267 @@
               <div class="markdown-body">
                 
                 <table>
+
 <thead>
-<tr>
-<th align="left">标识符</th>
-<th align="left">值</th>
-<th align="left">说明</th>
+<tr class="header">
+<th style="text-align: left;">标识符</th>
+<th style="text-align: left;">值</th>
+<th style="text-align: left;">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">CALG_3DES</td>
-<td align="left">0x00006603</td>
-<td align="left"><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/t-gly"><em>三重 DES</em></a> 加密算法。</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CALG_3DES</td>
+<td style="text-align: left;">0x00006603</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/t-gly"><em>三重 DES</em></a> 加密算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_3DES_112</td>
-<td align="left">0x00006609</td>
-<td align="left">双密钥 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/t-gly"><em>三重 DES</em></a> 加密，有效密钥长度等于 112 位。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_3DES_112</td>
+<td style="text-align: left;">0x00006609</td>
+<td style="text-align: left;">双密钥 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/t-gly"><em>三重 DES</em></a> 加密，有效密钥长度等于 112 位。</td>
 </tr>
-<tr>
-<td align="left">CALG_AES</td>
-<td align="left">0x00006611</td>
-<td align="left">高级加密标准 (AES) 。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_AES</td>
+<td style="text-align: left;">0x00006611</td>
+<td style="text-align: left;">高级加密标准 (AES) 。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_AES_128</td>
-<td align="left">0x0000660e</td>
-<td align="left">128 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_AES_128</td>
+<td style="text-align: left;">0x0000660e</td>
+<td style="text-align: left;">128 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_AES_192</td>
-<td align="left">0x0000660f</td>
-<td align="left">192 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_AES_192</td>
+<td style="text-align: left;">0x0000660f</td>
+<td style="text-align: left;">192 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_AES_256</td>
-<td align="left">0x00006610</td>
-<td align="left">256 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_AES_256</td>
+<td style="text-align: left;">0x00006610</td>
+<td style="text-align: left;">256 位 AES。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-aes-cryptographic-provider">Microsoft AES 加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_AGREEDKEY_ANY</td>
-<td align="left">0x0000aa03</td>
-<td align="left">Diffie-Hellman 同意密钥句柄的临时算法标识符。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_AGREEDKEY_ANY</td>
+<td style="text-align: left;">0x0000aa03</td>
+<td style="text-align: left;">Diffie-Hellman 同意密钥句柄的临时算法标识符。</td>
 </tr>
-<tr>
-<td align="left">CALG_CYLINK_MEK</td>
-<td align="left">0x0000660c</td>
-<td align="left">一种算法，用于创建具有奇偶校验位和零键位的 40 位 DES 密钥，使其密钥长度为 64 位。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_CYLINK_MEK</td>
+<td style="text-align: left;">0x0000660c</td>
+<td style="text-align: left;">一种算法，用于创建具有奇偶校验位和零键位的 40 位 DES 密钥，使其密钥长度为 64 位。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_DES</td>
-<td align="left">0x00006601</td>
-<td align="left">DES 加密算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_DES</td>
+<td style="text-align: left;">0x00006601</td>
+<td style="text-align: left;">DES 加密算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_DESX</td>
-<td align="left">0x00006604</td>
-<td align="left">DESX 加密算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_DESX</td>
+<td style="text-align: left;">0x00006604</td>
+<td style="text-align: left;">DESX 加密算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_DH_EPHEM</td>
-<td align="left">0x0000aa02</td>
-<td align="left">Diffie-Hellman临时密钥交换算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_DH_EPHEM</td>
+<td style="text-align: left;">0x0000aa02</td>
+<td style="text-align: left;">Diffie-Hellman临时密钥交换算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_DH_SF</td>
-<td align="left">0x0000aa01</td>
-<td align="left">Diffie-Hellman存储和转发密钥交换算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_DH_SF</td>
+<td style="text-align: left;">0x0000aa01</td>
+<td style="text-align: left;">Diffie-Hellman存储和转发密钥交换算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_DSS_SIGN</td>
-<td align="left">0x00002200</td>
-<td align="left">DSA <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/p-gly"><em>公钥</em></a> 签名算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_DSS_SIGN</td>
+<td style="text-align: left;">0x00002200</td>
+<td style="text-align: left;">DSA <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/p-gly"><em>公钥</em></a> 签名算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_ECDH</td>
-<td align="left">0x0000aa05</td>
-<td align="left">椭圆曲线Diffie-Hellman密钥交换算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_ECDH</td>
+<td style="text-align: left;">0x0000aa05</td>
+<td style="text-align: left;">椭圆曲线Diffie-Hellman密钥交换算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_ECDH_EPHEM</td>
-<td align="left">0x0000ae06</td>
-<td align="left">临时椭圆曲线Diffie-Hellman密钥交换算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_ECDH_EPHEM</td>
+<td style="text-align: left;">0x0000ae06</td>
+<td style="text-align: left;">临时椭圆曲线Diffie-Hellman密钥交换算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_ECDSA</td>
-<td align="left">0x00002203</td>
-<td align="left">椭圆曲线数字签名算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_ECDSA</td>
+<td style="text-align: left;">0x00002203</td>
+<td style="text-align: left;">椭圆曲线数字签名算法。[！注意] 此算法仅通过 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecCNG/cng-portal">加密 API 支持：下一代</a>。 <strong>Windows Server 2003 和 Windows XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_ECMQV</td>
-<td align="left">0x0000a001</td>
-<td align="left">椭圆曲线 Menezes、Qu 和 Vanstone (MQV) 密钥交换算法。 不支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_ECMQV</td>
+<td style="text-align: left;">0x0000a001</td>
+<td style="text-align: left;">椭圆曲线 Menezes、Qu 和 Vanstone (MQV) 密钥交换算法。 不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_HASH_REPLACE_OWF</td>
-<td align="left">0x0000800b</td>
-<td align="left">函数哈希算法的一种方式。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_HASH_REPLACE_OWF</td>
+<td style="text-align: left;">0x0000800b</td>
+<td style="text-align: left;">函数哈希算法的一种方式。</td>
 </tr>
-<tr>
-<td align="left">CALG_HUGHES_MD5</td>
-<td align="left">0x0000a003</td>
-<td align="left">休斯 MD5 哈希算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_HUGHES_MD5</td>
+<td style="text-align: left;">0x0000a003</td>
+<td style="text-align: left;">休斯 MD5 哈希算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_HMAC</td>
-<td align="left">0x00008009</td>
-<td align="left">HMAC 键控哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_HMAC</td>
+<td style="text-align: left;">0x00008009</td>
+<td style="text-align: left;">HMAC 键控哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_KEA_KEYX</td>
-<td align="left">0x0000aa04</td>
-<td align="left">KEA 密钥交换算法 (FORTEZZA) 。 不支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_KEA_KEYX</td>
+<td style="text-align: left;">0x0000aa04</td>
+<td style="text-align: left;">KEA 密钥交换算法 (FORTEZZA) 。 不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_MAC</td>
-<td align="left">0x00008005</td>
-<td align="left"><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/m-gly"><em>MAC</em></a> 键控哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_MAC</td>
+<td style="text-align: left;">0x00008005</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/desktop/SecGloss/m-gly"><em>MAC</em></a> 键控哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_MD2</td>
-<td align="left">0x00008001</td>
-<td align="left">MD2 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_MD2</td>
+<td style="text-align: left;">0x00008001</td>
+<td style="text-align: left;">MD2 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基本加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_MD4</td>
-<td align="left">0x00008002</td>
-<td align="left">MD4 哈希算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_MD4</td>
+<td style="text-align: left;">0x00008002</td>
+<td style="text-align: left;">MD4 哈希算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_MD5</td>
-<td align="left">0x00008003</td>
-<td align="left">MD5 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_MD5</td>
+<td style="text-align: left;">0x00008003</td>
+<td style="text-align: left;">MD5 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_NO_SIGN</td>
-<td align="left">0x00002000</td>
-<td align="left">无签名算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_NO_SIGN</td>
+<td style="text-align: left;">0x00002000</td>
+<td style="text-align: left;">无签名算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_OID_INFO_CNG_ONLY</td>
-<td align="left">0xffffffff</td>
-<td align="left">该算法仅在 CNG 中实现。 宏IS_SPECIAL_OID_INFO_ALGID可用于确定加密算法是否仅受 CNG 函数支持。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_OID_INFO_CNG_ONLY</td>
+<td style="text-align: left;">0xffffffff</td>
+<td style="text-align: left;">该算法仅在 CNG 中实现。 宏IS_SPECIAL_OID_INFO_ALGID可用于确定加密算法是否仅受 CNG 函数支持。</td>
 </tr>
-<tr>
-<td align="left">CALG_OID_INFO_PARAMETERS</td>
-<td align="left">0xfffffffe</td>
-<td align="left">算法在编码的参数中定义。 仅使用 CNG 支持该算法。 宏IS_SPECIAL_OID_INFO_ALGID可用于确定加密算法是否仅受 CNG 函数支持。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_OID_INFO_PARAMETERS</td>
+<td style="text-align: left;">0xfffffffe</td>
+<td style="text-align: left;">算法在编码的参数中定义。 仅使用 CNG 支持该算法。 宏IS_SPECIAL_OID_INFO_ALGID可用于确定加密算法是否仅受 CNG 函数支持。</td>
 </tr>
-<tr>
-<td align="left">CALG_PCT1_MASTER</td>
-<td align="left">0x00004c04</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_PCT1_MASTER</td>
+<td style="text-align: left;">0x00004c04</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_RC2</td>
-<td align="left">0x00006602</td>
-<td align="left">RC2 块加密算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_RC2</td>
+<td style="text-align: left;">0x00006602</td>
+<td style="text-align: left;">RC2 块加密算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_RC4</td>
-<td align="left">0x00006801</td>
-<td align="left">RC4 流加密算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_RC4</td>
+<td style="text-align: left;">0x00006801</td>
+<td style="text-align: left;">RC4 流加密算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_RC5</td>
-<td align="left">0x0000660d</td>
-<td align="left">RC5 块加密算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_RC5</td>
+<td style="text-align: left;">0x0000660d</td>
+<td style="text-align: left;">RC5 块加密算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_RSA_KEYX</td>
-<td align="left">0x0000a400</td>
-<td align="left">RSA 公钥交换算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_RSA_KEYX</td>
+<td style="text-align: left;">0x0000a400</td>
+<td style="text-align: left;">RSA 公钥交换算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_RSA_SIGN</td>
-<td align="left">0x00002400</td>
-<td align="left">RSA 公钥签名算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_RSA_SIGN</td>
+<td style="text-align: left;">0x00002400</td>
+<td style="text-align: left;">RSA 公钥签名算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SCHANNEL_ENC_KEY</td>
-<td align="left">0x00004c07</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SCHANNEL_ENC_KEY</td>
+<td style="text-align: left;">0x00004c07</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_SCHANNEL_MAC_KEY</td>
-<td align="left">0x00004c03</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SCHANNEL_MAC_KEY</td>
+<td style="text-align: left;">0x00004c03</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_SCHANNEL_MASTER_HASH</td>
-<td align="left">0x00004c02</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SCHANNEL_MASTER_HASH</td>
+<td style="text-align: left;">0x00004c02</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_SEAL</td>
-<td align="left">0x00006802</td>
-<td align="left">SEAL 加密算法。 不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SEAL</td>
+<td style="text-align: left;">0x00006802</td>
+<td style="text-align: left;">SEAL 加密算法。 不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SHA</td>
-<td align="left">0x00008004</td>
-<td align="left">SHA 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SHA</td>
+<td style="text-align: left;">0x00008004</td>
+<td style="text-align: left;">SHA 哈希算法。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SHA1</td>
-<td align="left">0x00008004</td>
-<td align="left">与 <strong>CALG_SHA</strong>相同。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SHA1</td>
+<td style="text-align: left;">0x00008004</td>
+<td style="text-align: left;">与 <strong>CALG_SHA</strong>相同。 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/seccrypto/microsoft-base-cryptographic-provider">Microsoft 基础加密提供程序</a>支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SHA_256</td>
-<td align="left">0x0000800c</td>
-<td align="left">256 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SHA_256</td>
+<td style="text-align: left;">0x0000800c</td>
+<td style="text-align: left;">256 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SHA_384</td>
-<td align="left">0x0000800d</td>
-<td align="left">384 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SHA_384</td>
+<td style="text-align: left;">0x0000800d</td>
+<td style="text-align: left;">384 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SHA_512</td>
-<td align="left">0x0000800e</td>
-<td align="left">512 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SHA_512</td>
+<td style="text-align: left;">0x0000800e</td>
+<td style="text-align: left;">512 位 SHA 哈希算法。 Microsoft 增强型 RSA 和 AES 加密提供程序支持此算法。<strong>Windows SP3 的 XP：</strong>Microsoft 增强型 RSA 和 AES 加密提供程序 (原型) 支持此算法。 <strong>Windows SP2 的 XP，Windows SP1 和 Windows XP 的 XP：</strong>不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SKIPJACK</td>
-<td align="left">0x0000660a</td>
-<td align="left">SKIPjack 块加密算法 (FORTEZZA) 。 不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SKIPJACK</td>
+<td style="text-align: left;">0x0000660a</td>
+<td style="text-align: left;">SKIPjack 块加密算法 (FORTEZZA) 。 不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_SSL2_MASTER</td>
-<td align="left">0x00004c05</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SSL2_MASTER</td>
+<td style="text-align: left;">0x00004c05</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_SSL3_MASTER</td>
-<td align="left">0x00004c01</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_SSL3_MASTER</td>
+<td style="text-align: left;">0x00004c01</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_SSL3_SHAMD5</td>
-<td align="left">0x00008008</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_SSL3_SHAMD5</td>
+<td style="text-align: left;">0x00008008</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_TEK</td>
-<td align="left">0x0000660b</td>
-<td align="left">TEK (FORTEZZA) 。 不支持此算法。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_TEK</td>
+<td style="text-align: left;">0x0000660b</td>
+<td style="text-align: left;">TEK (FORTEZZA) 。 不支持此算法。</td>
 </tr>
-<tr>
-<td align="left">CALG_TLS1_MASTER</td>
-<td align="left">0x00004c06</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="odd">
+<td style="text-align: left;">CALG_TLS1_MASTER</td>
+<td style="text-align: left;">0x00004c06</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-<tr>
-<td align="left">CALG_TLS1PRF</td>
-<td align="left">0x0000800a</td>
-<td align="left">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
+<tr class="even">
+<td style="text-align: left;">CALG_TLS1PRF</td>
+<td style="text-align: left;">0x0000800a</td>
+<td style="text-align: left;">由Schannel.dll操作系统使用。 应用程序不应使用此 <strong>ALG_ID</strong> 。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
                 
               </div>
@@ -781,6 +786,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
