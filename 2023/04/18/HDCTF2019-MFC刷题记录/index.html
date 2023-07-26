@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          695 字
+          603 字
         
       </span>
     
@@ -389,28 +389,20 @@
             
               <div class="markdown-body">
                 
-                <h1 id="mfc">MFC</h1>
+                <h1>MFC</h1>
 <p>第一次遇到，记录一下；</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230418001312342.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001312342" /><figcaption aria-hidden="true">image-20230418001312342</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230418001312342.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001312342"></p>
 <p>既然是控件，那就是调用API，这个用了普通的VMP(有时间一定会学)，今天就用工具。</p>
 <p>用xspy分析一下这个程序：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001413585.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001413585" /><figcaption aria-hidden="true">image-20230418001413585</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001413585.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001413585"></p>
 <p>可以看到调用了不少API，同时发现</p>
 <p>OnMsg:0464,func= 0x00402170(mfc.exe+ 0x002170 )</p>
 <p>有点不一般，0464 这是一个没有系统库名的，而且数字特殊，所以写一个程序发送一个有关这个数字的消息，用FindWindow函数获取窗口句柄，SendMessage函数发送消息。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Windows.h&gt;</span></span><br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        HWND h = ::<span class="hljs-built_in">FindWindowA</span>(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Flag就在控件里&quot;</span>);<br>        <span class="hljs-keyword">if</span> (h)<br>        &#123;<br>                <span class="hljs-built_in">SendMessage</span>(h, <span class="hljs-number">0x464</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;false&quot;</span>);<br>        &#125;<br> <br>        <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001544207.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001544207" /><figcaption aria-hidden="true">image-20230418001544207</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001544207.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001544207"></p>
 <p>在xspy中会发现有一串这样的字符串，仔细观察发现句柄有一串奇怪字符</p>
 <p>00190E3E(944c8d100f82f0c18b682f63e4dbaa207a2f1e72581c2f1b)</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001611346.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001611346" /><figcaption aria-hidden="true">image-20230418001611346</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001611346.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001611346"></p>
 
                 
               </div>

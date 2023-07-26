@@ -250,7 +250,7 @@
         
         
         
-          92 分钟
+          90 分钟
         
       </span>
     
@@ -362,9 +362,9 @@
             
               <div class="markdown-body">
                 
-                <h1 id="前言">前言</h1>
+                <h1>前言</h1>
 <p>这门课是真的什么都找不到，概念又多，但是你看看概念又知道该怎么搞。。。。烦的一。。。</p>
-<h1 id="模型驱动测试设计">模型驱动测试设计</h1>
+<h1>模型驱动测试设计</h1>
 <h2 id="发现一个软件失败的四个必要条件">发现一个软件失败的四个必要条件</h2>
 <ul>
 <li><strong>可达性</strong>（Reachability）：测试用例必须到达程序中包含故障的位置</li>
@@ -386,8 +386,8 @@
 <li>语法描述</li>
 </ul>
 <p>​</p>
-<h1 id="测试自动化">测试自动化</h1>
-<h2 id="测试自动化-1">测试自动化</h2>
+<h1>测试自动化</h1>
+<h2 id="测试自动化">测试自动化</h2>
 <p>使用软件来控制测试用例的执行、实际输出和预期输出的比较、先验条件的设置，以及其他的测试控制和测试报告功能</p>
 <ul>
 <li>降低成本</li>
@@ -415,34 +415,51 @@
 <p><strong>许多可观察性和可控性问题是用仿真来解决的</strong></p>
 <h2 id="测试用例的结构">测试用例的结构</h2>
 <ul>
-<li><p>测试用例值：在待测软件上完成测试执行所需要的输入值</p></li>
-<li><p>前缀值：将待测软件置于合适状态以接收测试用例值的必要输入</p></li>
-<li><p>后缀值：测试用例值发送之后，待测软件仍然需要的输入</p></li>
-<li><p>验证值：查看测试用例值结果所需要的值</p></li>
-<li><p>退出值：终止程序或使程序回到一个稳定状态所需要的值或命令输入</p></li>
-<li><p>预期结果：当软件的行为符合预期时，软件在测试用例中应产生的结果</p></li>
-<li><p>测试用例：包括必要的测试用例值、前缀值、后缀值和预期结果，以便完整地执行和评估待测软件</p></li>
-<li><p>测试集：测试用例的集合</p></li>
-<li><p>可执行的测试脚本：处于一种可以在待测软件上自动运行和生成报告的形式的测试用例</p></li>
+<li>
+<p>测试用例值：在待测软件上完成测试执行所需要的输入值</p>
+</li>
+<li>
+<p>前缀值：将待测软件置于合适状态以接收测试用例值的必要输入</p>
+</li>
+<li>
+<p>后缀值：测试用例值发送之后，待测软件仍然需要的输入</p>
+</li>
+<li>
+<p>验证值：查看测试用例值结果所需要的值</p>
+</li>
+<li>
+<p>退出值：终止程序或使程序回到一个稳定状态所需要的值或命令输入</p>
+</li>
+<li>
+<p>预期结果：当软件的行为符合预期时，软件在测试用例中应产生的结果</p>
+</li>
+<li>
+<p>测试用例：包括必要的测试用例值、前缀值、后缀值和预期结果，以便完整地执行和评估待测软件</p>
+</li>
+<li>
+<p>测试集：测试用例的集合</p>
+</li>
+<li>
+<p>可执行的测试脚本：处于一种可以在待测软件上自动运行和生成报告的形式的测试用例</p>
+</li>
 </ul>
-<h1 id="测试优先">测试优先</h1>
+<h1>测试优先</h1>
 <p>传统方法在最开始时尝试定义所有正确的行为</p>
 <p>敏捷方法根据一组具体的测试用例来重定义正确性</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623223356735.png" srcset="/img/mokou.gif" lazyload alt="image-20230623223356735" /><figcaption aria-hidden="true">image-20230623223356735</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623223356735.png" srcset="/img/mokou.gif" lazyload alt="image-20230623223356735"></p>
 <h2 id="测试装置的正确性验证">测试装置的正确性验证</h2>
 <ul>
 <li>测试必须<strong>自动化</strong>
 <ul>
 <li>测试自动化是测试驱动开发的先决条件</li>
-</ul></li>
+</ul>
+</li>
 <li>每个测试都必须包含一个能够评估该测试是否正确执行的<strong>测试oracle</strong></li>
 <li>测试代替了<strong>需求</strong></li>
 <li>测试必须是<strong>高质量</strong>，并且能<strong>快速运行</strong></li>
 <li>每次<strong>变更软件</strong>时都会运行测试</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623223638004.png" srcset="/img/mokou.gif" lazyload alt="image-20230623223638004" />TDD测试<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="TDD测试用例是指在测试驱动开发（Test-Driven Development，TDD）中，开发人员在编写代码之前先编写测试用例">[1]</span></a></sup></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623223638004.png" srcset="/img/mokou.gif" lazyload alt="image-20230623223638004">TDD测试<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="TDD测试用例是指在测试驱动开发（Test-Driven Development，TDD）中，开发人员在编写代码之前先编写测试用例">[1]</span></a></sup></p>
 <p>设计测试</p>
 <p><strong>使用建模和准则</strong></p>
 <ul>
@@ -451,16 +468,14 @@
 <li>内置的完成机制</li>
 <li>要求掌握离散数学</li>
 </ul>
-<hr />
-<h1 id="基于准则的设计测试">基于准则的设计测试</h1>
+<hr>
+<h1>基于准则的设计测试</h1>
 <ul>
 <li><strong>测试需求</strong>：软件工件中测试用例必须满足或覆盖的指定元素</li>
 <li><strong>覆盖准则</strong>：一个或者一组决定了在一个测试用例要覆盖的测试需求的规则</li>
 </ul>
 <p><strong>可以简化为四种结构</strong></p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623224223946.png" srcset="/img/mokou.gif" lazyload alt="image-20230623224223946" /><figcaption aria-hidden="true">image-20230623224223946</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230623224223946.png" srcset="/img/mokou.gif" lazyload alt="image-20230623224223946"></p>
 <p>上述四种结构可以从很多软件工件中提取</p>
 <ul>
 <li>图能从UML用例图、有限状态机、源代码等中提取</li>
@@ -476,7 +491,7 @@
 <li>满足测试需求的用例值不存在，如Dead code</li>
 <li>对大多数准则，检测需求是否不可行是<strong>不可判定的</strong></li>
 </ul>
-<h2 id="极小最小覆盖准则">极小/最小覆盖准则</h2>
+<h2 id="极小-最小覆盖准则">极小/最小覆盖准则</h2>
 <h3 id="极小测试用例集">极小测试用例集</h3>
 <p>给定一个测试需求集TR和一个满足所有测试需求的测试用例集T，如果<strong>从T中移除任意单个的测试用例会导致T不再满足所有的测试需求</strong>，那么T就是极小的（<strong>没有冗余的</strong>）</p>
 <h3 id="最小测试用例集">最小测试用例集</h3>
@@ -495,33 +510,48 @@
 <li>T1一定满足C2</li>
 <li>T2不一定满足C1</li>
 <li>T2能揭示的故障T1不一定能揭示</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h2 id="基于准则测试的好处">基于准则测试的好处</h2>
 <ul>
-<li><p>最大化“<strong>收益</strong>”</p>
+<li>
+<p>最大化“<strong>收益</strong>”</p>
 <ul>
 <li>更少的测试用例能更有效地发现故障</li>
-</ul></li>
-<li><p><strong>全面且极小</strong>重叠的测试用例集</p></li>
-<li><p>软件工件的<strong>可追溯性</strong></p>
+</ul>
+</li>
+<li>
+<p><strong>全面且极小</strong>重叠的测试用例集</p>
+</li>
+<li>
+<p>软件工件的<strong>可追溯性</strong></p>
 <ul>
-<li><p>准则是从特定软件工件推导出来的</p></li>
-<li><p>对回归测试提供内置支持</p></li>
-</ul></li>
-<li><p><strong>停止</strong>规则</p>
+<li>
+<p>准则是从特定软件工件推导出来的</p>
+</li>
+<li>
+<p>对回归测试提供内置支持</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>停止</strong>规则</p>
 <ul>
 <li>可以提前知道有多少测试用例</li>
-</ul></li>
-<li><p>便于自动化</p></li>
+</ul>
+</li>
+<li>
+<p>便于自动化</p>
+</li>
 </ul>
 <h2 id="好的覆盖准则的特征">好的覆盖准则的特征</h2>
-<ol type="1">
+<ol>
 <li>能够很<strong>容易地自动产生</strong>测试需求</li>
 <li>能够很<strong>高效地生成</strong>测试用例值</li>
 <li>能够<strong>发现尽可能多</strong>的软件故障</li>
 </ol>
-<h1 id="输入空间划分">输入空间划分</h1>
+<h1>输入空间划分</h1>
 <p>本质上，所有测试都是从待测软件的输入空间中选择（有限）元素</p>
 <ul>
 <li>即使是小程序，输入空间可能巨大甚至无穷</li>
@@ -532,83 +562,129 @@
 <li>可应用于多个级别的测试
 <ul>
 <li>单元、集成、系统</li>
-</ul></li>
+</ul>
+</li>
 <li>容易上手，无需自动化</li>
 <li>易于调节，以便获得更多或更少的测试</li>
 <li>不需要了解实现细节
 <ul>
 <li>只需了解输入空间</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h2 id="输入域">输入域</h2>
 <ul>
-<li><p>程序的输入域包含该程序的<strong>所有可能输入</strong></p></li>
-<li><p>输入域定义为<strong>输入参数</strong>可能拥有的全部测试值</p>
+<li>
+<p>程序的输入域包含该程序的<strong>所有可能输入</strong></p>
+</li>
+<li>
+<p>输入域定义为<strong>输入参数</strong>可能拥有的全部测试值</p>
 <ul>
-<li><p>方法参数</p></li>
-<li><p>非局部变量</p></li>
-<li><p>从文件中读取的数据</p></li>
-<li><p>用户输入</p></li>
-<li><p>代表程序当前状态的对象</p></li>
-</ul></li>
-<li><p>输入空间划分：将输入域<strong>划分</strong>为区块，并从每个区块中至少选择一个（代表性）值</p></li>
+<li>
+<p>方法参数</p>
+</li>
+<li>
+<p>非局部变量</p>
+</li>
+<li>
+<p>从文件中读取的数据</p>
+</li>
+<li>
+<p>用户输入</p>
+</li>
+<li>
+<p>代表程序当前状态的对象</p>
+</li>
+</ul>
+</li>
+<li>
+<p>输入空间划分：将输入域<strong>划分</strong>为区块，并从每个区块中至少选择一个（代表性）值</p>
+</li>
 </ul>
 <h2 id="域及其划分">域及其划分</h2>
 <p>存在<strong>域D</strong>，域D上的<strong>划分q</strong>；</p>
-<p>划分q定义一个区块集合<span class="math inline">\(B_q=\{b_1,b_2,b_3,....\}\)</span></p>
+<p>划分q定义一个区块集合<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>q</mi></msub><mo>=</mo><mo stretchy="false">{</mo><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>3</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">B_q=\{b_1,b_2,b_3,....\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">....</span><span class="mclose">}</span></span></span></span></p>
 <p>划分必须满足两个属性：</p>
 <ul>
 <li>区块间必须两两不相交(互斥性)</li>
 <li>区块的并能够覆盖域D(完备性)</li>
 </ul>
-<h2 id="输入域划分idm">输入域划分(IDM)</h2>
+<h2 id="输入域划分-IDM">输入域划分(IDM)</h2>
 <h3 id="五个步骤">五个步骤</h3>
-<ol type="1">
+<ol>
 <li>识别可测试的功能
 <ul>
 <li>每个（公有）方法都是一个可测试的功能</li>
 <li>同个类中的方法通常具有相同的特性</li>
-</ul></li>
+</ul>
+</li>
 <li>识别所有参数
 <ul>
 <li>通常较简单，甚至是机械的</li>
 <li>完整性很重要</li>
-</ul></li>
+</ul>
+</li>
 <li>对输入域建模
 <ul>
 <li>输入域是由参数确定</li>
 <li>输入域的结构是根据特征来定义的</li>
-</ul></li>
+</ul>
+</li>
 <li>应用测试准则选择值的组合
 <ul>
 <li>每个测试输入都有一个值对应于每个参数</li>
 <li>每个特征都有一个区块</li>
 <li>选择所有组合通常是不可行的</li>
 <li>覆盖准则允许选择子集</li>
-</ul></li>
+</ul>
+</li>
 <li>将组合值细化为测试输入</li>
 </ol>
 <h3 id="两种方法">两种方法</h3>
 <ul>
-<li><p>基于接口的输入域建模</p>
+<li>
+<p>基于接口的输入域建模</p>
 <ul>
-<li><p>独立分析每个参数</p></li>
-<li><p>简单的建模技术，主要依赖于语法</p></li>
-<li><p>一些域和语义信息将不被使用</p>
+<li>
+<p>独立分析每个参数</p>
+</li>
+<li>
+<p>简单的建模技术，主要依赖于语法</p>
+</li>
+<li>
+<p>一些域和语义信息将不被使用</p>
 <ul>
 <li>可能导致IDM不全面</li>
-</ul></li>
-<li><p>忽略参数之间的关系</p></li>
-</ul></li>
-<li><p>基于功能的输入域建模</p>
+</ul>
+</li>
+<li>
+<p>忽略参数之间的关系</p>
+</li>
+</ul>
+</li>
+<li>
+<p>基于功能的输入域建模</p>
 <ul>
-<li><p>识别与待测系统所设计的功能相对应的特征</p></li>
-<li><p>可以结合专业领域和语义知识</p></li>
-<li><p>可以利用参数之间的关系</p></li>
-<li><p>建模是基于需求，而不是实现</p></li>
-<li><p>同一个参数可能出现在多个特征中，因此很难将值转换为测试用例</p></li>
-<li><p>需要更多的设计工作</p></li>
-</ul></li>
+<li>
+<p>识别与待测系统所设计的功能相对应的特征</p>
+</li>
+<li>
+<p>可以结合专业领域和语义知识</p>
+</li>
+<li>
+<p>可以利用参数之间的关系</p>
+</li>
+<li>
+<p>建模是基于需求，而不是实现</p>
+</li>
+<li>
+<p>同一个参数可能出现在多个特征中，因此很难将值转换为测试用例</p>
+</li>
+<li>
+<p>需要更多的设计工作</p>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="设计特征">设计特征</h2>
 <h3 id="特征候选集">特征候选集</h3>
@@ -620,7 +696,7 @@
 </ul>
 <p>注：不应该使用程序源代码，程序源代码应<strong>与图或逻辑准则</strong>一起使用</p>
 <h2 id="选择区块和测试值">选择区块和测试值</h2>
-<p><strong>关键：</strong>如何设计划分和选择代表性测试值</p>
+<p>**关键：**如何设计划分和选择代表性测试值</p>
 <p>划分通常直接从特征设计开始，且一起完成</p>
 <h3 id="识别代表性测试值的策略">识别代表性测试值的策略</h3>
 <ul>
@@ -631,7 +707,7 @@
 <li>尝试<strong>平衡</strong>每个特征中的区块数</li>
 <li>检查<strong>完整性</strong>（遗留区块）和<strong>互斥性</strong>（重叠区块）</li>
 </ul>
-<h3 id="使用多个idm">使用多个IDM</h3>
+<h3 id="使用多个IDM">使用多个IDM</h3>
 <p>某些程序可能使用<strong>几十个甚至几百个</strong>参数</p>
 <ul>
 <li>采用分而治之，构建几个小型IDM</li>
@@ -639,35 +715,38 @@
 <li>不同的IDM有重叠是可以接受的
 <ul>
 <li>同一变量可能出现在多个IDM中</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h2 id="组合策略准则">组合策略准则(!!)</h2>
-<h3 id="完全组合覆盖acc">完全组合覆盖(ACC)</h3>
+<h3 id="完全组合覆盖-ACC">完全组合覆盖(ACC)</h3>
 <p>All Combination Coverage：必须使用来自所有特征区块的所有组合</p>
 <p>即选择所有的组合</p>
-<p>测试用例的数量是每个划分的所有区块数的乘积: <span class="math display">\[
-\Pi _{i=1}^{Q}(B_i)\\
+<p>测试用例的数量是每个划分的所有区块数的乘积:</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi mathvariant="normal">Π</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>Q</mi></msubsup><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><msubsup><mi>A</mi><mi>Q</mi><mi>Q</mi></msubsup></mrow><annotation encoding="application/x-tex">\Pi _{i=1}^{Q}(B_i)\\
 A_{Q}^{Q}
-\]</span></p>
-<h3 id="单一覆盖准则ecc">单一覆盖准则(ECC)</h3>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2361em;vertical-align:-0.2769em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9592em;"><span style="top:-2.4231em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2769em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.3889em;vertical-align:-0.4296em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9592em;"><span style="top:-2.4065em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4296em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="单一覆盖准则-ECC">单一覆盖准则(ECC)</h3>
 <p>Each Choice Coverage: 每个特征每个区块的一个测试值必须在至少一个测试用例中出现</p>
 <p>即每个测试值都至少用一次</p>
-<p>测试用例的数量是划分区块数中的最大值 <span class="math display">\[
-MAX_{i=1}^{Q}(B_i)
-\]</span> 例子：</p>
+<p>测试用例的数量是划分区块数中的最大值</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mi>A</mi><msubsup><mi>X</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>Q</mi></msubsup><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">MAX_{i=1}^{Q}(B_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2361em;vertical-align:-0.2769em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9592em;"><span style="top:-2.4231em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2769em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>例子：</p>
 <p>假如ECC的测试需求是：</p>
 <p>{A1, B1, C1, A2, B2, C2, A3, B3, C3, A4, B4, C4}</p>
 <p>那测试用例是：</p>
 <p>{A1, B1, C1}、{A2, B2, C2}、{A3, B3, C3}、{A4, B4, C4}</p>
-<h3 id="结对覆盖pwc">结对覆盖(PWC)</h3>
+<h3 id="结对覆盖-PWC">结对覆盖(PWC)</h3>
 <p>Pair-Wise Coverage:每个特征对每个区块中的一个测试值必须要与其他特征的每个区块中的值进行组合</p>
 <p>即两两配对，不在配对组合之中的，可以随意取值。</p>
-<p>测试用例的数量是划分区块数中的最大两个数的乘积 <span class="math display">\[
-(MAX_{i=1}^{Q}(B_i))*(MAX_{j=1,j!=i}^{Q}(B_j))
-\]</span> <strong>例子</strong>：</p>
+<p>测试用例的数量是划分区块数中的最大两个数的乘积</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mi>A</mi><msubsup><mi>X</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>Q</mi></msubsup><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>∗</mo><mo stretchy="false">(</mo><mi>M</mi><mi>A</mi><msubsup><mi>X</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">!</mo><mo>=</mo><mi>i</mi></mrow><mi>Q</mi></msubsup><mo stretchy="false">(</mo><msub><mi>B</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(MAX_{i=1}^{Q}(B_i))*(MAX_{j=1,j!=i}^{Q}(B_j))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2361em;vertical-align:-0.2769em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9592em;"><span style="top:-2.4231em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2769em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">))</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.3967em;vertical-align:-0.4374em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9592em;"><span style="top:-2.3987em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mclose mtight">!</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4374em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">))</span></span></span></span></span></p>
+<p><strong>例子</strong>：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>特征划分</th>
 <th>b1</th>
 <th>b2</th>
@@ -676,21 +755,21 @@ MAX_{i=1}^{Q}(B_i)
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>A</td>
 <td>A1</td>
 <td>A2</td>
 <td>A3</td>
 <td>A4</td>
 </tr>
-<tr class="even">
+<tr>
 <td>B</td>
 <td>B1</td>
 <td>B2</td>
 <td>B3</td>
 <td>B4</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>C</td>
 <td>C1</td>
 <td>C2</td>
@@ -700,68 +779,111 @@ MAX_{i=1}^{Q}(B_i)
 </tbody>
 </table>
 <p>抽象标签下PWC的测试需求：</p>
-<p>(A1,B1), (A1,B2), (A1,B3), (A1,B4), (A1,C1), (A1,C2), (A1,C3), (A1,C4), (A2,B1) … (A4,C4),(B1,C1) … (B4,C4)</p>
+<p>(A1,B1), (A1,B2), (A1,B3), (A1,B4),<br>
+(A1,C1), (A1,C2), (A1,C3), (A1,C4),<br>
+(A2,B1) … (A4,C4),(B1,C1) … (B4,C4)</p>
 <p>所以生成的测试用例</p>
-<p>A1, B1, C1 A1, B2, C2 A1, B3, C3 A1, B4, C4 A2, B1, C2 A2, B2, C3 A2, B3, C4 A2, B4, C1 A3, B1, C3 A3, B2, C4 A3, B3, C1 A3, B4, C2 A4, B1, C4 A4, B2, C1 A4, B3, C2 A4, B4, C3</p>
-<h3 id="多项组合覆盖twc">多项组合覆盖(TWC)</h3>
+<p>A1, B1, C1   A1, B2, C2   A1, B3, C3   A1, B4, C4<br>
+A2, B1, C2   A2, B2, C3   A2, B3, C4   A2, B4, C1<br>
+A3, B1, C3   A3, B2, C4   A3, B3, C1   A3, B4, C2<br>
+A4, B1, C4   A4, B2, C1   A4, B3, C2   A4, B4, C3</p>
+<h3 id="多项组合覆盖-TWC">多项组合覆盖(TWC)</h3>
 <p>T-Wise Coverage: 所有由t个特征构成的组合的每个区块中的测试值都必须进行组合</p>
 <p>就是PWC的威力加强版，PWC是两两组合，这个是一组有t个，t个之外的数据随意。</p>
 <p>测试用例的数量是划分区块数中最大t个数的乘积</p>
-<h3 id="基本选择覆盖bcc">基本选择覆盖(BCC)</h3>
+<h3 id="基本选择覆盖-BCC">基本选择覆盖(BCC)</h3>
 <ul>
 <li>测试者可能意识到某些值<strong>非常重要</strong></li>
 <li>引入程序中少量但由关键的<strong>领域知识</strong></li>
 </ul>
 <p>Base Choice Coverage: 每个特征选取一个区块作为基本选择。使用每个特征的基本选择构成一个基本测试用例。剩余的测试用例保持基本测试用例中除了一个基本选择常量之外的所有值，并使用对应特征中的每个非基本选择来代替那个基本选择</p>
 <p>就是确定一个基本用例，然后每次只在基本用例的基础上改一个，直到测试完所有的值。</p>
-<p>测试用例集包括一个基本用例+其他区块一个用例 <span class="math display">\[
-1+\sum_{i=1}^Q(B_i-1)
-\]</span> <strong>例子</strong>：</p>
+<p>测试用例集包括一个基本用例+其他区块一个用例</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1</mn><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>Q</mi></munderover><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1+\sum_{i=1}^Q(B_i-1)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:3.1531em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8754em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3471em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span></p>
+<p><strong>例子</strong>：</p>
 <p>还是PWC中的ABC三种输入。</p>
 <p>设基本测试用例为：(A1,B1,C1)</p>
 <p>那么测试用例如下：</p>
-<p>(A1, B1, <strong>C2</strong>) (A1, <strong>B2</strong>, C1) (<strong>A2</strong>, B1, C1) (A1, B1, <strong>C3</strong>) (A1, <strong>B3</strong>, C1) (<strong>A3</strong>, B1, C1) (A1, B1, <strong>C4</strong>) (A1, <strong>B4</strong>, C1) (<strong>A4</strong>, B1, C1)</p>
-<h3 id="多项基本选择覆盖mbcc">多项基本选择覆盖(MBCC)</h3>
+<p>(A1, B1, <strong>C2</strong>)   (A1, <strong>B2</strong>, C1)   (<strong>A2</strong>, B1, C1)<br>
+(A1, B1, <strong>C3</strong>)   (A1, <strong>B3</strong>, C1)   (<strong>A3</strong>, B1, C1)<br>
+(A1, B1, <strong>C4</strong>)   (A1, <strong>B4</strong>, C1)   (<strong>A4</strong>, B1, C1)</p>
+<h3 id="多项基本选择覆盖-MBCC">多项基本选择覆盖(MBCC)</h3>
 <p>Multiple Base Choice Coverage: 每个特征选取<strong>一个或多个</strong>区块作为基本选择。使用每个特征的每个基本选择至少一次，构成一些基本测试用例。剩余的测试用例保持基本测试用例中除了一个基本选择常量之外的所有值，并使用对应特征中的每个非基本选择来代替那个基本选择</p>
-<p>假设M个基本测试用例，每个特征有<span class="math inline">\(m_i\)</span>个基本选择，则测试用例的数量为 <span class="math display">\[
-M+\sum_{i=1}^{Q}(M*(B_i-m_i))
-\]</span> <strong>例子：</strong></p>
+<p>假设M个基本测试用例，每个特征有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">m_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>个基本选择，则测试用例的数量为</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>Q</mi></munderover><mo stretchy="false">(</mo><mi>M</mi><mo>∗</mo><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo>−</mo><msub><mi>m</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M+\sum_{i=1}^{Q}(M*(B_i-m_i))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:3.1531em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8754em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3471em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">))</span></span></span></span></span></p>
+<p><strong>例子：</strong></p>
 <p>假设基本测试用例为(A1,B1,C1)， (A2,B2,C2)</p>
 <p>测试用例如下：</p>
-<p>(A1, B1, C1) ： (A1, B1, C3) (A1, B3, C1) (A3, B1, C1) (A1, B1, C4) (A1, B4, C1) (A4, B1, C1)</p>
-<p>(A2, B2, C2)： (A2, B2, C3) (A2, B3, C2) (A3, B2, C2) (A2, B2, C4) (A2, B4, C2) (A4, B2, C2)</p>
+<p>(A1, B1, C1) ：<br>
+(A1, B1, C3)   (A1, B3, C1)   (A3, B1, C1)<br>
+(A1, B1, C4)   (A1, B4, C1)   (A4, B1, C1)</p>
+<p>(A2, B2, C2)：<br>
+(A2, B2, C3)   (A2, B3, C2)   (A3, B2, C2)<br>
+(A2, B2, C4)   (A2, B4, C2)   (A4, B2, C2)</p>
 <h3 id="组合策略的包含关系">组合策略的包含关系</h3>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625142208182.png" srcset="/img/mokou.gif" lazyload alt="image-20230625142208182" /><figcaption aria-hidden="true">image-20230625142208182</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625142208182.png" srcset="/img/mokou.gif" lazyload alt="image-20230625142208182"></p>
 <h2 id="特征之间的约束">特征之间的约束</h2>
 <ul>
-<li><p>有些区块的组合是不可行的</p></li>
-<li><p>这些表示为区块间的约束</p></li>
-<li><p>两种常见的约束类型</p>
+<li>
+<p>有些区块的组合是不可行的</p>
+</li>
+<li>
+<p>这些表示为区块间的约束</p>
+</li>
+<li>
+<p>两种常见的约束类型</p>
 <ul>
-<li><p>来自一个特征的一个区块<strong>不能</strong>与来自另一个特征的某个区块组合</p></li>
-<li><p>来自一个特征的一个区块<strong>只能</strong>与来自另一个特征的某个区块组合</p></li>
-</ul></li>
-<li><p>约束的处理依赖于所使用的准则</p>
-<ul>
-<li><p>ACC，PWC，TWC：丢弃不可行的组合对</p></li>
-<li><p>BCC，MBCC：改变基本选择使得测试需求变得更可行</p></li>
-</ul></li>
-<li><p>如果IDM有太多的约束，这很有可能是结构上的问题，需要重新设计IDM</p></li>
+<li>
+<p>来自一个特征的一个区块<strong>不能</strong>与来自另一个特征的某个区块组合</p>
+</li>
+<li>
+<p>来自一个特征的一个区块<strong>只能</strong>与来自另一个特征的某个区块组合</p>
+</li>
 </ul>
-<h1 id="图覆盖">图覆盖</h1>
+</li>
+<li>
+<p>约束的处理依赖于所使用的准则</p>
+<ul>
+<li>
+<p>ACC，PWC，TWC：丢弃不可行的组合对</p>
+</li>
+<li>
+<p>BCC，MBCC：改变基本选择使得测试需求变得更可行</p>
+</li>
+</ul>
+</li>
+<li>
+<p>如果IDM有太多的约束，这很有可能是结构上的问题，需要重新设计IDM</p>
+</li>
+</ul>
+<h1>图覆盖</h1>
 <h2 id="概述">概述</h2>
 <ul>
-<li><p>图是测试中最常用的结构</p></li>
-<li><p>图来自许多不同来源和类型的软件工件</p>
+<li>
+<p>图是测试中最常用的结构</p>
+</li>
+<li>
+<p>图来自许多不同来源和类型的软件工件</p>
 <ul>
-<li><p>控制流程图</p></li>
-<li><p>设计结构</p></li>
-<li><p>有限状态机和状态图</p></li>
-<li><p>用例图</p></li>
-</ul></li>
-<li><p>基于图覆盖的测试就是以某种方式“覆盖”图</p></li>
+<li>
+<p>控制流程图</p>
+</li>
+<li>
+<p>设计结构</p>
+</li>
+<li>
+<p>有限状态机和状态图</p>
+</li>
+<li>
+<p>用例图</p>
+</li>
+</ul>
+</li>
+<li>
+<p>基于图覆盖的测试就是以某种方式“覆盖”图</p>
+</li>
 </ul>
 <h2 id="图的定义">图的定义</h2>
 <ul>
@@ -771,34 +893,45 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>边集合E， E ⊆N × N
 <ul>
 <li>(ni,nj), ni为前序节点， nj后继节点</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h2 id="路径">路径</h2>
 <ul>
-<li>路径：一个节点序列<span class="math inline">\([n_1, n_2, …, n_M]\)</span>
+<li>路径：一个节点序列<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>n</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>n</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>n</mi><mi>M</mi></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n_1, n_2, …, n_M]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span>
 <ul>
-<li>每对邻近节点<span class="math inline">\((n_i, n_i+1)\)</span>属于边集合<span class="math inline">\(E，1≤i≤M-1\)</span></li>
-</ul></li>
+<li>每对邻近节点<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>n</mi><mi>i</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n_i, n_i+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>属于边集合<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mtext>，</mtext><mn>1</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>M</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">E，1≤i≤M-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord cjk_fallback">，</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7955em;vertical-align:-0.136em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></li>
+</ul>
+</li>
 <li>长度：边的数目
 <ul>
 <li>单一节点可看作是长度为0的路径</li>
-</ul></li>
+</ul>
+</li>
 <li>子路径：路径p的子序列称为p的子路径</li>
 <li>环：开始节点和结束节点相同的路径</li>
 </ul>
 <h2 id="测试路径">测试路径</h2>
 <ul>
-<li><p>测试路径：一条开始于起始节点、结束于终止节点长度可能为零的路径</p></li>
-<li><p>测试路径代表测试用例的执行</p>
+<li>
+<p>测试路径：一条开始于起始节点、结束于终止节点长度可能为零的路径</p>
+</li>
+<li>
+<p>测试路径代表测试用例的执行</p>
 <ul>
-<li><p>有些测试路径可以由许多测试用例执行</p></li>
-<li><p>某些测试路径不能由任何测试用例执行</p></li>
-</ul></li>
-<li><p>单入单出图（SESE）：单一起始节点且单一终止节点</p></li>
+<li>
+<p>有些测试路径可以由许多测试用例执行</p>
+</li>
+<li>
+<p>某些测试路径不能由任何测试用例执行</p>
+</li>
 </ul>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625142926464.png" srcset="/img/mokou.gif" lazyload alt="image-20230625142926464" /><figcaption aria-hidden="true">image-20230625142926464</figcaption>
-</figure>
+</li>
+<li>
+<p>单入单出图（SESE）：单一起始节点且单一终止节点</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625142926464.png" srcset="/img/mokou.gif" lazyload alt="image-20230625142926464"></p>
 <h2 id="图覆盖准则">图覆盖准则</h2>
 <ul>
 <li>测试需求：描述测试路径的需求</li>
@@ -807,59 +940,63 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <ul>
 <li>结构化覆盖准则（控制流覆盖准则）</li>
 <li>数据流覆盖准则</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h3 id="结构化覆盖准则">结构化覆盖准则</h3>
-<h4 id="节点覆盖nc">节点覆盖(NC)</h4>
+<h4 id="节点覆盖-NC">节点覆盖(NC)</h4>
 <p>Node Coverage: 测试用例集T满足图G的节点覆盖，当且仅当N中每个语法上可达的节点n，path(T)中都有一条路径p访问n</p>
 <p>简写：TR包含G中每个可达节点</p>
 <p>节点覆盖也称<strong>语句覆盖</strong></p>
-<h4 id="边覆盖ec">边覆盖(EC)</h4>
+<h4 id="边覆盖-EC">边覆盖(EC)</h4>
 <p>Edge Coverage: TR包含G中每条长度小于等于1的可达路径</p>
 <ul>
 <li>稍强于节点覆盖</li>
 <li>小于等于1：考虑只有一个节点没有边的图
 <ul>
 <li>不然EC不包含NC</li>
-</ul></li>
+</ul>
+</li>
 <li>NC和EC主要差别体现在没有else的if结构</li>
 <li>也称分支覆盖</li>
 </ul>
-<h4 id="对边覆盖epc">对边覆盖(EPC)</h4>
+<h4 id="对边覆盖-EPC">对边覆盖(EPC)</h4>
 <p>Edge Pair Coverage: TR包含G中每条长度小于等于2的可达路径</p>
 <ul>
 <li>类似EC，此处使用小于等于2，以包含EC和NC</li>
 </ul>
-<h4 id="完全路径覆盖cpc">完全路径覆盖(CPC)</h4>
+<h4 id="完全路径覆盖-CPC">完全路径覆盖(CPC)</h4>
 <p>Complete Path Coverage: TR包含G中所有路径</p>
 <p>不幸的是，如果图中有环，CPC是不可行的</p>
 <p>折中考虑，让测试者指定要覆盖的路径</p>
-<h4 id="指定路径覆盖spc">指定路径覆盖(SPC)</h4>
+<h4 id="指定路径覆盖-SPC">指定路径覆盖(SPC)</h4>
 <p>Specified Path Coverage：TR包含一个指定的测试路径集合S</p>
 <h4 id="例子">例子</h4>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625144120482.png" srcset="/img/mokou.gif" lazyload alt="image-20230625144120482" /><figcaption aria-hidden="true">image-20230625144120482</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625144625054.png" srcset="/img/mokou.gif" lazyload alt="image-20230625144625054" /><figcaption aria-hidden="true">image-20230625144625054</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625144120482.png" srcset="/img/mokou.gif" lazyload alt="image-20230625144120482"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230625144625054.png" srcset="/img/mokou.gif" lazyload alt="image-20230625144625054"></p>
 <h5 id="有环图的处理">有环图的处理</h5>
 <ul>
-<li><p>当图中有环，则有无穷多条的路径，所以CPC是不可行的</p></li>
-<li><p>由于主观性（随着测试者不同而变化），SPC不是很令人满意</p></li>
-<li><p>已有的处理方式：</p>
+<li>
+<p>当图中有环，则有无穷多条的路径，所以CPC是不可行的</p>
+</li>
+<li>
+<p>由于主观性（随着测试者不同而变化），SPC不是很令人满意</p>
+</li>
+<li>
+<p>已有的处理方式：</p>
 <ul>
 <li>1970s：执行环一次</li>
 <li>1980s：执行每条环一次</li>
 <li>1990s：执行环0次，1次，多余1次</li>
 <li>2000s：主路径（游历，顺路，绕路）</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <h5 id="简单路径">简单路径</h5>
 <p>一条没有任何节点出现多于一次的路径，除了开始节点和结束节点可能相同外</p>
 <h5 id="主路径">主路径</h5>
 <p>一条不是其他任何简单路径的子路径的简单路径</p>
-<h4 id="主路径覆盖ppc">主路径覆盖(PPC)</h4>
+<h4 id="主路径覆盖-PPC">主路径覆盖(PPC)</h4>
 <p>Prime Path Coverage: TR包含G中每条主路径</p>
 <ul>
 <li>将游历所有长度为0，1，…的路径</li>
@@ -867,8 +1004,10 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>PPC几乎包含EPC，即不包含
 <ul>
 <li>原因：</li>
-<li>如果节点n有自循环边，那么EPC要求覆盖[n,n,m]和[m,n,n]，其中m和n存在边 [n,n,m]和[m,n,n]都不是简单路径，因而不是主路径</li>
-</ul></li>
+<li>如果节点n有自循环边，那么EPC要求覆盖[n,n,m]和[m,n,n]，其中m和n存在边<br>
+[n,n,m]和[m,n,n]都不是简单路径，因而不是主路径</li>
+</ul>
+</li>
 </ul>
 <p><strong>得到一个图的主路径可以参考</strong>：</p>
 <ul>
@@ -877,40 +1016,58 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>从环节点“后”一个节点出发到达环节点后从环中退出，并到达终止节点</li>
 <li>环中各个节点自循环</li>
 </ul>
-<h4 id="往返路径sptc">往返路径(SPTC)</h4>
+<h4 id="往返路径-SPTC">往返路径(SPTC)</h4>
 <p>Simple Round Trip Coverage: 对于G中所有存在往返路径的可达节点，TR包含至少一条往返路径</p>
-<h4 id="完全往返路径crtc">完全往返路径(CRTC)</h4>
+<h4 id="完全往返路径-CRTC">完全往返路径(CRTC)</h4>
 <p>Complete Round Trip Coverage: 对于G中所有存在往返路径的可达节点，TR包含所有往返路径</p>
 <ul>
 <li>这些准则忽视不在往返路径的节点和边</li>
 <li>SPTC和CRTC都不包含NC、EC或EPC</li>
 </ul>
-<h4 id="访问游历和绕路">访问、游历和绕路</h4>
+<h4 id="访问、游历和绕路">访问、游历和绕路</h4>
 <p>主路径不允许有<strong>内循环</strong></p>
 <ul>
-<li><p>访问：若节点n存在测试路径p中，则称p访问n</p>
-<p>​ 若边e存在测试路径p中，则称p访问e</p></li>
-<li><p>游历：若路径q是测试路径p的子路径，则称p游历q</p></li>
-<li><p>顺路游历：测试路径p<strong>顺路游历</strong>路径q，若q中每条边以同样顺序出现在p中</p>
+<li>
+<p>访问：若节点n存在测试路径p中，则称p访问n</p>
+<p>​     若边e存在测试路径p中，则称p访问e</p>
+</li>
+<li>
+<p>游历：若路径q是测试路径p的子路径，则称p游历q</p>
+</li>
+<li>
+<p>顺路游历：测试路径p<strong>顺路游历</strong>路径q，若q中每条边以同样顺序出现在p中</p>
 <ul>
 <li>暂时离开路径的某个节点，顺路访问其他节点再回到该节点</li>
-</ul></li>
-<li><p>绕路游历：测试路径p<strong>绕路游历</strong>路径q ，若q中每个节点以同样顺序出现在p中</p>
+</ul>
+</li>
+<li>
+<p>绕路游历：测试路径p<strong>绕路游历</strong>路径q ，若q中每个节点以同样顺序出现在p中</p>
 <ul>
-<li>暂时离开路径的某个节点，绕路访问其他节点再回到原路径的下一个节点<strong>（跳过一条边）</strong></li>
-</ul></li>
+<li>暂时离开路径的某个节点，绕路访问其他节点再回到原路径的下一个节点**（跳过一条边）**</li>
+</ul>
+</li>
 </ul>
 <h4 id="不可行测试需求">不可行测试需求</h4>
 <ul>
-<li><p>不可行测试需求：不能满足的测试需求</p>
+<li>
+<p>不可行测试需求：不能满足的测试需求</p>
 <ul>
-<li><p>不可到达的语句（死代码）</p></li>
-<li><p>存在矛盾的子路径（X&gt;0 and X&lt;0)</p></li>
-</ul></li>
-<li><p>大多数测试准则都存在一些不可行测试需求</p></li>
-<li><p>当不允许顺路，很多结构化覆盖准则具有更多不可行测试需求</p></li>
+<li>
+<p>不可到达的语句（死代码）</p>
+</li>
+<li>
+<p>存在矛盾的子路径（X&gt;0 and X&lt;0)</p>
+</li>
 </ul>
-<h4 id="最大限度游历bet">最大限度游历(BET)</h4>
+</li>
+<li>
+<p>大多数测试准则都存在一些不可行测试需求</p>
+</li>
+<li>
+<p>当不允许顺路，很多结构化覆盖准则具有更多不可行测试需求</p>
+</li>
+</ul>
+<h4 id="最大限度游历-BET">最大限度游历(BET)</h4>
 <p>Best Effort Touring: （1）不允许顺路条件下，满足尽可能多的测试需求；（2）允许顺路条件下，尽量满足剩下测试需求</p>
 <h3 id="数据流覆盖准则">数据流覆盖准则</h3>
 <p><strong>定义</strong>：当一个变量的值被存于内存时该变量所在位置（语句）</p>
@@ -929,63 +1086,63 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>du(ni,nj,v)：从ni到nj、关于v的定义使用路径集合</li>
 <li>du(ni,v)：始于ni、关于v的定义使用路径集合</li>
 </ul>
-<h4 id="全定义覆盖adc">全定义覆盖(ADC)</h4>
+<h4 id="全定义覆盖-ADC">全定义覆盖(ADC)</h4>
 <p>All-Defs Coverage: 对每个定义使用路径集合S=du(n,v)，TR包含S中至少一条路径d</p>
-<h4 id="全使用覆盖auc">全使用覆盖(AUC)</h4>
+<h4 id="全使用覆盖-AUC">全使用覆盖(AUC)</h4>
 <p>All-Uses Coverage: 对每个定义使用路径集合S=du(ni,nj,v)，TR包含S中至少一条路径d</p>
-<h4 id="全定义使用覆盖adupc">全定义使用覆盖(ADUPC)</h4>
+<h4 id="全定义使用覆盖-ADUPC">全定义使用覆盖(ADUPC)</h4>
 <p>All-DU-Paths Coverage: 对每个定义使用路径集合S=du(ni,nj,v)，TR包含S中每条路径d</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626142626626.png" srcset="/img/mokou.gif" lazyload alt="image-20230626142626626" /><figcaption aria-hidden="true">image-20230626142626626</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626142626626.png" srcset="/img/mokou.gif" lazyload alt="image-20230626142626626"></p>
 <h3 id="基于源码的图覆盖">基于源码的图覆盖</h3>
 <ul>
-<li><p>最常用的图覆盖准则是针对源代码</p></li>
-<li><p>图：通常是控制流程图</p></li>
-<li><p>节点覆盖：执行每条语句（语句覆盖）</p></li>
-<li><p>边覆盖：执行每条分支（分支覆盖）</p></li>
+<li>
+<p>最常用的图覆盖准则是针对源代码</p>
+</li>
+<li>
+<p>图：通常是控制流程图</p>
+</li>
+<li>
+<p>节点覆盖：执行每条语句（语句覆盖）</p>
+</li>
+<li>
+<p>边覆盖：执行每条分支（分支覆盖）</p>
+</li>
 </ul>
 <p><strong>数据流覆盖</strong>：控制流程图的补充</p>
 <ul>
 <li>定义：给变量赋值的相关语句</li>
 <li>使用：使用变量的语句</li>
 </ul>
-<h4 id="控制流程图cfg">控制流程图(CFG)</h4>
+<h4 id="控制流程图-CFG">控制流程图(CFG)</h4>
 <p>Control,flow graph: 通过描述控制结构对方法的所有可能执行进行建模的图</p>
 <ul>
-<li><p>节点：语句或者语句序列（基本块）</p></li>
-<li><p>边：控制迁移</p></li>
-<li><p>基本块：一段最长的可以被顺序执行的语句序列</p>
+<li>
+<p>节点：语句或者语句序列（基本块）</p>
+</li>
+<li>
+<p>边：控制迁移</p>
+</li>
+<li>
+<p>基本块：一段最长的可以被顺序执行的语句序列</p>
 <ul>
-<li><p>若第一条语句被执行，则所有语句都被执行</p></li>
-<li><p>不包括分支和跳转语句</p></li>
-</ul></li>
+<li>
+<p>若第一条语句被执行，则所有语句都被执行</p>
+</li>
+<li>
+<p>不包括分支和跳转语句</p>
+</li>
+</ul>
+</li>
 </ul>
 <p><strong>例子</strong>：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626143317815.png" srcset="/img/mokou.gif" lazyload alt="image-20230626143317815" /><figcaption aria-hidden="true">image-20230626143317815</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150518415.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150518415" /><figcaption aria-hidden="true">image-20230626150518415</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150557702.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150557702" /><figcaption aria-hidden="true">image-20230626150557702</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150606754.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150606754" /><figcaption aria-hidden="true">image-20230626150606754</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150620408.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150620408" /><figcaption aria-hidden="true">image-20230626150620408</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150639446.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150639446" /><figcaption aria-hidden="true">image-20230626150639446</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150649201.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150649201" /><figcaption aria-hidden="true">image-20230626150649201</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150700361.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150700361" /><figcaption aria-hidden="true">image-20230626150700361</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626143317815.png" srcset="/img/mokou.gif" lazyload alt="image-20230626143317815"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150518415.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150518415"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150557702.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150557702"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150606754.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150606754"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150620408.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150620408"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150639446.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150639446"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626150649201.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150649201"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626150700361.png" srcset="/img/mokou.gif" lazyload alt="image-20230626150700361"></p>
 <h4 id="源代码的数据流准则">源代码的数据流准则</h4>
 <p>(和数据流的相似)</p>
 <p><strong>定义：</strong></p>
@@ -999,15 +1156,29 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <p><strong>使用：</strong></p>
 <p>当获取变量的值时该变量所在位置</p>
 <ul>
-<li><p>x出现在赋值语句的右部</p></li>
-<li><p>x出现在条件判定中</p></li>
-<li><p>x是方法的实际参数</p></li>
-<li><p>x是程序的输出</p></li>
-<li><p>若一对定义使用对出现在同一个节点，该使用称为局部使用</p></li>
-<li><p>数据流分析一般不考虑局部使用</p></li>
-<li><p>当定义和使用出现在同一个节点时，只有定义出现在使用之后且该点处于循环中才称它们为定义使用对</p></li>
+<li>
+<p>x出现在赋值语句的右部</p>
+</li>
+<li>
+<p>x出现在条件判定中</p>
+</li>
+<li>
+<p>x是方法的实际参数</p>
+</li>
+<li>
+<p>x是程序的输出</p>
+</li>
+<li>
+<p>若一对定义使用对出现在同一个节点，该使用称为局部使用</p>
+</li>
+<li>
+<p>数据流分析一般不考虑局部使用</p>
+</li>
+<li>
+<p>当定义和使用出现在同一个节点时，只有定义出现在使用之后且该点处于循环中才称它们为定义使用对</p>
+</li>
 </ul>
-<h1 id="逻辑覆盖">逻辑覆盖</h1>
+<h1>逻辑覆盖</h1>
 <h2 id="语义逻辑准则">语义逻辑准则</h2>
 <p>测试目的在逻辑表达式的真值表中<strong>选择某些子集</strong></p>
 <h3 id="逻辑谓词和子句">逻辑谓词和子句</h3>
@@ -1020,7 +1191,8 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>（返回值为布尔值的）函数</li>
 <li>¬（非）、 ∧（与）、∨（或）</li>
 <li>→ （蕴含）、⨁（异或）、⟷（等价）</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>子句</strong>：不包含逻辑运算符的谓词</li>
 </ul>
 <h3 id="逻辑覆盖准则">逻辑覆盖准则</h3>
@@ -1032,175 +1204,189 @@ M+\sum_{i=1}^{Q}(M*(B_i-m_i))
 <li>Cp：谓词p中的子句的集合</li>
 <li>c：C中一个子句</li>
 </ul>
-<h4 id="谓词覆盖pc">谓词覆盖(PC)</h4>
+<h4 id="谓词覆盖-PC">谓词覆盖(PC)</h4>
 <p>Predicate Coverage： 对于每个p∈P，TR包含两个需求：p的结果为真和p的结果为假</p>
 <p>也叫决策覆盖(DC) - Decision Coverage</p>
 <ul>
 <li>在（控制流程）图上，表现为边覆盖</li>
 </ul>
-<h4 id="子句覆盖cc">子句覆盖(CC)</h4>
-<p>Clause Coverage: 对于每个c∈C，TR包含两个需求：c的结果为真和c的结果为假</p>
+<h4 id="子句覆盖-CC">子句覆盖(CC)</h4>
+<p>Clause Coverage:  对于每个c∈C，TR包含两个需求：c的结果为真和c的结果为假</p>
 <p>n也称“条件覆盖” - Condition Coverage</p>
-<h4 id="组合覆盖coc">组合覆盖(CoC)</h4>
+<h4 id="组合覆盖-CoC">组合覆盖(CoC)</h4>
 <p>Combinatorial Coverage: 对于每个p∈P，TR要求Cp中子句结果覆盖真值取值的每种可能组合</p>
 <ul>
 <li>简单、清晰、容易理解</li>
-<li>但代码很高：N个子句，则有<span class="math inline">\(2^N\)</span>个测试用例</li>
+<li>但代码很高：N个子句，则有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">2^N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span></span></span></span>个测试用例</li>
 </ul>
-<h4 id="有效子句覆盖acc">有效子句覆盖(ACC)</h4>
+<h4 id="有效子句覆盖-ACC">有效子句覆盖(ACC)</h4>
 <p>Active Clause coverage: 对于每个p∈P和每个主子句ci∈Cp，选择次子句cj使得ci决定p。对于每个ci ，TR有两个需求：ci的结果为真和ci的结果为假</p>
 <p><strong>有效子句</strong>：这个子句能决定谓语的真假时的该子句，其他的子句叫次子句。只要不影响子句的有效子句定位，次子句取值随意。</p>
-<h4 id="广义有效子句覆盖gacc">广义有效子句覆盖(GACC)</h4>
+<h4 id="广义有效子句覆盖-GACC">广义有效子句覆盖(GACC)</h4>
 <p>General Active Clause coverage： 对于每个p∈P和每个主子句ci∈Cp，选择次子句cj使得ci决定p。对于每个ci ，TR有两个需求：ci的结果为真和ci的结果为假。<strong>当ci为真或假的时候，次子句cj的取值不必相同</strong></p>
 <ul>
 <li>谓语的值可以不管</li>
 </ul>
-<h4 id="限制性有效子句覆盖racc">限制性有效子句覆盖(RACC)</h4>
+<h4 id="限制性有效子句覆盖-RACC">限制性有效子句覆盖(RACC)</h4>
 <p>Restricted Active Clause coverage: 对于每个p∈P和每个主子句ci∈Cp，选择次子句cj使得ci决定p。对于每个ci ，TR有两个需求：ci的结果为真和ci的结果为假。<strong>当ci为真或假的时候，次子句cj的取值必须相同</strong></p>
 <ul>
 <li>和GACC相比，RACC就是次子句要<strong>每次相同</strong>，谓语的值可以不管。</li>
 </ul>
-<h4 id="相关性有效子句约束cacc">相关性有效子句约束(CACC)</h4>
+<h4 id="相关性有效子句约束-CACC">相关性有效子句约束(CACC)</h4>
 <p>Correlated Active Clause coverage: 对于每个p∈P和每个主子句ci∈Cp，选择次子句cj使得ci决定p。对于每个ci ，TR有两个需求：ci的结果为真和ci的结果为假。<strong>次子句cj的取值必须使得主子句ci取一种值时p的结果为真，而取另外一种值时p的结果为假</strong></p>
 <ul>
 <li>RACC相比，次子句的取值一定使得主子句决定谓语p的值。</li>
 </ul>
-<h4 id="无效子句覆盖icc">无效子句覆盖(ICC)</h4>
+<h4 id="无效子句覆盖-ICC">无效子句覆盖(ICC)</h4>
 <p>Inactive Clause coverage: 对于每个p∈P和每个主子句ci∈Cp，选择<strong>次子句cj使得ci不能决定p</strong>。对于每个ci ，TR有四个需求：</p>
-<p>​ (1)ci的结果为真并且p的结果为真； ​ (2)ci的结果为假并且p的结果为真； ​ (3)ci的结果为真并且p的结果为假； ​ (4)ci的结果为假并且p的结果为假；</p>
+<p>​	(1)ci的结果为真并且p的结果为真；<br>
+​	(2)ci的结果为假并且p的结果为真；<br>
+​	(3)ci的结果为真并且p的结果为假；<br>
+​	(4)ci的结果为假并且p的结果为假；</p>
 <ul>
 <li>有效子句覆盖准则确保主子句影响谓词</li>
 <li>相反，无效子句覆盖确保主子句不影响谓词</li>
 </ul>
-<h4 id="广义无效子句覆盖gicc">广义无效子句覆盖(GICC)</h4>
+<h4 id="广义无效子句覆盖-GICC">广义无效子句覆盖(GICC)</h4>
 <p>General Inactive Clause coverage: 次子句cj在这些情况下的取值可以不同</p>
-<h4 id="限制性无效子句覆盖ricc">限制性无效子句覆盖(RICC)</h4>
-<p>Restricted Inactive Clause coverage: 当ci为真或假的时候，次子句cj的取值必须相同，即<strong>（1）和（2）次子句cj的取值必须相同</strong>，<strong>（3）和（4）也一样</strong></p>
+<h4 id="限制性无效子句覆盖-RICC">限制性无效子句覆盖(RICC)</h4>
+<p>Restricted Inactive Clause coverage: 当ci为真或假的时候，次子句cj的取值必须相同，即**（1）和（2）次子句cj的取值必须相同**，<strong>（3）和（4）也一样</strong></p>
 <h4 id="不可行需求">不可行需求</h4>
 <ul>
-<li><p>考虑谓词(a &gt; b ∧ b &gt; c) ∨ c &gt; a</p>
+<li>
+<p>考虑谓词(a &gt; b ∧ b &gt; c) ∨ c &gt; a</p>
 <ul>
 <li>(a &gt; b)=true, (b&gt;c)=true, (c&gt;a)=true是不可行的</li>
-</ul></li>
-<li><p>类似图覆盖准则，需要识别不可行需求</p>
+</ul>
+</li>
+<li>
+<p>类似图覆盖准则，需要识别不可行需求</p>
 <ul>
 <li>不可判定问题</li>
-</ul></li>
-<li><p>两种方案</p>
-<ul>
-<li><p>直接忽略</p></li>
-<li><p>寻找在一个包含的覆盖准则中所对应的测试需求，如使用CACC可行的测试需求来代替RACC中不可行的测试需求（类似最大限度游历）</p></li>
-</ul></li>
 </ul>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626202620434.png" srcset="/img/mokou.gif" lazyload alt="image-20230626202620434" /><figcaption aria-hidden="true">image-20230626202620434</figcaption>
-</figure>
+</li>
+<li>
+<p>两种方案</p>
+<ul>
+<li>
+<p>直接忽略</p>
+</li>
+<li>
+<p>寻找在一个包含的覆盖准则中所对应的测试需求，如使用CACC可行的测试需求来代替RACC中不可行的测试需求（类似最大限度游历）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626202620434.png" srcset="/img/mokou.gif" lazyload alt="image-20230626202620434"></p>
 <h4 id="让子句决定谓词">让子句决定谓词</h4>
 <ul>
-<li><p>对简单谓词，次子句的赋值比较容易</p></li>
-<li><p>直接定义的方式</p>
+<li>
+<p>对简单谓词，次子句的赋值比较容易</p>
+</li>
+<li>
+<p>直接定义的方式</p>
 <ul>
-<li><p><span class="math inline">\(p_{c=true}\)</span>：将p中c的每个出现替换成true</p></li>
-<li><p><span class="math inline">\(p_{c=false}\)</span>：将p中c的每个出现替换成false</p></li>
-</ul></li>
-<li><p>给次子句赋值，只需求解</p>
-<ul>
-<li><span class="math inline">\(p_c=p_{c=true} ⨁p_{c=false}\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\(p_c\)</span>描述了c的取值决定p的条件</p></li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>c</mi><mo>=</mo><mi>t</mi><mi>r</mi><mi>u</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{c=true}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：将p中c的每个出现替换成true</p>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>c</mi><mo>=</mo><mi>f</mi><mi>a</mi><mi>l</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{c=false}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">se</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>：将p中c的每个出现替换成false</p>
+</li>
 </ul>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626203523439.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203523439" /><figcaption aria-hidden="true">image-20230626203523439</figcaption>
-</figure>
+</li>
+<li>
+<p>给次子句赋值，只需求解</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>c</mi></msub><mo>=</mo><msub><mi>p</mi><mrow><mi>c</mi><mo>=</mo><mi>t</mi><mi>r</mi><mi>u</mi><mi>e</mi></mrow></msub><mo>⨁</mo><msub><mi>p</mi><mrow><mi>c</mi><mo>=</mo><mi>f</mi><mi>a</mi><mi>l</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_c=p_{c=true} ⨁p_{c=false}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⨁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">se</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">p_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>描述了c的取值决定p的条件</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626203523439.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203523439"></p>
 <h4 id="变量重复">变量重复</h4>
 <ul>
 <li>不管谓词的形式如何，生成测试用例是相同的</li>
 </ul>
 <h4 id="无效主子句的次子句赋值">无效主子句的次子句赋值</h4>
-<figure>
-<img src="C:/Users/Azureus/AppData/Roaming/Typora/typora-user-images/image-20230626203455470.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203455470" /><figcaption aria-hidden="true">image-20230626203455470</figcaption>
-</figure>
+<p><img src="C:/Users/Azureus/AppData/Roaming/Typora/typora-user-images/image-20230626203455470.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203455470"></p>
 <h4 id="真值表方式">真值表方式</h4>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626203719577.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203719577" /><figcaption aria-hidden="true">image-20230626203719577</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626203719577.png" srcset="/img/mokou.gif" lazyload alt="image-20230626203719577"></p>
 <h3 id="语法逻辑覆盖准则">语法逻辑覆盖准则</h3>
 <ul>
-<li><p>语义逻辑覆盖准则可以不考虑谓词的形式</p>
+<li>
+<p>语义逻辑覆盖准则可以不考虑谓词的形式</p>
 <ul>
-<li><p>既是优点也是缺点</p></li>
-<li><p>不同形式可能也有影响，如短路求值</p></li>
-</ul></li>
-<li><p>语法逻辑准则侧重于逻辑谓词的形式</p>
+<li>
+<p>既是优点也是缺点</p>
+</li>
+<li>
+<p>不同形式可能也有影响，如短路求值</p>
+</li>
+</ul>
+</li>
+<li>
+<p>语法逻辑准则侧重于逻辑谓词的形式</p>
 <ul>
-<li><p>比语义准则更好</p></li>
-<li><p>相对更难理解和使用</p></li>
-</ul></li>
+<li>
+<p>比语义准则更好</p>
+</li>
+<li>
+<p>相对更难理解和使用</p>
+</li>
+</ul>
+</li>
 </ul>
 <h4 id="析取范式">析取范式</h4>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626204102294.png" srcset="/img/mokou.gif" lazyload alt="image-20230626204102294" /><figcaption aria-hidden="true">image-20230626204102294</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230626204102294.png" srcset="/img/mokou.gif" lazyload alt="image-20230626204102294"></p>
 <ul>
 <li>任何逻辑表达式都存在与之等值的析取范式</li>
 </ul>
-<h4 id="蕴含项覆盖ic">蕴含项覆盖(IC)</h4>
-<p>Implicant Coverage: 给定谓词<span class="math inline">\(f\)</span>及其否定的<span class="math inline">\(\overline{f}\)</span>的DNF(析取范式)，对于<span class="math inline">\(f\)</span> 和<span class="math inline">\(\overline{f}\)</span>的每个蕴含项，TR要求该项的取值为真</p>
+<h4 id="蕴含项覆盖-IC">蕴含项覆盖(IC)</h4>
+<p>Implicant Coverage: 给定谓词<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>及其否定的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>f</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{f}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0889em;vertical-align:-0.1944em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span><span style="top:-3.8144em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span>的DNF(析取范式)，对于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>f</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{f}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0889em;vertical-align:-0.1944em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span><span style="top:-3.8144em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span>的每个蕴含项，TR要求该项的取值为真</p>
 <ul>
 <li>IC相对较弱：
 <ul>
 <li><strong>单独</strong>测试每个蕴含项比较困难</li>
 <li>DNF有<strong>多种</strong>形式</li>
-</ul></li>
 </ul>
-<h4 id="极小dnf">极小DNF</h4>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205245128.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205245128" /><figcaption aria-hidden="true">image-20230626205245128</figcaption>
-</figure>
-<h4 id="唯一真值点utp">唯一真值点(UTP)</h4>
+</li>
+</ul>
+<h4 id="极小DNF">极小DNF</h4>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205245128.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205245128"></p>
+<h4 id="唯一真值点-UTP">唯一真值点(UTP)</h4>
 <ul>
-<li><p>给定蕴含项，唯一真值点（UTP）是使得该项为真且其余蕴含项为假的赋值</p></li>
-<li><p>一个唯一真值点的测试用例只关注一个蕴含项</p></li>
+<li>
+<p>给定蕴含项，唯一真值点（UTP）是使得该项为真且其余蕴含项为假的赋值</p>
+</li>
+<li>
+<p>一个唯一真值点的测试用例只关注一个蕴含项</p>
+</li>
 </ul>
-<h4 id="多项唯一真值点覆盖mutp">多项唯一真值点覆盖(MUTP)</h4>
+<h4 id="多项唯一真值点覆盖-MUTP">多项唯一真值点覆盖(MUTP)</h4>
 <p>给定谓词f的极小DNF，对于f中每个蕴含项i，选择<strong>唯一真值点</strong>使得<strong>不在i中的子句</strong>的取值包括真和假</p>
 <p><strong>例子</strong>：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205713380.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205713380" /><figcaption aria-hidden="true">image-20230626205713380</figcaption>
-</figure>
-<h4 id="近似假值点nfp">近似假值点(NFP)</h4>
-<p>给定f的蕴含项i及其子句c，<strong>近似假值点（NFP）</strong>是使得<strong>f为假</strong>、但<strong>改变c</strong>的取值（其它子句的取值保持不变）则使得<strong>i为真</strong>(因而f也为真）的赋值</p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205713380.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205713380"></p>
+<h4 id="近似假值点-NFP">近似假值点(NFP)</h4>
+<p>给定f的蕴含项i及其子句c，<strong>近似假值点（NFP）<strong>是使得</strong>f为假</strong>、但<strong>改变c</strong>的取值（其它子句的取值保持不变）则使得<strong>i为真</strong>(因而f也为真）的赋值</p>
 <p>在近似假值点，c<strong>决定</strong>f（<strong>有效子句</strong>）</p>
-<h4 id="唯一真值点-近似假值点配对覆盖cutpnfp">唯一真值点-近似假值点配对覆盖(CUTPNFP)</h4>
+<h4 id="唯一真值点-近似假值点配对覆盖-CUTPNFP">唯一真值点-近似假值点配对覆盖(CUTPNFP)</h4>
 <p>Corresponding Unique True Point and Near False Point Pair Coverage: 给定谓词f的极小DNF，对于f中每个蕴含项i的每个字c，TR包括<strong>i的唯一真值点</strong>和<strong>i中c的近似假值点</strong>，且这两点的区别<strong>只在于c的取值</strong></p>
 <ul>
 <li>CUTPNFP包含限制性有效子句覆盖（RACC）</li>
 </ul>
 <p><strong>例子：</strong></p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205943969.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205943969" /><figcaption aria-hidden="true">image-20230626205943969</figcaption>
-</figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626210105585.png" srcset="/img/mokou.gif" lazyload alt="image-20230626210105585" /><figcaption aria-hidden="true">image-20230626210105585</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626205943969.png" srcset="/img/mokou.gif" lazyload alt="image-20230626205943969"></p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626210105585.png" srcset="/img/mokou.gif" lazyload alt="image-20230626210105585"></p>
 <ul>
 <li>MUTP ⊄ CUTPNFP</li>
 </ul>
-<h4 id="多项近似假值点覆盖mnfp">多项近似假值点覆盖(MNFP)</h4>
+<h4 id="多项近似假值点覆盖-MNFP">多项近似假值点覆盖(MNFP)</h4>
 <p>给定谓词f的极小DNF，对于f中每个蕴含项i的每个字c，选择<strong>近似假值点</strong>使得<strong>不在i中的子句</strong>的取值包括真和假</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626210333568.png" srcset="/img/mokou.gif" lazyload alt="image-20230626210333568" /><figcaption aria-hidden="true">image-20230626210333568</figcaption>
-</figure>
-<section class="footnotes">
-<div class="footnote-list">
-<ol>
-<li>
-<span id="fn:1" class="footnote-text"><span>TDD测试用例是指在测试驱动开发（Test-Driven Development，TDD）中，开发人员在编写代码之前先编写测试用例 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
-</li>
-</ol>
-</div>
-</section>
-
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230626210333568.png" srcset="/img/mokou.gif" lazyload alt="image-20230626210333568"></p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>TDD测试用例是指在测试驱动开发（Test-Driven Development，TDD）中，开发人员在编写代码之前先编写测试用例
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             

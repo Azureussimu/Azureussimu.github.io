@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          2.9k 字
         
       </span>
     
@@ -389,67 +389,67 @@
             
               <div class="markdown-body">
                 
-                <h1 id="pyc-文件">PYC 文件</h1>
+                <h1>PYC 文件</h1>
 <p>pyc 文件是 python 在编译过程中出现的主要中间过程文件。pyc 文件是二进制的，类似 java 的字节码，可以由 python 虚拟机直接执行的。</p>
-<h2 id="pycodeobject">PyCodeObject</h2>
+<h2 id="PyCodeObject">PyCodeObject</h2>
 <p>实际上，pyc 文件就是 PyCodeObject 对象在硬盘上的保存形式。</p>
 <p>而 PyCodeObject 的结构如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> &#123;<br>    PyObject_HEAD<br>    <span class="hljs-type">int</span> co_argcount;        <span class="hljs-comment">/* 位置参数个数 */</span><br>    <span class="hljs-type">int</span> co_nlocals;         <span class="hljs-comment">/* 局部变量个数 */</span><br>    <span class="hljs-type">int</span> co_stacksize;       <span class="hljs-comment">/* 栈大小 */</span><br>    <span class="hljs-type">int</span> co_flags;   <br>    PyObject *co_code;      <span class="hljs-comment">/* 字节码指令序列 */</span><br>    PyObject *co_consts;    <span class="hljs-comment">/* 所有常量集合 */</span><br>    PyObject *co_names;     <span class="hljs-comment">/* 所有符号名称集合 */</span><br>    PyObject *co_varnames;  <span class="hljs-comment">/* 局部变量名称集合 */</span><br>    PyObject *co_freevars;  <span class="hljs-comment">/* 闭包用的的变量名集合 */</span><br>    PyObject *co_cellvars;  <span class="hljs-comment">/* 内部嵌套函数引用的变量名集合 */</span><br>    <span class="hljs-comment">/* The rest doesn’t count for hash/cmp */</span><br>    PyObject *co_filename;  <span class="hljs-comment">/* 代码所在文件名 */</span><br>    PyObject *co_name;      <span class="hljs-comment">/* 模块名|函数名|类名 */</span><br>    <span class="hljs-type">int</span> co_firstlineno;     <span class="hljs-comment">/* 代码块在文件中的起始行号 */</span><br>    PyObject *co_lnotab;    <span class="hljs-comment">/* 字节码指令和行号的对应关系 */</span><br>    <span class="hljs-type">void</span> *co_zombieframe;   <span class="hljs-comment">/* for optimization only (see frameobject.c) */</span><br>&#125; PyCodeObject;<br></code></pre></td></tr></table></figure>
-<h2 id="pyobject_head">PyObject_HEAD</h2>
+<h2 id="PyObject-HEAD">PyObject_HEAD</h2>
 <p>不同的 Python 版本会有不同的 PyObject_HEAD，以下是各版本的文件头：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>Python 版本</th>
 <th>十六进制文件头</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Python 2.7</td>
 <td><code>03f30d0a00000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.0</td>
 <td><code>3b0c0d0a00000000</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 3.1</td>
 <td><code>4f0c0d0a00000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.2</td>
 <td><code>6c0c0d0a00000000</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 3.3</td>
 <td><code>9e0c0d0a0000000000000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.4</td>
 <td><code>ee0c0d0a0000000000000000</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 3.5</td>
 <td><code>170d0d0a0000000000000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.6</td>
 <td><code>330d0d0a0000000000000000</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 3.7</td>
 <td><code>420d0d0a000000000000000000000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.8</td>
 <td><code>55 0d 0d 0a 00 00 00 00 00 00 00 00 00 00 00 00</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 3.9</td>
 <td><code>610d0d0a000000000000000000000000</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Python 3.10</td>
 <td><code>6f0d0d0a000000000000000000000000</code></td>
 </tr>
@@ -459,10 +459,10 @@
 <h3 id="更改魔术头">更改魔术头</h3>
 <p>当想要保护我们的 pyc 文件不被反编译，最简单的做法就是更改魔术头，即 PyObject_HEAD。</p>
 <p>可能是完全删除魔术头，也可能是修改为不是原生版本的魔术头，我们只需要根据情况添加或修改即可。</p>
-<h1 id="pyd-文件">PYD 文件</h1>
+<h1>PYD 文件</h1>
 <p>pyd 文件相当于 python 的运行时 dll，在 python 代码中可以直接使用 <code>import</code> 将 pyd 文件当作模块导入。</p>
 <p>对于 pyd 的逆向，我们需要借助 ida 的 <code>attach</code> 动态调试跟静态分析。</p>
-<h1 id="pyexe的逆向">pyexe的逆向</h1>
+<h1>pyexe的逆向</h1>
 <p>PyInstaller打包后，pyc文件的前8个字节会被抹掉，所以最后要自己添加回去</p>
 <p>逆向：</p>
 <p>用pyinstxtractor来解pyc包</p>
@@ -470,9 +470,9 @@
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install pyinstxtractor<br></code></pre></td></tr></table></figure>
 <p>执行脚本</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">python pyinstxtractor.py **.exe<br></code></pre></td></tr></table></figure>
-<p>就会解包得到一个文件夹(一般命名为<strong>**.exe_extracted</strong>)</p>
+<p>就会解包得到一个文件夹(一般命名为****.exe_extracted**)</p>
 <p>里面只用注意两个文件，其他的一般是库脚本</p>
-<p>一个是<strong><em>1.pyc</em></strong>，另一个是<strong><em>struct.pyc</em></strong>,</p>
+<p>一个是<em><strong>1.pyc</strong></em>，另一个是<em><strong>struct.pyc</strong></em>,</p>
 <p>同时会有提示：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs \">PE:<br>[+] Processing pyre.exe<br>[+] Pyinstaller version: 2.1+<br>[+] Python version: 37<br>[+] Length of package: 5796250 bytes<br>[+] Found 61 files in CArchive<br>[+] Beginning extraction...please standby<br>[+] Possible entry point: pyiboot01_bootstrap.pyc<br>[+] Possible entry point: 1.pyc<br>[!] Warning: This script is running in a different Python version than the one used to build the executable.<br>[!] Please run this script in Python37 to prevent extraction errors during unmarshalling<br>[!] Skipping pyz extraction<br>[+] Successfully extracted pyinstaller archive: pyre.exe<br></code></pre></td></tr></table></figure>
 <p>如果解包出来发现原来的pyc脚本是用与自己的python的版本不一样的话，会有警告：</p>
@@ -484,14 +484,10 @@
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[+]</span> Python version: <span class="hljs-number">37</span><br></code></pre></td></tr></table></figure>
 <p>E.P.:</p>
 <p>原：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203628458.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203628458" /><figcaption aria-hidden="true">image-20220919203628458</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203628458.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203628458"></p>
 <p>改：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203711306.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203711306" /><figcaption aria-hidden="true">image-20220919203711306</figcaption>
-</figure>
-<p>​ E3这个是个可以作为本文件的标记，所以可见多了4个字节，复制粘贴struct.pyc的头时顺便把那4个给覆盖了。</p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo/image-20220919203711306.png" srcset="/img/mokou.gif" lazyload alt="image-20220919203711306"></p>
+<p>​	E3这个是个可以作为本文件的标记，所以可见多了4个字节，复制粘贴struct.pyc的头时顺便把那4个给覆盖了。</p>
 <p>修改完之后就简单了，对1.pyc使用 uncompyle 可以将 pyc 文件完美反编译。<a target="_blank" rel="noopener" href="https://github.com/rocky/python-uncompyle6">uncompyle6 Github主页</a></p>
 <p>安装：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip3 <span class="hljs-keyword">install</span> uncompyle<br></code></pre></td></tr></table></figure>
@@ -502,7 +498,7 @@
 <p>将源码输出到文件里面，比如说：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">uncompyle6</span> <span class="hljs-number">1</span>.pyc &gt; <span class="hljs-number">1</span>.py<br></code></pre></td></tr></table></figure>
 <p>输出后就直接看1.py即可。</p>
-<h1 id="直接输出pyc">直接输出pyc</h1>
+<h1>直接输出pyc</h1>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> dis<br><span class="hljs-keyword">import</span> marshal<br><span class="hljs-keyword">import</span> os<br><br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br><br>os.chdir(<span class="hljs-string">r&#x27;C:\Users\74592\Desktop\hgame2023\week2\stream&#x27;</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;stream.pyc&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>    code = marshal.load(file)<br><br><span class="hljs-built_in">print</span>(dis.disassemble(code))<br></code></pre></td></tr></table></figure>
 
                 
