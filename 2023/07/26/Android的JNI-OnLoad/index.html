@@ -16,26 +16,28 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="常用的Unicode范围">
+    <meta name="description" content="先记着，现在不懂">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unicode常用范围">
-<meta property="og:url" content="http://example.com/2023/07/11/unicode%E5%B8%B8%E7%94%A8%E8%8C%83%E5%9B%B4/index.html">
+<meta property="og:title" content="Android的JNI_OnLoad">
+<meta property="og:url" content="http://example.com/2023/07/26/Android%E7%9A%84JNI-OnLoad/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="常用的Unicode范围">
+<meta property="og:description" content="先记着，现在不懂">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/unicode.jpg">
-<meta property="article:published_time" content="2023-07-11T10:12:56.000Z">
-<meta property="article:modified_time" content="2023-07-11T10:33:21.790Z">
+<meta property="og:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
+<meta property="article:published_time" content="2023-07-26T04:18:40.000Z">
+<meta property="article:modified_time" content="2023-07-26T04:45:56.746Z">
 <meta property="article:author" content="3zureus">
-<meta property="article:tag" content="奇怪的知识增加了">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Re">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/unicode.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>unicode常用范围 - 3zureusの小屋</title>
+  <title>Android的JNI_OnLoad - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,13 +211,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/unicode.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/JNI_Onload.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="unicode常用范围"></span>
+            <span id="subtitle" data-typed-text="Android的JNI_OnLoad"></span>
           
         </div>
 
@@ -226,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-11 18:12" pubdate>
-          2023年7月11日 晚上
+        <time datetime="2023-07-26 12:18" pubdate>
+          2023年7月26日 中午
         </time>
       </span>
     
@@ -238,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.3k 字
         
       </span>
     
@@ -249,7 +251,7 @@
         
         
         
-          14 分钟
+          19 分钟
         
       </span>
     
@@ -287,94 +289,6 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar category-bar" style="margin-right: -1rem">
-    
-
-
-
-
-
-<div class="category-list">
-  
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="语言知识"
-        id="heading-b2fe6f20bab9fc97430e8ea5e206aa35" role="tab" data-toggle="collapse" href="#collapse-b2fe6f20bab9fc97430e8ea5e206aa35"
-        aria-expanded="true"
-      >
-        语言知识
-        <span class="list-group-count">(5)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-b2fe6f20bab9fc97430e8ea5e206aa35"
-           role="tabpanel" aria-labelledby="heading-b2fe6f20bab9fc97430e8ea5e206aa35">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/01/19/Python%E5%B8%B8%E8%A7%81%E5%AD%97%E8%8A%82%E7%A0%81/" title="Python常见字节码"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python常见字节码</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/09/23/c-c-%E5%87%BD%E6%95%B0%E5%90%8D%E7%BC%96%E8%AF%91%E7%AC%A6%E5%8F%B7%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="c c++函数名编译符号修饰符"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">c c++函数名编译符号修饰符</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/01/14/gcc%E7%BC%96%E8%AF%91/" title="gcc编译"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">gcc编译</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/23/py%E7%BC%96%E8%AF%91%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" title="py编译逆向学习"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">py编译逆向学习</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/07/11/unicode%E5%B8%B8%E7%94%A8%E8%8C%83%E5%9B%B4/" title="unicode常用范围"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">unicode常用范围</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-
-  </aside>
-
 
     </div>
 
@@ -383,271 +297,32 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">unicode常用范围</h1>
+            <h1 style="display: none">Android的JNI_OnLoad</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>爬虫从网站上爬取的内容在读写操作时经常会报以下错误：</p>
-<p>UnicodeEncodeError: 'gbk' codec can't encode character '00b' in position 7: illegal multibyte sequence</p>
-<p>所以需要我们对数据Unicode进行清洗，排除文章内异常的Unicode符号。</p>
-</blockquote>
-<h1 id="清洗思路">清洗思路</h1>
-<p>我的思路是用正则表达式来匹配常用字，不在范围内的Unicode编码则去除。</p>
-<p>.compile(u"[^常用字范围]+")匹配到非范围内字符后，</p>
-<p>.sub()方法将特殊字符替换成空</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">illegal_char</span>(<span class="hljs-params">s</span>):<br>    s = re \<br>        .<span class="hljs-built_in">compile</span>( <br>        <span class="hljs-string">u&quot;[^&quot;</span><br>        <span class="hljs-string">u&quot;\u4e00-\u9fa5&quot;</span><br>        <span class="hljs-string">u&quot;\u0041-\u005A&quot;</span><br>        <span class="hljs-string">u&quot;\u0061-\u007A&quot;</span><br>        <span class="hljs-string">u&quot;\u0030-\u0039&quot;</span><br>        <span class="hljs-string">u&quot;\u3002\uFF1F\uFF01\uFF0C\u3001\uFF1B\uFF1A\u300C\u300D\u300E\u300F\u2018\u2019\u201C\u201D\uFF08\uFF09\u3014\u3015\u3010\u3011\u2014\u2026\u2013\uFF0E\u300A\u300B\u3008\u3009&quot;</span><br>        <span class="hljs-string">u&quot;\!\@\#\$\%\^\&amp;\*\(\)\-\=\[\]\&#123;\&#125;\\\|\;\&#x27;\:\&quot;\,\.\/\&lt;\&gt;\?\/\*\+&quot;</span><br>        <span class="hljs-string">u&quot;]+&quot;</span>) \<br>        .sub(<span class="hljs-string">&#x27;&#x27;</span>, s)<br>    <span class="hljs-keyword">return</span> s<br></code></pre></td></tr></table></figure>
-<h1 id="unicode范围">Unicode范围</h1>
-<h2 id="常用范围"><strong>常用范围</strong></h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">名称</th>
-<th style="text-align: left;">范围</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">中文</td>
-<td style="text-align: left;">\u4e00-\u9fa5</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">日文平假名</td>
-<td style="text-align: left;">\u3040-\u309f</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">日文片假名</td>
-<td style="text-align: left;">\u30a0-\u30ff</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">韩文</td>
-<td style="text-align: left;">\uac00-\ud7ff</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">英文字母</td>
-<td style="text-align: left;">\u0041-\u005A,\u0061,\u007A</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">数字</td>
-<td style="text-align: left;">u0030-u0039</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">英文标点</td>
-<td style="text-align: left;">!@#$%^&amp;<em>()-=[]{}\;':",./&lt;&gt;?/</em>+</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">中文标点</td>
-<td style="text-align: left;">使用下面的中文标点挨个匹配</td>
-</tr>
-</tbody>
-</table>
-<p>注:网上有种方法写的中文标点匹配是 000-03f-，但01c，仍然会报错，建议将中文标点挨个匹配</p>
-<h2 id="中文标点对应"><strong>中文标点对应</strong></h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">名称</th>
-<th style="text-align: left;">Unicode</th>
-<th style="text-align: left;">符号</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">句号</td>
-<td style="text-align: left;">\u3002</td>
-<td style="text-align: left;">。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">问号</td>
-<td style="text-align: left;">\uFF1F</td>
-<td style="text-align: left;">？</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">叹号</td>
-<td style="text-align: left;">\uFF01</td>
-<td style="text-align: left;">！</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">逗号</td>
-<td style="text-align: left;">\uFF0C</td>
-<td style="text-align: left;">，</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">顿号</td>
-<td style="text-align: left;">\u3001</td>
-<td style="text-align: left;">、</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">分号</td>
-<td style="text-align: left;">\uFF1B</td>
-<td style="text-align: left;">；</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">冒号</td>
-<td style="text-align: left;">\uFF1A</td>
-<td style="text-align: left;">：</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">引号</td>
-<td style="text-align: left;">\u300C</td>
-<td style="text-align: left;">「</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u300D</td>
-<td style="text-align: left;">」</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u300E</td>
-<td style="text-align: left;">『</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u300F</td>
-<td style="text-align: left;">』</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u2018</td>
-<td style="text-align: left;">‘</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u2019</td>
-<td style="text-align: left;">’</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u201C</td>
-<td style="text-align: left;">“</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u201D</td>
-<td style="text-align: left;">”</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">括号</td>
-<td style="text-align: left;">\uFF08</td>
-<td style="text-align: left;">（</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\uFF09</td>
-<td style="text-align: left;">）</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3014</td>
-<td style="text-align: left;">〔</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3015</td>
-<td style="text-align: left;">〕</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3010</td>
-<td style="text-align: left;">【</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3011</td>
-<td style="text-align: left;">】</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">破折号</td>
-<td style="text-align: left;">\u2014</td>
-<td style="text-align: left;">——</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">省略号</td>
-<td style="text-align: left;">\u2026</td>
-<td style="text-align: left;">……</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">连接号</td>
-<td style="text-align: left;">\u2013</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">间隔号</td>
-<td style="text-align: left;">\uFF0E</td>
-<td style="text-align: left;">．</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">书名号</td>
-<td style="text-align: left;">\u300A</td>
-<td style="text-align: left;">《</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u300B</td>
-<td style="text-align: left;">》</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3008</td>
-<td style="text-align: left;">〈</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">\u3009</td>
-<td style="text-align: left;">〉</td>
-</tr>
-</tbody>
-</table>
-<h2 id="非英文语系字符范围"><strong>非英文语系字符范围</strong></h2>
-<table>
-
-<thead>
-<tr class="header">
-<th style="text-align: left;">范围</th>
-<th style="text-align: left;">编码</th>
-<th style="text-align: left;">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">2E80~33FFh</td>
-<td style="text-align: left;">中日韩符号区</td>
-<td style="text-align: left;">收容康熙字典部首、中日韩辅助部首、注音符号、日本假名、韩文音符，中日韩的符号、标点、带圈或带括符文数字、月份，以及日本的假名组合、单位、年号、月份、日期、时间等。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">3400~4DFFh</td>
-<td style="text-align: left;">中日韩认同文字扩充A区</td>
-<td style="text-align: left;">中日韩认同表意文字扩充A区，总计收容6,582个中日韩汉字。</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">4E00~9FFFh</td>
-<td style="text-align: left;">中日韩认同表意文字区</td>
-<td style="text-align: left;">中日韩认同表意文字区，总计收容20,902个中日韩汉字。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">A000~A4FFh</td>
-<td style="text-align: left;">彝族文字区</td>
-<td style="text-align: left;">收容中国南方彝族文字和字根</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AC00~D7FFh</td>
-<td style="text-align: left;">韩文拼音组合字区</td>
-<td style="text-align: left;">收容以韩文音符拼成的文字</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">F900~FAFFh</td>
-<td style="text-align: left;">中日韩兼容表意文字区</td>
-<td style="text-align: left;">总计收容302个中日韩汉字</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">FB00~FFFDh</td>
-<td style="text-align: left;">文字表现形式区</td>
-<td style="text-align: left;">收容组合拉丁文字、希伯来文、阿拉伯文、中日韩直式标点、小符号、半角符号、全角符号等。</td>
-</tr>
-</tbody>
-</table>
+                <h1 id="一jni_onload简介">一、JNI_OnLoad简介</h1>
+<p>Java JNI有两种方法，一种是通过javah,获取一组带签名函数，然后实现这些函数。 这种方法很常用，也是官方推荐的方法。 还有一种就是JNI_OnLoad方法。</p>
+<p>当Android的VM(Virtual Machine)执行到C组件(即so档)里的System.loadLibrary()函数时，</p>
+<p>首先会去执行C组件里的JNI_OnLoad()函数。</p>
+<p>它的用途有二：</p>
+<ul>
+<li><p>告诉VM此C组件使用那一个JNI版本。 如果你的.so档没有提供JNI_OnLoad()函数，VM会默认该*.so档是使用最老的JNI 1.1版本。 由于新版的JNI做了许多扩充，如果需要使用JNI的新版功能， 例如JNI 1.4的java.nio.ByteBuffer,就必须藉由JNI_OnLoad()函数来告知VM。</p></li>
+<li><p>由于VM执行到System.loadLibrary()函数时，就会立即先呼叫JNI_OnLoad()， 所以C组件的开发者可以藉由JNI_OnLoad()来进行C组件内的初期值之设定(Initialization) 。</p></li>
+</ul>
+<p>其实Android中的so文件就像是Windows下的DLL一样，JNI_OnLoad和JNI_OnUnLoad函数 就像是DLL中的PROCESS ATTATCH和DEATTATCH的过程一样，可以同样做一些初始化和反初始化的动作。</p>
+<h1 id="二android系统加载jni-lib的方式">二、Android系统加载JNI Lib的方式</h1>
+<h2 id="android系统加载jni-lib的方式">1.Android系统加载JNI Lib的方式</h2>
+<p>Android系统加载JNI Lib的方式有如下两种：</p>
+<ol type="1">
+<li>通过JNI_OnLoad</li>
+<li>如果JNI Lib没有定义JNI_OnLoad，则dvm调用dvmResolveNativeMethod进行动态解析</li>
+</ol>
+<h2 id="jni_onload方法">2. JNI_OnLoad方法</h2>
+<p>System.loadLibrary调用流程如下所示： <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xl">S<span class="hljs-function"><span class="hljs-title">ystem</span>.loadLibrary-&gt;</span><br>   R<span class="hljs-function"><span class="hljs-title">untime</span>.loadLibrary-&gt;</span>(Java)<br>     <span class="hljs-function"><span class="hljs-title">nativeLoad</span>-&gt;</span>(C: java_lang_Runtime.cpp)<br>       D<span class="hljs-function"><span class="hljs-title">alvik_java_lang_Runtime_nativeLoad</span>-&gt;</span><br>          <span class="hljs-function"><span class="hljs-title">dvmLoadNativeCode</span>-&gt;</span> (dalvik/vm/Native.cpp)<br>              <span class="hljs-number">1</span>) dlopen(pathName, RTLD_LAZY) (把.so mmap到进程空间，并把func等相关信息填充到soinfo中)<br>              <span class="hljs-number">2</span>) dlsym(handle, <span class="hljs-string">&quot;JNI_OnLoad&quot;</span>)<br>              <span class="hljs-number">3</span>) JNI_O<span class="hljs-function"><span class="hljs-title">nLoad</span>-&gt;</span><br>                      R<span class="hljs-function"><span class="hljs-title">egisterNatives</span>-&gt;</span><br>                         dvmRegisterJNIMethod(ClassObject* clazz, const char* methodName,<br>                                                <span class="hljs-function"><span class="hljs-title">const</span> char* signature, void* fnPtr)-&gt;</span><br>                            <span class="hljs-function"><span class="hljs-title">dvmUseJNIBridge</span>(method, fnPtr)-&gt;</span>  (<span class="hljs-function"><span class="hljs-title">method</span>-&gt;</span>nativeFunc = func)<br></code></pre></td></tr></table></figure> JNI函数在进程空间中的起始地址被保存在ClassObject-&gt;directMethods中。·、 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">struct ClassObject : <span class="hljs-keyword">Object</span> &#123;  <br>    <span class="hljs-comment">/* static, private, and &lt;init&gt; methods */</span>  <br>    <span class="hljs-type">int</span>             directMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         directMethods;  <br><br>    <span class="hljs-comment">/* virtual methods defined in this class; invoked through vtable */</span>  <br>    <span class="hljs-type">int</span>             virtualMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         virtualMethods;  <br>&#125;  <br></code></pre></td></tr></table></figure> 此ClassObject通过gDvm.jniGlobalRefTable或gDvm.jniWeakGlobalRefLock获取。</p>
+<h2 id="dvmresolvenativemethod延迟解析机制">3.dvmResolveNativeMethod延迟解析机制</h2>
+<p>如果JNI Lib中没有JNI_OnLoad，即在执行System.loadLibrary时， 无法把此JNI Lib实现的函数在进程中的地址增加到ClassObject-&gt;directMethods。 则直到需要调用的时候才会解析这些javah风格的函数 。 这样的函数dvmResolveNativeMethod(dalvik/vm/Native.cpp)来进行解析， 其执行流程如下所示： <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">void dvmResolveNativeMethod(<span class="hljs-keyword">const</span> u4* args, JValue* pResult,<br>       <span class="hljs-keyword">const</span> <span class="hljs-keyword">Method</span>* <span class="hljs-title function_">method</span>, <span class="hljs-title function_">Thread</span>* <span class="hljs-title function_">self</span>)  --&gt; <span class="hljs-params">(Resolve a native <span class="hljs-keyword">method</span> <span class="hljs-keyword">and</span> invoke it.)</span><br><br>   1) <span class="hljs-title function_">void</span>* <span class="hljs-title function_">func</span> = <span class="hljs-title function_">lookupSharedLibMethod</span><span class="hljs-params">(<span class="hljs-keyword">method</span>)</span><span class="hljs-params">(根据signature在所有已经打开的.so中寻找此函数实现)</span><br>           <span class="hljs-title function_">dvmHashForeach</span><span class="hljs-params">(gDvm.nativeLibs, findMethodInLib,(void*)</span> <span class="hljs-title function_">method</span>)-&gt;<br>                <span class="hljs-title function_">findMethodInLib</span><span class="hljs-params">(void* vlib, void* vmethod)</span>-&gt;<br>                   <span class="hljs-title function_">dlsym</span><span class="hljs-params">(pLib-&gt;handle, mangleCM)</span><br><br>  2) <span class="hljs-title function_">dvmUseJNIBridge</span><span class="hljs-params">((<span class="hljs-keyword">Method</span>*)</span> <span class="hljs-title function_">method</span>, <span class="hljs-title function_">func</span>);<br>  <span class="hljs-number">3</span>) <span class="hljs-comment">(*method-&gt;nativeFunc)(args, pResult, method, self);  (调用执行)</span><br></code></pre></td></tr></table></figure></p>
 
                 
               </div>
@@ -666,7 +341,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">语言知识</a>
+  <a href="/categories/%E5%AE%89%E5%8D%93%E7%9B%B8%E5%85%B3/" class="category-chain-item">安卓相关</a>
   
   
 
@@ -681,7 +356,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%8A%A0%E4%BA%86/">#奇怪的知识增加了</a>
+        <a href="/tags/CTF/">#CTF</a>
+      
+        <a href="/tags/Re/">#Re</a>
+      
+        <a href="/tags/Android/">#Android</a>
       
     </div>
   
@@ -695,18 +374,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/26/adb%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/" title="adb指令记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">adb指令记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0/" title="软件测试笔记">
-                        <span class="hidden-mobile">软件测试笔记</span>
+                      <a href="/2023/07/26/adb%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/" title="adb指令记录">
+                        <span class="hidden-mobile">adb指令记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
