@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          650 字
+          659 字
         
       </span>
     
@@ -353,49 +353,18 @@
             
               <div class="markdown-body">
                 
-                <p>最近打了buu的DASCTF的比赛，但我是菜狗，就只做出了re的签到题（雾），还是学到了不少东西，就是Aspack的手动脱壳，记录下。</p>
-<p>首先是用peid查壳，可以看到是aspcak壳。（exeinfope也可以，就是启动没有那么快）<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2c86f2a99008f4c429e4150af8a8db6b6.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-然后在lordPE里面选特征值旁边的三个点<br>
-<img src="https://img-blog.csdnimg.cn/9624e6f7a2744ba48e3921a057e1e588.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQXp1cmV1c19zaW11,size_16,color_FFFFFF,t_70,g_se,x_16" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-设置重定位已分离，保存即可<br>
-<img src="https://img-blog.csdnimg.cn/970aca8f86624de79048e76df50bf7c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQXp1cmV1c19zaW11,size_8,color_FFFFFF,t_70,g_se,x_16" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-然后用ollydbg进行动调找函数的入口：<br>
-会弹出一个窗口：</p>
+                <p>﻿最近打了buu的DASCTF的比赛，但我是菜狗，就只做出了re的签到题（雾），还是学到了不少东西，就是Aspack的手动脱壳，记录下。</p>
+<p>首先是用peid查壳，可以看到是aspcak壳。（exeinfope也可以，就是启动没有那么快） <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2c86f2a99008f4c429e4150af8a8db6b6.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 然后在lordPE里面选特征值旁边的三个点 <img src="https://img-blog.csdnimg.cn/9624e6f7a2744ba48e3921a057e1e588.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQXp1cmV1c19zaW11,size_16,color_FFFFFF,t_70,g_se,x_16" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 设置重定位已分离，保存即可 <img src="https://img-blog.csdnimg.cn/970aca8f86624de79048e76df50bf7c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQXp1cmV1c19zaW11,size_8,color_FFFFFF,t_70,g_se,x_16" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 然后用ollydbg进行动调找函数的入口： 会弹出一个窗口：</p>
 <blockquote>
-<p>压缩代码？<br>
-模块“XXXX”的快速统计报告标明其代码段要么被压缩、加密，要么包含大量的嵌入数据，代码分析的结果可能非常不可靠或者完全错误。是否继续分析？</p>
+<p>压缩代码？ 模块“XXXX”的快速统计报告标明其代码段要么被压缩、加密，要么包含大量的嵌入数据，代码分析的结果可能非常不可靠或者完全错误。是否继续分析？</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2a1169d79f1c94b878b20804c2738d5ef.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2a1169d79f1c94b878b20804c2738d5ef.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /><figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
 <p><strong>这里选否</strong></p>
-<p>然后程序就会停在一个push处<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2934a817b4c284ac59891970d10534e90.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-用<strong>F8</strong>单步进入一下，就会停在一个call处，查看此时旁边的ESP的地址是红的，右键其打个硬件断点：<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2e53b4ff2875742c4b3f686674085227d.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-然后F9运行到断点处。可以看到停在了一个jnz处<br>
-<img src="https://img-blog.csdnimg.cn/f14f81139d4841cebbf29d896c0a3af8.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-用F7单步到push处再F7两次，就跳转到另一个界面<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2e6a07c595a024744b041ce8f40ee7561.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-F7步入到<strong>call</strong>处。此时按下回车可以看到四个安全函数，能确定函数入口就在后面<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo242e9f7b9e0fb41e2b8ecb7b57350f564.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-摁esc返回。<br>
-此时右键刚刚那个call的位置，从这里开始脱壳<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo26d89b79a9d51463aa0f0aa4e9e258215.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-有两处需要特别注意，一处就是取消勾选重建输入表，另一处是要记下修正为后面那传数字。<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2ba62c4e8275f428cbd97319545139263.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-然后脱壳，起个随便的名字。</p>
-<p><em><strong>现在不要退出ollydbg</strong></em></p>
-<p>以<strong>管理员身份</strong>运行<strong>ImportREConstructor</strong><br>
-不是管理员就有可能看不到要脱壳的程序运行<br>
-<img src="https://img-blog.csdnimg.cn/aabbd96f56354947beb4a8307d536e15.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-此处找到要脱壳的文件<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2ebe907b5fbf64af692f5a42e51585e52.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-还记得刚刚要记住的那串数字吗？<br>
-OEP处填入，点击iat自动搜索。<br>
-获取导入表，<br>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2c85efe23ee664ffeabc97cc33835155c.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述"><br>
-然后修正转储到刚刚ollydbg脱壳出的那个文件。<br>
-好了到此脱壳结束，可以正常使用ida，F5了。</p>
+<p>然后程序就会停在一个push处 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2934a817b4c284ac59891970d10534e90.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 用<strong>F8</strong>单步进入一下，就会停在一个call处，查看此时旁边的ESP的地址是红的，右键其打个硬件断点： <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2e53b4ff2875742c4b3f686674085227d.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 然后F9运行到断点处。可以看到停在了一个jnz处 <img src="https://img-blog.csdnimg.cn/f14f81139d4841cebbf29d896c0a3af8.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 用F7单步到push处再F7两次，就跳转到另一个界面 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2e6a07c595a024744b041ce8f40ee7561.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> F7步入到<strong>call</strong>处。此时按下回车可以看到四个安全函数，能确定函数入口就在后面 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo242e9f7b9e0fb41e2b8ecb7b57350f564.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 摁esc返回。 此时右键刚刚那个call的位置，从这里开始脱壳 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo26d89b79a9d51463aa0f0aa4e9e258215.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 有两处需要特别注意，一处就是取消勾选重建输入表，另一处是要记下修正为后面那传数字。 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2ba62c4e8275f428cbd97319545139263.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 然后脱壳，起个随便的名字。</p>
+<p><strong><em>现在不要退出ollydbg</em></strong></p>
+<p>以<strong>管理员身份</strong>运行<strong>ImportREConstructor</strong> 不是管理员就有可能看不到要脱壳的程序运行 <img src="https://img-blog.csdnimg.cn/aabbd96f56354947beb4a8307d536e15.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 此处找到要脱壳的文件 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2ebe907b5fbf64af692f5a42e51585e52.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 还记得刚刚要记住的那串数字吗？ OEP处填入，点击iat自动搜索。 获取导入表， <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2c85efe23ee664ffeabc97cc33835155c.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /> 然后修正转储到刚刚ollydbg脱壳出的那个文件。 好了到此脱壳结束，可以正常使用ida，F5了。</p>
 
                 
               </div>

@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -390,260 +390,261 @@
                 
                 <blockquote>
 <p>爬虫从网站上爬取的内容在读写操作时经常会报以下错误：</p>
-<p>UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\u200b’ in position 7: illegal multibyte sequence</p>
+<p>UnicodeEncodeError: 'gbk' codec can't encode character '00b' in position 7: illegal multibyte sequence</p>
 <p>所以需要我们对数据Unicode进行清洗，排除文章内异常的Unicode符号。</p>
 </blockquote>
-<h1>清洗思路</h1>
+<h1 id="清洗思路">清洗思路</h1>
 <p>我的思路是用正则表达式来匹配常用字，不在范围内的Unicode编码则去除。</p>
-<p>.compile(u&quot;[^常用字范围]+&quot;)匹配到非范围内字符后，</p>
+<p>.compile(u"[^常用字范围]+")匹配到非范围内字符后，</p>
 <p>.sub()方法将特殊字符替换成空</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">illegal_char</span>(<span class="hljs-params">s</span>):<br>    s = re \<br>        .<span class="hljs-built_in">compile</span>( <br>        <span class="hljs-string">u&quot;[^&quot;</span><br>        <span class="hljs-string">u&quot;\u4e00-\u9fa5&quot;</span><br>        <span class="hljs-string">u&quot;\u0041-\u005A&quot;</span><br>        <span class="hljs-string">u&quot;\u0061-\u007A&quot;</span><br>        <span class="hljs-string">u&quot;\u0030-\u0039&quot;</span><br>        <span class="hljs-string">u&quot;\u3002\uFF1F\uFF01\uFF0C\u3001\uFF1B\uFF1A\u300C\u300D\u300E\u300F\u2018\u2019\u201C\u201D\uFF08\uFF09\u3014\u3015\u3010\u3011\u2014\u2026\u2013\uFF0E\u300A\u300B\u3008\u3009&quot;</span><br>        <span class="hljs-string">u&quot;\!\@\#\$\%\^\&amp;\*\(\)\-\=\[\]\&#123;\&#125;\\\|\;\&#x27;\:\&quot;\,\.\/\&lt;\&gt;\?\/\*\+&quot;</span><br>        <span class="hljs-string">u&quot;]+&quot;</span>) \<br>        .sub(<span class="hljs-string">&#x27;&#x27;</span>, s)<br>    <span class="hljs-keyword">return</span> s<br></code></pre></td></tr></table></figure>
-<h1>Unicode范围</h1>
+<h1 id="unicode范围">Unicode范围</h1>
 <h2 id="常用范围"><strong>常用范围</strong></h2>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">范围</th>
+<tr class="header">
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">范围</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">中文</td>
-<td style="text-align:left">\u4e00-\u9fa5</td>
+<tr class="odd">
+<td style="text-align: left;">中文</td>
+<td style="text-align: left;">\u4e00-\u9fa5</td>
 </tr>
-<tr>
-<td style="text-align:left">日文平假名</td>
-<td style="text-align:left">\u3040-\u309f</td>
+<tr class="even">
+<td style="text-align: left;">日文平假名</td>
+<td style="text-align: left;">\u3040-\u309f</td>
 </tr>
-<tr>
-<td style="text-align:left">日文片假名</td>
-<td style="text-align:left">\u30a0-\u30ff</td>
+<tr class="odd">
+<td style="text-align: left;">日文片假名</td>
+<td style="text-align: left;">\u30a0-\u30ff</td>
 </tr>
-<tr>
-<td style="text-align:left">韩文</td>
-<td style="text-align:left">\uac00-\ud7ff</td>
+<tr class="even">
+<td style="text-align: left;">韩文</td>
+<td style="text-align: left;">\uac00-\ud7ff</td>
 </tr>
-<tr>
-<td style="text-align:left">英文字母</td>
-<td style="text-align:left">\u0041-\u005A,\u0061,\u007A</td>
+<tr class="odd">
+<td style="text-align: left;">英文字母</td>
+<td style="text-align: left;">\u0041-\u005A,\u0061,\u007A</td>
 </tr>
-<tr>
-<td style="text-align:left">数字</td>
-<td style="text-align:left">u0030-u0039</td>
+<tr class="even">
+<td style="text-align: left;">数字</td>
+<td style="text-align: left;">u0030-u0039</td>
 </tr>
-<tr>
-<td style="text-align:left">英文标点</td>
-<td style="text-align:left">!@#$%^&amp;<em>()-=[]{}\;':&quot;,./&lt;&gt;?/</em>+</td>
+<tr class="odd">
+<td style="text-align: left;">英文标点</td>
+<td style="text-align: left;">!@#$%^&amp;<em>()-=[]{}\;':",./&lt;&gt;?/</em>+</td>
 </tr>
-<tr>
-<td style="text-align:left">中文标点</td>
-<td style="text-align:left">使用下面的中文标点挨个匹配</td>
+<tr class="even">
+<td style="text-align: left;">中文标点</td>
+<td style="text-align: left;">使用下面的中文标点挨个匹配</td>
 </tr>
 </tbody>
 </table>
-<p>注:网上有种方法写的中文标点匹配是 \u3000-\u303f\ufb00-\ufffd，但\u301c\ufffd在GBK中没有对应字符，仍然会报错，建议将中文标点挨个匹配</p>
+<p>注:网上有种方法写的中文标点匹配是 000-03f-，但01c，仍然会报错，建议将中文标点挨个匹配</p>
 <h2 id="中文标点对应"><strong>中文标点对应</strong></h2>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">Unicode</th>
-<th style="text-align:left">符号</th>
+<tr class="header">
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">Unicode</th>
+<th style="text-align: left;">符号</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">句号</td>
-<td style="text-align:left">\u3002</td>
-<td style="text-align:left">。</td>
+<tr class="odd">
+<td style="text-align: left;">句号</td>
+<td style="text-align: left;">\u3002</td>
+<td style="text-align: left;">。</td>
 </tr>
-<tr>
-<td style="text-align:left">问号</td>
-<td style="text-align:left">\uFF1F</td>
-<td style="text-align:left">？</td>
+<tr class="even">
+<td style="text-align: left;">问号</td>
+<td style="text-align: left;">\uFF1F</td>
+<td style="text-align: left;">？</td>
 </tr>
-<tr>
-<td style="text-align:left">叹号</td>
-<td style="text-align:left">\uFF01</td>
-<td style="text-align:left">！</td>
+<tr class="odd">
+<td style="text-align: left;">叹号</td>
+<td style="text-align: left;">\uFF01</td>
+<td style="text-align: left;">！</td>
 </tr>
-<tr>
-<td style="text-align:left">逗号</td>
-<td style="text-align:left">\uFF0C</td>
-<td style="text-align:left">，</td>
+<tr class="even">
+<td style="text-align: left;">逗号</td>
+<td style="text-align: left;">\uFF0C</td>
+<td style="text-align: left;">，</td>
 </tr>
-<tr>
-<td style="text-align:left">顿号</td>
-<td style="text-align:left">\u3001</td>
-<td style="text-align:left">、</td>
+<tr class="odd">
+<td style="text-align: left;">顿号</td>
+<td style="text-align: left;">\u3001</td>
+<td style="text-align: left;">、</td>
 </tr>
-<tr>
-<td style="text-align:left">分号</td>
-<td style="text-align:left">\uFF1B</td>
-<td style="text-align:left">；</td>
+<tr class="even">
+<td style="text-align: left;">分号</td>
+<td style="text-align: left;">\uFF1B</td>
+<td style="text-align: left;">；</td>
 </tr>
-<tr>
-<td style="text-align:left">冒号</td>
-<td style="text-align:left">\uFF1A</td>
-<td style="text-align:left">：</td>
+<tr class="odd">
+<td style="text-align: left;">冒号</td>
+<td style="text-align: left;">\uFF1A</td>
+<td style="text-align: left;">：</td>
 </tr>
-<tr>
-<td style="text-align:left">引号</td>
-<td style="text-align:left">\u300C</td>
-<td style="text-align:left">「</td>
+<tr class="even">
+<td style="text-align: left;">引号</td>
+<td style="text-align: left;">\u300C</td>
+<td style="text-align: left;">「</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u300D</td>
-<td style="text-align:left">」</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u300D</td>
+<td style="text-align: left;">」</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u300E</td>
-<td style="text-align:left">『</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u300E</td>
+<td style="text-align: left;">『</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u300F</td>
-<td style="text-align:left">』</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u300F</td>
+<td style="text-align: left;">』</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u2018</td>
-<td style="text-align:left">‘</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u2018</td>
+<td style="text-align: left;">‘</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u2019</td>
-<td style="text-align:left">’</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u2019</td>
+<td style="text-align: left;">’</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u201C</td>
-<td style="text-align:left">“</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u201C</td>
+<td style="text-align: left;">“</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u201D</td>
-<td style="text-align:left">”</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u201D</td>
+<td style="text-align: left;">”</td>
 </tr>
-<tr>
-<td style="text-align:left">括号</td>
-<td style="text-align:left">\uFF08</td>
-<td style="text-align:left">（</td>
+<tr class="even">
+<td style="text-align: left;">括号</td>
+<td style="text-align: left;">\uFF08</td>
+<td style="text-align: left;">（</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\uFF09</td>
-<td style="text-align:left">）</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\uFF09</td>
+<td style="text-align: left;">）</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3014</td>
-<td style="text-align:left">〔</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3014</td>
+<td style="text-align: left;">〔</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3015</td>
-<td style="text-align:left">〕</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3015</td>
+<td style="text-align: left;">〕</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3010</td>
-<td style="text-align:left">【</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3010</td>
+<td style="text-align: left;">【</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3011</td>
-<td style="text-align:left">】</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3011</td>
+<td style="text-align: left;">】</td>
 </tr>
-<tr>
-<td style="text-align:left">破折号</td>
-<td style="text-align:left">\u2014</td>
-<td style="text-align:left">——</td>
+<tr class="even">
+<td style="text-align: left;">破折号</td>
+<td style="text-align: left;">\u2014</td>
+<td style="text-align: left;">——</td>
 </tr>
-<tr>
-<td style="text-align:left">省略号</td>
-<td style="text-align:left">\u2026</td>
-<td style="text-align:left">……</td>
+<tr class="odd">
+<td style="text-align: left;">省略号</td>
+<td style="text-align: left;">\u2026</td>
+<td style="text-align: left;">……</td>
 </tr>
-<tr>
-<td style="text-align:left">连接号</td>
-<td style="text-align:left">\u2013</td>
-<td style="text-align:left">–</td>
+<tr class="even">
+<td style="text-align: left;">连接号</td>
+<td style="text-align: left;">\u2013</td>
+<td style="text-align: left;">–</td>
 </tr>
-<tr>
-<td style="text-align:left">间隔号</td>
-<td style="text-align:left">\uFF0E</td>
-<td style="text-align:left">．</td>
+<tr class="odd">
+<td style="text-align: left;">间隔号</td>
+<td style="text-align: left;">\uFF0E</td>
+<td style="text-align: left;">．</td>
 </tr>
-<tr>
-<td style="text-align:left">书名号</td>
-<td style="text-align:left">\u300A</td>
-<td style="text-align:left">《</td>
+<tr class="even">
+<td style="text-align: left;">书名号</td>
+<td style="text-align: left;">\u300A</td>
+<td style="text-align: left;">《</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u300B</td>
-<td style="text-align:left">》</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u300B</td>
+<td style="text-align: left;">》</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3008</td>
-<td style="text-align:left">〈</td>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3008</td>
+<td style="text-align: left;">〈</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">\u3009</td>
-<td style="text-align:left">〉</td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">\u3009</td>
+<td style="text-align: left;">〉</td>
 </tr>
 </tbody>
 </table>
 <h2 id="非英文语系字符范围"><strong>非英文语系字符范围</strong></h2>
 <table>
+
 <thead>
-<tr>
-<th style="text-align:left">范围</th>
-<th style="text-align:left">编码</th>
-<th style="text-align:left">说明</th>
+<tr class="header">
+<th style="text-align: left;">范围</th>
+<th style="text-align: left;">编码</th>
+<th style="text-align: left;">说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">2E80~33FFh</td>
-<td style="text-align:left">中日韩符号区</td>
-<td style="text-align:left">收容康熙字典部首、中日韩辅助部首、注音符号、日本假名、韩文音符，中日韩的符号、标点、带圈或带括符文数字、月份，以及日本的假名组合、单位、年号、月份、日期、时间等。</td>
+<tr class="odd">
+<td style="text-align: left;">2E80~33FFh</td>
+<td style="text-align: left;">中日韩符号区</td>
+<td style="text-align: left;">收容康熙字典部首、中日韩辅助部首、注音符号、日本假名、韩文音符，中日韩的符号、标点、带圈或带括符文数字、月份，以及日本的假名组合、单位、年号、月份、日期、时间等。</td>
 </tr>
-<tr>
-<td style="text-align:left">3400~4DFFh</td>
-<td style="text-align:left">中日韩认同文字扩充A区</td>
-<td style="text-align:left">中日韩认同表意文字扩充A区，总计收容6,582个中日韩汉字。</td>
+<tr class="even">
+<td style="text-align: left;">3400~4DFFh</td>
+<td style="text-align: left;">中日韩认同文字扩充A区</td>
+<td style="text-align: left;">中日韩认同表意文字扩充A区，总计收容6,582个中日韩汉字。</td>
 </tr>
-<tr>
-<td style="text-align:left">4E00~9FFFh</td>
-<td style="text-align:left">中日韩认同表意文字区</td>
-<td style="text-align:left">中日韩认同表意文字区，总计收容20,902个中日韩汉字。</td>
+<tr class="odd">
+<td style="text-align: left;">4E00~9FFFh</td>
+<td style="text-align: left;">中日韩认同表意文字区</td>
+<td style="text-align: left;">中日韩认同表意文字区，总计收容20,902个中日韩汉字。</td>
 </tr>
-<tr>
-<td style="text-align:left">A000~A4FFh</td>
-<td style="text-align:left">彝族文字区</td>
-<td style="text-align:left">收容中国南方彝族文字和字根</td>
+<tr class="even">
+<td style="text-align: left;">A000~A4FFh</td>
+<td style="text-align: left;">彝族文字区</td>
+<td style="text-align: left;">收容中国南方彝族文字和字根</td>
 </tr>
-<tr>
-<td style="text-align:left">AC00~D7FFh</td>
-<td style="text-align:left">韩文拼音组合字区</td>
-<td style="text-align:left">收容以韩文音符拼成的文字</td>
+<tr class="odd">
+<td style="text-align: left;">AC00~D7FFh</td>
+<td style="text-align: left;">韩文拼音组合字区</td>
+<td style="text-align: left;">收容以韩文音符拼成的文字</td>
 </tr>
-<tr>
-<td style="text-align:left">F900~FAFFh</td>
-<td style="text-align:left">中日韩兼容表意文字区</td>
-<td style="text-align:left">总计收容302个中日韩汉字</td>
+<tr class="even">
+<td style="text-align: left;">F900~FAFFh</td>
+<td style="text-align: left;">中日韩兼容表意文字区</td>
+<td style="text-align: left;">总计收容302个中日韩汉字</td>
 </tr>
-<tr>
-<td style="text-align:left">FB00~FFFDh</td>
-<td style="text-align:left">文字表现形式区</td>
-<td style="text-align:left">收容组合拉丁文字、希伯来文、阿拉伯文、中日韩直式标点、小符号、半角符号、全角符号等。</td>
+<tr class="odd">
+<td style="text-align: left;">FB00~FFFDh</td>
+<td style="text-align: left;">文字表现形式区</td>
+<td style="text-align: left;">收容组合拉丁文字、希伯来文、阿拉伯文、中日韩直式标点、小符号、半角符号、全角符号等。</td>
 </tr>
 </tbody>
 </table>

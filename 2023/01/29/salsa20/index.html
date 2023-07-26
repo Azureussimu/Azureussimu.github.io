@@ -407,17 +407,16 @@
             
               <div class="markdown-body">
                 
-                <h1>前言</h1>
+                <h1 id="前言">前言</h1>
 <p>打hgame遇到的加密算法，张见识了，xman指出来这个加密，才破关。。。</p>
-<h1>简介</h1>
-<p>Salsa20是一种<strong>流式对称</strong>加密算法，类似于Chacha20，算法性能相比AES能够快3倍以上。<br>
-Salsa20算法通过将32 Byte的key和8 Byte的随机数nonce扩展为2^70 Byte的随机字节流，通过随机字节流和异或操作实现加解密，因此Salsa20算法中随机字节流的生成为关键所在。</p>
+<h1 id="简介">简介</h1>
+<p>Salsa20是一种<strong>流式对称</strong>加密算法，类似于Chacha20，算法性能相比AES能够快3倍以上。 Salsa20算法通过将32 Byte的key和8 Byte的随机数nonce扩展为2^70 Byte的随机字节流，通过随机字节流和异或操作实现加解密，因此Salsa20算法中随机字节流的生成为关键所在。</p>
 <div class="note note-success">
             <p>这个是一种流加密，但是和<a target="_blank" rel="noopener" href="https://azureussimu.github.io/2022/03/30/RC4/">rc4</a>很相似，同样相似的也有一个叫chacha的加密</p>
           </div>
-<h1>随机字节流生成</h1>
+<h1 id="随机字节流生成">随机字节流生成</h1>
 <p>Salsa20算法生成随机字节流时，一次生成一个64字节的block，每一个block是通过将key、nonce和block number以及部分常量组成64字节的input，通过核函数，输出64字节的output。最终多个block组成长度为2^70的随机字节流，在生成过程中，每个block相互独立。</p>
-<h2 id="Input">Input</h2>
+<h2 id="input">Input</h2>
 <p>伪随机数流的产生其实就是将64字节（512比特）的输入送入核心函数，然后得到512比特的输出的过程。 每次输入的字节包含密钥、初始向量和计数器。 这样，要产生长度是<code>N</code>字节的伪随机数流，只需要调用核心函数若干次，直到获取了足够长度（不少于<code>N</code>）的输出即可。</p>
 <p>核心函数的输入和输出各是一个16元素的32位无符号整型数组。 根据Salsa20的定义，将字节变换为32位无符号整型时使用的是 <strong>小尾序（Little Endian）</strong> 的。</p>
 <p>例如，我们要表示一个无符号32位整数<code>0xDEADBEEF</code>，则其在一个长度是4个字节的数组<code>A</code>中，应当有：</p>
@@ -437,26 +436,24 @@ Salsa20算法通过将32 Byte的key和8 Byte的随机数nonce扩展为2^70 Byte�
 <p>在每多进行一次核心函数的计算时，<code>计数器</code>需要增加1位。 即每次在第32位上加1，如果进位则在33、34……39位上增加。</p>
 <p>初始向量是对于一个流唯一的一个量。由2个词（8字节）构成。初始向量可以明文传送。</p>
 <p>根据密钥长度不同，对密钥和常量的选取有差异，下面分开解释。</p>
-<h3 id="使用256比特密钥进行加密-解密">使用256比特密钥进行加密/解密</h3>
+<h3 id="使用256比特密钥进行加密解密">使用256比特密钥进行加密/解密</h3>
 <p>在使用256比特的密钥时，常量1-4是如下一组的4个词：</p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dns">[<span class="hljs-number">0x61707865</span>, <span class="hljs-number">0</span>x3320646e, <span class="hljs-number">0x79622d32</span>, <span class="hljs-number">0x6b206574</span>]<br></code></pre></td></tr></table></figure>
 <p>密钥前半由密钥的前128比特，即<code>0-15</code>字节构成。密钥后半，则是<code>16-31</code>字节。</p>
 <p>这4个常量词的选取是由<code>expand 32-byte k</code>这段话得来。</p>
-<h3 id="使用128比特密钥进行加密-解密">使用128比特密钥进行加密/解密</h3>
+<h3 id="使用128比特密钥进行加密解密">使用128比特密钥进行加密/解密</h3>
 <p>在使用128比特的密钥时，常量1-4是如下一组的4个词：</p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dns">[<span class="hljs-number">0x61707865</span>, <span class="hljs-number">0</span>x3120646e, <span class="hljs-number">0x79622d36</span>, <span class="hljs-number">0x6b206574</span>]<br></code></pre></td></tr></table></figure>
 <p>密钥前半和密钥后半，都用整个密钥填充。</p>
 <p>这4个常量词的选取是由<code>expand 16-byte k</code>这段话得来。</p>
 <h2 id="核函数">核函数</h2>
-<p>Salsa20算法核函数将64字节的输入以矩阵形式作为参数，输出64字节的运算结果.<br>
-Salsa20核函数运算主要包括的运算如下，其中a和b皆为32bit（4 Byte）的数据：</p>
+<p>Salsa20算法核函数将64字节的输入以矩阵形式作为参数，输出64字节的运算结果. Salsa20核函数运算主要包括的运算如下，其中a和b皆为32bit（4 Byte）的数据：</p>
 <ul>
 <li>32 bit模加：<code>(a + b) mod 2^32</code>，</li>
 <li>异或：<code>a XOR b</code></li>
 <li>左移：<code>a &lt;&lt;&lt; b</code>，其中b为常量，在Salsa20算法中左移的值为7、9、13、18</li>
 </ul>
-<p>针对输入矩阵中的每个word，执行20轮的如下操作：<br>
-<code>b ⊕= (a ⊞ c) &lt;&lt;&lt; k</code>，其中<code>⊕</code>为异或，<code>⊞</code>模加，<code>&lt;&lt;&lt;</code>为左移。</p>
+<p>针对输入矩阵中的每个word，执行20轮的如下操作： <code>b ⊕= (a ⊞ c) &lt;&lt;&lt; k</code>，其中<code>⊕</code>为异或，<code>⊞</code>模加，<code>&lt;&lt;&lt;</code>为左移。</p>
 <p>经过20轮计算后，将输出的矩阵核原始矩阵相加，得到输出。</p>
 <p>Salsa20核函数具体实现如下：</p>
 <pre><code class="hljs"> #define R(a,b) (((a) &lt;&lt; (b)) | ((a) &gt;&gt; (32 - (b))))
@@ -484,19 +481,16 @@ Salsa20核函数运算主要包括的运算如下，其中a和b皆为32bit（4 B
      x[14] ^= R(x[13]+x[12],13);  x[15] ^= R(x[14]+x[13],18);
    &#125;
    for (i = 0;i &lt; 16;++i) out[i] = x[i] + in[i]; // 输入矩阵经过20轮的计算结果和原始矩阵相加得到最终输出
- &#125;
-</code></pre>
+ &#125;</code></pre>
 <p>注意核心函数中标出来的迭代次数。 这个<code>for</code>循环的实际运行次数，就是实际应用中写成<code>Salsa20/x</code>中的x。</p>
 <p>例如，如上代码迭代 <strong>10</strong> 次，因此是<code>Salsa20/10</code>。</p>
-<h2 id="Output">Output</h2>
+<h2 id="output">Output</h2>
 <p>每一次核函数运算，都能够通过key、nonce、block-counter生成64字节的输出block，经过多次输入和核函数运算，将每一次的生成结果拼接最终组成长度为2^70的字节流</p>
-<h1>加解密操作</h1>
+<h1 id="加解密操作">加解密操作</h1>
 <p>得到随机字节流之后，Salsa算法的加解密操作极其简单。</p>
 <ul>
-<li>加密操作<br>
-当加密长度为b字节的明文数据时，通过将明文数据和随机字节流的前b个字节进行异或运算得到密文。</li>
-<li>解密操作<br>
-当解密长度为b字节的数据时，通过将密文和b字节的字节流进行异或运算得到明文。</li>
+<li>加密操作 当加密长度为b字节的明文数据时，通过将明文数据和随机字节流的前b个字节进行异或运算得到密文。</li>
+<li>解密操作 当解密长度为b字节的数据时，通过将密文和b字节的字节流进行异或运算得到明文。</li>
 </ul>
 
                 

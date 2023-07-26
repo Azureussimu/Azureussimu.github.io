@@ -353,40 +353,24 @@
             
               <div class="markdown-body">
                 
-                <h2 id="mul-无符号数乘法指令-MULtiply">mul: 无符号数乘法指令 (MULtiply)</h2>
-<p>格式: MUL OPRD<br>
-功能: 乘法操作.</p>
+                <h2 id="mul-无符号数乘法指令-multiply">mul: 无符号数乘法指令 (MULtiply)</h2>
+<p>格式: MUL OPRD 功能: 乘法操作.</p>
 <blockquote>
-<p>说明: 1. OPRD为通用寄存器或存储器操作数.<br>
-\2. OPRD为源操作数,即作乘数.目的操作数是隐含的,即被乘数总是指定为累加器AX 或AL的内容.</p>
-<p>​      \3. 16位乘法时,AX中为被乘数.8位乘法时,AL为被乘数.当16位乘法时,32位的乘积存于DX及AX中;8位乘法的16位乘积存于AX中.</p>
-<p>​      \4. 操作过程: 字节相乘:(AX)&lt;–(AL)*OPRD,当结果的高位字节(AH)不等于0时,则CF＝1、OF＝1.字相乘: (DX)(AX)&lt;–(AX)*OPRD,当(DX)不等0时，则CF=1、OF=1</p>
-<p>​      \5. 示例 1: MUL BETA[BX]<br>
-​               MUL DI<br>
-​               MUL BYTE PTR ALFA<br>
-​            示例 2: 设在W1和W2字单元中各有一个16位数,若求其乘积并存于W3开始的字单元中,可用以下指令组实现:<br>
-​                MOV AX,W1<br>
-​               MUL W2<br>
-​               MOV W3,AX<br>
-​                MOV W3+2,DX</p>
+<p>说明: 1. OPRD为通用寄存器或存储器操作数. \2. OPRD为源操作数,即作乘数.目的操作数是隐含的,即被乘数总是指定为累加器AX 或AL的内容.</p>
+<p>​ \3. 16位乘法时,AX中为被乘数.8位乘法时,AL为被乘数.当16位乘法时,32位的乘积存于DX及AX中;8位乘法的16位乘积存于AX中.</p>
+<p>​ \4. 操作过程: 字节相乘:(AX)&lt;--(AL)<em>OPRD,当结果的高位字节(AH)不等于0时,则CF＝1、OF＝1.字相乘: (DX)(AX)&lt;--(AX)</em>OPRD,当(DX)不等0时，则CF=1、OF=1</p>
+<p>​ \5. 示例 1: MUL BETA[BX] ​ MUL DI ​ MUL BYTE PTR ALFA ​ 示例 2: 设在W1和W2字单元中各有一个16位数,若求其乘积并存于W3开始的字单元中,可用以下指令组实现: ​ MOV AX,W1 ​ MUL W2 ​ MOV W3,AX ​ MOV W3+2,DX</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs asm">.data<br>  val dd 8<br>.code<br>main proc<br>  ;8 位<br>  mov al, 0FFh<br>  mul byte ptr val<br>  PrintHex ax ;07F8<br>  <br>  ;16 位<br>  mov ax, 0FFFFh<br>  mul word ptr val<br>  PrintHex dx ;0007<br>  PrintHex ax ;FFF8<br>  <br>  ;32 位<br>  mov eax, 0FFFFFFFFh<br>  mul val<br>  PrintHex edx ;00000007<br>  PrintHex eax ;FFFFFFF8<br>  ret<br>main endp<br>end main<br></code></pre></td></tr></table></figure>
-<hr>
-<h2 id="imul-带符号数乘法指令-Integer-MULtiply">imul: 带符号数乘法指令 (Integer MULtiply)</h2>
-<p>格式: IMUL OPRD<br>
-功能: 完成两个带符号数的相乘</p>
+<hr />
+<p>## imul: 带符号数乘法指令 (Integer MULtiply)</p>
+<p>格式: IMUL OPRD 功能: 完成两个带符号数的相乘</p>
 <blockquote>
-<p>说明: 1. 其中OPRD为任一通用寄存器或存储器操作数.<br>
-\2. MUL指令对带符号相乘时,不能得到正确的结果.<br>
-例如: (AL)=255<br>
-(CL)=255</p>
-<p>​         MUL CL<br>
-​        (AX)=65025<br>
-​     注意: 这对无符号数讲,结果是正确的,但对带符号数讲,相当于(-1)*(-1)结果应为+1,而65025对应的带符号数为-511,显然是不正确的.</p>
-<p>​      \3. 8088/8086指令系统提供了专用的带符号数乘法和除法指令.IMUL即为带符号乘法指令,它能保证得到正确的带符号数的乘积.</p>
-<p>操作过程:字节相乘:(AX)&lt;–(AL)*OPRD<br>
-字相乘: (DX)(AX)&lt;–(AX)*OPRD</p>
-<p>​     \4. 本指令影响标志位CF、OF.</p>
+<p>说明: 1. 其中OPRD为任一通用寄存器或存储器操作数. \2. MUL指令对带符号相乘时,不能得到正确的结果. 例如: (AL)=255 (CL)=255</p>
+<p>​ MUL CL ​ (AX)=65025 ​ 注意: 这对无符号数讲,结果是正确的,但对带符号数讲,相当于(-1)*(-1)结果应为+1,而65025对应的带符号数为-511,显然是不正确的.</p>
+<p>​ \3. 8088/8086指令系统提供了专用的带符号数乘法和除法指令.IMUL即为带符号乘法指令,它能保证得到正确的带符号数的乘积.</p>
+<p>操作过程:字节相乘:(AX)&lt;--(AL)<em>OPRD 字相乘: (DX)(AX)&lt;--(AX)</em>OPRD</p>
+<p>​ \4. 本指令影响标志位CF、OF.</p>
 <p>;影响 OF、CF 标志位;第一种指令格式:</p>
 <p>;IMUL r/m ;单操作数;如果参数是 r8/m8, 将把 AL 做乘数, 结果放在 AX</p>
 <p>;如果参数是 r16/m16, 将把 AX 做乘数, 结果放在 EAX</p>
@@ -401,37 +385,26 @@
 <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs asm">.data<br>  val dd 8<br>.code<br>main proc<br>  ;8 位<br>  mov al, 0FFh<br>  PrintDec al<br>  imul byte ptr val<br>  PrintHex ax ;FFF8<br>  PrintDec ax ;-8<br>;-------------------------  <br>  mov al,-8 ;F8<br>  mul byte ptr val<br>  PrintDec ax ;1984<br>  PrintHex ax ;07C0<br>;-------------------------  <br>  ;16 位<br>  mov ax, 0FFFFh<br>  imul word ptr val<br>  PrintHex dx ;FFFF<br>  PrintHex ax ;FFF8<br>  <br>  ;32 位<br>  mov eax, 0FFFFFFFFh<br>  imul val<br>  PrintHex edx ;FFFFFFFF<br>  PrintHex eax ;FFFFFFF8<br>  ret<br>main endp<br>end main<br>;----------------------------------<br><br>.data<br>  val dd 8<br>.code<br>main proc<br>  ;IMUL 两个操作数<br>  mov eax, 7<br>  imul eax, val<br>  PrintDec eax ;56<br>  <br>  ;IMUL 三个操作数<br>  imul eax, val, 9<br>  PrintDec eax ;72<br>  ret<br>main endp<br>end main<br></code></pre></td></tr></table></figure>
 <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-<h2 id="div-idiv-无符号除、有符号除">div, idiv:  无符号除、有符号除</h2>
+<h2 id="div-idiv-无符号除有符号除">div, idiv: 无符号除、有符号除</h2>
 <blockquote>
-<p>;它们没有定义对 EFLAGS 的影响<br>
-;它们的指令格式:<br>
-;DIV r/m ;参数是除数</p>
-<p>;如果参数是 r8/m8,  将把 AX   做被除数; 商 -&gt; AL, 余数 -&gt; AH<br>
-;如果参数是 r16/m16, 将把 DX:AX  做被除数; 商 -&gt; AX, 余数 -&gt; DX<br>
-;如果参数是 r32/m32, 将把 EDX:EAX 做被除数; 商 -&gt; EAX, 余数 -&gt; EDX</p>
+<p>;它们没有定义对 EFLAGS 的影响 ;它们的指令格式: ;DIV r/m ;参数是除数</p>
+<p>;如果参数是 r8/m8, 将把 AX 做被除数; 商 -&gt; AL, 余数 -&gt; AH ;如果参数是 r16/m16, 将把 DX:AX 做被除数; 商 -&gt; AX, 余数 -&gt; DX ;如果参数是 r32/m32, 将把 EDX:EAX 做被除数; 商 -&gt; EAX, 余数 -&gt; EDX</p>
 </blockquote>
 <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs asm">.code<br>main proc<br>  ;除数是 8 位<br>  mov ax, 17  ;被除数<br>  mov cl, 3  ;除数<br>  div cl<br>  PrintDec al ;5 - 商<br>  PrintDec ah ;2 - 余数<br><br>  ;除数是 16 位<br>  mov dx, 0  ;<br>  mov ax, 17  ;dx:ax 是被除数<br>  mov cx, 3  ;cx  是除数<br>  div cx<br>  PrintDec ax ;5 - 商<br>  PrintDec dx ;2 - 余数<br><br>  ;除数是 32 位<br>  mov edx, 0  ;<br>  mov eax, 17 ;edx:eax 是被除数<br>  mov ecx, 3  ;ecx   是除数<br>  div ecx<br>  PrintDec eax ;5 - 商<br>  PrintDec edx ;2 - 余数<br>  ret<br>main endp<br>end main<br><br>\----------------------------------------------------------------------------------------------------------------------------------------------------------------------<br><br>.code<br>main proc<br>  ;除数是 8 位<br>  mov al, -17 <br>  cbw     ;ax 是被除数<br>  mov cl, 3  ;除数<br>  idiv cl<br>  PrintDec al ;-5 - 商<br>  PrintDec ah ;-2 - 余数<br>  <br>  ;除数是 16 位<br>  mov ax, -17 <br>  cwd     ;dx:ax 是被除数<br>  mov cx, 3  ;cx  是除数<br>  idiv cx<br>  PrintDec ax ;-5 - 商<br>  PrintDec dx ;-2 - 余数<br>  <br>  ;除数是 32 位<br>  mov eax, -17 <br>  cdq     ;edx:eax 是被除数<br>  mov ecx, 3  ;ecx   是除数<br>  idiv ecx<br>  PrintDec eax ;-5 - 商<br>  PrintDec edx ;-2 - 余数<br>  ret<br>main endp<br>end main<br><br><br></code></pre></td></tr></table></figure>
-<hr>
-<h2 id="shl-shr-sal-sar-移位指令分为逻辑移位指令和算术移位指令">shl,shr,sal,sar:移位指令分为逻辑移位指令和算术移位指令</h2>
+<hr />
+<h2 id="shlshrsalsar移位指令分为逻辑移位指令和算术移位指令">shl,shr,sal,sar:移位指令分为逻辑移位指令和算术移位指令</h2>
 <ul>
-<li>
-<p>shl 与 shr 属于逻辑移位指令</p>
-<p>shl逻辑左移指令</p>
-</li>
+<li><p>shl 与 shr 属于逻辑移位指令</p>
+<p>shl逻辑左移指令</p></li>
 </ul>
-<p>将寄存器或内存单元的数据左移<br>
-最低位用 0 补充<br>
-最高位进入 CF</p>
+<p>将寄存器或内存单元的数据左移 最低位用 0 补充 最高位进入 CF</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs asm">例子：<br><br> mov ax,8fh	;mov ax,1000 1111b<br> shl ax,1	;将ax左移一位<br><br> 执行后 (ax) = 0001 1110b	;1eh<br> CF = 1<br></code></pre></td></tr></table></figure>
-<p><strong>如果我们需要移动的位数大于1时，需要将移动位数存入 cl</strong><br>
-例子：</p>
+<p><strong>如果我们需要移动的位数大于1时，需要将移动位数存入 cl</strong> 例子：</p>
 <p>比如说我们要移动 4 位</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asm">mov cl,4<br>mov ax,9fh	;mov ax,1000 1111b<br>shl ax,cl	;左移位数为 cl 里的数据<br><br>执行后 (ax) = 1111 0000b		;f0h<br>CF = 1<br></code></pre></td></tr></table></figure>
 <p><strong>shr逻辑右移指令</strong></p>
-<p>将寄存器或内存单元的数据右移<br>
-最低位用 0 补充<br>
-最低位进入 CF</p>
+<p>将寄存器或内存单元的数据右移 最低位用 0 补充 最低位进入 CF</p>
 <p><strong>sal 与 sar 属于算术移位指令</strong></p>
 <ul>
 <li>sal 算术左移指令</li>
@@ -440,8 +413,7 @@
 <ul>
 <li>sar 算术右移指令</li>
 </ul>
-<p>基本与shr相同<br>
-与shr补 0 不同，sar补位时最高位不变</p>
+<p>基本与shr相同 与shr补 0 不同，sar补位时最高位不变</p>
 <h2 id="inc-加1指令">inc: 加1指令</h2>
 <p>使目标寄存器数值加一</p>
 

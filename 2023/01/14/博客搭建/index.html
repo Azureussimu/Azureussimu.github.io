@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.8k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          13 分钟
+          15 分钟
         
       </span>
     
@@ -371,27 +371,25 @@
             
               <div class="markdown-body">
                 
-                <h1>1 nodejs安装和配置环境</h1>
-<h2 id="1-1安装">1.1安装</h2>
+                <h1 id="nodejs安装和配置环境">1 nodejs安装和配置环境</h1>
+<h2 id="安装">1.1安装</h2>
 <p>直接访问<a target="_blank" rel="noopener" href="https://nodejs.org/en/">node.js官方网站</a>即可</p>
 <p>注意一下安装路径就行</p>
-<p>安装后的测试方法：<br>
-控制台输入</p>
+<p>安装后的测试方法： 控制台输入</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span><br>npm -v<br></code></pre></td></tr></table></figure>
-<h2 id="1-2配置环境变量">1.2配置环境变量</h2>
+<h2 id="配置环境变量">1.2配置环境变量</h2>
 <p>如果是默认安装，就不用管。不过我很早之前就装好了，所以忘了要不要配置。</p>
 <p>admin身份打开cmd</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span><span class="hljs-built_in"> prefix </span><span class="hljs-string">&quot;****\nodejs\node_global&quot;</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache <span class="hljs-string">&quot;****\nodejs\node_cache&quot;</span><br></code></pre></td></tr></table></figure>
 <p>注：****为nodejs安装位置</p>
-<p>注意：<br>
-修改全局安装路径后，需要在系统环境变量Path中添加该路径，否则之后使用<code>npm install –global xxx，xxx</code>都报错找不到命令。</p>
-<h1>2 安装git</h1>
+<p>注意： 修改全局安装路径后，需要在系统环境变量Path中添加该路径，否则之后使用<code>npm install –global xxx，xxx</code>都报错找不到命令。</p>
+<h1 id="安装git">2 安装git</h1>
 <p><a target="_blank" rel="noopener" href="https://git-scm.com/">git官方网站</a>下载即可，无脑下一步，带new的新功能不选就行</p>
-<h1>3 安装hexo</h1>
+<h1 id="安装hexo">3 安装hexo</h1>
 <p>cmd指令，使用魔法会方便一点.</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install hexo-<span class="hljs-keyword">cli</span> -g <span class="hljs-meta">#安装hexo</span><br></code></pre></td></tr></table></figure>
-<h1>4 检查安装</h1>
+<h1 id="检查安装">4 检查安装</h1>
 <ul>
 <li>nodejs</li>
 </ul>
@@ -409,64 +407,90 @@
 </ul>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo -v</span><br></code></pre></td></tr></table></figure>
 <p>能看到版本号就是成功了</p>
-<h1>5 创建仓库和ssh配置</h1>
-<h2 id="5-1建立仓库">5.1建立仓库</h2>
-<p>仓库名字一定要是<strong><a target="_blank" rel="noopener" href="http://xn--+-i68ax7tcyczy0cgko.github.io">自己的名字+.github.io</a></strong></p>
-<h2 id="5-2生成ssh-keys">5.2生成ssh keys</h2>
+<h1 id="创建仓库和ssh配置">5 创建仓库和ssh配置</h1>
+<h2 id="建立仓库">5.1建立仓库</h2>
+<p>仓库名字一定要是<strong>自己的名字+.github.io</strong></p>
+<h2 id="生成ssh-keys">5.2生成ssh keys</h2>
 <p>在本地博客文件夹的根目录下，使用右键的git bash here</p>
 <p>可以先使用<code>ssh</code>测试是否安装ssh，一般git默认有安装。</p>
 <p>本地生成ssh keys</p>
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C “邮箱地址”<br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220153525.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220153525"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220153525.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220153525" /><figcaption aria-hidden="true">image-20230110220153525</figcaption>
+</figure>
 <p>无脑回车，跟着提示走就行，注意第二次要输入y再回车。</p>
 <p>在本地文件找到.ssh文件夹：git会提示在哪的：</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220327779.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220327779"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220327779.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220327779" /><figcaption aria-hidden="true">image-20230110220327779</figcaption>
+</figure>
 <p>注意，被保存到github的是<strong>id_rsa.pub</strong>里面的内容，用记事本打开就行。</p>
-<p>打开github，头像箭头，下拉选项setting <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> SSH and GPG keys <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> new ssh keys（新建ssh秘钥）</p>
+<p>打开github，头像箭头，下拉选项setting <span class="math inline">\(\rightarrow\)</span> SSH and GPG keys <span class="math inline">\(\rightarrow\)</span> new ssh keys（新建ssh秘钥）</p>
 <p>将id_rsa.pub里面的内容粘贴进去，名字随便取：</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220617771.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220617771"></p>
-<p>为了后面流程，在github里顺便设置person access tokens（个人访问令牌）(Developer setting log <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> Generate new token)</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2capture_20220712160103385.bmp" srcset="/img/mokou.gif" lazyload alt="img"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110220617771.png" srcset="/img/mokou.gif" lazyload alt="image-20230110220617771" /><figcaption aria-hidden="true">image-20230110220617771</figcaption>
+</figure>
+<p>为了后面流程，在github里顺便设置person access tokens（个人访问令牌）(Developer setting log <span class="math inline">\(\rightarrow\)</span> Generate new token)</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2capture_20220712160103385.bmp" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
 <p>下面勾选权限，建议全部勾选</p>
 <p>点击生成，生成的序列号，要复制下来在存在本地，他只<strong>显示一次</strong>，如果忘记了，还需要重新生成一次。</p>
-<hr>
+<hr />
 <p>测试ssh是否绑定成功：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221236436.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221236436"></p>
-<h1>6 搭建本地博客</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221236436.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221236436" /><figcaption aria-hidden="true">image-20230110221236436</figcaption>
+</figure>
+<h1 id="搭建本地博客">6 搭建本地博客</h1>
 <p>初始化hexo</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">hexo init<br></code></pre></td></tr></table></figure>
 <p>在本地博客的文件夹使用git Bash here</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221758407.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221758407"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221758407.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221758407" /><figcaption aria-hidden="true">image-20230110221758407</figcaption>
+</figure>
 <p>成功的标识：</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">INFO</span>  <span class="hljs-keyword">Start</span> blogging <span class="hljs-keyword">with</span> Hexo!<br></code></pre></td></tr></table></figure>
 <p>生成本地页面：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">hexo s<br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221931877.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221931877"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221952190.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221952190"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221931877.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221931877" /><figcaption aria-hidden="true">image-20230110221931877</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110221952190.png" srcset="/img/mokou.gif" lazyload alt="image-20230110221952190" /><figcaption aria-hidden="true">image-20230110221952190</figcaption>
+</figure>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">hexo clean： <span class="hljs-meta">#清理编译文件</span><br>hexo g：<span class="hljs-meta">#编译项目</span><br>hexo s(<span class="hljs-keyword">server</span>) : <span class="hljs-meta">#本地预览运行项目</span><br></code></pre></td></tr></table></figure>
-<h1>7 上传至本地博客</h1>
-<h2 id="7-1-修改配置文件">7.1 修改配置文件</h2>
+<h1 id="上传至本地博客">7 上传至本地博客</h1>
+<h2 id="修改配置文件">7.1 修改配置文件</h2>
 <p>修改blog文件夹的**_config.yml**</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2abc.png" srcset="/img/mokou.gif" lazyload alt="img"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2abc.png" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
 <p>注意冒号后面存在空格(<strong>图片的配置过时了，使用下面的</strong>)</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> 你的github地址/ssh链<br><span class="hljs-symbol">  branch:</span> main<br></code></pre></td></tr></table></figure>
-<h2 id="7-2-安装hexo-deployer-git-自动部署发布工具">7.2 安装hexo-deployer-git 自动部署发布工具</h2>
+<h2 id="安装hexo-deployer-git-自动部署发布工具">7.2 安装hexo-deployer-git 自动部署发布工具</h2>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110222753018.png" srcset="/img/mokou.gif" lazyload alt="image-20230110222753018"></p>
-<h2 id="7-3-编译文件生成页面">7.3 编译文件生成页面</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110222753018.png" srcset="/img/mokou.gif" lazyload alt="image-20230110222753018" /><figcaption aria-hidden="true">image-20230110222753018</figcaption>
+</figure>
+<h2 id="编译文件生成页面">7.3 编译文件生成页面</h2>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110222831566.png" srcset="/img/mokou.gif" lazyload alt="image-20230110222831566"></p>
-<h2 id="7-4-本地文件上传到Github">7.4 本地文件上传到Github</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230110222831566.png" srcset="/img/mokou.gif" lazyload alt="image-20230110222831566" /><figcaption aria-hidden="true">image-20230110222831566</figcaption>
+</figure>
+<h2 id="本地文件上传到github">7.4 本地文件上传到Github</h2>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230111121628404.png" srcset="/img/mokou.gif" lazyload alt="image-20230111121628404"></p>
-<h1>8 安装主题</h1>
-<h2 id="8-1-选择主题">8.1 选择主题</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230111121628404.png" srcset="/img/mokou.gif" lazyload alt="image-20230111121628404" /><figcaption aria-hidden="true">image-20230111121628404</figcaption>
+</figure>
+<h1 id="安装主题">8 安装主题</h1>
+<h2 id="选择主题">8.1 选择主题</h2>
 <p>挑了一会，最后选择了Fuild主题。</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230111122238199.png" srcset="/img/mokou.gif" lazyload alt="image-20230111122238199"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230111122238199.png" srcset="/img/mokou.gif" lazyload alt="image-20230111122238199" /><figcaption aria-hidden="true">image-20230111122238199</figcaption>
+</figure>
 <p>那就跟着github仓库的readme走了</p>
 <p>参考：</p>
-<p><a target="_blank" rel="noopener" href="https://hasegawaazusa.github.io/hexo-note.html?highlight=%E5%8D%9A%E5%AE%A2">https://hasegawaazusa.github.io/hexo-note.html?highlight=博客</a></p>
+<p>https://hasegawaazusa.github.io/hexo-note.html?highlight=%E5%8D%9A%E5%AE%A2</p>
 
                 
               </div>
