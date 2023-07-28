@@ -16,28 +16,27 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="注意看，这个人第一次实现了hook">
+    <meta name="description" content="Linux下DIR,dirent,stat等结构体学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一次fridaHook">
-<meta property="og:url" content="http://example.com/2023/07/28/%E7%AC%AC%E4%B8%80%E6%AC%A1fridaHook/index.html">
+<meta property="og:title" content="Linux下DIR等结构体学习笔记">
+<meta property="og:url" content="http://example.com/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="注意看，这个人第一次实现了hook">
+<meta property="og:description" content="Linux下DIR,dirent,stat等结构体学习">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/first-frida-hook.jpg">
-<meta property="article:published_time" content="2023-07-28T04:52:51.000Z">
-<meta property="article:modified_time" content="2023-07-28T09:13:24.126Z">
+<meta property="og:image" content="http://example.com/img/blogimg/Linux_DIR_struct.jpg">
+<meta property="article:published_time" content="2023-07-28T10:10:35.000Z">
+<meta property="article:modified_time" content="2023-07-28T10:13:51.453Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Re">
-<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/first-frida-hook.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/Linux_DIR_struct.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>第一次fridaHook - 3zureusの小屋</title>
+  <title>Linux下DIR等结构体学习笔记 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/first-frida-hook.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/Linux_DIR_struct.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="第一次fridaHook"></span>
+            <span id="subtitle" data-typed-text="Linux下DIR等结构体学习笔记"></span>
           
         </div>
 
@@ -228,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-28 12:52" pubdate>
-          2023年7月28日 下午
+        <time datetime="2023-07-28 18:10" pubdate>
+          2023年7月28日 晚上
         </time>
       </span>
     
@@ -240,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          74 字
         
       </span>
     
@@ -251,7 +250,7 @@
         
         
         
-          12 分钟
+          1 分钟
         
       </span>
     
@@ -289,6 +288,76 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
+        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+        aria-expanded="true"
+      >
+        Linux
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-edc9f0a5a5d57797bf68e37364743831"
+           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux下DIR等结构体学习笔记"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Linux下DIR等结构体学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux获取文件属性函数学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Linux获取文件属性函数学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/19/Run-Before-or-after-main/" title="Run_Before_or_after_main"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Run_Before_or_after_main</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -297,45 +366,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">第一次fridaHook</h1>
+            <h1 style="display: none">Linux下DIR等结构体学习笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="写在前面">写在前面</h1>
-<p>用的是frida官方文档里面了的一道安卓题，脚本也是</p>
-<p>本文只是记录自己第一次使用frida进行hook所踩的坑。</p>
-<h1 id="apk分析">apk分析</h1>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230728153920868.png" srcset="/img/mokou.gif" lazyload alt="image-20230728153920868" /><figcaption aria-hidden="true">image-20230728153920868</figcaption>
-</figure>
-<p>逻辑倒是十分明显，你赢1000次就可以得到flag，游戏本体是一个剪刀石头布的游戏。</p>
-<p>calc方式使用了native，可以查看apk包中的so文件：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230728154103074.png" srcset="/img/mokou.gif" lazyload alt="image-20230728154103074" /><figcaption aria-hidden="true">image-20230728154103074</figcaption>
-</figure>
-<p>只是单纯的返回个7</p>
-<p>其实到这flag就有了：</p>
-<p>SECCON{(1000 + 7) * 107的结果}</p>
-<h1 id="hook">hook</h1>
-<p>那hook点明白，在包体com.example.seccon2015.rock_paper_scissors中的MainActivity方法中，使用官方的hook.js：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 在这定义一个const声明的变量，保存要hook的类</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;com.example.seccon2015.rock_paper_scissors.MainActivity&#x27;</span>);<br>  <br>    <span class="hljs-comment">// 一个常量，记录触发的方法</span><br>    <span class="hljs-keyword">const</span> onClick = <span class="hljs-title class_">MainActivity</span>.<span class="hljs-property">onClick</span>;<br>    <span class="hljs-comment">//重载onClick方法</span><br>    onClick.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">v</span>) &#123;<br>      <span class="hljs-comment">// Show a message to know that the function got called</span><br>      <span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;onClick&#x27;</span>);<br>  <br>      <span class="hljs-comment">// 原onClick方法的调用</span><br>      onClick.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, v);<br>  <br>      <span class="hljs-comment">// 调用结束后，对数据进行改变</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">m</span>.<span class="hljs-property">value</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">n</span>.<span class="hljs-property">value</span> = <span class="hljs-number">1</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">cnt</span>.<span class="hljs-property">value</span> = <span class="hljs-number">999</span>;<br>  <br>      <span class="hljs-comment">// Log to the console that it&#x27;s done, and we should have the flag!</span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Done:&#x27;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cnt</span>));<br>    &#125;;<br>  &#125;);<br></code></pre></td></tr></table></figure>
-<p>使用命令行进行hook：</p>
-<p><code>frida -U -f com.example.seccon2015.rock_paper_scissors -l .\hook.js</code></p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo298341301c5b833565d025928fe4c8b0.png" srcset="/img/mokou.gif" lazyload alt="98341301c5b833565d025928fe4c8b0" /><figcaption aria-hidden="true">98341301c5b833565d025928fe4c8b0</figcaption>
-</figure>
-<h1 id="踩的坑">踩的坑</h1>
-<h2 id="frida_server启动失败">1.frida_server启动失败</h2>
-<p>主要是自己sb，看进程不用<code>ps</code>用<code>ps -ef</code>，这东西记录的太全了，让我以为frida启动成功了</p>
-<p>已经是root权限，像着linux那样启动文件：<code>su ./frida-server</code></p>
-<p>笑死，根本启动不了</p>
-<p>正常启动就行</p>
-<p>如果手机中的frida-server启动了，但还是<code>unable to connect to remote frida-server</code></p>
-<p>用<code>adb forward tcp:27042 tcp:27042</code>转发一下端口，如果还不行，把042全改成043，注意手机每次重新连接都要转发。</p>
-<p>如果你是用WIFI来进行hook，hook时候多个参数-H。</p>
-<h2 id="python脚本执行不成功">2.python脚本执行不成功</h2>
-<p>不知道为啥官方的脚本会有问题，xman建议是使用命令行</p>
+                <p>快下班了，有空记得叫我写</p>
+<p>学习链接</p>
+<p>https://blog.csdn.net/zhuyi2654715/article/details/7605051</p>
 
                 
               </div>
@@ -354,7 +392,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Re%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">Re学习笔记</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -373,8 +411,6 @@
       
         <a href="/tags/Re/">#Re</a>
       
-        <a href="/tags/Android/">#Android</a>
-      
     </div>
   
 </div>
@@ -387,9 +423,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux下DIR等结构体学习笔记">
+                      <a href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux获取文件属性函数学习笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux下DIR等结构体学习笔记</span>
+                        <span class="hidden-mobile">Linux获取文件属性函数学习笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -397,8 +433,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/26/proc%E7%9B%AE%E5%BD%95%E5%AD%A6%E4%B9%A0/" title="proc目录学习">
-                        <span class="hidden-mobile">proc目录学习</span>
+                      <a href="/2023/07/28/%E7%AC%AC%E4%B8%80%E6%AC%A1fridaHook/" title="第一次fridaHook">
+                        <span class="hidden-mobile">第一次fridaHook</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
