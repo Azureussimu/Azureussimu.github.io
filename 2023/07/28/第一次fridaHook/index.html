@@ -16,27 +16,28 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="buu [HDCTF2019]MFC刷题记录">
+    <meta name="description" content="注意看，这个人第一次实现了hook">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HDCTF2019-MFC刷题记录">
-<meta property="og:url" content="http://example.com/2023/04/18/HDCTF2019-MFC%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="第一次fridaHook">
+<meta property="og:url" content="http://example.com/2023/07/28/%E7%AC%AC%E4%B8%80%E6%AC%A1fridaHook/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="buu [HDCTF2019]MFC刷题记录">
+<meta property="og:description" content="注意看，这个人第一次实现了hook">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/MFC.jpg">
-<meta property="article:published_time" content="2023-04-17T16:18:22.000Z">
-<meta property="article:modified_time" content="2023-07-28T05:00:53.902Z">
+<meta property="og:image" content="http://example.com/img/blogimg/first-frida-hook.jpg">
+<meta property="article:published_time" content="2023-07-28T04:52:51.000Z">
+<meta property="article:modified_time" content="2023-07-28T08:13:16.612Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Re">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/MFC.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/first-frida-hook.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>HDCTF2019-MFC刷题记录 - 3zureusの小屋</title>
+  <title>第一次fridaHook - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +211,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/MFC.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/first-frida-hook.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HDCTF2019-MFC刷题记录"></span>
+            <span id="subtitle" data-typed-text="第一次fridaHook"></span>
           
         </div>
 
@@ -227,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-18 00:18" pubdate>
-          2023年4月18日 凌晨
+        <time datetime="2023-07-28 12:52" pubdate>
+          2023年7月28日 下午
         </time>
       </span>
     
@@ -239,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          695 字
+          1.3k 字
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -288,153 +289,6 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar category-bar" style="margin-right: -1rem">
-    
-
-
-
-
-
-<div class="category-list">
-  
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CTF write up"
-        id="heading-3681f87edf3349d687b076aba7cd1be5" role="tab" data-toggle="collapse" href="#collapse-3681f87edf3349d687b076aba7cd1be5"
-        aria-expanded="true"
-      >
-        CTF write up
-        <span class="list-group-count">(5)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-3681f87edf3349d687b076aba7cd1be5"
-           role="tabpanel" aria-labelledby="heading-3681f87edf3349d687b076aba7cd1be5">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/05/19/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-Splendid-MineCraft%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ACTF新生赛2020_Splendid_MineCraft刷题记录"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">ACTF新生赛2020_Splendid_MineCraft刷题记录</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="HGAME"
-        id="heading-812def94d2c3a2a272654915e228092e" role="tab" data-toggle="collapse" href="#collapse-812def94d2c3a2a272654915e228092e"
-        aria-expanded="false"
-      >
-        HGAME
-        <span class="list-group-count">(3)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-812def94d2c3a2a272654915e228092e"
-           role="tabpanel" aria-labelledby="heading-812def94d2c3a2a272654915e228092e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/01/14/hgame2023-week1/" title="HGAME 2023 week1 wp"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">HGAME 2023 week1 wp</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/01/19/hgame2023-week2/" title="HGAME 2023 week2 wp"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">HGAME 2023 week2 wp</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/02/04/hgame2023-week3/" title="HGAME 2023 week3 wp"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">HGAME 2023 week3 wp</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="buu刷题"
-        id="heading-052f627c7e034769eec5cf0e3d2a9ef2" role="tab" data-toggle="collapse" href="#collapse-052f627c7e034769eec5cf0e3d2a9ef2"
-        aria-expanded="true"
-      >
-        buu刷题
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-052f627c7e034769eec5cf0e3d2a9ef2"
-           role="tabpanel" aria-labelledby="heading-052f627c7e034769eec5cf0e3d2a9ef2">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/04/18/HDCTF2019-MFC%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="HDCTF2019-MFC刷题记录"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">HDCTF2019-MFC刷题记录</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-</div>
-
-
-  </aside>
-
 
     </div>
 
@@ -443,33 +297,45 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">HDCTF2019-MFC刷题记录</h1>
+            <h1 style="display: none">第一次fridaHook</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="mfc">MFC</h1>
-<p>第一次遇到，记录一下；</p>
+                <h1 id="写在前面">写在前面</h1>
+<p>用的是frida官方文档里面了的一道安卓题，脚本也是</p>
+<p>本文只是记录自己第一次使用frida进行hook所踩的坑。</p>
+<h1 id="apk分析">apk分析</h1>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20230418001312342.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001312342" /><figcaption aria-hidden="true">image-20230418001312342</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230728153920868.png" srcset="/img/mokou.gif" lazyload alt="image-20230728153920868" /><figcaption aria-hidden="true">image-20230728153920868</figcaption>
 </figure>
-<p>既然是控件，那就是调用API，这个用了普通的VMP(有时间一定会学)，今天就用工具。</p>
-<p>用xspy分析一下这个程序：</p>
+<p>逻辑倒是十分明显，你赢1000次就可以得到flag，游戏本体是一个剪刀石头布的游戏。</p>
+<p>calc方式使用了native，可以查看apk包中的so文件：</p>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001413585.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001413585" /><figcaption aria-hidden="true">image-20230418001413585</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230728154103074.png" srcset="/img/mokou.gif" lazyload alt="image-20230728154103074" /><figcaption aria-hidden="true">image-20230728154103074</figcaption>
 </figure>
-<p>可以看到调用了不少API，同时发现</p>
-<p>OnMsg:0464,func= 0x00402170(mfc.exe+ 0x002170 )</p>
-<p>有点不一般，0464 这是一个没有系统库名的，而且数字特殊，所以写一个程序发送一个有关这个数字的消息，用FindWindow函数获取窗口句柄，SendMessage函数发送消息。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Windows.h&gt;</span></span><br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        HWND h = ::<span class="hljs-built_in">FindWindowA</span>(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Flag就在控件里&quot;</span>);<br>        <span class="hljs-keyword">if</span> (h)<br>        &#123;<br>                <span class="hljs-built_in">SendMessage</span>(h, <span class="hljs-number">0x464</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;false&quot;</span>);<br>        &#125;<br> <br>        <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>只是单纯的返回个7</p>
+<p>其实到这flag就有了：</p>
+<p>SECCON{(1000 + 7) * 107的结果}</p>
+<h1 id="hook">hook</h1>
+<p>那hook点明白，在包体com.example.seccon2015.rock_paper_scissors中的MainActivity方法中，使用官方的hook.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 在这定义一个const声明的变量，保存要hook的类</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;com.example.seccon2015.rock_paper_scissors.MainActivity&#x27;</span>);<br>  <br>    <span class="hljs-comment">// 一个常量，记录触发的方法</span><br>    <span class="hljs-keyword">const</span> onClick = <span class="hljs-title class_">MainActivity</span>.<span class="hljs-property">onClick</span>;<br>    <span class="hljs-comment">//重载onClick方法</span><br>    onClick.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">v</span>) &#123;<br>      <span class="hljs-comment">// Show a message to know that the function got called</span><br>      <span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;onClick&#x27;</span>);<br>  <br>      <span class="hljs-comment">// 原onClick方法的调用</span><br>      onClick.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, v);<br>  <br>      <span class="hljs-comment">// 调用结束后，对数据进行改变</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">m</span>.<span class="hljs-property">value</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">n</span>.<span class="hljs-property">value</span> = <span class="hljs-number">1</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">cnt</span>.<span class="hljs-property">value</span> = <span class="hljs-number">999</span>;<br>  <br>      <span class="hljs-comment">// Log to the console that it&#x27;s done, and we should have the flag!</span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Done:&#x27;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cnt</span>));<br>    &#125;;<br>  &#125;);<br></code></pre></td></tr></table></figure>
+<p>使用命令行进行hook：</p>
+<p><code>frida -U -f com.example.seccon2015.rock_paper_scissors -l .\hook.js</code></p>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001544207.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001544207" /><figcaption aria-hidden="true">image-20230418001544207</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo298341301c5b833565d025928fe4c8b0.png" srcset="/img/mokou.gif" lazyload alt="98341301c5b833565d025928fe4c8b0" /><figcaption aria-hidden="true">98341301c5b833565d025928fe4c8b0</figcaption>
 </figure>
-<p>在xspy中会发现有一串这样的字符串，仔细观察发现句柄有一串奇怪字符</p>
-<p>00190E3E(944c8d100f82f0c18b682f63e4dbaa207a2f1e72581c2f1b)</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230418001611346.png" srcset="/img/mokou.gif" lazyload alt="image-20230418001611346" /><figcaption aria-hidden="true">image-20230418001611346</figcaption>
-</figure>
+<h1 id="踩的坑">踩的坑</h1>
+<h2 id="frida_server启动失败">1.frida_server启动失败</h2>
+<p>主要是自己sb，看进程不用<code>ps</code>用<code>ps -ef</code>，这东西记录的太全了，让我以为frida启动成功了</p>
+<p>已经是root权限，像着linux那样启动文件：<code>su ./frida-server</code></p>
+<p>笑死，根本启动不了</p>
+<p>正常启动就行</p>
+<p>如果手机中的frida-server启动了，但还是<code>unable to connect to remote frida-server</code></p>
+<p>用<code>adb forward tcp:27042 tcp:27042</code>转发一下端口，如果还不行，把042全改成043，注意手机每次重新连接都要转发。</p>
+<p>如果你是用WIFI来进行hook，hook时候多个参数-H。</p>
+<h2 id="python脚本执行不成功">2.python脚本执行不成功</h2>
+<p>不知道为啥官方的脚本会有问题，xman建议是使用命令行</p>
 
                 
               </div>
@@ -488,12 +354,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/CTF-write-up/" class="category-chain-item">CTF write up</a>
+  <a href="/categories/%E5%AE%89%E5%8D%93%E7%9B%B8%E5%85%B3/" class="category-chain-item">安卓相关</a>
   
   
     <span>></span>
     
-  <a href="/categories/CTF-write-up/buu%E5%88%B7%E9%A2%98/" class="category-chain-item">buu刷题</a>
+  <a href="/categories/%E5%AE%89%E5%8D%93%E7%9B%B8%E5%85%B3/frida/" class="category-chain-item">frida</a>
   
   
 
@@ -514,6 +380,8 @@
       
         <a href="/tags/Re/">#Re</a>
       
+        <a href="/tags/Android/">#Android</a>
+      
     </div>
   
 </div>
@@ -526,18 +394,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/19/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-Splendid-MineCraft%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ACTF新生赛2020_Splendid_MineCraft刷题记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ACTF新生赛2020_Splendid_MineCraft刷题记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/03/re%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-dll%E6%B3%A8%E5%85%A5/" title="re学习记录 初试dll注入">
-                        <span class="hidden-mobile">re学习记录 初试dll注入</span>
+                      <a href="/2023/07/26/proc%E7%9B%AE%E5%BD%95%E5%AD%A6%E4%B9%A0/" title="proc目录学习">
+                        <span class="hidden-mobile">proc目录学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
