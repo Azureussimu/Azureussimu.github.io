@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>花指令</title>
+    <link href="/2023/08/03/%E8%8A%B1%E6%8C%87%E4%BB%A4/"/>
+    <url>/2023/08/03/%E8%8A%B1%E6%8C%87%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="通过堆栈修改eip">通过堆栈修改EIP</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_asm<br>&#123;<br>    call sub<br>    _emit <span class="hljs-number">0xE8</span><br>    jmp label<br>    sub:<br>    add<br>    dword<br>    ptr[esp], <span class="hljs-number">1</span><br>    retn<br>    label:<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="执行流程">执行流程：</h2><p>先call sub处的函数，此时sub函数外面的eip指向0xE8，函数内将栈上的外面的eip+=1，结果是外面的eip指向了jmp，函数退出来就jmp到label。</p><p>这里就是p都没做，全nop就行，但是有的时候ida发癫，会认为堆栈爆炸，patch然后让ida重新分析就行。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>碎碎念</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF</tag>
+      
+      <tag>Re</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Linux获取文件属性函数学习笔记</title>
     <link href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>

@@ -16,27 +16,27 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Linux获取文件属性stat()、fstat()、lstat()函数实例学习">
+    <meta name="description" content="记录一下遇到的花指令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux获取文件属性函数学习笔记">
-<meta property="og:url" content="http://example.com/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="花指令">
+<meta property="og:url" content="http://example.com/2023/08/03/%E8%8A%B1%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="Linux获取文件属性stat()、fstat()、lstat()函数实例学习">
+<meta property="og:description" content="记录一下遇到的花指令">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/Linux_lstat_fun.jpg">
-<meta property="article:published_time" content="2023-07-28T10:10:54.000Z">
-<meta property="article:modified_time" content="2023-07-28T10:14:36.238Z">
+<meta property="og:image" content="http://example.com/img/blogimg/hua_zhi_ling.jpg">
+<meta property="article:published_time" content="2023-08-03T04:02:52.000Z">
+<meta property="article:modified_time" content="2023-08-03T04:39:35.459Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Re">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/Linux_lstat_fun.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/hua_zhi_ling.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Linux获取文件属性函数学习笔记 - 3zureusの小屋</title>
+  <title>花指令 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/Linux_lstat_fun.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/hua_zhi_ling.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux获取文件属性函数学习笔记"></span>
+            <span id="subtitle" data-typed-text="花指令"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-28 18:10" pubdate>
-          2023年7月28日 晚上
+        <time datetime="2023-08-03 12:02" pubdate>
+          2023年8月3日 中午
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          81 字
+          237 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -303,17 +303,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
-        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="碎碎念"
+        id="heading-0e9c81a4c01a64c2df164e8cd1832f2f" role="tab" data-toggle="collapse" href="#collapse-0e9c81a4c01a64c2df164e8cd1832f2f"
         aria-expanded="true"
       >
-        Linux
-        <span class="list-group-count">(3)</span>
+        碎碎念
+        <span class="list-group-count">(2)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-edc9f0a5a5d57797bf68e37364743831"
-           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+      <div class="category-collapse collapse show" id="collapse-0e9c81a4c01a64c2df164e8cd1832f2f"
+           role="tabpanel" aria-labelledby="heading-0e9c81a4c01a64c2df164e8cd1832f2f">
         
         
           
@@ -322,28 +322,19 @@
     
       
       
-        <a href="/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux下DIR等结构体学习笔记"
+        <a href="/2023/02/02/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="2022西湖论剑碎碎念"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">Linux下DIR等结构体学习笔记</span>
+          <span class="category-post">2022西湖论剑碎碎念</span>
         </a>
       
     
       
       
-        <a href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux获取文件属性函数学习笔记"
+        <a href="/2023/08/03/%E8%8A%B1%E6%8C%87%E4%BB%A4/" title="花指令"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">Linux获取文件属性函数学习笔记</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/11/19/Run-Before-or-after-main/" title="Run_Before_or_after_main"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Run_Before_or_after_main</span>
+          <span class="category-post">花指令</span>
         </a>
       
     
@@ -366,14 +357,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Linux获取文件属性函数学习笔记</h1>
+            <h1 style="display: none">花指令</h1>
             
             
               <div class="markdown-body">
                 
-                <p>快下班了，先挖个坑</p>
-<p>https://blog.csdn.net/qq_37858386/article/details/78702435</p>
-<p>嘶，好像PE结构的坑还没填完</p>
+                <h1 id="通过堆栈修改eip">通过堆栈修改EIP</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_asm<br>&#123;<br>    call sub<br>    _emit <span class="hljs-number">0xE8</span><br>    jmp label<br>    sub:<br>    add<br>    dword<br>    ptr[esp], <span class="hljs-number">1</span><br>    retn<br>    label:<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="执行流程">执行流程：</h2>
+<p>先call sub处的函数，此时sub函数外面的eip指向0xE8，函数内将栈上的外面的eip+=1，结果是外面的eip指向了jmp，函数退出来就jmp到label。</p>
+<p>这里就是p都没做，全nop就行，但是有的时候ida发癫，会认为堆栈爆炸，patch然后让ida重新分析就行。</p>
 
                 
               </div>
@@ -392,7 +385,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="category-chain-item">碎碎念</a>
   
   
 
@@ -423,18 +416,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/03/%E8%8A%B1%E6%8C%87%E4%BB%A4/" title="花指令">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">花指令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux下DIR等结构体学习笔记">
-                        <span class="hidden-mobile">Linux下DIR等结构体学习笔记</span>
+                      <a href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux获取文件属性函数学习笔记">
+                        <span class="hidden-mobile">Linux获取文件属性函数学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
