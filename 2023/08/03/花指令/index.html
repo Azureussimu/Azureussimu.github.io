@@ -362,9 +362,9 @@
             
               <div class="markdown-body">
                 
-                <h1 id="通过堆栈修改eip">通过堆栈修改EIP</h1>
+                <h1>通过堆栈修改EIP</h1>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_asm<br>&#123;<br>    call sub<br>    _emit <span class="hljs-number">0xE8</span><br>    jmp label<br>    sub:<br>    add<br>    dword<br>    ptr[esp], <span class="hljs-number">1</span><br>    retn<br>    label:<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="执行流程">执行流程：</h2>
+<h2 id="执行流程：">执行流程：</h2>
 <p>先call sub处的函数，此时sub函数外面的eip指向0xE8，函数内将栈上的外面的eip+=1，结果是外面的eip指向了jmp，函数退出来就jmp到label。</p>
 <p>这里就是p都没做，全nop就行，但是有的时候ida发癫，会认为堆栈爆炸，patch然后让ida重新分析就行。</p>
 
@@ -415,6 +415,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/04/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E5%87%BD%E6%95%B002/" title="奇奇怪怪的函数02">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">奇奇怪怪的函数02</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

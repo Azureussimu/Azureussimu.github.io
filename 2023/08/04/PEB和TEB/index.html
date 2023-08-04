@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="好牛逼的东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PEB和TEB">
+<meta property="og:url" content="http://example.com/2023/08/04/PEB%E5%92%8CTEB/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="好牛逼的东西">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/PEB_TEB.png">
+<meta property="article:published_time" content="2023-08-04T04:38:42.000Z">
+<meta property="article:modified_time" content="2023-08-04T08:00:23.666Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Re">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/PEB_TEB.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>PEB和TEB - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/PEB_TEB.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PEB和TEB"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-04 12:38" pubdate>
+          2023年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Re学习笔记"
+        id="heading-4ac63dba33292c4d0803616c69eb80a6" role="tab" data-toggle="collapse" href="#collapse-4ac63dba33292c4d0803616c69eb80a6"
+        aria-expanded="true"
+      >
+        Re学习笔记
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4ac63dba33292c4d0803616c69eb80a6"
+           role="tabpanel" aria-labelledby="heading-4ac63dba33292c4d0803616c69eb80a6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/04/PEB%E5%92%8CTEB/" title="PEB和TEB"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">PEB和TEB</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/04/PE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PE结构学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PE结构学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/03/re%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-dll%E6%B3%A8%E5%85%A5/" title="re学习记录 初试dll注入"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">re学习记录 初试dll注入</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/win%E5%BA%94%E7%94%A8%E5%B1%82%E5%8F%8D%E8%B0%83%E8%AF%95/" title="win应用层反调试"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">win应用层反调试</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/28/%E7%AC%AC%E4%B8%80%E6%AC%A1fridaHook/" title="第一次fridaHook"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">第一次fridaHook</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PEB和TEB</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>TEB</h1>
+<p>Windows是一个强大的操作系统。为了方便开发者，微软将进程中的每个线程都设置了一个独立的结构数据。这个结构体内存储着当前线程大量的信息。这个结构被称为TEB（线程环境块）。通过TEB结构内的成员属性向下扩展，可以得到很多线程信息。这其中还包含大量的未公开数据。</p>
+<div class="note note-warning">
+            <p>不过TEB结构在不同版本的操作系统中会进行更改</p><p>建议通过<a target="_blank" rel="noopener" href="https://www.vergiliusproject.com/kernels">VergiliusProject</a>进行查询</p>
+          </div>
+<p>在不同结构中的TEB结构的偏移查询：</p>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>Can fold?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x86-32</td>
+<td>Yes</td>
+<td><code>mov eax, fs:[n]</code></td>
+</tr>
+<tr>
+<td>x86-64</td>
+<td>Yes</td>
+<td><code>mov rax, gs:[n]</code></td>
+</tr>
+<tr>
+<td>arm</td>
+<td>No</td>
+<td>Cannot use offset load from coprocessor register</td>
+</tr>
+<tr>
+<td>arm64</td>
+<td>Yes</td>
+<td><code>ldr x0, [x18, #n]</code></td>
+</tr>
+<tr>
+<td>alpha</td>
+<td>No</td>
+<td>Address returned by dedicated instruction</td>
+</tr>
+<tr>
+<td>ia64</td>
+<td>Yes</td>
+<td>Can calculate effective address directly from r13</td>
+</tr>
+<tr>
+<td>MIPS</td>
+<td>No</td>
+<td>No absolute addressing mode</td>
+</tr>
+<tr>
+<td>PowerPC</td>
+<td>Yes</td>
+<td><code>lwz r0, n(r13)</code></td>
+</tr>
+</tbody>
+</table>
+<p>对于TEB来说，最简单的获取方式就是通过fs:[0x18]来获取</p>
+<p>pTEB-&gt;0x18 == *pTEB</p>
+<p>fs:[0x18] == TEB</p>
+<p>pTEB-&gt;0x30 == fs:[0x30] == PEB</p>
+<p>SEH：pTEB-&gt;0 == fs:[0] == SEH链</p>
+<h1>PEB</h1>
+<div class="note note-info">
+            <p>PEB(进程环境块)是TEB的一个成员</p><p>这个结构中存储着整个进程的信息。通过对PEB中成员的向下扩展可以找到一个存储着该进程所有模块数据的链表。</p>
+          </div>
+<h2 id="0x01-引入">0x01 引入</h2>
+<p>常见的反调试函数：<code>IsDebuggerPresent()</code></p>
+<p>本质上是读取当前进程的PEB里BeingDebugged的值用于判断自己是否处于调试状态</p>
+<h2 id="0x02-PEB相关标志位反调试">0x02 PEB相关标志位反调试</h2>
+<p>PEB是一个非常庞大的数据结构，它是用来存储每个进程的运行时数据。下图为<a target="_blank" rel="noopener" href="https://kernelstruct.gitee.io/kernels/x86/Windows%2010/1511%20Threshold%202/_PEB">Windows 10的_PEB</a>部分结构。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//0x460 bytes (sizeof)</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">PEB</span></span><br><span class="hljs-class">&#123;</span><br>    UCHAR InheritedAddressSpace;                                            <span class="hljs-comment">//0x0</span><br>    UCHAR ReadImageFileExecOptions;                                         <span class="hljs-comment">//0x1</span><br>    UCHAR BeingDebugged;                                                    <span class="hljs-comment">//0x2</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span></span><br><span class="hljs-class">    &#123;</span><br>        UCHAR BitField;                                                     <span class="hljs-comment">//0x3</span><br>        <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">        &#123;</span><br>            UCHAR ImageUsesLargePages:<span class="hljs-number">1</span>;                                    <span class="hljs-comment">//0x3</span><br>            UCHAR IsProtectedProcess:<span class="hljs-number">1</span>;                                     <span class="hljs-comment">//0x3</span><br>            UCHAR IsImageDynamicallyRelocated:<span class="hljs-number">1</span>;                            <span class="hljs-comment">//0x3</span><br>            UCHAR SkipPatchingUser32Forwarders:<span class="hljs-number">1</span>;                           <span class="hljs-comment">//0x3</span><br>            UCHAR IsPackagedProcess:<span class="hljs-number">1</span>;                                      <span class="hljs-comment">//0x3</span><br>            UCHAR IsAppContainer:<span class="hljs-number">1</span>;                                         <span class="hljs-comment">//0x3</span><br>            UCHAR IsProtectedProcessLight:<span class="hljs-number">1</span>;                                <span class="hljs-comment">//0x3</span><br>            UCHAR SpareBits:<span class="hljs-number">1</span>;                                              <span class="hljs-comment">//0x3</span><br>        &#125;;<br>    &#125;;<br>    VOID* Mutant;                                                           <span class="hljs-comment">//0x4</span><br>    VOID* ImageBaseAddress;                                                 <span class="hljs-comment">//0x8</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">PEB_LDR_DATA</span>* <span class="hljs-title">Ldr</span>;</span>                                              <span class="hljs-comment">//0xc</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">RTL_USER_PROCESS_PARAMETERS</span>* <span class="hljs-title">ProcessParameters</span>;</span>                 <span class="hljs-comment">//0x10</span><br>    VOID* SubSystemData;                                                    <span class="hljs-comment">//0x14</span><br>    VOID* ProcessHeap;                                                      <span class="hljs-comment">//0x18</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">RTL_CRITICAL_SECTION</span>* <span class="hljs-title">FastPebLock</span>;</span>                              <span class="hljs-comment">//0x1c</span><br>    VOID* AtlThunkSListPtr;                                                 <span class="hljs-comment">//0x20</span><br>    VOID* IFEOKey;                                                          <span class="hljs-comment">//0x24</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span></span><br><span class="hljs-class">    &#123;</span><br>        ULONG CrossProcessFlags;                                            <span class="hljs-comment">//0x28</span><br>        <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">        &#123;</span><br>            ULONG ProcessInJob:<span class="hljs-number">1</span>;                                           <span class="hljs-comment">//0x28</span><br>            ULONG ProcessInitializing:<span class="hljs-number">1</span>;                                    <span class="hljs-comment">//0x28</span><br>            ULONG ProcessUsingVEH:<span class="hljs-number">1</span>;                                        <span class="hljs-comment">//0x28</span><br>            ULONG ProcessUsingVCH:<span class="hljs-number">1</span>;                                        <span class="hljs-comment">//0x28</span><br>            ULONG ProcessUsingFTH:<span class="hljs-number">1</span>;                                        <span class="hljs-comment">//0x28</span><br>            ULONG ReservedBits0:<span class="hljs-number">27</span>;                                         <span class="hljs-comment">//0x28</span><br>        &#125;;<br>    &#125;;<br>    <span class="hljs-class"><span class="hljs-keyword">union</span></span><br><span class="hljs-class">    &#123;</span><br>        VOID* KernelCallbackTable;                                          <span class="hljs-comment">//0x2c</span><br>        VOID* UserSharedInfoPtr;                                            <span class="hljs-comment">//0x2c</span><br>    &#125;;<br>    ULONG SystemReserved[<span class="hljs-number">1</span>];                                                <span class="hljs-comment">//0x30</span><br>    ULONG AtlThunkSListPtr32;                                               <span class="hljs-comment">//0x34</span><br>    VOID* ApiSetMap;                                                        <span class="hljs-comment">//0x38</span><br>    ULONG TlsExpansionCounter;                                              <span class="hljs-comment">//0x3c</span><br>    VOID* TlsBitmap;                                                        <span class="hljs-comment">//0x40</span><br>    ULONG TlsBitmapBits[<span class="hljs-number">2</span>];                                                 <span class="hljs-comment">//0x44</span><br>    VOID* ReadOnlySharedMemoryBase;                                         <span class="hljs-comment">//0x4c</span><br>    VOID* SparePvoid0;                                                      <span class="hljs-comment">//0x50</span><br>    VOID** ReadOnlyStaticServerData;                                        <span class="hljs-comment">//0x54</span><br>    VOID* AnsiCodePageData;                                                 <span class="hljs-comment">//0x58</span><br>    VOID* OemCodePageData;                                                  <span class="hljs-comment">//0x5c</span><br>    VOID* UnicodeCaseTableData;                                             <span class="hljs-comment">//0x60</span><br>    ULONG NumberOfProcessors;                                               <span class="hljs-comment">//0x64</span><br>    ULONG NtGlobalFlag;                                                     <span class="hljs-comment">//0x68</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span> _<span class="hljs-title">LARGE_INTEGER</span> <span class="hljs-title">CriticalSectionTimeout</span>;</span>                            <span class="hljs-comment">//0x70</span><br>    ULONG HeapSegmentReserve;                                               <span class="hljs-comment">//0x78</span><br>    ULONG HeapSegmentCommit;                                                <span class="hljs-comment">//0x7c</span><br>    ULONG HeapDeCommitTotalFreeThreshold;                                   <span class="hljs-comment">//0x80</span><br>    ULONG HeapDeCommitFreeBlockThreshold;                                   <span class="hljs-comment">//0x84</span><br>    ULONG NumberOfHeaps;                                                    <span class="hljs-comment">//0x88</span><br>    ULONG MaximumNumberOfHeaps;                                             <span class="hljs-comment">//0x8c</span><br>    VOID** ProcessHeaps;                                                    <span class="hljs-comment">//0x90</span><br>    VOID* GdiSharedHandleTable;                                             <span class="hljs-comment">//0x94</span><br>    VOID* ProcessStarterHelper;                                             <span class="hljs-comment">//0x98</span><br>    ULONG GdiDCAttributeList;                                               <span class="hljs-comment">//0x9c</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">RTL_CRITICAL_SECTION</span>* <span class="hljs-title">LoaderLock</span>;</span>                               <span class="hljs-comment">//0xa0</span><br>    ULONG OSMajorVersion;                                                   <span class="hljs-comment">//0xa4</span><br>    ULONG OSMinorVersion;                                                   <span class="hljs-comment">//0xa8</span><br>    USHORT OSBuildNumber;                                                   <span class="hljs-comment">//0xac</span><br>    USHORT OSCSDVersion;                                                    <span class="hljs-comment">//0xae</span><br>    ULONG OSPlatformId;                                                     <span class="hljs-comment">//0xb0</span><br>    ULONG ImageSubsystem;                                                   <span class="hljs-comment">//0xb4</span><br>    ULONG ImageSubsystemMajorVersion;                                       <span class="hljs-comment">//0xb8</span><br>    ULONG ImageSubsystemMinorVersion;                                       <span class="hljs-comment">//0xbc</span><br>    ULONG ActiveProcessAffinityMask;                                        <span class="hljs-comment">//0xc0</span><br>    ULONG GdiHandleBuffer[<span class="hljs-number">34</span>];                                              <span class="hljs-comment">//0xc4</span><br>    VOID (*PostProcessInitRoutine)();                                       <span class="hljs-comment">//0x14c</span><br>    VOID* TlsExpansionBitmap;                                               <span class="hljs-comment">//0x150</span><br>    ULONG TlsExpansionBitmapBits[<span class="hljs-number">32</span>];                                       <span class="hljs-comment">//0x154</span><br>    ULONG SessionId;                                                        <span class="hljs-comment">//0x1d4</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span> _<span class="hljs-title">ULARGE_INTEGER</span> <span class="hljs-title">AppCompatFlags</span>;</span>                                   <span class="hljs-comment">//0x1d8</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span> _<span class="hljs-title">ULARGE_INTEGER</span> <span class="hljs-title">AppCompatFlagsUser</span>;</span>                               <span class="hljs-comment">//0x1e0</span><br>    VOID* pShimData;                                                        <span class="hljs-comment">//0x1e8</span><br>    VOID* AppCompatInfo;                                                    <span class="hljs-comment">//0x1ec</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">UNICODE_STRING</span> <span class="hljs-title">CSDVersion</span>;</span>                                      <span class="hljs-comment">//0x1f0</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">ACTIVATION_CONTEXT_DATA</span>* <span class="hljs-title">ActivationContextData</span>;</span>                 <span class="hljs-comment">//0x1f8</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">ASSEMBLY_STORAGE_MAP</span>* <span class="hljs-title">ProcessAssemblyStorageMap</span>;</span>                <span class="hljs-comment">//0x1fc</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">ACTIVATION_CONTEXT_DATA</span>* <span class="hljs-title">SystemDefaultActivationContextData</span>;</span>    <span class="hljs-comment">//0x200</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">ASSEMBLY_STORAGE_MAP</span>* <span class="hljs-title">SystemAssemblyStorageMap</span>;</span>                 <span class="hljs-comment">//0x204</span><br>    ULONG MinimumStackCommit;                                               <span class="hljs-comment">//0x208</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">FLS_CALLBACK_INFO</span>* <span class="hljs-title">FlsCallback</span>;</span>                                 <span class="hljs-comment">//0x20c</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">LIST_ENTRY</span> <span class="hljs-title">FlsListHead</span>;</span>                                         <span class="hljs-comment">//0x210</span><br>    VOID* FlsBitmap;                                                        <span class="hljs-comment">//0x218</span><br>    ULONG FlsBitmapBits[<span class="hljs-number">4</span>];                                                 <span class="hljs-comment">//0x21c</span><br>    ULONG FlsHighIndex;                                                     <span class="hljs-comment">//0x22c</span><br>    VOID* WerRegistrationData;                                              <span class="hljs-comment">//0x230</span><br>    VOID* WerShipAssertPtr;                                                 <span class="hljs-comment">//0x234</span><br>    VOID* pUnused;                                                          <span class="hljs-comment">//0x238</span><br>    VOID* pImageHeaderHash;                                                 <span class="hljs-comment">//0x23c</span><br>    <span class="hljs-class"><span class="hljs-keyword">union</span></span><br><span class="hljs-class">    &#123;</span><br>        ULONG TracingFlags;                                                 <span class="hljs-comment">//0x240</span><br>        <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">        &#123;</span><br>            ULONG HeapTracingEnabled:<span class="hljs-number">1</span>;                                     <span class="hljs-comment">//0x240</span><br>            ULONG CritSecTracingEnabled:<span class="hljs-number">1</span>;                                  <span class="hljs-comment">//0x240</span><br>            ULONG LibLoaderTracingEnabled:<span class="hljs-number">1</span>;                                <span class="hljs-comment">//0x240</span><br>            ULONG SpareTracingBits:<span class="hljs-number">29</span>;                                      <span class="hljs-comment">//0x240</span><br>        &#125;;<br>    &#125;;<br>    ULONGLONG CsrServerReadOnlySharedMemoryBase;                            <span class="hljs-comment">//0x248</span><br>    ULONG TppWorkerpListLock;                                               <span class="hljs-comment">//0x250</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">LIST_ENTRY</span> <span class="hljs-title">TppWorkerpList</span>;</span>                                      <span class="hljs-comment">//0x254</span><br>    VOID* WaitOnAddressHashTable[<span class="hljs-number">128</span>];                                      <span class="hljs-comment">//0x25c</span><br>&#125;; <br></code></pre></td></tr></table></figure>
+<h1>参考资料</h1>
+<p>一图流:</p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2867232_UQX698BZWQ7UZ8Y.jpg" srcset="/img/mokou.gif" lazyload alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-266678.htm#msg_header_h1_2">https://bbs.kanxue.com/thread-266678.htm#msg_header_h1_2</a></p>
+<p>微软未公开数据：（收藏收藏，包含API，结构体等信息）</p>
+<p><a target="_blank" rel="noopener" href="http://undocumented.ntinternals.net/">http://undocumented.ntinternals.net/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Re%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">Re学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/">#CTF</a>
+      
+        <a href="/tags/Re/">#Re</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/04/win%E5%BA%94%E7%94%A8%E5%B1%82%E5%8F%8D%E8%B0%83%E8%AF%95/" title="win应用层反调试">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">win应用层反调试</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/04/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E5%87%BD%E6%95%B002/" title="奇奇怪怪的函数02">
+                        <span class="hidden-mobile">奇奇怪怪的函数02</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

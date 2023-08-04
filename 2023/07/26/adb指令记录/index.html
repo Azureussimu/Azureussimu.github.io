@@ -302,7 +302,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="记在前面">记在前面</h1>
+                <h1>记在前面</h1>
 <p>本文旨在记录自己遇到用过的adb指令，方便日后查找</p>
 <div class="note note-info">
             <p>建议：使用本文档时，使用查找功能</p>
@@ -310,7 +310,7 @@
 <div class="note note-warning">
             <p>注：以下命令全部基于adb设置到环境变量之中</p>
           </div>
-<h1 id="adb指令非shell命令">adb指令(非shell命令)</h1>
+<h1>adb指令(非shell命令)</h1>
 <h2 id="安装app">安装app</h2>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">adb <span class="hljs-keyword">install</span> apk文件绝对路径<br></code></pre></td></tr></table></figure>
 <h2 id="卸载app">卸载app</h2>
@@ -351,11 +351,11 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">adb <span class="hljs-keyword">shell</span><span class="language-bash"> dumpsys meminfo 包名或者进程<span class="hljs-built_in">id</span></span><br></code></pre></td></tr></table></figure>
 <h2 id="清空应用数据">清空应用数据</h2>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">adb <span class="hljs-built_in">shell</span> pm <span class="hljs-keyword">clear</span> 包名<br></code></pre></td></tr></table></figure>
-<h1 id="shell命令">shell命令</h1>
+<h1>shell命令</h1>
 <p>绝大部分shell命令可以通过adb shell + [command]做到</p>
-<h2 id="安装app-1">安装app</h2>
+<h2 id="安装app-2">安装app</h2>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pm <span class="hljs-keyword">install</span> apk路径<br></code></pre></td></tr></table></figure>
-<h2 id="卸载app-1">卸载app</h2>
+<h2 id="卸载app-2">卸载app</h2>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">pm</span> uninstall 包名<br></code></pre></td></tr></table></figure>
 <h2 id="启动应用">启动应用</h2>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">am <span class="hljs-literal">start</span> -n 包名/包名.activity名称<br></code></pre></td></tr></table></figure>
@@ -370,9 +370,7 @@
 <h2 id="查看进程包名">查看进程包名</h2>
 <p>通过/proc/pid目录中的cmdline可以得到指定pid进程包名：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> cmdline<br></code></pre></td></tr></table></figure>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230726125921112.png" srcset="/img/mokou.gif" lazyload alt="image-20230726125921112" /><figcaption aria-hidden="true">image-20230726125921112</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230726125921112.png" srcset="/img/mokou.gif" lazyload alt="image-20230726125921112"></p>
 <p>本质是获得指定进程的cmd窗口内容</p>
 <p>对于proc目录的详情，请参考：<a target="_blank" rel="noopener" href="https://azureussimu.github.io/2023/07/26/proc%E7%9B%AE%E5%BD%95%E5%AD%A6%E4%B9%A0/">proc目录学习</a></p>
 <h2 id="进程查询">进程查询</h2>
@@ -383,57 +381,57 @@
 <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">ls [-a|<span class="hljs-type">-A</span>……] [filename|<span class="hljs-type">directory</span>]<br></code></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>参数</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-a</td>
 <td>显示指定目录下所有子目录与文件，包括隐藏文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-A</td>
-<td>显示指定目录下所有子目录与文件，包括隐藏文件，但不列出“.”、“..”</td>
+<td>显示指定目录下所有子目录与文件，包括隐藏文件，但不列出“.”、“…”</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-c</td>
 <td>按文件的修改时间排列</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-F</td>
 <td>在目录名后面标记“/”，可执行文件后面标记“*”，符号链接后面标记“@”，管道后面标记“</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-I</td>
 <td>以列表格式来显示文件的详细信息</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-L</td>
 <td>若指定文件为一个符号链接文件，则显示链接所指向的文件</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-o</td>
 <td>与-l选项相同，只是不显示拥有者的信息</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-r</td>
 <td>按字母逆序或最早优先的顺序显示输出结果</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-R</td>
 <td>递归式地显示指定目录的各个子目录中的文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-t</td>
 <td>按修改时间顺序显示输出结果</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-u</td>
 <td>按文件上次存取的时间显示输出结果</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-h</td>
 <td>文件大小按k、M、G为单位显示，与-l一起使用</td>
 </tr>
@@ -441,14 +439,14 @@
 </table>
 <p>备注：</p>
 <p>.（点） 表示当前目录</p>
-<p>..（点点） 表示上一级目录</p>
+<p>…（点点） 表示上一级目录</p>
 <h2 id="切换文件路径">切换文件路径</h2>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cd</span><span class="hljs-meta"> [directory]</span><br></code></pre></td></tr></table></figure>
 <p>cd ~：切换到家目录</p>
 <p>cd -：返回上一次操作目录</p>
-<p>cd ../：返回上一级目录</p>
+<p>cd …/：返回上一级目录</p>
 <p>注：如果单独使用cd命令，用户将返回到自己的主目录中，如果cd命令的目标路径不正确，系统会提示“没有这个文件或目录”，否则就从当前位置跳转到目标位置。目标路径名可以是绝对路径，也可以是相对路径。使用绝对路径，无论用户当前处在什么位置，只要是授权用户，就可以转移到指定目录中；使用相对路径时，cd命令以当前位置为起点，跳转到指定目录中。因此，这就需要用户事先明确自己所处的位置。</p>
-<h2 id="创建普通文件更新访问文件的时间">创建普通文件、更新访问文件的时间</h2>
+<h2 id="创建普通文件、更新访问文件的时间">创建普通文件、更新访问文件的时间</h2>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">touch</span><span class="hljs-meta"> [filename]</span><br></code></pre></td></tr></table></figure>
 <p>如果文件不存在，就创建该文件</p>
 <p>如果文件存在，就更新文件的时间</p>
@@ -458,25 +456,25 @@
 <p>rm dir/ -r：删除一个目录，-r表示递归地删除目录</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>参数</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-f</td>
 <td>非交互模式的删除操作，忽略不存在的文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-i</td>
 <td>交互模式的删除操作。在删除目标文件之前将给出提示，要求用户确认，回答“y”表示目标文件将被删除</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-r</td>
 <td>若源文件是一个目录，rm命令将递归地删除该目录下的所有子目录和文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-v</td>
 <td>显示详细的删除过程</td>
 </tr>
@@ -486,33 +484,33 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">cp <span class="hljs-selector-attr">[-a|-d……]</span> <span class="hljs-selector-attr">[SOURSE]</span> <span class="hljs-selector-attr">[DEST]</span><br></code></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>参数</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-a</td>
 <td>该选项通常在拷贝目录时使用，保留链接、文件属性，并递归地拷贝目录，其作用等于dpr选项的组合</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-d</td>
 <td>拷贝时保留链接</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-f</td>
 <td>非交互模式的复制操作。覆盖已经存在的目标文件而不提示</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-i</td>
 <td>交互模式的复制操作，与-f选项相反。在覆盖目标文件之前将给出提示，要求用户确认，回答“y”表示目标文件将被覆盖</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-p</td>
 <td>除复制源文件内容外，还将其修改时间和访问权限也同时复制</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-r</td>
 <td>若源文件是一个目录，cp命令将递归地复制该目录下的所有子目录和文件</td>
 </tr>
@@ -522,21 +520,21 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">mv <span class="hljs-selector-attr">[-i|-f|-v]</span> <span class="hljs-selector-attr">[SOURSE]</span> <span class="hljs-selector-attr">[DEST]</span><br></code></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>参数</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-f</td>
 <td>非交互模式的移动操作。覆盖已经存在的目标文件而不提示</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-i</td>
 <td>交互模式的移动操作。在覆盖目标文件之前将给出提示，要求用户确认，回答“y”表示目标文件将被覆盖</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-v</td>
 <td>显示详细的移动过程</td>
 </tr>
@@ -558,7 +556,7 @@
 <p>x：可执行</p>
 <p>将文件的权限用3个八进制数来表示，可以更方便地修改多个权限，例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs example">rwx	r-x	r-x			<br>111 101 101 (755) <br><br>rw-	r--	r--<br>110 100 100 (644)<br></code></pre></td></tr></table></figure>
-<p>chmod 644 file 将file的权限改成rw- r-- r--</p>
+<p>chmod 644 file 将file的权限改成rw- r-- r–</p>
 <p>chmod 755 file 将file的权限改成rwx r-x r-x</p>
 <p>chmod 777 file 使文件获取所有权限</p>
 
