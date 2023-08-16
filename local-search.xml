@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>z3-solver</title>
+    <link href="/2023/08/16/z3-solver/"/>
+    <url>/2023/08/16/z3-solver/</url>
+    
+    <content type="html"><![CDATA[<p>就记录个z3顺序输出</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> z3 <span class="hljs-keyword">import</span> *<br><br>s = Solver()<br>flag = [BitVec(<span class="hljs-string">&quot;&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i), <span class="hljs-number">8</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">23</span>)]<br><br><span class="hljs-keyword">if</span> s.check() == sat:<br>    m = s.model()<br>    result = [<span class="hljs-built_in">int</span>(<span class="hljs-built_in">str</span>(m[each]), <span class="hljs-number">10</span>) <span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> flag]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">bytes</span>(result))<br><br></code></pre></td></tr></table></figure><p>BitVec类型不能直接转int，但是可以通过转str再转int。。。。。</p><p>真sb</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>语言知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF</tag>
+      
+      <tag>Re tools</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>BUU2023-07</title>
     <link href="/2023/08/04/BUU2023-07/"/>
     <url>/2023/08/04/BUU2023-07/</url>
