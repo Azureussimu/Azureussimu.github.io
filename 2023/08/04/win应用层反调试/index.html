@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/blogimg/WinDefendDebug.jpg">
 <meta property="article:published_time" content="2023-08-04T08:01:37.000Z">
-<meta property="article:modified_time" content="2023-08-04T09:01:19.875Z">
+<meta property="article:modified_time" content="2023-09-07T15:22:37.751Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Re">
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          7.3k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          18 分钟
+          61 分钟
         
       </span>
     
@@ -390,27 +390,113 @@
             
               <div class="markdown-body">
                 
-                <h1>0x01 PEB相关标志位反调试</h1>
+                <h1 id="x01-peb相关标志位反调试">0x01 PEB相关标志位反调试</h1>
 <p>简单的获取当前进程的PEB结构体地址的方法：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _WIN64</span><br>PPEB pPeb = (PPEB)__readfsdword(<span class="hljs-number">0x30</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>PPEB pPeb = (PPEB)__readgsqword(<span class="hljs-number">0x60</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// _WIN64</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="1-1-IsDebuggerPresent">1.1 IsDebuggerPresent</h2>
+<h2 id="isdebuggerpresent">1.1 IsDebuggerPresent</h2>
 <p>底层原理就是返回PEB结构中BeingDebugged位的值，当有调试器附加的时候BeingDebugged位被置为1。</p>
-<h2 id="1-2-NtGlobalFlag">1.2 NtGlobalFlag</h2>
+<h2 id="ntglobalflag">1.2 NtGlobalFlag</h2>
 <p>附加一个调试器并不改变NtGlobalFlag的值。但是如果进程是由调试器创建的，则将设置以下标志：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">FLG_HEAP_ENABLE_TAIL_CHECK</span> (<span class="hljs-number">0</span>x10)<br><span class="hljs-attribute">FLG_HEAP_ENABLE_FREE_CHECK</span> (<span class="hljs-number">0</span>x20)<br><span class="hljs-attribute">FLG_HEAP_VALIDATE_PARAMETERS</span> (<span class="hljs-number">0</span>x40)<br><br><span class="hljs-attribute">NtGlobalFlag</span>值：<br><span class="hljs-attribute">0000</span> <span class="hljs-number">0000</span> <span class="hljs-number">0111</span> <span class="hljs-number">0000</span><br></code></pre></td></tr></table></figure>
 <p>例子：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> FLG_HEAP_ENABLE_TAIL_CHECK   0x10</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FLG_HEAP_ENABLE_FREE_CHECK   0x20</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FLG_HEAP_VALIDATE_PARAMETERS 0x40</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> NT_GLOBAL_FLAG_DEBUGGED (FLG_HEAP_ENABLE_TAIL_CHECK | FLG_HEAP_ENABLE_FREE_CHECK | FLG_HEAP_VALIDATE_PARAMETERS)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _WIN64</span><br>PPEB pPeb = (PPEB)__readfsdword(<span class="hljs-number">0x30</span>);<br>DWORD dwNtGlobalFlag = *(PDWORD)((PBYTE)pPeb + <span class="hljs-number">0x68</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>PPEB pPeb = (PPEB)__readgsqword(<span class="hljs-number">0x60</span>);<br>DWORD dwNtGlobalFlag = *(PDWORD)((PBYTE)pPeb + <span class="hljs-number">0xBC</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// _WIN64</span></span><br> <br><span class="hljs-keyword">if</span> (dwNtGlobalFlag &amp; NT_GLOBAL_FLAG_DEBUGGED)<br>    <span class="hljs-keyword">do</span> something...<br></code></pre></td></tr></table></figure>
-<h2 id="1-3-Heap-Flag">1.3 Heap Flag</h2>
+<p><code>NtGlobalFlag</code>的汇编代码如下，如果返回值为<code>0x70</code>则程序处于调试状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs asm">mov eax, fs:[30h] ;Process Environment Block<br>mov al, [eax+68h] ;NtGlobalFlag<br>and al, 70h<br>cmp al, 70h<br>je being_debugged<br></code></pre></td></tr></table></figure>
+<p>相应函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">CheckNtGlobalFlag</span><span class="hljs-params">()</span><br>&#123;<br>    BOOL IsDebug = FALSE;<br><br>    DWORD NtGlobalFlag = <span class="hljs-number">0</span>;<br>    __asm<br>    &#123;<br>        mov eax, fs:[<span class="hljs-number">0x30</span>]<br>        mov eax, [eax + <span class="hljs-number">0x68</span>]<br>        mov NtGlobalFlag, eax<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (NtGlobalFlag == <span class="hljs-number">0x70</span>)<br>    &#123;<br>        IsDebug = TRUE;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> IsDebug;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="heap-flag">1.3 Heap Flag</h2>
 <p>在PEB的ProcessHeap位指向_HEAP结构体，该结构体中有俩个字段会受到调试器的影响，具体如何影响，取决于Windows的版本，主要是修改原始的内容，这两个字段是Flags和ForceFlags。</p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230804165127921.png" srcset="/img/mokou.gif" lazyload alt="image-20230804165127921"></p>
-<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230804165135540.png" srcset="/img/mokou.gif" lazyload alt="image-20230804165135540"></p>
-<p>例子： Win10 x86环境</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c">BOOL <span class="hljs-title function_">CheckHeapFlagsDebug</span><span class="hljs-params">()</span><br>&#123;<br>    PPEB pPeb = (PPEB)__readfsdword(<span class="hljs-number">0x30</span>);<br>    PVOID pHeapBase = (PVOID)(*(PDWORD_PTR)((PBYTE)pPeb + <span class="hljs-number">0x18</span>));<br>    DWORD dwHeapFlagsOffset = <span class="hljs-number">0x40</span>;<br>    DWORD dwHeapForceFlagsOffset = <span class="hljs-number">0x44</span>;<br>    <br>    PDWORD pdwHeapFlags = (PDWORD)((PBYTE)pHeapBase + dwHeapFlagsOffset);<br>    PDWORD pdwHeapForceFlags = (PDWORD)((PBYTE)pHeapBase + dwHeapForceFlagsOffset);<br>    <br>    <span class="hljs-comment">//HEAP_GROWABLE (2)</span><br>    <span class="hljs-keyword">return</span> (*pdwHeapFlags &amp; ~HEAP_GROWABLE) || (*pdwHeapForceFlags != <span class="hljs-number">0</span>); <br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="1-4-堆magic-标志">1.4 堆magic 标志</h2>
-<p>当进程被调试器调试时该进程堆会被一些特殊的标志填充，这些特殊标记分别是0xABABABAB , 0xFEEEFEEE。在调试模式下， NtGlobalFlag的HEAP_TAIL_CHECKING_ENABLED 标志将被默认设置，堆内存分配会在末尾追加 0xABABABAB标志进行安全检查，如果NtGlobalFlag设置了HEAP_FREE_CHECKING_ENABLED标志，那么当需要额外的字节来填充堆块尾部时, 就会使用0xFEEEFEEE(或一部分) 来填充。<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-process_heap_entry">微软PROCESS_HEAP_ENTRY结构文档</a></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230804165127921.png" srcset="/img/mokou.gif" lazyload alt="image-20230804165127921" /><figcaption aria-hidden="true">image-20230804165127921</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20230804165135540.png" srcset="/img/mokou.gif" lazyload alt="image-20230804165135540" /><figcaption aria-hidden="true">image-20230804165135540</figcaption>
+</figure>
+<p><code>Flags and ForceFlags</code>的值通常分别设置为<code>HEAP_GROWABLE</code>和<code>0</code>。</p>
+<p>在 64 位 Windows XP 和 Windows Vista 及更高版本上，如果存在调试器，则 Flags 字段将设置为以下标志的组合：</p>
+<ul>
+<li><code>HEAP_GROWABLE (2)</code></li>
+<li><code>HEAP_TAIL_CHECKING_ENABLED (0x20)</code></li>
+<li><code>HEAP_FREE_CHECKING_ENABLED (0x40)</code></li>
+<li><code>HEAP_VALIDATE_PARAMETERS_ENABLED (0x40000000)</code></li>
+</ul>
+<p>当存在调试器时，ForceFlags 字段设置为以下标志的组合：</p>
+<ul>
+<li><code>HEAP_TAIL_CHECKING_ENABLED (0x20)</code></li>
+<li><code>HEAP_FREE_CHECKING_ENABLED (0x40)</code></li>
+<li><code>HEAP_VALIDATE_PARAMETERS_ENABLED (0x40000000)</code></li>
+</ul>
+<p>例子： Win10 x86环境 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c">BOOL <span class="hljs-title function_">CheckHeapFlagsDebug</span><span class="hljs-params">()</span><br>&#123;<br>    PPEB pPeb = (PPEB)__readfsdword(<span class="hljs-number">0x30</span>);<br>    PVOID pHeapBase = (PVOID)(*(PDWORD_PTR)((PBYTE)pPeb + <span class="hljs-number">0x18</span>));<br>    DWORD dwHeapFlagsOffset = <span class="hljs-number">0x40</span>;<br>    DWORD dwHeapForceFlagsOffset = <span class="hljs-number">0x44</span>;<br>    <br>    PDWORD pdwHeapFlags = (PDWORD)((PBYTE)pHeapBase + dwHeapFlagsOffset);<br>    PDWORD pdwHeapForceFlags = (PDWORD)((PBYTE)pHeapBase + dwHeapForceFlagsOffset);<br>    <br>    <span class="hljs-comment">//HEAP_GROWABLE (2)</span><br>    <span class="hljs-keyword">return</span> (*pdwHeapFlags &amp; ~HEAP_GROWABLE) || (*pdwHeapForceFlags != <span class="hljs-number">0</span>); <br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h2 id="堆保护">1.4 堆保护</h2>
+<p>当进程被调试器调试时该进程堆会被一些特殊的标志填充，这些特殊标记分别是0xABABABAB , 0xFEEEFEEE。</p>
+<p>在调试模式下， NtGlobalFlag的HEAP_TAIL_CHECKING_ENABLED 标志将被默认设置，堆内存分配会在末尾追加 0xABABABAB标志进行安全检查，如果NtGlobalFlag设置了HEAP_FREE_CHECKING_ENABLED标志，那么当需要额外的字节来填充堆块尾部时, 就会使用0xFEEEFEEE(或一部分) 来填充。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-process_heap_entry">微软PROCESS_HEAP_ENTRY结构文档</a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c">BOOL <span class="hljs-title function_">CheckHeapMagic</span><span class="hljs-params">()</span><br>&#123;<br>    PROCESS_HEAP_ENTRY HeapEntry = &#123; <span class="hljs-number">0</span> &#125;;<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (!HeapWalk(GetProcessHeap(), &amp;HeapEntry))<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125; <span class="hljs-keyword">while</span> (HeapEntry.wFlags != PROCESS_HEAP_ENTRY_BUSY);<br><br>    PVOID pOverlapped = (PBYTE)HeapEntry.lpData + HeapEntry.cbData;<br>    <span class="hljs-keyword">return</span> ((DWORD)(*(PDWORD)pOverlapped) == <span class="hljs-number">0xABABABAB</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1>未完工</h1>
-<p><a target="_blank" rel="noopener" href="https://jev0n.com/2021/11/18/debug-1.html">https://jev0n.com/2021/11/18/debug-1.html</a></p>
+<hr />
+<h1 id="x02-threadhidefromdebugger线程属性反调试">0x02 ThreadHideFromDebugger线程属性反调试</h1>
+<h2 id="zwsetinformationthread反调试">2.1 ZwSetInformationThread反调试</h2>
+<p><code>ThreadHideFromDebugger</code>是线程的一个属性值：</p>
+<p>​ 当线程具备该特性时则该线程对“调试器”隐藏(一般是主线程)，能够使得主线程无法继续接受该线程的调试事件。</p>
+<div class="note note-info">
+            <p>如果线程设置了ThreadHideFromDebugger那么当断点等调试事件触发时调试器表现为卡死。</p>
+          </div>
+<p>线程启动后可以通过<code>ZwSetInformationThread()</code>函数来设置，该函数动态加载自<code>ntdll.dll</code>文件，以下是函数声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C">NTSYSAPI NTSTATUS <span class="hljs-title function_">ZwSetInformationThread</span><span class="hljs-params">(</span><br><span class="hljs-params">  [in] HANDLE          ThreadHandle,</span><br><span class="hljs-params">  [in] THREADINFOCLASS ThreadInformationClass,</span><br><span class="hljs-params">  [in] PVOID           ThreadInformation,</span><br><span class="hljs-params">  [in] ULONG           ThreadInformationLength</span><br><span class="hljs-params">)</span>;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-zwsetinformationthread">官方文档</a></p>
+<p>该函数用于设置线程的优先级，<a target="_blank" rel="noopener" href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/api/ps/psquery/class.htm">ThreadInfomationClass</a>的值可以搜索</p>
+<p>原理：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2049aa7290cc1f7b23678b2ad8d799d2.png" srcset="/img/mokou.gif" lazyload alt="049aa7290cc1f7b23678b2ad8d799d2" /><figcaption aria-hidden="true">049aa7290cc1f7b23678b2ad8d799d2</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo204739db9b7cc0b73e687e531ae8b345.png" srcset="/img/mokou.gif" lazyload alt="04739db9b7cc0b73e687e531ae8b345" /><figcaption aria-hidden="true">04739db9b7cc0b73e687e531ae8b345</figcaption>
+</figure>
+<p>将HideFromDebugger的值置1，从而实现反调试。</p>
+<p>别人的反反调试：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2fdfad3653cd4d850494e556cee18aa1.png" srcset="/img/mokou.gif" lazyload alt="fdfad3653cd4d850494e556cee18aa1" /><figcaption aria-hidden="true">fdfad3653cd4d850494e556cee18aa1</figcaption>
+</figure>
+<p>把对应位置置0.</p>
+<p>调用例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Windows.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">DWORD</span><span class="hljs-params">(WINAPI* ZW_SET_INFORMATION_THREAD)</span> <span class="hljs-params">(HANDLE, DWORD, PVOID, ULONG)</span>;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ThreadHideFromDebugger 0x11</span><br>VOID <span class="hljs-title function_">DisableDebugEvent</span><span class="hljs-params">(VOID)</span><br>&#123;<br>    HINSTANCE hModule;<br>    ZW_SET_INFORMATION_THREAD ZwSetInformationThread;<br>    hModule = GetModuleHandleA(<span class="hljs-string">&quot;Ntdll&quot;</span>);<br>    ZwSetInformationThread = (ZW_SET_INFORMATION_THREAD)GetProcAddress(hModule, <span class="hljs-string">&quot;ZwSetInformationThread&quot;</span>);<br>    ZwSetInformationThread(GetCurrentThread(), ThreadHideFromDebugger, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Begin\n&quot;</span>);<br>    DisableDebugEvent();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;End\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="ntcreatethreadex反调试">2.2 NtCreateThreadEx反调试</h2>
+<p>Windows Vista新引入了NtCreateThreadEx函数，以下是函数声明：</p>
+<p>在32位下和64位下函数原型不一致</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c">NTSTATUS NTAPI <span class="hljs-title function_">NtCreateThreadEx</span> <span class="hljs-params">(</span><br><span class="hljs-params">    _Out_    PHANDLE              ThreadHandle,</span><br><span class="hljs-params">    _In_     ACCESS_MASK          DesiredAccess,</span><br><span class="hljs-params">    _In_opt_ POBJECT_ATTRIBUTES   ObjectAttributes,</span><br><span class="hljs-params">    _In_     HANDLE               ProcessHandle,</span><br><span class="hljs-params">    _In_     PVOID                StartRoutine,</span><br><span class="hljs-params">    _In_opt_ PVOID                Argument,</span><br><span class="hljs-params">    _In_     ULONG                CreateFlags,</span><br><span class="hljs-params">    _In_opt_ ULONG_PTR            ZeroBits,</span><br><span class="hljs-params">    _In_opt_ SIZE_T               StackSize,</span><br><span class="hljs-params">    _In_opt_ SIZE_T               MaximumStackSize,</span><br><span class="hljs-params">    _In_opt_ PVOID                AttributeList</span><br><span class="hljs-params">)</span>;<br></code></pre></td></tr></table></figure>
+<p>其中CreateFlags可以使用如下标志：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_CREATE_SUSPENDED 0x00000001</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_SKIP_THREAD_ATTACH 0x00000002</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_HIDE_FROM_DEBUGGER 0x00000004</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_HAS_SECURITY_DESCRIPTOR 0x00000010</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_ACCESS_CHECK_IN_TARGET 0x00000020</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> THREAD_CREATE_FLAGS_INITIAL_THREAD 0x00000080</span><br></code></pre></td></tr></table></figure>
+<p>​ 如果新线程设置了<code>THREAD_CREATE_FLAGS_HIDE_FROM_DEBUGGER</code>标志，那么在创建时就可以向调试器隐藏该线程信息，这与<code>NtSetInformationThread</code>函数设置的<code>ThreadHideFromDebugger</code>相同。负责安全任务的代码可以在设置<code>THREAD_CREATE_FLAGS_HIDE_FROM_DEBUGGER</code>标志的线程中执行。</p>
+<hr />
+<h1 id="x03-ntqueryinformationprocess函数反调试">0x03 NtQueryInformationProcess函数反调试</h1>
+<p>NtQueryInformationProcess函数是操作系统中十分有用的一个关键函数，可以用来查找进程的很多相关信息。以下是函数声明：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">NTSTATUS NTAPI NtQueryInformationProcess(<br><span class="hljs-string">  [in]</span>            HANDLE           ProcessHandle,<br><span class="hljs-string">  [in]</span>            PROCESSINFOCLASS ProcessInformationClass,<br><span class="hljs-string">  [out]</span>           PVOID            ProcessInformation,<br><span class="hljs-string">  [in]</span>            ULONG            ProcessInformationLength,<br><span class="hljs-string">  [out, optional]</span> PULONG           ReturnLength<br>);<br></code></pre></td></tr></table></figure>
+<p>[官方文档][https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess]</p>
+<p>第一个参数表明待查询的目标进程句柄，而第二个参数则是标明查询的信息种类。</p>
+<p>PROCESSINFOCALASS是一个枚举类型，能查询近百种信息，其中以下四种信息是最常见可用于检测调试器的存在。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">ProcessDebugPort            <span class="hljs-comment">// 0x7</span><br>ProcessDebugFlags            <span class="hljs-comment">// 0x1F</span><br>ProcessDebugObjectHandle    <span class="hljs-comment">// 0x1E</span><br>ProcessBasicInformation        <span class="hljs-comment">// 0x0</span><br></code></pre></td></tr></table></figure>
+<h2 id="checkremotedebuggerpresent函数">3.1 CheckRemoteDebuggerPresent函数</h2>
+<p>ProcessDebugPort端口是Windows调试子系统依赖的一个数据结构，可以通过检测调试端口的方式来检测进程是否被调试。</p>
+<p>在CheckRemoteDebuggerPresent函数内部就是调用NtQueryInformationProcess函数查询<strong>ProcessDebugPort</strong>信息，判断目标进程是否在调试状态，没有调试器的时候值为0。</p>
+<h2 id="processdebugobjecthandle">3.2 ProcessDebugObjectHandle</h2>
+<p>ProcessDebugObjectHandle的内容为调试对象的句柄，没有调试器的时候值为0，以下为示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">DWORD bDebugger = <span class="hljs-number">-1</span>;<br>NTSTATUS status = NtQueryInformationProcess(<br>                GetCurrentProcess(),        <span class="hljs-comment">// 进程句柄</span><br>                <span class="hljs-number">0x1E</span>,                        <span class="hljs-comment">// 要检索的进程信息类型，ProcessDebugObjectHandle</span><br>                &amp;bDebugger,                    <span class="hljs-comment">// 接收进程信息的缓冲区指针</span><br>                <span class="hljs-keyword">sizeof</span>(DWORD),                <span class="hljs-comment">// 缓冲区大小</span><br>                <span class="hljs-literal">NULL</span>                        <span class="hljs-comment">// 实际返回进程信息的大小</span><br>                );<br></code></pre></td></tr></table></figure>
+<h2 id="processdebugflags反调试">3.3 ProcessDebugFlags反调试</h2>
+<p>进程调试标志位，当程序处于调试状态的时候ProcessDebugFlags = 0，以下为示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">DWORD bDebugger = <span class="hljs-number">0</span>;<br>NTSTATUS status = NtQueryInformationProcess(<br>                GetCurrentProcess(),        <span class="hljs-comment">// 进程句柄</span><br>                <span class="hljs-number">0x1F</span>,                        <span class="hljs-comment">// 要检索的进程信息类型，ProcessDebugFlags</span><br>                &amp;bDebugger,                    <span class="hljs-comment">// 接收进程信息的缓冲区指针</span><br>                <span class="hljs-keyword">sizeof</span>(DWORD),                <span class="hljs-comment">// 缓冲区大小</span><br>                <span class="hljs-literal">NULL</span>                        <span class="hljs-comment">// 实际返回进程信息的大小</span><br>                );<br></code></pre></td></tr></table></figure>
+<h2 id="processbasicinformation反调试">3.4 ProcessBasicInformation反调试</h2>
+<p>当使用ProcessBasicInformation标志调用NtQueryInformationProcess函数时，将返回<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess#process_basic_information">PROCESS_BASIC_INFORMATION</a>结构，以下是在官方定义的基础上进行完整化的结构信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">PROCESS_BASIC_INFORMATION</span> </span><br><span class="hljs-class">&#123;</span><br>      DWORD ExitStatus;                     <span class="hljs-comment">// 接收进程终止状态</span><br>      DWORD PebBaseAddress;                 <span class="hljs-comment">// 接收进程环境块地址(PEB)</span><br>      DWORD AffinityMask;                     <span class="hljs-comment">// 接收进程关联掩码</span><br>      DWORD BasePriority;                     <span class="hljs-comment">// 接收进程的优先级类</span><br>      ULONG UniqueProcessId;                 <span class="hljs-comment">// 接收进程ID</span><br>      ULONG InheritedFromUniqueProcessId;     <span class="hljs-comment">// 接收父进程ID</span><br>&#125; PROCESS_BASIC_INFORMATION;<br></code></pre></td></tr></table></figure>
+<p>通过这个标志我们就可以获得<strong>父进程ID</strong>(Reserved3)，后续在通过OpenProcess获取父进程句柄，调用GetProcessImageFileName获得父进程名进行比较即可判断是否被调试。</p>
+<hr />
+<h1 id="x04-基于时间的反调试">0x04 基于时间的反调试</h1>
+<p>在现代计算机中一段代码的执行通常不会消耗很多时间，但是如果程序处于调试状态，则他的执行时间就不可控了。这种检测本质就是通过获取时间的函数比较时间差进程检测。</p>
+<hr />
+<h1 id="x05-基于异常处理的反调试">0x05 基于异常处理的反调试</h1>
+<p>Windows的异常处理流程大致为：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 交给调试器(进程必须被调试)<br><span class="hljs-bullet">2.</span> 执行VEH<br><span class="hljs-bullet">3.</span> 执行SEH<br><span class="hljs-bullet">4.</span> TopLevelEH(进程被调试时不会被执行)<br><span class="hljs-bullet">5.</span> 交给调试器(上面的异常处理都说处理不了，就再次交给调试器)<br><span class="hljs-bullet">6.</span> 调用异常端口通知csrss.exe<br></code></pre></td></tr></table></figure>
+<h1 id="未完待续">未完待续</h1>
+<p>https://www.anquanke.com/post/id/179709</p>
+<p>https://www.anquanke.com/post/id/179710</p>
 
                 
               </div>
