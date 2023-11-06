@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/blogimg/52pjAndroid.png">
 <meta property="article:published_time" content="2023-11-05T06:37:03.000Z">
-<meta property="article:modified_time" content="2023-11-05T15:47:37.061Z">
+<meta property="article:modified_time" content="2023-11-06T06:32:39.514Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.7k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          27 分钟
+          31 分钟
         
       </span>
     
@@ -541,6 +541,23 @@
 <img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo21699199120877.png" srcset="/img/mokou.gif" lazyload alt="1699199120877" /><figcaption aria-hidden="true">1699199120877</figcaption>
 </figure>
 <p>应该能做到执行到某个地方返回寄存器的值，回头试一试。</p>
+<hr />
+<p>2023/11/6 更新</p>
+<p>中午试了试：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106142849488.png" srcset="/img/mokou.gif" lazyload alt="image-20231106142849488" /><figcaption aria-hidden="true">image-20231106142849488</figcaption>
+</figure>
+<p>分析知道是和最后的base64的返回值做比较，那就hook这个base64：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106142942681.png" srcset="/img/mokou.gif" lazyload alt="image-20231106142942681" /><figcaption aria-hidden="true">image-20231106142942681</figcaption>
+</figure>
+<p>发现是自己写的base64，那就简单好hook了，hook脚本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. start hook&quot;</span>);<br>    <span class="hljs-keyword">const</span> base64 = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.zj.wuaipojie.util.Base64Utils&quot;</span>);<br>    <span class="hljs-keyword">if</span>(base64 != <span class="hljs-literal">undefined</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. find class!&quot;</span>);<br>        base64.<span class="hljs-property">encodeToString</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">bArr</span>)&#123;<br>            <span class="hljs-keyword">var</span> res = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">encodeToString</span>(bArr);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;base64结果: &quot;</span>+res);<br><br>            <span class="hljs-keyword">return</span> res;<br>        &#125;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>hook结果：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106143130794.png" srcset="/img/mokou.gif" lazyload alt="image-20231106143130794" /><figcaption aria-hidden="true">image-20231106143130794</figcaption>
+</figure>
+<p>得到了base64。酷，这很符合我对frida的想像。</p>
 <hr />
 <p>今天的安卓就学到这了（</p>
 
