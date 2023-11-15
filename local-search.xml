@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>UML图六种箭头的含义</title>
+    <link href="/2023/11/15/UML%E5%9B%BE%E5%85%AD%E7%A7%8D%E7%AE%AD%E5%A4%B4%E7%9A%84%E5%90%AB%E4%B9%89/"/>
+    <url>/2023/11/15/UML%E5%9B%BE%E5%85%AD%E7%A7%8D%E7%AE%AD%E5%A4%B4%E7%9A%84%E5%90%AB%E4%B9%89/</url>
+    
+    <content type="html"><![CDATA[<h1>泛化</h1><p><strong>概念：<strong>泛化是一种</strong>一般与特殊</strong>、<strong>一般与具体</strong>之间关系的描述，具体描述建立在一般描述的基础之上，并对其进行了扩展。在java中用来表示继承的关系。</p><p>**表示方法：**用实线空心三角箭头表示。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207233944733.png" alt="img"></p><h1>实现</h1><p><strong>概念：<strong>实现是一种</strong>类与接口</strong>的关系，表示类是接口所有特征和行为的实现，在程序中一般通过类实现接口来描述</p><p>**表示方法：**空心三角形箭头的虚线，实现类指向接口</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207234002462.png" alt="img"></p><h1>依赖</h1><p><strong>概念：<strong>是一种</strong>使用</strong>的关系，即一个类的实现需要另一个类的协助。</p><p>java中，方法参数需要传入另一个类的对象，就表示依赖这个类。</p><p><strong>表示方法</strong>：虚线箭头，类A指向类B。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207234015353.png" alt="img"></p><h1>关联</h1><p>**概念：**表示类与类之间的联接,它使一个类知道另一个类的属性和方法，这种关系比依赖更强、不存在依赖关系的偶然性、关系也不是临时性的，一般是长期性的。</p><p>java中一个类的全局变量引用了另一个类，就表示关联了这个类</p><p>**表示方法：**实线箭头，类A指向类B</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207234027556.png" alt="img"></p><h1><strong>聚合</strong></h1><p><strong>概念</strong>：聚合关联关系的一种特例，是强的关联关系。聚合是整体和个体之间的关系，即has-a的关系，整体与个体可以具有各自的生命周期，部分可以属于多个整体对象，也可以为多个整体对象共享。程序中聚合和关联关系是一致的，只能从语义级别来区分；</p><p><strong>表示方法</strong>：尾部为空心菱形的实线箭头（也可以没箭头），类A指向类B<br><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207234036928.png" alt="img"></p><h1>组合</h1><p><strong>概念</strong>：组合也是关联关系的一种特例。组合是一种整体与部分的关系，即contains-a的关系，比聚合更强。部分与整体的生命周期一致，整体的生命周期结束也就意味着部分的生命周期结束，组合关系不能共享。程序中组合和关联关系是一致的，只能从语义级别来区分。</p><p><strong>表示方法</strong>：尾部为实心菱形的实现箭头（也可以没箭头），类A指向类B<br><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo220190207234045776.png" alt="img"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>UML</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>UML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>安卓那档事03</title>
+    <link href="/2023/11/06/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B03/"/>
+    <url>/2023/11/06/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B03/</url>
+    
+    <content type="html"><![CDATA[<h1>校验</h1><p>是开发者在数据传送时采用的一种校正数据的一种方式</p><p>常见的校验有:签名校验(最常见)、dexcrc校验、apk完整性校验、路径文件校验等</p><h1>APK签名</h1><p>通过对 Apk 进行签名，开发者可以证明对 Apk 的所有权和控制权，可用于安装和更新其应用。而在 Android 设备上的安装 Apk ，如果是一个没有被签名的 Apk，则会被拒绝安装。在安装 Apk 的时候，软件包管理器也会验证 Apk 是否已经被正确签名，并且通过签名证书和数据摘要验证是否合法没有被篡改。只有确认安全无篡改的情况下，才允许安装在设备上。</p><div class="note note-info">            <p>简单来说，APK 的签名主要作用有两个：</p><ol><li>证明 APK 的所有者。</li><li>允许 Android 市场和设备校验 APK 的正确性。</li></ol>          </div><p>Android 目前支持以下四种应用签名方案：</p><ul><li>v1 方案：基于 JAR 签名。</li><li>v2 方案：APK 签名方案 v2（在 Android 7.0 中引入）</li><li>v3 方案：APK 签名方案 v3（在 Android 9 中引入）</li><li>v4 方案：APK 签名方案 v4（在 Android 11 中引入）</li></ul><h2 id="V1-签名的机制">V1 签名的机制</h2><p>主要就在 META-INF 目录下的三个文件，MANIFEST.MF，ANDROID.SF，ANDROID.RSA，他们都是 V1 签名的产物。</p><ol><li><strong>MANIFEST.MF</strong>：这是摘要文件。程序遍历Apk包中的所有文件(entry)，对非文件夹非签名文件的文件，逐个用SHA1(安全哈希算法)生成摘要信息，再用Base64进行编码。如果你改变了apk包中的文件，那么在apk安装校验时，改变后的文件摘要信息与MANIFEST.MF的检验信息不同，于是程序就不能成功安装。</li></ol><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106210452143.png" alt="image-20231106210452143"></p><ol start="2"><li><p><strong>ANDROID.SF</strong>：这是对摘要的签名文件。对前一步生成的MANIFEST.MF，使用SHA1-RSA算法，用开发者的私钥进行签名。在安装时只能使用公钥才能解密它。解密之后，将它与未加密的摘要信息（即，MANIFEST.MF文件）进行对比，如果相符，则表明内容没有被异常修改。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106210522321.png" alt="image-20231106210522321"></p></li><li><p><strong>ANDROID.RSA</strong>文件中保存了公钥、所采用的加密算法等信息。</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20231106210549881.png" alt="image-20231106210549881"></p></li></ol><div class="note note-info">            <p>在某些情况下，直接对apk进行v1签名可以绕过apk的签名校验</p><p>v2方案会将 APK 文件视为 blob，并对整个文件进行签名检查。对 APK 进行的任何修改（包括对 ZIP 元数据进行的修改）都会使 APK 签名作废。这种形式的 APK 验证不仅速度要快得多，而且能够发现更多种未经授权的修改。</p>          </div><h1>今日的frida</h1><p>之前还在想，我要是用log插桩或者作者本来有写log的，怎么得到这个log内容，这下在github上找到了个，现在是我的辣（）</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. start hook&quot;</span>)<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Log</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;android.util.Log&quot;</span>);<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title class_">Log</span> != <span class="hljs-literal">undefined</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. find class&quot;</span>);<br>        <br>        <span class="hljs-title class_">Log</span>.<span class="hljs-property">e</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">tag, entry</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Log.e( &#x27;</span> + tag + <span class="hljs-string">&#x27;, &#x27;</span> + entry + <span class="hljs-string">&#x27; )&#x27;</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">e</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);<br>        &#125;<br>        <span class="hljs-title class_">Log</span>.<span class="hljs-property">w</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">tag, entry</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Log.w( &#x27;</span> + tag + <span class="hljs-string">&#x27;, &#x27;</span> + entry + <span class="hljs-string">&#x27; )&#x27;</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">w</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);<br>        &#125;<br>    <br>        <span class="hljs-title class_">Log</span>.<span class="hljs-property">i</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">tag, entry</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Log.i( &#x27;</span> + tag + <span class="hljs-string">&#x27;, &#x27;</span> + entry + <span class="hljs-string">&#x27; )&#x27;</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">i</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);<br>        &#125;<br>    <br>        <span class="hljs-title class_">Log</span>.<span class="hljs-property">d</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;java.lang.String&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">tag, entry</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Log.d( &#x27;</span> + tag + <span class="hljs-string">&#x27;, &#x27;</span> + entry + <span class="hljs-string">&#x27; )&#x27;</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">d</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);<br>        &#125;<br>    &#125;<br>&#125;)<br><br></code></pre></td></tr></table></figure><p>感谢老哥，看起来还有其他不错的，这里把连接贴上</p><p><a href="https://github.com/physics-sec/frida-scripts/tree/master">https://github.com/physics-sec/frida-scripts/tree/master</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>安卓相关</category>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>安卓那档事02</title>
     <link href="/2023/11/05/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B02/"/>
     <url>/2023/11/05/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B02/</url>
