@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Square CTF 2023-There Is A bug</title>
+    <link href="/2023/12/11/SquareCTF2023-ThereIsAbug/"/>
+    <url>/2023/12/11/SquareCTF2023-ThereIsAbug/</url>
+    
+    <content type="html"><![CDATA[<p>唉，主动调用往往只需要最朴素的方法：</p><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo21702305271114.png" alt="1702305271114"></p><p>context是上下文啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p><p>frida：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;com.example.authenticator.MainActivity&#x27;</span>);<br><br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-property">onCreate</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// 调用原始的onCreate方法</span><br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">onCreate</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);<br><br>        <span class="hljs-comment">// 获取ActivityMainBinding实例</span><br>        <span class="hljs-keyword">var</span> binding = <span class="hljs-variable language_">this</span>.<span class="hljs-property">binding</span>.<span class="hljs-property">value</span>;<br>        <span class="hljs-keyword">var</span> tvInstance = binding.<span class="hljs-property">sampleText</span>.<span class="hljs-property">value</span>;<br>        <span class="hljs-keyword">var</span> etInstance = binding.<span class="hljs-property">editTextTextPassword</span>.<span class="hljs-property">value</span>;<br>        <span class="hljs-keyword">var</span> sharedPreferences = <span class="hljs-variable language_">this</span>.<span class="hljs-property">getSharedPreferences</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;java.lang.String&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>).<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-string">&#x27;file.txt&#x27;</span>, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">var</span> result = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getFlag</span>(tvInstance, etInstance, <span class="hljs-variable language_">this</span>, sharedPreferences);<br><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;getFlag result:&#x27;</span>, result);<br>    &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>CTF write up</category>
+      
+      <category>空白的任务罢了</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF</tag>
+      
+      <tag>Frida</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>安卓那档事03</title>
     <link href="/2023/12/02/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B03/"/>
     <url>/2023/12/02/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B03/</url>
