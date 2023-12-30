@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>服务器玩耍笔记</title>
+    <link href="/2023/12/31/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%A9%E8%80%8D%E7%AC%94%E8%AE%B0/"/>
+    <url>/2023/12/31/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%A9%E8%80%8D%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>部署了两个服务端，一个软工的，一个web的（捏妈妈的前端课程还要写后端）</p><p>都是springboot写的，反倒是学会了一个自己的图床的搭建。。。</p><p>写完打包成jar，丢到服务器上就行，然后执行</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">aurora@aurora-vm-<span class="hljs-number">208</span>:~/WebFuckFinal$ jar -xf StoryDragon-<span class="hljs-number">4</span>.<span class="hljs-number">0</span>-SNAPSHOT.jar <br>aurora@aurora-vm-<span class="hljs-number">208</span>:~/WebFuckFinal$ java org.springframework.boot.loader.JarLauncher <br></code></pre></td></tr></table></figure><p>就跑起来了，楽。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>碎碎念</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>碎碎念</tag>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Square CTF 2023-There Is A bug</title>
     <link href="/2023/12/11/SquareCTF2023-ThereIsAbug/"/>
     <url>/2023/12/11/SquareCTF2023-ThereIsAbug/</url>
