@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/blogimg/52pjAndroid.png">
 <meta property="article:published_time" content="2024-01-20T15:23:51.000Z">
-<meta property="article:modified_time" content="2024-01-24T15:01:17.774Z">
+<meta property="article:modified_time" content="2024-01-24T15:04:07.280Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
         aria-expanded="true"
       >
         安卓相关
-        <span class="list-group-count">(10)</span>
+        <span class="list-group-count">(9)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -370,7 +370,7 @@
         aria-expanded="true"
       >
         学习笔记
-        <span class="list-group-count">(6)</span>
+        <span class="list-group-count">(5)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -381,15 +381,6 @@
           
   <div class="category-post-list">
     
-    
-      
-      
-        <a href="/2024/01/22/r0tracer%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/" title="r0tracer分析学习"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">r0tracer分析学习</span>
-        </a>
-      
     
       
       
@@ -545,7 +536,7 @@
 <p>分析控制流混淆一般来说是追踪控制流，反正混淆了，咱也读不懂（</p>
 <p>52这篇文章是介绍了个工具：r0tracer</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/r0ysue/r0tracer">项目地址</a></p>
-<p>其实就是一个frida脚本，大体上分析了一遍，在另一篇文章里面。</p>
+<p>其实就是一个frida脚本，大体上分析了一遍，在<a target="_blank" rel="noopener" href="https://azureussimu.github.io/2024/01/22/r0tracer%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">另一篇文章</a>里面。</p>
 <p>就是一个记录和hook所有的方法，调用的时候就先把一些东西打印出来，倒是学会了怎么打印出堆栈，方法还是蛮出人意料的，楽。</p>
 <p>对于这个的对抗倒是有些想法，首先这个完完全全是直接hook的，加个反hook的都得似，感觉能在这个基础上改进，去针对一些anti-frida。</p>
 <p>第二个不知道能不能实现？做个异常处理，就能把堆栈打印顶掉？不过它这个是基于安卓的一些异常的基类，从而获取的堆栈。不如一开始就打断frida的使用。</p>
@@ -602,12 +593,6 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/2024/01/22/r0tracer%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/" title="r0tracer分析学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">r0tracer分析学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">
