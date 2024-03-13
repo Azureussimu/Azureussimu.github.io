@@ -5,10 +5,10 @@
   
   <entry>
     <title>DDMS</title>
-    <link href="/2024/03/12/DDMS/"/>
-    <url>/2024/03/12/DDMS/</url>
+    <link href="/2024/03/13/DDMS/"/>
+    <url>/2024/03/13/DDMS/</url>
     
-    <content type="html"><![CDATA[<h1>一、DDMS是什么？</h1><p>DDMS（Dalvik Debug Monitor Service），是 Android 开发环境中的Dalvik虚拟机调试监控服务。</p><p>可以进行的操作有：为测试设备截屏，查看特定行程中正在运行的线程以及堆信息、Logcat、广播状态信息、模拟电话呼叫、接收SMS、虚拟地理坐标等，功能非常强大，对于安卓开发者来说是一个非常好的工具，下面我们来看看其具体用法。</p><h1>二、DDMS工作原理</h1><p>DDMS将搭建起IDE与测试终端（Emulator 或者connected device）的链接，它们应用各自独立的端口监听调试器的信息，DDMS可以实时监测到测试终端的连接情况。</p><p>当有新的测试终端连接后，DDMS将捕捉到终端的ID，并通过adb建立调试器，从而实现发送指令到测试终端的目的。这也正是为什么DDMS启动时会出现Android Studio无法部署应用的情况，因为占用了ADB，所以要重新部署的话必须得先关闭DDMS。</p><h1>三、DDMS使用方法</h1><div class="note note-danger">            <p>因为Android Device Monitor<strong>在 Android Studio 3.1 中已弃用，并从 Android Studio 3.2 中删除</strong></p><p>可以通过 Android 设备监视器使用的功能已被新功能取代。</p>          </div><h2 id="启动方式">启动方式</h2><p>在<code>android-sdk/tools/</code>文件夹中在命令行中使用以下指令：</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">monitor<br></code></pre></td></tr></table></figure><h2 id="页面分析">页面分析</h2><p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240312000939881.png" alt="image-20240312000939881"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一ddms是什么">一、DDMS是什么？</h1><p>DDMS（Dalvik Debug Monitor Service），是 Android 开发环境中的Dalvik虚拟机调试监控服务。</p><p>可以进行的操作有：为测试设备截屏，查看特定行程中正在运行的线程以及堆信息、Logcat、广播状态信息、模拟电话呼叫、接收SMS、虚拟地理坐标等，功能非常强大，对于安卓开发者来说是一个非常好的工具，下面我们来看看其具体用法。</p><h1 id="二ddms工作原理">二、DDMS工作原理</h1><p>DDMS将搭建起IDE与测试终端（Emulator 或者connected device）的链接，它们应用各自独立的端口监听调试器的信息，DDMS可以实时监测到测试终端的连接情况。</p><p>当有新的测试终端连接后，DDMS将捕捉到终端的ID，并通过adb建立调试器，从而实现发送指令到测试终端的目的。这也正是为什么DDMS启动时会出现Android Studio无法部署应用的情况，因为占用了ADB，所以要重新部署的话必须得先关闭DDMS。</p><h1 id="三ddms使用方法">三、DDMS使用方法</h1><div class="note note-danger">            <p>因为Android Device Monitor<strong>在 Android Studio 3.1 中已弃用，并从 Android Studio 3.2 中删除</strong></p><p>可以通过 Android 设备监视器使用的功能已被新功能取代。</p>          </div><h2 id="启动方式">启动方式</h2><p>在<code>android-sdk/tools/</code>文件夹中在命令行中使用以下指令：</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">monitor<br></code></pre></td></tr></table></figure><hr /><p>3/13 更新</p><p>如果有把<code>android-sdk/tools/</code>添加到环境变量，可以直接在命令行执行上述指令即可</p><h2 id="页面分析">页面分析</h2><figure><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240312000939881.png" alt="image-20240312000939881" /><figcaption aria-hidden="true">image-20240312000939881</figcaption></figure>]]></content>
     
     
     <categories>
