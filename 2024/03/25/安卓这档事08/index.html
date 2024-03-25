@@ -18,14 +18,14 @@
   
     <meta name="description" content="学学学，我要成为安卓大高手">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓那档事07">
-<meta property="og:url" content="http://example.com/2024/03/08/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B07/index.html">
+<meta property="og:title" content="安卓这档事08">
+<meta property="og:url" content="http://example.com/2024/03/25/%E5%AE%89%E5%8D%93%E8%BF%99%E6%A1%A3%E4%BA%8B08/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
 <meta property="og:description" content="学学学，我要成为安卓大高手">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/blogimg/52pjAndroid.png">
-<meta property="article:published_time" content="2024-03-08T08:49:48.000Z">
-<meta property="article:modified_time" content="2024-03-24T08:15:33.216Z">
+<meta property="article:published_time" content="2024-03-25T12:02:38.000Z">
+<meta property="article:modified_time" content="2024-03-25T14:25:46.026Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>安卓那档事07 - 3zureusの小屋</title>
+  <title>安卓这档事08 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="安卓那档事07"></span>
+            <span id="subtitle" data-typed-text="安卓这档事08"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-08 16:49" pubdate>
-          2024年3月8日 下午
+        <time datetime="2024-03-25 20:02" pubdate>
+          2024年3月25日 晚上
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          3k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          20 分钟
+          26 分钟
         
       </span>
     
@@ -422,7 +422,7 @@
       
         <a href="/2024/03/25/%E5%AE%89%E5%8D%93%E8%BF%99%E6%A1%A3%E4%BA%8B08/" title="安卓这档事08"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">安卓这档事08</span>
         </a>
       
@@ -485,7 +485,7 @@
       
         <a href="/2024/03/08/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B07/" title="安卓那档事07"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">安卓那档事07</span>
         </a>
       
@@ -550,144 +550,168 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">安卓那档事07</h1>
+            <h1 style="display: none">安卓这档事08</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="so加载流程">so加载流程</h1>
+                <h1 id="frida写数据">Frida写数据</h1>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//一般写在app的私有目录里，不然会报错:failed to open file (Permission denied)(实际上就是权限不足)</span><br><span class="hljs-keyword">var</span> file_path = <span class="hljs-string">&quot;/data/user/0/com.zj.wuaipojie/test.txt&quot;</span>;<br><span class="hljs-keyword">var</span> file_handle = <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(file_path, <span class="hljs-string">&quot;wb&quot;</span>);<br><span class="hljs-keyword">if</span> (file_handle &amp;&amp; file_handle != <span class="hljs-literal">null</span>) &#123;<br>        file_handle.<span class="hljs-title function_">write</span>(data); <span class="hljs-comment">//写入数据</span><br>        file_handle.<span class="hljs-title function_">flush</span>(); <span class="hljs-comment">//刷新</span><br>        file_handle.<span class="hljs-title function_">close</span>(); <span class="hljs-comment">//关闭</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="frida_inlinehook与读写汇编">Frida_inlineHook与读写汇编</h1>
+<p>Inline hook（内联钩子）是一种在程序运行时修改函数执行流程的技术。<strong>它通过修改函数的原始代码，将目标函数的执行路径重定向到自定义的代码段，从而实现对目标函数的拦截和修改。</strong></p>
+<p>简单来说就是可以对任意地址的指令进行hook读写操作</p>
+<div class="note note-primary">
+            <p>常见inlinehook框架: <a target="_blank" rel="noopener" href="https://github.com/ele7enxxh/Android-Inline-Hook">Android-Inline-Hook</a> <a target="_blank" rel="noopener" href="https://github.com/asLody/whale">whale</a> <a target="_blank" rel="noopener" href="https://github.com/jmpews/Dobby">Dobby</a> <a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/">substrate</a></p><p>找个时间看看（</p>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">inline_hook</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> soAddr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findBaseAddress</span>(<span class="hljs-string">&quot;lib52pojie.so&quot;</span>);<br>    <span class="hljs-keyword">if</span> (soAddr) &#123;<br>        <span class="hljs-keyword">var</span> func_addr = soAddr.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x10428</span>);<br>        <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(func_addr, &#123;<br>                <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">context</span>.<span class="hljs-property">x22</span>); <span class="hljs-comment">//注意此时就没有args概念了</span><br>                    <span class="hljs-variable language_">this</span>.<span class="hljs-property">context</span>.<span class="hljs-property">x22</span> = <span class="hljs-title function_">ptr</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">//赋值方法参考上一节课</span><br>                &#125;,<br>                <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>                &#125;<br>            &#125;<br>            )<br>        &#125;)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面这个是将运行到指定地址，然后再修改寄存器：</p>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2bb663034587188a1fa4ebf55789f66542707.png" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240325213431747.png" srcset="/img/mokou.gif" lazyload alt="image-20240325213431747" /><figcaption aria-hidden="true">image-20240325213431747</figcaption>
 </figure>
-<p>这些函数的介绍：</p>
+<p>因为是onEnter，所以是运行到这一行，然后把W22修改成1</p>
+<h2 id="将目标地址的汇编解析成指令">将目标地址的汇编解析成指令</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> soAddr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findBaseAddress</span>(<span class="hljs-string">&quot;lib52pojie.so&quot;</span>);<br><span class="hljs-keyword">var</span> codeAddr = <span class="hljs-title class_">Instruction</span>.<span class="hljs-title function_">parse</span>(soAddr.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x10428</span>));<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codeAddr.<span class="hljs-title function_">toString</span>());<br></code></pre></td></tr></table></figure>
+<p>使用Frida提供的Instruction库</p>
+<h2 id="在目标地址覆写汇编指令">在目标地址覆写汇编指令</h2>
+<p>有个用于将ARM汇编转为16进制数据的<a target="_blank" rel="noopener" href="https://armconverter.com/">网站</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hookTest2</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> soAddr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findBaseAddress</span>(<span class="hljs-string">&quot;lib52pojie.so&quot;</span>);<br>    <span class="hljs-keyword">var</span> codeAddr = soAddr.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x10428</span>);<br>    <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">patchCode</span>(codeAddr,<span class="hljs-number">4</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">code</span>)&#123;<br>        <span class="hljs-keyword">const</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Arm64Writer</span>(code,&#123;<span class="hljs-attr">pc</span>:codeAddr&#125;);<br>        <span class="hljs-keyword">var</span> res = <span class="hljs-title function_">hexToBytes</span>(<span class="hljs-string">&quot;20008052&quot;</span>);<span class="hljs-comment">//这个是arm指令转的16进制字符串</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res);<br>        writer.<span class="hljs-title function_">putBytes</span>(res);<br>        writer.<span class="hljs-title function_">flush</span>();<br>    &#125;<br>    );<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="普通native函数的主动调用">普通Native函数的主动调用</h1>
 <table>
-
 <thead>
 <tr class="header">
-<th style="text-align: left;">函数名</th>
+<th style="text-align: left;">数据类型</th>
 <th style="text-align: left;">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>android_dlopen_ext()</code> 、<code>dlopen()</code>、<code>do_dlopen()</code></td>
-<td style="text-align: left;">这三个函数主要用于加载库文件。<code>android_dlopen_ext</code> 是系统的一个函数，用于在运行时动态加载共享库。与标准的 <code>dlopen()</code> 函数相比，<code>android_dlopen_ext</code> 提供了更多的参数选项和扩展功能，例如支持命名空间、符号版本等特性。<br />可能在hook一些so的时候，so加载比较早就通过这个去hook原本要hook的方法</td>
+<td style="text-align: left;">void</td>
+<td style="text-align: left;">无返回值</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>find_library()</code></td>
-<td style="text-align: left;"><code>find_library()</code> 函数用于查找库，基本的用途是给定一个库的名字，然后查找并返回这个库的路径。</td>
+<td style="text-align: left;">pointer</td>
+<td style="text-align: left;">指针</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>call_constructors()</code></td>
-<td style="text-align: left;"><code>call_constructors()</code> 是用于调用动态加载库中的构造函数的函数。</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">整数</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>init</code></td>
-<td style="text-align: left;">库的构造函数，用于初始化库中的静态变量或执行其他需要在库被加载时完成的任务。如果没有定义<code>init</code>函数，系统将不会执行任何动作。需要注意的是，<code>init</code>函数不应该有任何参数，并且也没有返回值。</td>
+<td style="text-align: left;">long</td>
+<td style="text-align: left;">长整数</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>init_array</code></td>
-<td style="text-align: left;"><code>init_array</code>是ELF（Executable and Linkable Format，可执行和可链接格式）二进制格式中的一个特殊段（section），这个段包含了一些函数的指针，这些函数将在<code>main()</code>函数执行前被调用，用于初始化静态局部变量和全局变量。</td>
+<td style="text-align: left;">char</td>
+<td style="text-align: left;">字符</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>jni_onload</code></td>
-<td style="text-align: left;">这是Android JNI(Java Native Interface)中的一个函数。当一个native库被系统加载时，该函数会被自动调用。<code>JNI_OnLoad</code>可以做一些初始化工作，例如注册你的native方法或者初始化一些数据结构。如果你的native库没有定义这个函数，那么JNI会使用默认的行为。<code>JNI_OnLoad</code>的返回值应该是需要的JNI版本，一般返回<code>JNI_VERSION_1_6</code>。</td>
+<td style="text-align: left;">float</td>
+<td style="text-align: left;">浮点数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">双精度浮点数</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bool</td>
+<td style="text-align: left;">布尔值</td>
 </tr>
 </tbody>
 </table>
-<p>下断点时机：</p>
-<ul>
-<li>应用级别的：java_com_XXX；</li>
-<li>外壳级别的：JNI_Onload，.init，.init_array(反调试);</li>
-<li>系统级别的：fopen，fget，dvmdexfileopen(脱壳)</li>
-</ul>
-<h2 id="system.loadlibrary">System.loadLibrary()</h2>
-<p>在android我们通常使用System.loadLibrary或者System.load来加载so文件</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>加载的是libnative-lib.so，注意的是这边只需要传入<span class="hljs-string">&quot;native-lib&quot;</span><br>System.loadLibrary(<span class="hljs-string">&quot;native-lib&quot;</span>);<br><span class="hljs-regexp">//</span>传入的是so文件完整的绝对路径<br>System.load(<span class="hljs-string">&quot;/data/data/应用包名/lib/libnative-lib.so&quot;</span>)<br></code></pre></td></tr></table></figure>
-<ul>
-<li><p>loadLibrary传入的是编译脚本指定生成的so文件的名称,而load需要传入完整的so文件所在的绝对路径；</p></li>
-<li><p>load并不是随便路径都可以，只支持应用本地存储路径/data/data/${package-name}/，或者是系统lib路径system/lib等,这2类路径；</p></li>
-<li><p>load如果传入的是sdcard路径(SD卡路径)，则会导致加载失败，可以采用将sdcard下的so文件复制到应用本地存储路径下进行加载；</p></li>
-<li><p>loadLibrary加载的都是一开始就已经打包进apk或系统的so文件了，而load可以是一开始就打包进来的so文件，也可以是后续从网络下载，外部导入的so文件。</p></li>
-<li><p>最终都是调用nativeLoad加载指定路径的so文件；</p></li>
-</ul>
-<h1 id="ida动态调试">IDA动态调试</h1>
-<p>查看另一篇<a target="_blank" rel="noopener" href="https://azureussimu.github.io/2024/03/11/ida%E8%B0%83%E8%AF%95so%E5%AD%A6%E4%B9%A0/">ida调试so学习</a></p>
-<h1 id="常见寄存器">常见寄存器</h1>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hookTest2</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">// jni主动调用：</span><br>    <span class="hljs-keyword">var</span> soAddr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findBaseAddress</span>(<span class="hljs-string">&quot;lib52pojie.so&quot;</span>)<br>    <span class="hljs-keyword">var</span> funAddr = soAddr.<span class="hljs-title function_">add</span>(<span class="hljs-number">0x0000e85c</span>);   <span class="hljs-comment">//  char* AES_ECB_PKCS7_Decrypt(char* arg1, char* arg2)</span><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">AESAddr</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(funAddr, <span class="hljs-string">&#x27;pointer&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>])<br>    <span class="hljs-keyword">var</span> encTxt = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(<span class="hljs-string">&quot;OOmGYpk6s0qPSXEPp4X31g==&quot;</span>)<br>    <span class="hljs-keyword">var</span> key = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(<span class="hljs-string">&quot;wuaipojie0123456&quot;</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">AESAddr</span>(encTxt, key).<span class="hljs-title function_">readCString</span>())<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="常见的trace工具">常见的Trace工具</h1>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">寄存器名称</th>
-<th style="text-align: left;">功能介绍</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>R0-R12</code></td>
-<td style="text-align: left;">通用寄存器，用于存储临时数据。在函数调用时，<code>R0-R3</code>用于存储前四个参数，其余的参数通过堆栈传递。返回值也通过<code>R0</code>和<code>R1</code>传递。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>R13 (SP)</code></td>
-<td style="text-align: left;">堆栈指针寄存器，指向当前堆栈的顶部。</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>R14 (LR)</code></td>
-<td style="text-align: left;">链接寄存器，存储子程序的返回地址。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>R15 (PC)</code></td>
-<td style="text-align: left;">程序计数器，指向下一条要执行的指令。</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>CPSR</code></td>
-<td style="text-align: left;">当前程序状态寄存器，保存程序的状态信息，如算术运算的结果标志、中断禁止标志等。</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>FPSCR</code></td>
-<td style="text-align: left;">浮点状态和控制寄存器，如果你在调试的代码中涉及到浮点运算，那么这个寄存器会比较重要。</td>
-</tr>
-</tbody>
-</table>
-<h1 id="防护手段">防护手段</h1>
-<h2 id="反调试">反调试</h2>
-<p>1.调试端口检测 检测常见的23946端口，所以在运行时可以加 -p 指定一个另外的端口来过掉这个检测 2.调试进程名检测 固定的进程名 android_server gdb_server等等，所以要改个名字，例如as64 3.ptrace检测 每个进程同时刻只能被1个调试进程ptrace ，主动ptrace本进程可以使得其他调试器无法调试 实现代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">ptrace_protect</span><span class="hljs-params">()</span><span class="hljs-comment">//ptrace附加自身线程 会导致此进程TracerPid 变为父进程的TracerPid 即zygote</span><br>&#123;<br>    <span class="hljs-keyword">return</span> ptrace(PTRACE_TRACEME,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);;<span class="hljs-comment">//返回-1即为已经被调试</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="so层防护">SO层防护</h2>
-<p>常见防护手段:</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">主要功能</th>
+<th style="text-align: left;">工具名称</th>
 <th style="text-align: left;">描述</th>
+<th style="text-align: left;">链接</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">SO加壳</td>
-<td style="text-align: left;">对C/C++源码编译出来的SO文件进行加壳，使SO文件无法正确反编译和反汇编。</td>
+<td style="text-align: left;">jnitrace</td>
+<td style="text-align: left;">老牌，经典，信息全，携带方便</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/chame1eon/jnitrace">jnitrace</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SO源码虚拟化保护</td>
-<td style="text-align: left;">将原始汇编指令翻译为自定义的虚拟机指令，跳转到自定义的虚拟机中执行，每次保护生成的虚拟机指令随机，且对虚拟机解释器再度混淆</td>
+<td style="text-align: left;">jnitrace-engine</td>
+<td style="text-align: left;">基于jnitrace，可定制化</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/chame1eon/jnitrace-engine">jnitrace-engine</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SO防调用</td>
-<td style="text-align: left;">对SO文件进行授权绑定，防止SO文件被非授权应用调用运行。</td>
+<td style="text-align: left;">jtrace</td>
+<td style="text-align: left;">定制方便，信息全面，直接在_agent.js或者_agent_stable.js 里面加自己的逻辑就行</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/SeeFlowerX/jtrace">jtrace</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SO Linker</td>
-<td style="text-align: left;">对整个SO文件进行加密压缩，包括代码段、符号表和字符串等，运行时再解密解压缩到内存，从而有效的防止SO数据的泄露。</td>
+<td style="text-align: left;">hook_art.js</td>
+<td style="text-align: left;">可提供jni trace，可以灵活的增加你需要hook的函数</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/lasting-yang/frida_hook_libart">hook_art.js</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SO源码混淆</td>
-<td style="text-align: left;">常量字符串加密、分裂基本块、等价指令替换、虚假控制流、控制流平坦化。</td>
+<td style="text-align: left;">JNI-Frida-Hook</td>
+<td style="text-align: left;">函数名已定义，方便定位</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/Areizen/JNI-Frida-Hook">JNI-Frida-Hook</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SO环境监测</td>
-<td style="text-align: left;">防frida、防动态调试、防模拟器、防多开等</td>
+<td style="text-align: left;">findhash</td>
+<td style="text-align: left;">ida插件，可用于检测加解密函数，也可作为Native Trace库</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/Pr0214/findhash">findhash</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stalker</td>
+<td style="text-align: left;">frida官方提供的代码跟踪引擎，可以在Native层方法级别，块级别，指令级别实现代码修改，代码跟踪</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://frida.re/docs/stalker/">Stalker</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sktrace</td>
+<td style="text-align: left;">类似 ida 指令 trace 功能</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/bmax121/sktrace">sktrace</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">frida-qbdi-tracer</td>
+<td style="text-align: left;">速度比frida stalker快，免补环境</td>
+<td style="text-align: left;"><a target="_blank" rel="noopener" href="https://github.com/lasting-yang/frida-qbdi-tracer">frida-qbdi-tracer</a></td>
 </tr>
 </tbody>
 </table>
+<p>有空看Stalker</p>
+<h2 id="frida-trace">frida-trace</h2>
+<p>官网文档</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://frida.re/docs/frida-trace/">frida-trace</a></li>
+</ul>
+<p>官网代码</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/frida/frida-tools/blob/main/frida_tools/tracer.py">frida-tools/frida_tools/tracer.py</a></li>
+</ul>
+<p><code>frida-trace</code>去hook调试的目标的写法，是和<code>frida</code>是一样的</p>
+<p>命令例子：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">frida-trace.exe -U -F -I &quot;lib52pojie.so&quot; -i &quot;Java_&quot;  <br>#附加当前进程并追踪lib52pojie.so里的所有Java_开头的jni导出函数<br></code></pre></td></tr></table></figure>
+<p>-U -F和frida是一样的，这里不再解释</p>
+<ul>
+<li><code>-i</code> / <code>-a</code>: 跟踪 C 函数或 so 库中的函数。 PS:-a 包含模块+偏移跟踪，一般用于追踪未导出函数，例子：-a "lib52pojie.so!0x4793c"</li>
+</ul>
+<p>包含/排除模块或函数：</p>
+<ul>
+<li><code>-I</code> : 包含指定模块。</li>
+<li><code>-X</code> : 排除指定模块</li>
+</ul>
+<p>Java 方法跟踪：</p>
+<ul>
+<li><code>-j JAVA_METHOD</code>: 包含 Java 方法。</li>
+<li><code>-J JAVA_METHOD</code>: 排除 Java 方法。</li>
+</ul>
+<p>附加方式:</p>
+<ul>
+<li><code>-f</code>:通过 spwan 方式启动</li>
+<li><code>-F</code>:通过 attach 方式附加当前进程</li>
+</ul>
+<p>日志输出:</p>
+<ul>
+<li><code>-o</code>:日志输出到文件</li>
+</ul>
 
                 
               </div>
@@ -742,9 +766,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/08/SystemLoadLibrary%E5%AD%A6%E4%B9%A0/" title="System.LoadLibrary学习">
+                      <a href="/2024/03/25/%E8%BF%91%E6%9C%9F%E7%9B%AE%E6%A0%872024-3-25/" title="近期目标2024-3-25">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">System.LoadLibrary学习</span>
+                        <span class="hidden-mobile">近期目标2024-3-25</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -752,8 +776,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/29/%E5%AE%89%E5%8D%93%E9%82%A3%E6%A1%A3%E4%BA%8B06/" title="安卓那档事06">
-                        <span class="hidden-mobile">安卓那档事06</span>
+                      <a href="/2024/03/13/DDMS/" title="DDMS">
+                        <span class="hidden-mobile">DDMS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
