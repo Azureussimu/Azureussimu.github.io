@@ -16,28 +16,28 @@
   <meta name="author" content="3zureus">
   <meta name="keywords" content="">
   
-    <meta name="description" content="先记着，现在不懂">
+    <meta name="description" content="知识盲区，知识盲区">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android的JNI_OnLoad">
-<meta property="og:url" content="http://example.com/2023/07/26/Android%E7%9A%84JNI-OnLoad/index.html">
+<meta property="og:title" content="Pwn的Patch小知识">
+<meta property="og:url" content="http://example.com/2024/06/09/Pwn%E7%9A%84Patch%E5%B0%8F%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
-<meta property="og:description" content="先记着，现在不懂">
+<meta property="og:description" content="知识盲区，知识盲区">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
-<meta property="article:published_time" content="2023-07-26T04:18:40.000Z">
-<meta property="article:modified_time" content="2023-07-26T04:45:56.746Z">
+<meta property="og:image" content="http://example.com/img/blogimg/UML.jpeg">
+<meta property="article:published_time" content="2024-06-09T08:51:04.000Z">
+<meta property="article:modified_time" content="2024-06-09T09:00:57.138Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="CTF">
-<meta property="article:tag" content="Re">
-<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Pwn">
+<meta property="article:tag" content="PE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/UML.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Android的JNI_OnLoad - 3zureusの小屋</title>
+  <title>Pwn的Patch小知识 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,13 +211,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/JNI_Onload.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/UML.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Android的JNI_OnLoad"></span>
+            <span id="subtitle" data-typed-text="Pwn的Patch小知识"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-26 12:18" pubdate>
-          2023年7月26日 中午
+        <time datetime="2024-06-09 16:51" pubdate>
+          2024年6月9日 下午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          19 分钟
+          17 分钟
         
       </span>
     
@@ -289,6 +289,85 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
+        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+        aria-expanded="true"
+      >
+        Linux
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-edc9f0a5a5d57797bf68e37364743831"
+           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/28/Linux%E4%B8%8BDIR%E7%AD%89%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux下DIR等结构体学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Linux下DIR等结构体学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/28/Linux%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux获取文件属性函数学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Linux获取文件属性函数学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/09/Pwn%E7%9A%84Patch%E5%B0%8F%E7%9F%A5%E8%AF%86/" title="Pwn的Patch小知识"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Pwn的Patch小知识</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/19/Run-Before-or-after-main/" title="Run_Before_or_after_main"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Run_Before_or_after_main</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -297,32 +376,111 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Android的JNI_OnLoad</h1>
+            <h1 style="display: none">Pwn的Patch小知识</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一jni_onload简介">一、JNI_OnLoad简介</h1>
-<p>Java JNI有两种方法，一种是通过javah,获取一组带签名函数，然后实现这些函数。 这种方法很常用，也是官方推荐的方法。 还有一种就是JNI_OnLoad方法。</p>
-<p>当Android的VM(Virtual Machine)执行到C组件(即so档)里的System.loadLibrary()函数时，</p>
-<p>首先会去执行C组件里的JNI_OnLoad()函数。</p>
-<p>它的用途有二：</p>
-<ul>
-<li><p>告诉VM此C组件使用那一个JNI版本。 如果你的.so档没有提供JNI_OnLoad()函数，VM会默认该*.so档是使用最老的JNI 1.1版本。 由于新版的JNI做了许多扩充，如果需要使用JNI的新版功能， 例如JNI 1.4的java.nio.ByteBuffer,就必须藉由JNI_OnLoad()函数来告知VM。</p></li>
-<li><p>由于VM执行到System.loadLibrary()函数时，就会立即先呼叫JNI_OnLoad()， 所以C组件的开发者可以藉由JNI_OnLoad()来进行C组件内的初期值之设定(Initialization) 。</p></li>
-</ul>
-<p>其实Android中的so文件就像是Windows下的DLL一样，JNI_OnLoad和JNI_OnUnLoad函数 就像是DLL中的PROCESS ATTATCH和DEATTATCH的过程一样，可以同样做一些初始化和反初始化的动作。</p>
-<h1 id="二android系统加载jni-lib的方式">二、Android系统加载JNI Lib的方式</h1>
-<h2 id="android系统加载jni-lib的方式">1.Android系统加载JNI Lib的方式</h2>
-<p>Android系统加载JNI Lib的方式有如下两种：</p>
-<ol type="1">
-<li>通过JNI_OnLoad</li>
-<li>如果JNI Lib没有定义JNI_OnLoad，则dvm调用dvmResolveNativeMethod进行动态解析</li>
-</ol>
-<h2 id="jni_onload方法">2. JNI_OnLoad方法</h2>
-<p>System.loadLibrary调用流程如下所示： <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xl">S<span class="hljs-function"><span class="hljs-title">ystem</span>.loadLibrary-&gt;</span><br>   R<span class="hljs-function"><span class="hljs-title">untime</span>.loadLibrary-&gt;</span>(Java)<br>     <span class="hljs-function"><span class="hljs-title">nativeLoad</span>-&gt;</span>(C: java_lang_Runtime.cpp)<br>       D<span class="hljs-function"><span class="hljs-title">alvik_java_lang_Runtime_nativeLoad</span>-&gt;</span><br>          <span class="hljs-function"><span class="hljs-title">dvmLoadNativeCode</span>-&gt;</span> (dalvik/vm/Native.cpp)<br>              <span class="hljs-number">1</span>) dlopen(pathName, RTLD_LAZY) (把.so mmap到进程空间，并把func等相关信息填充到soinfo中)<br>              <span class="hljs-number">2</span>) dlsym(handle, <span class="hljs-string">&quot;JNI_OnLoad&quot;</span>)<br>              <span class="hljs-number">3</span>) JNI_O<span class="hljs-function"><span class="hljs-title">nLoad</span>-&gt;</span><br>                      R<span class="hljs-function"><span class="hljs-title">egisterNatives</span>-&gt;</span><br>                         dvmRegisterJNIMethod(ClassObject* clazz, const char* methodName,<br>                                                <span class="hljs-function"><span class="hljs-title">const</span> char* signature, void* fnPtr)-&gt;</span><br>                            <span class="hljs-function"><span class="hljs-title">dvmUseJNIBridge</span>(method, fnPtr)-&gt;</span>  (<span class="hljs-function"><span class="hljs-title">method</span>-&gt;</span>nativeFunc = func)<br></code></pre></td></tr></table></figure> JNI函数在进程空间中的起始地址被保存在ClassObject-&gt;directMethods中。·、 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">struct ClassObject : <span class="hljs-keyword">Object</span> &#123;  <br>    <span class="hljs-comment">/* static, private, and &lt;init&gt; methods */</span>  <br>    <span class="hljs-type">int</span>             directMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         directMethods;  <br><br>    <span class="hljs-comment">/* virtual methods defined in this class; invoked through vtable */</span>  <br>    <span class="hljs-type">int</span>             virtualMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         virtualMethods;  <br>&#125;  <br></code></pre></td></tr></table></figure> 此ClassObject通过gDvm.jniGlobalRefTable或gDvm.jniWeakGlobalRefLock获取。</p>
-<h2 id="dvmresolvenativemethod延迟解析机制">3.dvmResolveNativeMethod延迟解析机制</h2>
-<p>如果JNI Lib中没有JNI_OnLoad，即在执行System.loadLibrary时， 无法把此JNI Lib实现的函数在进程中的地址增加到ClassObject-&gt;directMethods。 则直到需要调用的时候才会解析这些javah风格的函数 。 这样的函数dvmResolveNativeMethod(dalvik/vm/Native.cpp)来进行解析， 其执行流程如下所示： <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">void dvmResolveNativeMethod(<span class="hljs-keyword">const</span> u4* args, JValue* pResult,<br>       <span class="hljs-keyword">const</span> <span class="hljs-keyword">Method</span>* <span class="hljs-title function_">method</span>, <span class="hljs-title function_">Thread</span>* <span class="hljs-title function_">self</span>)  --&gt; <span class="hljs-params">(Resolve a native <span class="hljs-keyword">method</span> <span class="hljs-keyword">and</span> invoke it.)</span><br><br>   1) <span class="hljs-title function_">void</span>* <span class="hljs-title function_">func</span> = <span class="hljs-title function_">lookupSharedLibMethod</span><span class="hljs-params">(<span class="hljs-keyword">method</span>)</span><span class="hljs-params">(根据signature在所有已经打开的.so中寻找此函数实现)</span><br>           <span class="hljs-title function_">dvmHashForeach</span><span class="hljs-params">(gDvm.nativeLibs, findMethodInLib,(void*)</span> <span class="hljs-title function_">method</span>)-&gt;<br>                <span class="hljs-title function_">findMethodInLib</span><span class="hljs-params">(void* vlib, void* vmethod)</span>-&gt;<br>                   <span class="hljs-title function_">dlsym</span><span class="hljs-params">(pLib-&gt;handle, mangleCM)</span><br><br>  2) <span class="hljs-title function_">dvmUseJNIBridge</span><span class="hljs-params">((<span class="hljs-keyword">Method</span>*)</span> <span class="hljs-title function_">method</span>, <span class="hljs-title function_">func</span>);<br>  <span class="hljs-number">3</span>) <span class="hljs-comment">(*method-&gt;nativeFunc)(args, pResult, method, self);  (调用执行)</span><br></code></pre></td></tr></table></figure></p>
+                <p>唉，sb比赛，支持LM</p>
+<h1 id="patch">Patch</h1>
+<h2 id="格式化字符串">格式化字符串</h2>
+<p>模板在buu的heap那里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs asm">eh_frame:0000000000001478                               myPrintf proc near                      ; CODE XREF: banner+58↑p<br>.eh_frame:0000000000001478                                                                       ; banner+69↑p<br>.eh_frame:0000000000001478 55                            push    rbp<br>.eh_frame:0000000000001479 48 89 E5                      mov     rbp, rsp<br>.eh_frame:000000000000147C 48 89 FE                      mov     rsi, rdi<br>.eh_frame:000000000000147F 48 8D 3D 37 FE FF FF          lea     rdi, aS                         ; &quot;%s&quot;<br>.eh_frame:0000000000001486 E8 65 F4 FF FF                call    _printf<br>.eh_frame:0000000000001486<br>.eh_frame:000000000000148B C9                            leave<br>.eh_frame:000000000000148C C3                            retn<br></code></pre></td></tr></table></figure>
+<h2 id="uaf">UAF</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs asm">.eh_frame:08048CEC                         myFree          proc near<br>.eh_frame:08048CEC<br>.eh_frame:08048CEC                         arg_0           = dword ptr  8<br>.eh_frame:08048CEC<br>.eh_frame:08048CEC 55                                      push    ebp<br>.eh_frame:08048CED 89 E5                                   mov     ebp, esp<br>.eh_frame:08048CEF 8B 45 08                                mov     eax, [ebp+arg_0]<br>.eh_frame:08048CF2 8B 00                                   mov     eax, [eax]<br>.eh_frame:08048CF4 50                                      push    eax             ; ptr<br>.eh_frame:08048CF5 E8 76 F7 FF FF                          call    _free<br>.eh_frame:08048CFA 8B 45 08                                mov     eax, [ebp+arg_0]<br>.eh_frame:08048CFD 90                                      nop<br>.eh_frame:08048CFE 90                                      nop<br>.eh_frame:08048CFF C7 00 00 00 00 00                       mov     dword ptr [eax], 0<br>.eh_frame:08048D05 C9                                      leave<br>.eh_frame:08048D06 C3                                      retn<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs asm">.text:08048863 83 C4 10                                add     esp, 10h<br>.text:08048866 C7 C0 48 A0 04 08                       mov     eax, offset notelist<br>.text:0804886C 8B 55 F4                                mov     edx, [ebp+var_C]<br>.text:0804886F 8D 04 90                    patch  --&gt;  lea     eax, [eax+edx*4]<br>.text:08048872 83 EC 0C                                sub     esp, 0Ch<br>.text:08048875 50                                      push    eax             ; ptr<br>.text:08048876 E8 71 04 00 00              patch  --&gt;  call    myFree<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> ( result )<br>&#123;<br>  <span class="hljs-built_in">free</span>(*(<span class="hljs-type">void</span> **)(notelist[v2] + <span class="hljs-number">4</span>));<br>  myFree((<span class="hljs-type">void</span> **)&amp;notelist[v2]);&lt;-- 一定修这个，上面那个可修可不修<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Success&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="跳转指令">跳转指令</h2>
+<p>无符号跳转</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">汇编指令</th>
+<th style="text-align: center;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">JA</td>
+<td style="text-align: center;">无符号大于则跳转</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNA</td>
+<td style="text-align: center;">无符号不大于则跳转</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JAE</td>
+<td style="text-align: center;">无符号大于等于则跳转（同JNB）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNAE</td>
+<td style="text-align: center;">无符号不大于等于则跳转（同JB）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JB</td>
+<td style="text-align: center;">无符号小于则跳转</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNB</td>
+<td style="text-align: center;">无符号不小于则跳转</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JBE</td>
+<td style="text-align: center;">无符号小于等于则跳转（同JNA）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JBNE</td>
+<td style="text-align: center;">无符号不小于等于则跳转（同JA）</td>
+</tr>
+</tbody>
+</table>
+<p>有符号跳转</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">汇编指令</th>
+<th style="text-align: center;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">JG</td>
+<td style="text-align: center;">有符号大于则跳转</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNG</td>
+<td style="text-align: center;">有符号不大于则跳转</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JGE</td>
+<td style="text-align: center;">有符号大于等于则跳转（同JNL）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNGE</td>
+<td style="text-align: center;">有符号不大于等于则跳转（同JL）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JL</td>
+<td style="text-align: center;">有符号小于则跳转</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNL</td>
+<td style="text-align: center;">有符号不小于则跳转</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">JLE</td>
+<td style="text-align: center;">有符号小于等于则跳转（同JNG）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">JNLE</td>
+<td style="text-align: center;">有符号不小于等于则跳转（同JG）</td>
+</tr>
+</tbody>
+</table>
+<h1 id="patch-在pe上的问题">Patch 在Pe上的问题</h1>
+<p>这次patch改eh_frame段权限没用，赛后问烧麦师傅，得到了一些知识了解</p>
+<p>XMAN：就是linux他实际上看内存的权限检查的是segment，你只修了section但是segment的包含那段内存的部分还是可读。逆向也是遇到过很多次，section全部patch成0程序是能正常识别的，就是因为实际上是取segment里的数据去搞的。这样是把这个section分到load的segment那一类，然后load是rwx的吧</p>
+<p>xia0：改eh_frame那个segment也可以，换成PT_LOAD就可以了，这样，改eh_frame那个seg就也能exec</p>
 
                 
               </div>
@@ -341,7 +499,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AE%89%E5%8D%93%E7%9B%B8%E5%85%B3/" class="category-chain-item">安卓相关</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -358,9 +516,9 @@
       
         <a href="/tags/CTF/">#CTF</a>
       
-        <a href="/tags/Re/">#Re</a>
+        <a href="/tags/Pwn/">#Pwn</a>
       
-        <a href="/tags/Android/">#Android</a>
+        <a href="/tags/PE/">#PE</a>
       
     </div>
   
@@ -374,9 +532,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/26/proc%E7%9B%AE%E5%BD%95%E5%AD%A6%E4%B9%A0/" title="proc目录学习">
+                      <a href="/2024/08/31/Web%E5%A4%A7%E5%AD%A6%E4%B9%A00x1/" title="Web大学习0x1">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">proc目录学习</span>
+                        <span class="hidden-mobile">Web大学习0x1</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -384,8 +542,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/26/adb%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/" title="adb指令记录">
-                        <span class="hidden-mobile">adb指令记录</span>
+                      <a href="/2024/03/30/ELF%E6%96%87%E4%BB%B6/" title="ELF文件">
+                        <span class="hidden-mobile">ELF文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

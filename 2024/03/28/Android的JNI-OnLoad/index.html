@@ -1,0 +1,780 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="先记着，现在不懂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android的JNI_OnLoad">
+<meta property="og:url" content="http://example.com/2024/03/28/Android%E7%9A%84JNI-OnLoad/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="先记着，现在不懂">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
+<meta property="article:published_time" content="2024-03-28T08:08:40.000Z">
+<meta property="article:modified_time" content="2024-03-28T08:19:18.324Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Re">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/JNI_Onload.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Android的JNI_OnLoad - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/JNI_Onload.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android的JNI_OnLoad"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-28 16:08" pubdate>
+          2024年3月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android的JNI_OnLoad</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一jni_onload简介">一、JNI_OnLoad简介</h1>
+<p>Java JNI有两种方法，一种是通过javah,获取一组带签名函数，然后实现这些函数。 这种方法很常用，也是官方推荐的方法。 还有一种就是JNI_OnLoad方法。</p>
+<p>当Android的VM(Virtual Machine)执行到C组件(即so档)里的System.loadLibrary()函数时，</p>
+<p>首先会去执行C组件里的JNI_OnLoad()函数。</p>
+<p>它的用途有二：</p>
+<ul>
+<li><p>告诉VM此C组件使用那一个JNI版本。 如果你的.so档没有提供JNI_OnLoad()函数，VM会默认该*.so档是使用最老的JNI 1.1版本。 由于新版的JNI做了许多扩充，如果需要使用JNI的新版功能， 例如JNI 1.4的java.nio.ByteBuffer,就必须藉由JNI_OnLoad()函数来告知VM。</p></li>
+<li><p>由于VM执行到System.loadLibrary()函数时，就会立即先呼叫JNI_OnLoad()， 所以C组件的开发者可以藉由JNI_OnLoad()来进行C组件内的初期值之设定(Initialization) 。</p></li>
+</ul>
+<p>其实Android中的so文件就像是Windows下的DLL一样，JNI_OnLoad和JNI_OnUnLoad函数 就像是DLL中的PROCESS ATTATCH和DEATTATCH的过程一样，可以同样做一些初始化和反初始化的动作。</p>
+<h1 id="二android系统加载jni-lib的方式">二、Android系统加载JNI Lib的方式</h1>
+<h2 id="android系统加载jni-lib的方式">1.Android系统加载JNI Lib的方式</h2>
+<p>Android系统加载JNI Lib的方式有如下两种：</p>
+<ol type="1">
+<li>通过JNI_OnLoad</li>
+<li>如果JNI Lib没有定义JNI_OnLoad，则dvm调用dvmResolveNativeMethod进行动态解析</li>
+</ol>
+<h2 id="jni_onload方法">2. JNI_OnLoad方法</h2>
+<p>System.loadLibrary调用流程如下所示： <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xl">S<span class="hljs-function"><span class="hljs-title">ystem</span>.loadLibrary-&gt;</span><br>   R<span class="hljs-function"><span class="hljs-title">untime</span>.loadLibrary-&gt;</span>(Java)<br>     <span class="hljs-function"><span class="hljs-title">nativeLoad</span>-&gt;</span>(C: java_lang_Runtime.cpp)<br>       D<span class="hljs-function"><span class="hljs-title">alvik_java_lang_Runtime_nativeLoad</span>-&gt;</span><br>          <span class="hljs-function"><span class="hljs-title">dvmLoadNativeCode</span>-&gt;</span> (dalvik/vm/Native.cpp)<br>              <span class="hljs-number">1</span>) dlopen(pathName, RTLD_LAZY) (把.so mmap到进程空间，并把func等相关信息填充到soinfo中)<br>              <span class="hljs-number">2</span>) dlsym(handle, <span class="hljs-string">&quot;JNI_OnLoad&quot;</span>)<br>              <span class="hljs-number">3</span>) JNI_O<span class="hljs-function"><span class="hljs-title">nLoad</span>-&gt;</span><br>                      R<span class="hljs-function"><span class="hljs-title">egisterNatives</span>-&gt;</span><br>                         dvmRegisterJNIMethod(ClassObject* clazz, const char* methodName,<br>                                                <span class="hljs-function"><span class="hljs-title">const</span> char* signature, void* fnPtr)-&gt;</span><br>                            <span class="hljs-function"><span class="hljs-title">dvmUseJNIBridge</span>(method, fnPtr)-&gt;</span>  (<span class="hljs-function"><span class="hljs-title">method</span>-&gt;</span>nativeFunc = func)<br></code></pre></td></tr></table></figure> JNI函数在进程空间中的起始地址被保存在ClassObject-&gt;directMethods中。·、 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">struct ClassObject : <span class="hljs-keyword">Object</span> &#123;  <br>    <span class="hljs-comment">/* static, private, and &lt;init&gt; methods */</span>  <br>    <span class="hljs-type">int</span>             directMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         directMethods;  <br><br>    <span class="hljs-comment">/* virtual methods defined in this class; invoked through vtable */</span>  <br>    <span class="hljs-type">int</span>             virtualMethodCount;  <br>    <span class="hljs-keyword">Method</span>*         virtualMethods;  <br>&#125;  <br></code></pre></td></tr></table></figure> 此ClassObject通过gDvm.jniGlobalRefTable或gDvm.jniWeakGlobalRefLock获取。</p>
+<h2 id="dvmresolvenativemethod延迟解析机制">3.dvmResolveNativeMethod延迟解析机制</h2>
+<p>如果JNI Lib中没有JNI_OnLoad，即在执行System.loadLibrary时， 无法把此JNI Lib实现的函数在进程中的地址增加到ClassObject-&gt;directMethods。 则直到需要调用的时候才会解析这些javah风格的函数 。 这样的函数dvmResolveNativeMethod(dalvik/vm/Native.cpp)来进行解析， 其执行流程如下所示： <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">void dvmResolveNativeMethod(<span class="hljs-keyword">const</span> u4* args, JValue* pResult,<br>       <span class="hljs-keyword">const</span> <span class="hljs-keyword">Method</span>* <span class="hljs-title function_">method</span>, <span class="hljs-title function_">Thread</span>* <span class="hljs-title function_">self</span>)  --&gt; <span class="hljs-params">(Resolve a native <span class="hljs-keyword">method</span> <span class="hljs-keyword">and</span> invoke it.)</span><br><br>   1) <span class="hljs-title function_">void</span>* <span class="hljs-title function_">func</span> = <span class="hljs-title function_">lookupSharedLibMethod</span><span class="hljs-params">(<span class="hljs-keyword">method</span>)</span><span class="hljs-params">(根据signature在所有已经打开的.so中寻找此函数实现)</span><br>           <span class="hljs-title function_">dvmHashForeach</span><span class="hljs-params">(gDvm.nativeLibs, findMethodInLib,(void*)</span> <span class="hljs-title function_">method</span>)-&gt;<br>                <span class="hljs-title function_">findMethodInLib</span><span class="hljs-params">(void* vlib, void* vmethod)</span>-&gt;<br>                   <span class="hljs-title function_">dlsym</span><span class="hljs-params">(pLib-&gt;handle, mangleCM)</span><br><br>  2) <span class="hljs-title function_">dvmUseJNIBridge</span><span class="hljs-params">((<span class="hljs-keyword">Method</span>*)</span> <span class="hljs-title function_">method</span>, <span class="hljs-title function_">func</span>);<br>  <span class="hljs-number">3</span>) <span class="hljs-comment">(*method-&gt;nativeFunc)(args, pResult, method, self);  (调用执行)</span><br></code></pre></td></tr></table></figure></p>
+<hr />
+<p>2024.3.28更新</p>
+<h1 id="三jni_onload动态注册流程与逆向分析">三、JNI_OnLoad动态注册流程与逆向分析</h1>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//第一步，实现JNI_OnLoad方法</span><br>JNIEXPORT jint <span class="hljs-title function_">JNI_OnLoad</span><span class="hljs-params">(JavaVM* jvm, <span class="hljs-type">void</span>* reserved)</span>&#123;<br>    <span class="hljs-comment">//第二步，获取JNIEnv</span><br>    JNIEnv* env = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">if</span>(jvm-&gt;GetEnv((<span class="hljs-type">void</span>**)&amp;env, JNI_VERSION_1_6) != JNI_OK)&#123;<br>        <span class="hljs-keyword">return</span> JNI_FALSE;<br>    &#125;<br>    <span class="hljs-comment">//第三步，获取注册方法所在Java类的引用</span><br>    jclass clazz = env-&gt;FindClass(<span class="hljs-string">&quot;com/curz0n/MainActivity&quot;</span>);<br>    <span class="hljs-keyword">if</span> (!clazz)&#123;<br>        <span class="hljs-keyword">return</span> JNI_FALSE;<br>    &#125;<br>    <span class="hljs-comment">//第四步，动态注册native方法</span><br>    <span class="hljs-keyword">if</span>(env-&gt;RegisterNatives(clazz, gMethods, <span class="hljs-keyword">sizeof</span>(gMethods)/<span class="hljs-keyword">sizeof</span>(gMethods[<span class="hljs-number">0</span>])))&#123;<br>        <span class="hljs-keyword">return</span> JNI_FALSE;<br>    &#125;<br>    <span class="hljs-keyword">return</span> JNI_VERSION_1_6;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>大概就是这样子的：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo21711613380558.png" srcset="/img/mokou.gif" lazyload alt="1711613380558" /><figcaption aria-hidden="true">1711613380558</figcaption>
+</figure>
+<p><code>gMethods</code>变量是<code>JNINativeMethod</code>结构体，用于映射Java方法与C/C++函数的关系，其定义如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* name; <span class="hljs-comment">//动态注册的Java方法名</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* signature; <span class="hljs-comment">//描述方法参数和返回值</span><br>    <span class="hljs-type">void</span>*       fnPtr; <span class="hljs-comment">//指向实现Java方法的C/C++函数指针</span><br>&#125; JNINativeMethod;<br></code></pre></td></tr></table></figure>
+<p>所以就能从off_43CC8附近就能找到指向的函数。</p>
+<h2 id="jninativemethod结构体分析">JNINativeMethod结构体分析</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* name; <span class="hljs-comment">//动态注册的Java方法名</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* signature; <span class="hljs-comment">//描述方法参数和返回值</span><br>    <span class="hljs-type">void</span>*       fnPtr; <span class="hljs-comment">//指向实现Java方法的C/C++函数指针</span><br>&#125; JNINativeMethod;<br></code></pre></td></tr></table></figure>
+<p><strong>主要分析第二个参数signature</strong>：</p>
+<p>java有自己的基本数据类型，但是java的数据类型是不能直接和c/c++交互的，为了统一这个问题，jni也 给出了一套数据类型的于Java一一对应。</p>
+<table>
+<thead>
+<tr class="header">
+<th>字符</th>
+<th>c/c++类型</th>
+<th>Java类型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>V</td>
+<td>void</td>
+<td>void</td>
+</tr>
+<tr class="even">
+<td>Z</td>
+<td>jboolean</td>
+<td>boolean</td>
+</tr>
+<tr class="odd">
+<td>I</td>
+<td>jint</td>
+<td>int</td>
+</tr>
+<tr class="even">
+<td>J</td>
+<td>jlong</td>
+<td>long</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>jdouble</td>
+<td>double</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>jfloat</td>
+<td>float</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>jbyte</td>
+<td>byte</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>jchar</td>
+<td>char</td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td>jshort</td>
+<td>short</td>
+</tr>
+<tr class="even">
+<td>[I</td>
+<td>jintArray</td>
+<td>int[]</td>
+</tr>
+<tr class="odd">
+<td>[F</td>
+<td>jfloatArray</td>
+<td>float[]</td>
+</tr>
+<tr class="even">
+<td>[B</td>
+<td>jbyteArray</td>
+<td>byte[]</td>
+</tr>
+<tr class="odd">
+<td>[C</td>
+<td>jcharArray</td>
+<td>char[]</td>
+</tr>
+<tr class="even">
+<td>[S</td>
+<td>jshortArray</td>
+<td>short[]</td>
+</tr>
+<tr class="odd">
+<td>[D</td>
+<td>jdoubleArray</td>
+<td>double[]</td>
+</tr>
+<tr class="even">
+<td>[J</td>
+<td>jlongArray</td>
+<td>long[]</td>
+</tr>
+<tr class="odd">
+<td>[Z</td>
+<td>jbooleanArray</td>
+<td>boolean[]</td>
+</tr>
+</tbody>
+</table>
+<p>如果Java函数的参数是class，则以"L"开头，以";" 结尾中间是用"/" 隔开的包及类名。而其对应的C函数名的参数则为jobject.</p>
+<p>举一个例子:Java是String类，其对应的类为jstring：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">Ljava<span class="hljs-regexp">/lang/</span>String; String jstring<br>Ljava<span class="hljs-regexp">/net/</span>Socket; Socket jobject<br></code></pre></td></tr></table></figure>
+<p>如果JAVA函数位于一个嵌入类，则用$作为类名间的分隔符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">例如 <span class="hljs-string">&quot;(Ljava/lang/String;Landroid/os/Utils<span class="hljs-variable">$UtilsStatus</span>;)Z&quot;</span><br></code></pre></td></tr></table></figure>
+<p>对于signature的值，括号里面表示参数的类型，括号后面表示返回值。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AE%89%E5%8D%93%E7%9B%B8%E5%85%B3/" class="category-chain-item">安卓相关</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/">#CTF</a>
+      
+        <a href="/tags/Re/">#Re</a>
+      
+        <a href="/tags/Android/">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/30/ELF%E6%96%87%E4%BB%B6/" title="ELF文件">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ELF文件</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/%E7%B1%B3%E5%A5%87%E5%A6%99%E5%A6%99Frida%E5%B0%8F%E5%87%BD%E6%95%B0/" title="米奇妙妙Frida小函数">
+                        <span class="hidden-mobile">米奇妙妙Frida小函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

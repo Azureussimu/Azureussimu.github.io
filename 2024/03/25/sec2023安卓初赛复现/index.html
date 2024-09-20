@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="看看TX的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sec2023安卓初赛复现">
+<meta property="og:url" content="http://example.com/2024/03/25/sec2023%E5%AE%89%E5%8D%93%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="看看TX的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/frida.jpg">
+<meta property="article:published_time" content="2024-03-25T15:20:26.000Z">
+<meta property="article:modified_time" content="2024-04-10T05:08:07.723Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/frida.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>sec2023安卓初赛复现 - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/frida.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="sec2023安卓初赛复现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-25 23:20" pubdate>
+          2024年3月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="安卓实战"
+        id="heading-8fa47f85aa046c28dbe16ae62aeceae5" role="tab" data-toggle="collapse" href="#collapse-8fa47f85aa046c28dbe16ae62aeceae5"
+        aria-expanded="true"
+      >
+        安卓实战
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-8fa47f85aa046c28dbe16ae62aeceae5"
+           role="tabpanel" aria-labelledby="heading-8fa47f85aa046c28dbe16ae62aeceae5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/03/25/sec2023%E5%AE%89%E5%8D%93%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="sec2023安卓初赛复现"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">sec2023安卓初赛复现</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">sec2023安卓初赛复现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="安装运行后检测绕过">安装运行后检测绕过</h1>
+<p>adb安装，打开发现：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326145930896.png" srcset="/img/mokou.gif" lazyload alt="image-20240326145930896" /><figcaption aria-hidden="true">image-20240326145930896</figcaption>
+</figure>
+<p>楽，估计是检测到了什么。</p>
+<p>猜基本都是什么frida、idaserver什么的，先进shell重命名一下：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326150345827.png" srcset="/img/mokou.gif" lazyload alt="image-20240326150345827" /><figcaption aria-hidden="true">image-20240326150345827</figcaption>
+</figure>
+<p>再开发现还是会，个人觉得是这个<code>android_server64</code>(ida远程调试服务器)被检测到了，删除后发现能够正常运行，不过我自己把ida_server放在子文件夹下没有被抓到（</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326150610784.png" srcset="/img/mokou.gif" lazyload alt="image-20240326150610784" /><figcaption aria-hidden="true">image-20240326150610784</figcaption>
+</figure>
+<p>算是先过了一开始的检测，能够运行了。</p>
+<h1 id="用jadx对包体进行分析">用jadx对包体进行分析</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326150858235.png" srcset="/img/mokou.gif" lazyload alt="image-20240326150858235" /><figcaption aria-hidden="true">image-20240326150858235</figcaption>
+</figure>
+<p>发现是使用Unity3D</p>
+<ul>
+<li>包名：<code>com.com.sec2023.rocketmouse.mouse</code></li>
+<li>入口点：<code>com.unity3d.player.UnityPlayerActivity</code></li>
+</ul>
+<p>不过此前自己是没有逆向过Unity制作的安卓游戏的，上来直接挑战这个，楽</p>
+<h1 id="解压看so">解压看so</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326151240788.png" srcset="/img/mokou.gif" lazyload alt="image-20240326151240788" /><figcaption aria-hidden="true">image-20240326151240788</figcaption>
+</figure>
+<p>Unity的游戏都有着libil2cpp.so，github上有个开源的项目<a target="_blank" rel="noopener" href="https://github.com/Perfare/Il2CppDumper">Il2CppDumper</a>可以获取实现获取符号表</p>
+<p>解压进入目录中，拿到<code>libil2cpp.so</code>与<code>global-metadata.dat</code>。 <code>libil2cpp.so</code>: <code>\lib\armeabi-v7a\libil2cpp.so</code> <code>global-metadata.dat</code>: <code>\assets\bin\Data\Managed\Metadata\global-metadata.dat</code></p>
+<p>我去，着IL2CppDumper还有调用选择文件的API，不用自己手写文件路径，好评。</p>
+<p>不过和复现的WP一样是失败了：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326152711549.png" srcset="/img/mokou.gif" lazyload alt="image-20240326152711549" /><figcaption aria-hidden="true">image-20240326152711549</figcaption>
+</figure>
+<p>跑010模板也对的上，应该是没有加密的：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326152920430.png" srcset="/img/mokou.gif" lazyload alt="image-20240326152920430" /><figcaption aria-hidden="true">image-20240326152920430</figcaption>
+</figure>
+<p>至于libil2cpp.so，反编译也是依托：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326153239591.png" srcset="/img/mokou.gif" lazyload alt="image-20240326153239591" /><figcaption aria-hidden="true">image-20240326153239591</figcaption>
+</figure>
+<p>符号表除了一些API之外，剩下的就是纯乱，但是运行的时候不可能会这样的，准备使用frida把它自解密后的数据dump下来</p>
+<h1 id="dump数据">dump数据</h1>
+<p>在开启frida_server之后，又出现一样的heck detect的提示，盲猜是检测了frida端口，关掉进程之后又能运行，尝试换端口启动</p>
+<p><code>./frs16 -l 0.0.0.0:27041</code></p>
+<p>能跑起来来了</p>
+<p>根据多个师傅的WP，dump内存的方法多种多样，复现就是为了学习，全部做一遍：</p>
+<h2 id="gg修改器-dump">gg修改器 dump</h2>
+<p>起点：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326161127735.png" srcset="/img/mokou.gif" lazyload alt="image-20240326161127735" /><figcaption aria-hidden="true">image-20240326161127735</figcaption>
+</figure>
+<p>终点</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326161044469.png" srcset="/img/mokou.gif" lazyload alt="image-20240326161044469" /><figcaption aria-hidden="true">image-20240326161044469</figcaption>
+</figure>
+<p>再用IL2CppDump看看：</p>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326161740481.png" srcset="/img/mokou.gif" lazyload /></p>
+<p>好！</p>
+<p>能从exe目录下得到</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240326205619243.png" srcset="/img/mokou.gif" lazyload alt="image-20240326205619243" /><figcaption aria-hidden="true">image-20240326205619243</figcaption>
+</figure>
+<p>但是dump下来的文件没有导入导出函数的符号</p>
+<p>而 il2cpp 符号的脚本又是针对于 dump 文件的</p>
+<p>所以修复一下dump的文件头之类的</p>
+<p>.....修不懂。。</p>
+<p>挖个坑，自己PE没看完呢</p>
+<hr />
+<p>Fallw1nd师傅那个dump下来怪怪的，接着这边了</p>
+<h3 id="修复dump数据">修复dump数据</h3>
+<p>首先是先将每个program_table的每一个p_offset改成p_vaddr</p>
+<p>同时也将每一个p_filesz改成p_memsz（因为原先是进行了加固，现在这个是在内存中dump下来的，现在对应的段已经解压到内存的对应地址）</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240403235731355.png" srcset="/img/mokou.gif" lazyload alt="image-20240403235731355" /><figcaption aria-hidden="true">image-20240403235731355</figcaption>
+</figure>
+<p>然后注意最后一个表，这个表的结尾地址就是SECTION_HEADER的开头，所以SECTION_HEADER本来就应该是0x13BC000+63352 = 0x13CB778，所以填到文件的地址</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240404000021360.png" srcset="/img/mokou.gif" lazyload alt="image-20240404000021360" /><figcaption aria-hidden="true">image-20240404000021360</figcaption>
+</figure>
+<p>修改完按 program_table 按一下 F5 就会重新分析了,也可以看到一片空白的 section_header：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240404000107492.png" srcset="/img/mokou.gif" lazyload alt="image-20240404000107492" /><figcaption aria-hidden="true">image-20240404000107492</figcaption>
+</figure>
+<p>直接将原版的复制到dump下来的(Ctrl+shift+C Ctrl+shift+V)</p>
+<p>再 F5 刷新</p>
+<p>刷新后，发现section header table乱码，和旁边的完全不同</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240409213702661.png" srcset="/img/mokou.gif" lazyload alt="image-20240409213702661" /><figcaption aria-hidden="true">image-20240409213702661</figcaption>
+</figure>
+<p>这部分的值是根据header的e_shtrndx的值，去寻找section header对应的块，再去寻找对应的符号：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240409213901334.png" srcset="/img/mokou.gif" lazyload alt="image-20240409213901334" /><figcaption aria-hidden="true">image-20240409213901334</figcaption>
+</figure>
+<p>这里的值是26，指的是section_table_element[26]</p>
+<p><code>ection_header_table-&gt;section_table_element[26]</code>中<code>s_offset</code>的值决定了section的名称将从<code>1199370h</code>去索引</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240409214010117.png" srcset="/img/mokou.gif" lazyload alt="image-20240409214010117" /><figcaption aria-hidden="true">image-20240409214010117</figcaption>
+</figure>
+<p>就是分析的data块，section的所有名称都在这个地方，把原来的复制过去就行，再F5刷新一下就行</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240409214135598.png" srcset="/img/mokou.gif" lazyload alt="image-20240409214135598" /><figcaption aria-hidden="true">image-20240409214135598</figcaption>
+</figure>
+<p>但是模板还是没分析出来，接下来就要修复section的偏移：</p>
+<p>节(section) 的位置和大小由节头表(secion_header_table)中这两个成员决定</p>
+<table>
+
+<thead>
+<tr class="header">
+<th>成员名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>s_addr</td>
+<td>如果此 section 需要映射到进程空间,此成员指定映射的起始地址;如不需映射,此值为 0</td>
+</tr>
+<tr class="even">
+<td>s_offset</td>
+<td>此 section 相对于文件开头的字节偏移量.如果 section 类型为 <code>SHT_NOBITS</code>,表明该 section 在文件中不占空间,这时 sh_offset 没什么用</td>
+</tr>
+</tbody>
+</table>
+<p>修正 节(section) 的偏移有两条规则</p>
+<ul>
+<li>如果s_addr为0,无需修改s_offset</li>
+<li>如果s_addr不为0,则将s_addr的值复制给s_offset</li>
+</ul>
+<p>修正完成后,按下<code>F5</code>重新运行模板<code>ELF.bt</code>,可以发现section的名称已经恢复,同时也有了<code>dynamic_symbol_table</code></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240409214517506.png" srcset="/img/mokou.gif" lazyload alt="image-20240409214517506" /><figcaption aria-hidden="true">image-20240409214517506</figcaption>
+</figure>
+<p>然后就可以丢到ida分析了</p>
+<h2 id="frida-hook-dlopen">Frida hook dlopen</h2>
+<p>看懂了Fallw1nd师傅的脚本。。至福</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">WriteMemToFile</span>(<span class="hljs-params">addr, size, file_path</span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">//   var prefix = &#x27;/data/data/com.com.sec2023.rocketmouse.mouse/files/&#x27;</span><br>      <span class="hljs-keyword">var</span> prefix = <span class="hljs-string">&#x27;/storage/emulated/0/dump/&#x27;</span><br>    <br>      <span class="hljs-keyword">var</span> mkdir = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;mkdir&#x27;</span>);<br>      <span class="hljs-keyword">var</span> chmod = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;chmod&#x27;</span>);<br>      <span class="hljs-keyword">var</span> fopen = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;fopen&#x27;</span>);<br>      <span class="hljs-keyword">var</span> fwrite = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;fwrite&#x27;</span>);<br>      <span class="hljs-keyword">var</span> fclose = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;fclose&#x27;</span>);<br>   <br>      <span class="hljs-keyword">var</span> call_mkdir = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(mkdir, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>      <span class="hljs-keyword">var</span> call_chmod = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(chmod, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>      <span class="hljs-keyword">var</span> call_fopen =<br>          <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(fopen, <span class="hljs-string">&#x27;pointer&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>]);<br>      <span class="hljs-keyword">var</span> call_fwrite =<br>          <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(fwrite, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>]);<br>      <span class="hljs-keyword">var</span> call_fclose = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(fclose, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>]);<br>   <br>      <span class="hljs-title function_">call_mkdir</span>(<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(prefix), <span class="hljs-number">0x1FF</span>);<br>      <span class="hljs-title function_">call_chmod</span>(<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(prefix), <span class="hljs-number">0x1FF</span>);<br>      <span class="hljs-keyword">var</span> fp = <span class="hljs-title function_">call_fopen</span>(<br>          <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(prefix + file_path),<br>          <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(<span class="hljs-string">&#x27;wb&#x27;</span>));<br>      <span class="hljs-keyword">if</span> (<span class="hljs-title function_">call_fwrite</span>(addr, <span class="hljs-number">1</span>, size, fp)) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;[+] Write file success, file path: &#x27;</span> + prefix + file_path);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;[x] Write file failed&#x27;</span>);<br>      &#125;<br>   <br>      <span class="hljs-title function_">call_fclose</span>(fp);<br>    &#125;);<br>  &#125;<br>   <br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">HookLibWithCallback</span>(<span class="hljs-params">name, callback</span>) &#123;<br>    <span class="hljs-keyword">var</span> dlopen = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libdl.so&#x27;</span>, <span class="hljs-string">&#x27;dlopen&#x27;</span>);<br>    <span class="hljs-keyword">var</span> detach_listener = <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(dlopen, &#123;<br>      <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) &#123;<br>        <span class="hljs-keyword">var</span> cur = args[<span class="hljs-number">0</span>].<span class="hljs-title function_">readCString</span>();<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;[+] dlopen called, name: &#x27;</span> + cur);<br>        <span class="hljs-keyword">if</span> (cur.<span class="hljs-title function_">indexOf</span>(name) != -<span class="hljs-number">1</span>) &#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">hook</span> = <span class="hljs-literal">true</span>;<br>        &#125;<br>      &#125;,<br>      <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">hook</span>) &#123;<br>          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;[+] Hook Lib success, name:&#x27;</span>, name);<br>          <span class="hljs-title function_">callback</span>();<br>          detach_listener.<span class="hljs-title function_">detach</span>();<br>        &#125;<br>      &#125;<br>    &#125;);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">LogModule</span>(<span class="hljs-params"><span class="hljs-variable language_">module</span></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Module name: &#x27;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Module base: &#x27;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">base</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Module size: &#x27;</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">size</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">TraverseModules</span>(<span class="hljs-params">mode, &#123;name = <span class="hljs-string">&#x27;&#x27;</span>, name_array = []&#125;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (mode == <span class="hljs-string">&#x27;all&#x27;</span>) &#123;<br>      <span class="hljs-keyword">var</span> modules = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">enumerateModules</span>();<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; modules.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = modules[i];<br>        <span class="hljs-comment">// LogModule(module);</span><br>      &#125;<br>      <span class="hljs-keyword">return</span> modules;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mode == <span class="hljs-string">&#x27;single&#x27;</span>) &#123;<br>      <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">getModuleByName</span>(name);<br>      <span class="hljs-title class_">LogModule</span>(<span class="hljs-variable language_">module</span>);<br>      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mode == <span class="hljs-string">&#x27;multiple&#x27;</span>) &#123;<br>      <span class="hljs-keyword">var</span> modules = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">enumerateModules</span>();<br>      <span class="hljs-keyword">var</span> target_modules = [];<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; modules.<span class="hljs-property">length</span>; i++) &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = modules[i];<br>        <span class="hljs-keyword">if</span> (name_array.<span class="hljs-title function_">indexOf</span>(<span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span>) != -<span class="hljs-number">1</span>) &#123;<br>          <span class="hljs-title class_">LogModule</span>(<span class="hljs-variable language_">module</span>);<br>          target_modules.<span class="hljs-title function_">push</span>(<span class="hljs-variable language_">module</span>);<br>        &#125;<br>      &#125;<br>      <span class="hljs-keyword">return</span> target_modules;<br>    &#125;<br>  &#125;<br>   <br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">DumpIL2CPP</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> libil2cpp = <span class="hljs-title class_">TraverseModules</span>(<span class="hljs-string">&#x27;single&#x27;</span>, &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;libil2cpp.so&#x27;</span>&#125;);<br>    <span class="hljs-title class_">WriteMemToFile</span>(libil2cpp.<span class="hljs-property">base</span>, libil2cpp.<span class="hljs-property">size</span>, <span class="hljs-string">&#x27;libil2cpp.so&#x27;</span>);<br>  &#125;<br>   <br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">HookLibWithCallback</span>(<span class="hljs-string">&#x27;libil2cpp.so&#x27;</span>, <span class="hljs-title class_">DumpIL2CPP</span>);<br>  &#125;<br>   <br>  <span class="hljs-title function_">main</span>();<br></code></pre></td></tr></table></figure>
+<p>根据自己的情况把dump的地址改了，不知道为什么我这边有root权限但是搞不到里面的文件，只能这样子保存然后dump下来</p>
+<p>怪哦，这个好像dump的不多。</p>
+<h1 id="ida分析dump的libil2cpp">ida分析dump的libil2cpp</h1>
+<p>将 dump 文件载入 ida 之后,最好是 Rebase 一下,因为是运行态文件,可能有些内存值已经被重定位,因此 Rebase 之后可能得到更多符号, Rebase 的值就是 dump 文件的载入地址,文件名上就有,比如我的是 0x7495598000</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AE%89%E5%8D%93%E5%AE%9E%E6%88%98/" class="category-chain-item">安卓实战</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/%E7%B1%B3%E5%A5%87%E5%A6%99%E5%A6%99Frida%E5%B0%8F%E5%87%BD%E6%95%B0/" title="米奇妙妙Frida小函数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">米奇妙妙Frida小函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/25/%E8%BF%91%E6%9C%9F%E7%9B%AE%E6%A0%872024-3-25/" title="近期目标2024-3-25">
+                        <span class="hidden-mobile">近期目标2024-3-25</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

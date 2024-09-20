@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今日web大学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web大学习0x1">
+<meta property="og:url" content="http://example.com/2024/08/31/Web%E5%A4%A7%E5%AD%A6%E4%B9%A00x1/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="今日web大学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/WebLearn01.jpg">
+<meta property="article:published_time" content="2024-08-31T12:56:33.000Z">
+<meta property="article:modified_time" content="2024-09-01T09:01:25.906Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/WebLearn01.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Web大学习0x1 - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/WebLearn01.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Web大学习0x1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-31 20:56" pubdate>
+          2024年8月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="WebLeran"
+        id="heading-5dc1fed54f2605ebb02afbce9bf14293" role="tab" data-toggle="collapse" href="#collapse-5dc1fed54f2605ebb02afbce9bf14293"
+        aria-expanded="true"
+      >
+        WebLeran
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-5dc1fed54f2605ebb02afbce9bf14293"
+           role="tabpanel" aria-labelledby="heading-5dc1fed54f2605ebb02afbce9bf14293">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/08/31/Web%E5%A4%A7%E5%AD%A6%E4%B9%A00x1/" title="Web大学习0x1"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Web大学习0x1</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Web大学习0x1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="说在前头">说在前头</h1>
+<p>学学web，刚好有个新生赛，打一打</p>
+<h1 id="http-header">Http Header</h1>
+<ul>
+<li>对于 GET 参数,在路径后加上<code>?</code>, 输入 <code>basectf=w21c%2500me</code>, (<code>%00</code> 表示空字符, 需要对他的百分号进行 URL 转义)</li>
+<li>对于 POST 参数, 先要将数据包改成 POST 形式, 我们需要先改谓词 <code>GET</code> -&gt; <code>POST</code>, 再在请求头中加上 <code>Content-Type: application/x-www-form-urlencoded</code>, 再在请求头后空一行, 写上 <code>Base=fl@g</code></li>
+</ul>
+<p>请注意, BurpSuite 某些版本可能存在自动编码, 需要删除掉最后的空行, 否则可能会给服务端多发送一个空行</p>
+<ul>
+<li>对于 Cookie, Cookie 并不是需要 URL 编码, 所以这里我们可以直接传内容: <code>Cookie: c00k13=i can't eat it</code></li>
+<li>而对于用户代理 (User-Agent) 这个请求头标识了你当前的浏览器信息, 他的内容改成 <code>Base</code></li>
+<li>来源 (Referer) 也是一个请求头, 这个单词的拼写错误还有一段故事, 这个标识的我们从哪个地方发起的这个请求, 在超链接跳转时会带上源网址, 在一个页面发起 XHR 请求时会带上当前页面的内容, 我们这里要把他改成 <code>Base</code></li>
+<li>关于你的 IP, 我们可以尝试通过一些请求头进行伪造, 可以参考: <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000019197577">这篇文章</a>, 我们这里采用 <code>X-Forwarded-For</code> 进行伪造</li>
+</ul>
+<h1 id="php">PHP</h1>
+<ul>
+<li>eval(): 这个函数，要搞个system(); 去执行cmd命令，记得写分号.</li>
+</ul>
+<h1 id="md5绕过">md5绕过</h1>
+<h2 id="e绕过">1. 0E绕过</h2>
+<p>0E开头的字符串在参与比较的时候会被当成科学计数法，结果转换成0 。</p>
+<p>常见0E开头的字符串：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dns">QNKCDZO<br><span class="hljs-number">240610708</span><br>byGcY<br>sonZ7y<br>aabg7XSs<br>aabC9RqS<br>s878926199a<br>s155964671a<br>s214587387a<br>s1091221200a<br></code></pre></td></tr></table></figure>
+<h2 id="数组绕过">2. 数组绕过</h2>
+<p>MD5不能加密数组，传入参数会报错，但是会继续执行并且返回。</p>
+<p>举个栗子：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240831210728043.png" srcset="/img/mokou.gif" lazyload alt="image-20240831210728043" /><figcaption aria-hidden="true">image-20240831210728043</figcaption>
+</figure>
+<h3 id="md5碰撞">3. md5碰撞</h3>
+<p>如题</p>
+<h2 id="md5-sql-注入">4. md5-sql 注入</h2>
+<p><code>ffifdyop</code> 的MD5加密结果是 <code>276f722736c95d99e921722cf9ed621c</code></p>
+<p>经过MySQL编码后会变成<code>’or’6xxx</code>,使SQL恒成立,相当于万能密码,可以绕过md5()函数的加密</p>
+<h1 id="ssrf">SSRF</h1>
+<h2 id="定义">定义</h2>
+<p>SSRF(Server-Side Request Forgery:<strong>服务器端请求伪造</strong>) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）</p>
+<h2 id="涉及函数">涉及函数</h2>
+<h3 id="curl_exec">curl_exec()</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">curl_exec</span>()  curl_exec函数用于执行指定的cURL会话。<br></code></pre></td></tr></table></figure>
+<p>E.P.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-variable">$url</span>=<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;url&#x27;</span>];<br><span class="hljs-comment">//初始化curl会话</span><br><span class="hljs-variable">$ch</span>=<span class="hljs-title function_ invoke__">curl_init</span>(<span class="hljs-variable">$url</span>); <br><span class="hljs-comment">// 设置URL和相应的选项</span><br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_HEADER, <span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="hljs-number">1</span>);<br><span class="hljs-comment">//// 抓取URL并把它传递给浏览器</span><br><span class="hljs-variable">$result</span>=<span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>);<br> <span class="hljs-comment">//关闭cURL资源，并且释放系统资源</span><br><span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>);<br><span class="hljs-keyword">echo</span> (<span class="hljs-variable">$result</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这个时候我们就可以利用url参数，来获取内网的部分文件，直接写<code>127.0.0.1:/flag.php</code>这种即可，赋值给URL</p>
+<h3 id="file_get_contents">file_get_contents()</h3>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">file_get_contents</span>() <br><span class="hljs-comment">//file_get_content函数从用户指定的url获取内容，然后指定一个文件名进行保存，并展示给用户。</span><br><span class="hljs-comment">//file_put_content函数把一个字符串写入文件中。</span><br></code></pre></td></tr></table></figure>
+<p>E.P.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$url</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;url&#x27;</span>];;<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$url</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>也是URL塞本地文件路径:<code>http://127.0.0.1/xxxxx</code></p>
+<h3 id="fsockopen">fsockopen()</h3>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">fsockopen</span>()  fsockopen — 打开一个网络连接或者一个Unix套接字连接<br></code></pre></td></tr></table></figure>
+<p>E.P.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$host</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;url&#x27;</span>];<br><span class="hljs-variable">$fp</span> = <span class="hljs-title function_ invoke__">fsockopen</span>(<span class="hljs-string">&quot;<span class="hljs-subst">$host</span>&quot;</span>,<span class="hljs-number">80</span>, <span class="hljs-variable">$errno</span>, <span class="hljs-variable">$errstr</span>,<span class="hljs-number">30</span>);<br><span class="hljs-keyword">if</span>(!<span class="hljs-variable">$fp</span>)&#123;<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$errstr</span> (<span class="hljs-subst">$errno</span>)&lt;br /&gt;\n&quot;</span>;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br><span class="hljs-variable">$out</span> =<span class="hljs-string">&quot;GET / HTTP/1.1\r\n&quot;</span>;<br><span class="hljs-variable">$out</span> .=<span class="hljs-string">&quot;Host: <span class="hljs-subst">$host</span>\r\n&quot;</span>;<br><span class="hljs-variable">$out</span> .=<span class="hljs-string">&quot;Connection: Close\r\n\r\n&quot;</span>;<br><span class="hljs-title function_ invoke__">fwrite</span>(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$out</span>);<br><span class="hljs-keyword">while</span>(!<span class="hljs-title function_ invoke__">feof</span>(<span class="hljs-variable">$fp</span>))&#123;<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">fgets</span>(<span class="hljs-variable">$fp</span>,<span class="hljs-number">1024</span>);<br>&#125;<br><span class="hljs-title function_ invoke__">fclose</span>(<span class="hljs-variable">$fp</span>);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="涉及协议">涉及协议</h2>
+<h3 id="file伪协议">file伪协议</h3>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">file:<span class="hljs-regexp">//</span> 协议：<br>        条件 allow_url_fopen:off<span class="hljs-regexp">/on  allow_url_include :off/</span>on<br>        作用：用于访问本地文件系统。在include()/require()等参数可控的情况下<br>             如果导入非php文件也会被解析为php<br>        用法：<br>            <span class="hljs-number">1</span>.file:<span class="hljs-regexp">//</span>[文件的绝对路径和文件名]<br>            <span class="hljs-number">2</span>.[文件的相对路径和文件名]<br>            <span class="hljs-number">3</span>.[http：<span class="hljs-regexp">//</span>网络路径和文件名]<br></code></pre></td></tr></table></figure>
+<h3 id="gopher协议">Gopher协议</h3>
+<p>当探测内网或执行命令时需要发送 POST 请求，我们可以利用 gopher 协议</p>
+<p>协议格式：<code>gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;</code>，这里的gopher-path就相当于是发送的请求数据包</p>
+<h3 id="dict协议">dict协议</h3>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/WebLeran/" class="category-chain-item">WebLeran</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/">#CTF</a>
+      
+        <a href="/tags/Web/">#Web</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/20/pwnnotes-stackOverflow/" title="pwnnotes-stackOverflow">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pwnnotes-stackOverflow</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/09/Pwn%E7%9A%84Patch%E5%B0%8F%E7%9F%A5%E8%AF%86/" title="Pwn的Patch小知识">
+                        <span class="hidden-mobile">Pwn的Patch小知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
