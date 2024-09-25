@@ -1,0 +1,876 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="KERNEL?OS!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0x1 内核的简单食用异闻录">
+<meta property="og:url" content="http://example.com/2024/09/25/0x2%E5%86%85%E6%A0%B8%E7%9A%84%E7%AE%80%E5%8D%95%E9%A3%9F%E7%94%A8%E5%BC%82%E9%97%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="KERNEL?OS!">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/kernelStart.jpg">
+<meta property="article:published_time" content="2024-09-25T04:36:07.000Z">
+<meta property="article:modified_time" content="2024-09-25T07:58:57.365Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Kernel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/kernelStart.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>0x1 内核的简单食用异闻录 - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/kernelStart.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="0x1 内核的简单食用异闻录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-25 12:36" pubdate>
+          2024年9月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Kernel"
+        id="heading-6ff9f4444ac481652f4412b5e1623846" role="tab" data-toggle="collapse" href="#collapse-6ff9f4444ac481652f4412b5e1623846"
+        aria-expanded="true"
+      >
+        Kernel
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-6ff9f4444ac481652f4412b5e1623846"
+           role="tabpanel" aria-labelledby="heading-6ff9f4444ac481652f4412b5e1623846">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/09/25/0x2%E5%86%85%E6%A0%B8%E7%9A%84%E7%AE%80%E5%8D%95%E9%A3%9F%E7%94%A8%E5%BC%82%E9%97%BB%E5%BD%95/" title="0x1 内核的简单食用异闻录"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">0x1 内核的简单食用异闻录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/23/0x1%E5%9F%BA%E7%A1%80%E7%9A%84%E7%9F%A5%E8%AF%86/" title="0x1 基础的知识"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">0x1 基础的知识</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">0x1 内核的简单食用异闻录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="x0-依赖">0x0 依赖</h1>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get update<br>sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils qemu flex libncurses5-dev libssl-dev bc bison libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libelf-dev<br></code></pre></td></tr></table></figure>
+<p>虽然但是，我记得即使这里装了qemu，后面还要自己装个x86-64的来着</p>
+<p>pwn相关：</p>
+<p>hxd写了个<a target="_blank" rel="noopener" href="https://github.com/t3uk1/pwninstaller">一键安装脚本</a></p>
+<p>不过好像有bug，要自己手动装一下<a target="_blank" rel="noopener" href="https://github.com/pwndbg/pwndbg">pwndbg</a></p>
+<p>好像是因为太新了</p>
+<h1 id="x1-获取内核镜像">0x1 获取内核镜像</h1>
+<p>大概有如下三种方式：</p>
+<ul>
+<li>下载内核源码后编译</li>
+<li>直接下载现成的的内核镜像，不过这样我们就不能自己魔改内核了2333</li>
+<li>直接使用自己系统的镜像</li>
+</ul>
+<p>arttnba3师傅介绍了三种，但是我只用了第一种</p>
+<h2 id="i.获取内核源码">I.获取内核源码</h2>
+<p>前往<a target="_blank" rel="noopener" href="https://www.kernel.org/">Linux Kernel Archive</a>下载对应版本的内核源码</p>
+<h2 id="ii.配置编译选项">II.配置编译选项</h2>
+<p>解压我们下载来的内核源码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">tar -xvf linux-5.11.tar.xz</span><br></code></pre></td></tr></table></figure>
+<p>完成后进入文件夹内，执行如下命令开始配置编译选项</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">make menuconfig</span><br></code></pre></td></tr></table></figure>
+<p>进入如下配置界面</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20240924150028795.png" srcset="/img/mokou.gif" lazyload alt="image-20240924150028795" /><figcaption aria-hidden="true">image-20240924150028795</figcaption>
+</figure>
+<p>保证勾选如下配置（默认都是勾选了的）：</p>
+<ul>
+<li>Kernel hacking —&gt; Kernel debugging</li>
+<li>Kernel hacking —&gt; Compile-time checks and compiler options —&gt; Compile the kernel with debug info</li>
+<li>Kernel hacking —&gt; Generic Kernel Debugging Instruments –&gt; KGDB: kernel debugger</li>
+<li>kernel hacking —&gt; Compile the kernel with frame pointers</li>
+</ul>
+<p>最后这个 Compile the kernel with frame pointers，可能会找不到，需要修改配置文件<code>lib/Kconfig.debug</code>：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ada">Symbol: ARCH_WANT_FRAME_POINTERS [=y]<br> │ <span class="hljs-keyword">Type</span>  <span class="hljs-type">: </span>bool<br> │ Defined <span class="hljs-keyword">at</span> lib/Kconfig.debug:<span class="hljs-number">383</span><br></code></pre></td></tr></table></figure>
+<p>把这个符号给添加上一行（默认是没有这行的）：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20240924150422254.png" srcset="/img/mokou.gif" lazyload alt="image-20240924150422254" /><figcaption aria-hidden="true">image-20240924150422254</figcaption>
+</figure>
+<p>添加上了之后，就能找到：kernel hacking —&gt; Compile the kernel with frame pointers，应该会是开启的状态</p>
+<p>通常保存的路径在当前目录下的 <code>.config</code> 文件中，如果你在生成配置文件后才想起来忘了改某个选项也可以直接编辑这个文件</p>
+<h2 id="iii.开始编译">III.开始编译</h2>
+<p>运行如下命令开始编译，生成内核镜像</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>make -j<span class="hljs-variable">$(</span>nproc) bzImage<br></code></pre></td></tr></table></figure>
+<h2 id="iv.可能出现的错误">IV.可能出现的错误</h2>
+<p>我编译时也出现过这个错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">make[1]: *** No rule to make target &#x27;debian/canonical-certs.pem&#x27;, needed by &#x27;certs/x509_certificate_list&#x27;.  Stop<br></code></pre></td></tr></table></figure>
+<p>只需要在 <code>.config</code> 文件中找到 <code>CONFIG_SYSTEM_TRUSTED_KEYS</code>，等于号后面的值改为 <code>""</code></p>
+<h2 id="v.编译结果">V.编译结果</h2>
+<p>完成之后会出现如下信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Kernel: arch/x86/boot/bzImage is ready  (#1)<br></code></pre></td></tr></table></figure>
+<p>我们主要关注生成的这两个文件：</p>
+<p><strong>vmlinux：原始内核文件</strong></p>
+<p>在当前目录下提取到<code>vmlinux</code>，为编译出来的原始内核文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">file vmlinux</span><br>vmlinux: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, BuildID[sha1]=f1fc85f87a5e6f3b5714dad93a8ac55fa7450e06, with debug_info, not stripped<br></code></pre></td></tr></table></figure>
+<p><strong>bzImage：压缩内核镜像</strong></p>
+<p>在当前目录下的<code>arch/x86/boot/</code>目录下提取到<code>bzImage</code>，为压缩后的内核文件，适用于大内核</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">file <span class="hljs-built_in">arch</span>/x86/boot/bzImage</span><br>arch/x86/boot/bzImage: Linux kernel x86 boot executable bzImage, version 5.11.0 (root@iZf3ye3at4zthpZ) #1 SMP Sun Feb <br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>顺带一提，我是在wsl里面编译的，但是在/mnt/的挂载路径中好像会出现编译问题，但是换到用户路径下就一起正常了。</p>
+</blockquote>
+<p>↓看起来是有用的情报</p>
+<blockquote>
+<h6 id="zimage-bzimage">zImage &amp;&amp; bzImage</h6>
+<p>zImage–是vmlinux经过gzip压缩后的文件。 bzImage–bz表示“big zImage”，不是用bzip2压缩的，而是要偏移到一个位置，使用gzip压缩的。两者的不同之处在于，zImage解压缩内核到低端内存(第一个 640K)，bzImage解压缩内核到高端内存(1M以上)。如果内核比较小，那么采用zImage或bzImage都行，如果比较大应该用bzImage。</p>
+<p>https://blog.csdn.net/xiaotengyi2012/article/details/8582886</p>
+</blockquote>
+<h2 id="extra.添加系统调用">EXTRA.添加系统调用</h2>
+<h3 id="分配系统调用号">1.分配系统调用号</h3>
+<p>在<code>arch/x86/entry/syscalls/syscall_64.tbl</code>中添加我们自己的系统调用号，这里用CTF常见数字<code>114514</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ASM">114514    64    3zureus_test        sys_3zureus_test<br></code></pre></td></tr></table></figure>
+<h3 id="声明系统调用">2.声明系统调用</h3>
+<p>在<code>include/linux/syscalls.h</code>中添加如下函数声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* for 3zureus&#x27;s personal syscall test */</span><br>asmlinkage <span class="hljs-type">long</span> <span class="hljs-title function_">sys_3zureus_test</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="添加系统调用函数定义">3.添加系统调用函数定义</h3>
+<p>在<code>kernel/sys.c</code>中添加如下代码（放置于最后一行的<code>#endif /* CONFIG_COMPAT */</code>之前）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">SYSCALL_DEFINE0(<span class="hljs-number">3</span>zureus_test)<br>&#123;<br>    printk(<span class="hljs-string">&quot;3zureus\&#x27; syscall has been called!\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">114514</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里的<code>SYSCALL_DEFINE0()</code>本质上是一个宏，意为<strong>接收0个参数的系统调用</strong>，其第一个参数为系统调用名</p>
+<p>这里定义了一个简单的输出一句话的系统调用，在这里使用了内核态的<code>printk()</code>函数，输出的信息可以使用<code>dmesg</code>进行查看</p>
+<h3 id="重新编译内核">4.重新编译内核</h3>
+<p>这一步参照之前的步骤即可，通过这一步我们要将我们自己的系统调用编译到内核当中</p>
+<h3 id="测试系统调用">5.测试系统调用</h3>
+<p>我们使用如下的例程测试我们的新系统调用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    syscall(<span class="hljs-number">114514</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>编译，放入磁盘镜像中后重新打包，qemu起内核后尝试运行我们的例程，结果如下：</p>
+<blockquote>
+<p>因为dmesg输出的东西太多，这里还附加用了grep命令过滤</p>
+</blockquote>
+<p>。。。？为啥会no found</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo29d031f4ef6497f8cc421211e4444517.png" srcset="/img/mokou.gif" lazyload alt="9d031f4ef6497f8cc421211e4444517" /><figcaption aria-hidden="true">9d031f4ef6497f8cc421211e4444517</figcaption>
+</figure>
+<p>破案了，因为缺少libc的库，在编译的时候补上-static参数即可</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2image-20240924201607257.png" srcset="/img/mokou.gif" lazyload alt="image-20240924201607257" /><figcaption aria-hidden="true">image-20240924201607257</figcaption>
+</figure>
+<h1 id="x2-使用-busybox-构建文件系统">0x2 使用 busybox 构建文件系统</h1>
+<p>BusyBox 是一个集成了三百多个最常用Linux命令和工具的软件，包含了例如ls、cat和echo等一些简单的工具，我们将用 busybox 为我们的内核提供一个基本的用户环境</p>
+<p>没啥好说的，全抄！</p>
+<h2 id="一编译busybox">一、编译busybox</h2>
+<h4 id="i.获取busybox源码">I.获取busybox源码</h4>
+<p>在<a target="_blank" rel="noopener" href="https://busybox.net/downloads/">busybox.net</a>下载自己想要的版本，笔者这里选用<code>busybox-1.33.0.tar.bz2</code>这个版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">wget https://busybox.net/downloads/busybox-1.33.0.tar.bz2</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>外网下载的速度可能会比较慢，可以在前面下载Linux源码的时候一起下载，也可以选择去国内的镜像站下载</p>
+</blockquote>
+<p>解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">tar -jxvf busybox-1.33.0.tar.bz2</span><br></code></pre></td></tr></table></figure>
+<h4 id="ii.编译busybox源码">II.编译busybox源码</h4>
+<p>进入配置界面</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">make menuconfig</span><br></code></pre></td></tr></table></figure>
+<p>勾选 <code>Settings</code> —&gt; <code>Build static binary file (no shared lib)</code></p>
+<blockquote>
+<p>若是不勾选则需要单独配置 libc，比较麻烦</p>
+</blockquote>
+<p>接下来就是编译了，速度会比编译内核快很多</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">make install</span><br></code></pre></td></tr></table></figure>
+<p>编译完成后会生成一个<code>_install</code>目录，接下来我们将会用它来构建我们的磁盘镜像</p>
+<h2 id="二建立文件系统">二、建立文件系统</h2>
+<h3 id="i.初始化文件系统">I.初始化文件系统</h3>
+<p>一些简单的初始化操作…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cd</span> _install</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">mkdir</span> -pv &#123;bin,sbin,etc,proc,sys,home,lib64,lib/x86_64-linux-gnu,usr/&#123;bin,sbin&#125;&#125;</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">touch</span> etc/inittab</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">mkdir</span> etc/init.d</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">touch</span> etc/init.d/rcS</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">chmod</span> +x ./etc/init.d/rcS</span><br></code></pre></td></tr></table></figure>
+<h3 id="ii.配置初始化脚本">II.配置初始化脚本</h3>
+<p>首先配置 <code>etc/inttab</code> ，写入如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs SHELL">::sysinit:/etc/init.d/rcS<br>::askfirst:/bin/ash<br>::ctrlaltdel:/sbin/reboot<br>::shutdown:/sbin/swapoff -a<br>::shutdown:/bin/umount -a -r<br>::restart:/sbin/init<br></code></pre></td></tr></table></figure>
+<p>在上面的文件中指定了系统初始化脚本，因此接下来配置 <code>etc/init.d/rcS</code>，写入如下内容，主要是挂载各种文件系统：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br>mount -t proc none /proc<br>mount -t sysfs none /sys<br>mount -t devtmpfs devtmpfs /dev<br>mount -t tmpfs tmpfs /tmp<br>mkdir /dev/pts<br>mount -t devpts devpts /dev/pts<br><br>echo -e &quot;\nBoot took $(cut -d&#x27; &#x27; -f1 /proc/uptime) seconds\n&quot;<br>setsid cttyhack setuidgid 1000 sh<br><br>poweroff -d 0  -f<br></code></pre></td></tr></table></figure>
+<p>也可以在根目录下创建 <code>init</code> 文件，写入如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br><br>mount -t proc none /proc<br>mount -t sysfs none /sys<br>mount -t devtmpfs devtmpfs /dev<br><br>exec 0&lt;/dev/console<br>exec 1&gt;/dev/console<br>exec 2&gt;/dev/console<br><br>echo -e &quot;\nBoot took $(cut -d&#x27; &#x27; -f1 /proc/uptime) seconds\n&quot;<br>setsid cttyhack setuidgid 1000 sh<br><br>umount /proc<br>umount /sys<br>poweroff -d 0  -f<br></code></pre></td></tr></table></figure>
+<p>别忘了添加可执行权限：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">chmod</span> +x ./init</span><br></code></pre></td></tr></table></figure>
+<h3 id="iii.配置用户组">III.配置用户组</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;root:x:0:0:root:/root:/bin/sh&quot;</span> &gt; etc/passwd</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ctf:x:1000:1000:ctf:/home/ctf:/bin/sh&quot;</span> &gt;&gt; etc/passwd</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;root:x:0:&quot;</span> &gt; etc/group</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ctf:x:1000:&quot;</span> &gt;&gt; etc/group</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;none /dev/pts devpts gid=5,mode=620 0 0&quot;</span> &gt; etc/fstab</span><br></code></pre></td></tr></table></figure>
+<p>在这里建立了两个用户组<code>root</code>和<code>ctf</code>，以及两个用户<code>root</code>和<code>ctf</code></p>
+<h3 id="iv.配置glibc库">IV.配置glibc库</h3>
+<p>将需要的动态链接库拷到相应位置即可</p>
+<blockquote>
+<p>为了方便笔者这里就先不弄了，直接快进到下一步，以后有时间再补充（咕咕咕</p>
+<p>听hxd说有个配好的，看看，等他有点时间发出来</p>
+</blockquote>
+<h2 id="三打包文件系统为镜像文件">三、打包文件系统为镜像文件</h2>
+<h3 id="i.-打包为-cpio-文件">I. 打包为 cpio 文件</h3>
+<p>使用如下命令打包文件系统为 cpio 格式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">find . | cpio -o --format=newc &gt; ../../rootfs.cpio</span><br></code></pre></td></tr></table></figure>
+<p>也可以这么写</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">find . | cpio -o -H newc &gt; ../core.cpio</span><br></code></pre></td></tr></table></figure>
+<h3 id="ii.-打包为-ext4-镜像">II. 打包为 ext4 镜像</h3>
+<p>这里也可以将文件系统打包为 ext4 镜像格式，首先创建空白 ext4 镜像文件，这里 <code>bs</code> 表示块大小，<code>count</code> 表示块的数量：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/zero of=rootfs.img bs=1M count=32</span><br></code></pre></td></tr></table></figure>
+<p>之后将其格式化为 ext4 格式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">mkfs.ext4 rootfs.img</span> <br></code></pre></td></tr></table></figure>
+<p>挂载镜像，将文件拷贝进去即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">mkdir</span> tmp</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo mount rootfs.img ./tmp/</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo <span class="hljs-built_in">cp</span> -rfp _install/* ./tmp/</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo umount ./tmp</span><br></code></pre></td></tr></table></figure>
+<h2 id="四向文件系统中添加文件">四、向文件系统中添加文件</h2>
+<p>若是我们后续需要向文件系统中补充一些其他的文件，可以选择在原先的<code>_install</code>文件夹中添加（不过这样的话若是配置多个文件系统则会变得很混乱），也可以解压文件系统镜像后添加文件再重新进行打包</p>
+<h3 id="cpio-文件">cpio 文件</h3>
+<h4 id="i.解压磁盘镜像">I.解压磁盘镜像</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">cpio -idv &lt; ./rootfs.cpio</span><br></code></pre></td></tr></table></figure>
+<p>该命令会将磁盘镜像中的所有文件解压到当前目录下</p>
+<h4 id="ii.重打包磁盘镜像">II.重打包磁盘镜像</h4>
+<p>和打包磁盘镜像的命令一样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">find . | cpio -o --format=newc &gt; ../new_rootfs.cpio</span><br></code></pre></td></tr></table></figure>
+<h3 id="ext4-镜像">ext4 镜像</h3>
+<p>直接 mount 后再 umount jike：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo mount rootfs.img ./tmp/</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-comment"># do something</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo umount ./tmp</span><br></code></pre></td></tr></table></figure>
+<h1 id="x3-使用qemu运行内核">0x3 使用qemu运行内核</h1>
+<p>终于到了最激动人心的时候了：<strong>我们即将要将这个Linux内核跑起来——用我们自己配置的文件系统与内核</strong></p>
+<p>安全起见，我们并不直接在真机上运行这个内核，而是使用qemu在虚拟机里运行</p>
+<h2 id="配置启动脚本">配置启动脚本</h2>
+<h3 id="i.-使用-cpio-文件作为文件系统">I. 使用 cpio 文件作为文件系统</h3>
+<p>首先将先前的<code>bzImage</code>和<code>rootfs.cpio</code>放到同一个目录下</p>
+<p>接下来编写启动脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">touch</span> boot.sh</span><br></code></pre></td></tr></table></figure>
+<p>写入如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br>qemu-system-x86_64 \<br>    -m 128M \<br>    -kernel ./bzImage \<br>    -initrd  ./rootfs.cpio \<br>    -monitor /dev/null \<br>    -append &quot;root=/dev/ram rdinit=/sbin/init console=ttyS0 oops=panic panic=1 loglevel=3 quiet kaslr&quot; \<br>    -cpu kvm64,+smep \<br>    -smp cores=2,threads=1 \<br>    -nographic \<br>    -s<br></code></pre></td></tr></table></figure>
+<p>部分参数说明如下：</p>
+<ul>
+<li><p><code>-m</code>：虚拟机内存大小</p></li>
+<li><p><code>-kernel</code>：内存镜像路径</p></li>
+<li><p><code>-initrd</code>：磁盘镜像路径</p></li>
+<li><p>``` -append <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>  ：附加参数选项<br><br>  - `nokalsr`：关闭内核地址随机化，方便我们进行调试<br>  - `rdinit`：指定初始启动进程，`/sbin/init`进程会默认以 `/etc/init.d/rcS` 作为启动脚本<br>  - `loglevel=<span class="hljs-number">3</span> `&amp; `quiet`：不输出log<br>  - `console=ttyS0`：指定终端为`/dev/ttyS0`，这样一启动就能进入终端界面<br><br>- `-monitor`：将监视器重定向到主机设备`/dev/null`，这里重定向至null主要是防止CTF中被人给偷了qemu拿flag<br><br>- `-cpu`：设置CPU安全选项，在这里开启了smep保护<br><br><span class="hljs-title">- `-s`：相当于`-gdb tcp::</span><span class="hljs-number">1234</span>`的简写（也可以直接这么写），后续我们可以通过gdb连接本地端口进行调试<br><br>运行`boot.sh`，成功启动~撒花~🌸🌸🌸<br><br>### II. 使用 ext4 镜像作为文件系统<br><br>编写如下启动脚本即可，实际上只是将 `-initrd` 换成了 `-hda`，这里也可以写成 `-drive file=./rootfs.img,format=raw`：<br><br>```SHELL<br>#!/bin/bash<br>qemu-system-x86_64 \<br>    -m <span class="hljs-number">256</span>M \<br>    -cpu kvm64,+smep,+smap \<br>    -smp cores=<span class="hljs-number">2</span>,threads=<span class="hljs-number">2</span> \<br>    -kernel bzImage \<br>    -hda ./rootfs.img \<br>    -nographic \<br>    -monitor /dev/null \<br>    -snapshot \<br>    -append <span class="hljs-string">&quot;console=ttyS0 root=/dev/sda rw rdinit=/sbin/init kaslr pti=on quiet oops=panic panic=1&quot;</span> \<br>    -no-reboot \<br></code></pre></td></tr></table></figure></p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kernel/" class="category-chain-item">Kernel</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/">#Linux</a>
+      
+        <a href="/tags/Kernel/">#Kernel</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/23/0x1%E5%9F%BA%E7%A1%80%E7%9A%84%E7%9F%A5%E8%AF%86/" title="0x1 基础的知识">
+                        <span class="hidden-mobile">0x1 基础的知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
