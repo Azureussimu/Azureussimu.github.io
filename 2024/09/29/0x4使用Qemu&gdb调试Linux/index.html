@@ -18,25 +18,25 @@
   
     <meta name="description" content="KERNEL?OS!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0x1 基础的知识">
-<meta property="og:url" content="http://example.com/2024/09/23/0x1%E5%9F%BA%E7%A1%80%E7%9A%84%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:title" content="0x4 使用 qemu + gdb 调试Linux内核">
+<meta property="og:url" content="http://example.com/2024/09/29/0x4%E4%BD%BF%E7%94%A8Qemu&gdb%E8%B0%83%E8%AF%95Linux/index.html">
 <meta property="og:site_name" content="3zureusの小屋">
 <meta property="og:description" content="KERNEL?OS!">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/blogimg/OSBASE.jpg">
-<meta property="article:published_time" content="2024-09-23T14:36:07.000Z">
-<meta property="article:modified_time" content="2024-09-25T07:59:27.938Z">
+<meta property="og:image" content="http://example.com/img/blogimg/kernelStart.jpg">
+<meta property="article:published_time" content="2024-09-29T06:36:07.000Z">
+<meta property="article:modified_time" content="2024-09-29T08:33:23.648Z">
 <meta property="article:author" content="3zureus">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Kernel">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/blogimg/OSBASE.jpg">
+<meta name="twitter:image" content="http://example.com/img/blogimg/kernelStart.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>0x1 基础的知识 - 3zureusの小屋</title>
+  <title>0x4 使用 qemu + gdb 调试Linux内核 - 3zureusの小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/blogimg/OSBASE.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blogimg/jsjwlPPT.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="0x1 基础的知识"></span>
+            <span id="subtitle" data-typed-text="0x4 使用 qemu + gdb 调试Linux内核"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-23 22:36" pubdate>
-          2024年9月23日 晚上
+        <time datetime="2024-09-29 14:36" pubdate>
+          2024年9月29日 下午
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          3.2k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          24 分钟
+          27 分钟
         
       </span>
     
@@ -324,7 +324,7 @@
       
         <a href="/2024/09/23/0x1%E5%9F%BA%E7%A1%80%E7%9A%84%E7%9F%A5%E8%AF%86/" title="0x1 基础的知识"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">0x1 基础的知识</span>
         </a>
       
@@ -351,7 +351,7 @@
       
         <a href="/2024/09/29/0x4%E4%BD%BF%E7%94%A8Qemu&amp;gdb%E8%B0%83%E8%AF%95Linux/" title="0x4 使用 qemu + gdb 调试Linux内核"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">0x4 使用 qemu + gdb 调试Linux内核</span>
         </a>
       
@@ -375,139 +375,68 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">0x1 基础的知识</h1>
+            <h1 style="display: none">0x4 使用 qemu + gdb 调试Linux内核</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="x00-os基础">0x00 OS基础</h1>
-<p>操作系统本质上是在物理内存中运行的代码+数据</p>
-<p>CPU在执行操作系统内核代码的时候，通常运行在高权限环境，拥有完全对硬件访问的能力</p>
-<p>CPU在执行用户态的代码是，运行在低权限环境，<strong>只有部分/没有</strong>硬件访问能力</p>
-<h2 id="分级保护域">分级保护域</h2>
-<p>(<strong>hierarchical protection domains</strong>) 又称保护环，就是熟知的Rings</p>
-<p>在一些硬件或者微代码级别上提供不同特权态模式的 CPU 架构上，保护环通常都是<strong>硬件强制</strong>的。</p>
-<p>Rings是从最高特权级（通常被叫作0级）到最低特权级（通常对应最大的数字）排列的</p>
-<p>我们熟知的是Intel的CPU，被分为R0、R1、R2、R3，实际上R1、R2不怎么使用，R0拥有最高权限。</p>
-<p>基本上是操作系统内核代码运行在R0。用户进程代码运行在R3。</p>
-<p>经 · 典 · 老 · 图 ：</p>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2yQXZhLEHVn1b3uC.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<h2 id="运行态切换">运行态切换</h2>
-<p>操作系统一般用以下两种途径进行特权级的切换</p>
-<ul>
-<li>中断 ：CPU收到一个外部中断时，会切换到R0，并根据中断描述符表索引对应的中断处理代码执行后面的操作。</li>
-<li>特权级相关指令：R0 -&gt; R3，<code>iret</code>指令，R3 -&gt; R0， <code>sysenter</code>指令。</li>
-</ul>
-<p>基于这两种方式，现代操作系统的开发者包装出了<strong>系统调用（SYSCALL）</strong>，作为由“用户态”切换到“内核态”的入口。</p>
+                <h1 id="使用-qemu-gdb-调试linux内核">使用 qemu + gdb 调试Linux内核</h1>
+<h2 id="一载入内核符号表">一、载入内核符号表</h2>
+<p>直接使用 gdb 载入之前在源码根目录下编译出来的未压缩内核镜像 vmlinux 即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SHELL">sudo gdb vmlinux<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>用户态：CPU 运行在 ring3 + 用户进程运行环境上下文</p>
-<p>内核态：CPU 运行在 ring0 + 内核代码运行环境上下文</p>
+<p>什么？！你说你sudo gdb不是pwndbg？</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240929161310985.png" srcset="/img/mokou.gif" lazyload alt="image-20240929161310985" /><figcaption aria-hidden="true">image-20240929161310985</figcaption>
+</figure>
+<p>现在知道怎么做了吧</p>
 </blockquote>
-<p>当用户进程想要请求更高权限的服务时，便需要通过由系统提供的应用接口，使用系统调用以<strong>陷入内核态，再由操作系统完成请求</strong></p>
-<h2 id="进程-进程运行环境上下文-内核数据结构">进程 = 进程运行环境上下文 + 内核数据结构</h2>
-<ul>
-<li><p>页表</p>
-<p>每个进程都有自己独立的一组页表集</p></li>
-<li><p>进程调度</p>
-<p>使用时钟中断实现的进程调度</p>
-<p>具体去看操作系统</p></li>
-<li><p>进程控制块（PCB，Process Control Block）</p></li>
-</ul>
-<h1 id="x01-内核种类">0x01 内核种类</h1>
-<h2 id="介绍">介绍</h2>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2eX5h7aRdOrCkb9j.png" srcset="/img/mokou.gif" lazyload alt="Kernel在计算机体系结构中的位置" /><figcaption aria-hidden="true">Kernel在计算机体系结构中的位置</figcaption>
-</figure>
-<p>Kernel的主要功能基本能归为以下三点：</p>
-<ul>
-<li>控制并与硬件进行交互</li>
-<li>提供应用程序运行环境</li>
-<li>调度系统资源</li>
-</ul>
-<p>与一般的应用程式不同，系统内核的发生 crash 通常会引起系统重启</p>
-<h2 id="内核架构微内核-宏内核-混合内核">内核架构：微内核 &amp; 宏内核 &amp; 混合内核</h2>
-<figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2eQlyv3DszOjXPuw.png" srcset="/img/mokou.gif" lazyload alt="宏内核&amp;微内核&amp;混合内核" /><figcaption aria-hidden="true">宏内核&amp;微内核&amp;混合内核</figcaption>
-</figure>
-<h3 id="宏内核-monolithic-kernel">1. 宏内核 (Monolithic Kernel)</h3>
+<h2 id="二remote连接">二、remote连接</h2>
+<p>还记得当时编写的<code>boot.sh</code>吗？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br>qemu-system-x86_64 \<br>    -m 128M \<br>    -kernel ./bzImage \<br>    -initrd  ./rootfs.cpio \<br>    -monitor /dev/null \<br>    -append &quot;root=/dev/ram rdinit=/sbin/init console=ttyS0 oops=panic panic=1 loglevel=3 quiet kaslr&quot; \<br>    -cpu kvm64,+smep \<br>    -smp cores=2,threads=1 \<br>    -nographic \<br>    -s<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>宏内核</strong>（英语：Monolithic kernel），也译为<strong>集成式内核</strong>、<strong>单体式内核</strong>，一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/内核">操作系统内核</a>架构，此架构的特性是整个内核程序是一个单一二进制可执行文件，在<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/核心空間">内核态</a>以监管者模式（Supervisor Mode）来执行。相对于其他类型的操作系统架构，如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/微核心">微内核</a>架构或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/混核心">混合内核</a>架构等，这些内核会定义出一个高阶的虚拟接口，由该接口来涵盖描述整个电脑硬件，这些描述会集合成一组硬件描述用词，有时还会附加一些<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/系统调用">系统调用</a>，如此可以用一个或多个模块来实现各种操作系统服务，如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/行程">进程</a>管理、并发（Concurrency）控制、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/記憶體管理">存储器管理</a>等。</p>
-<p><em>from.</em> <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%95%B4%E5%A1%8A%E6%80%A7%E6%A0%B8%E5%BF%83">维基百科</a></p>
+<p><code>-s</code>：相当于<code>-gdb tcp::1234</code>的简写（也可以直接这么写），后续我们可以通过gdb连接本地端口进行调试</p>
 </blockquote>
-<p>通俗地说，宏内核几乎将一切都集成到了内核当中，并向上层应用程式提供抽象API（通常是以系统调用的形式），例如 Unix 与类 Unix 便通常都是宏内核</p>
+<p>我们启动时已经将内核映射到了本地的1234端口</p>
+<p>只需要gdb连接上就行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">pwndbg&gt; </span><span class="language-bash"><span class="hljs-built_in">set</span> architecture i386:x86-64</span><br>The target architecture is set to &quot;i386:x86-64&quot;.<br><span class="hljs-meta prompt_">pwndbg&gt; </span><span class="language-bash">target remote localhost:1234</span><br>Remote debugging using localhost:1234<br></code></pre></td></tr></table></figure>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2Kernel-monolithic_zh.svg.png" srcset="/img/mokou.gif" lazyload alt="Kernel-monolithic_zh.svg" /><figcaption aria-hidden="true">Kernel-monolithic_zh.svg</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20240929161522166.png" srcset="/img/mokou.gif" lazyload alt="image-20240929161522166" /><figcaption aria-hidden="true">image-20240929161522166</figcaption>
 </figure>
-<h3 id="微内核-micro-kernel">2. 微内核 (Micro Kernel)</h3>
+<h2 id="三解压-bzimage-镜像">三、解压 bzImage 镜像</h2>
+<p>有的时候我们只有压缩后的内核镜像<code>bzImage</code> （例如在一些 CTF 题目中），此时我们可以使用如下脚本进行解压（来自<a target="_blank" rel="noopener" href="https://github.com/torvalds/linux/blob/master/scripts/extract-vmlinux">github</a>）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">SPDX-License-Identifier: GPL-2.0-only</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">----------------------------------------------------------------------</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">extract-vmlinux - Extract uncompressed vmlinux from a kernel image</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"></span><br><span class="language-bash"><span class="hljs-comment"># Inspired from extract-ikconfig</span></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">(c) 2009,2010 Dick Streefland &lt;dick@streefland.net&gt;</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"></span><br><span class="language-bash"><span class="hljs-comment"># (c) 2011      Corentin Chary &lt;corentin.chary@gmail.com&gt;</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"></span><br><span class="language-bash"><span class="hljs-comment"># ----------------------------------------------------------------------</span></span><br><br>check_vmlinux()<br>&#123;<br>    # Use readelf to check if it&#x27;s a valid ELF<br>    # TODO: find a better to way to check that it&#x27;s really vmlinux<br>    #       and not just an elf<br>    readelf -h $1 &gt; /dev/null 2&gt;&amp;1 || return 1<br><br>    cat $1<br>    exit 0<br>&#125;<br><br>try_decompress()<br>&#123;<br>    # The obscure use of the &quot;tr&quot; filter is to work around older versions of<br>    # &quot;grep&quot; that report the byte offset of the line instead of the pattern.<br><br>    # Try to find the header ($1) and decompress from here<br>    for    pos in `tr &quot;$1\n$2&quot; &quot;\n$2=&quot; &lt; &quot;$img&quot; | grep -abo &quot;^$2&quot;`<br>    do<br>        pos=$&#123;pos%%:*&#125;<br>        tail -c+$pos &quot;$img&quot; | $3 &gt; $tmp 2&gt; /dev/null<br>        check_vmlinux $tmp<br>    done<br>&#125;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">Check invocation:</span><br>me=$&#123;0##*/&#125;<br>img=$1<br>if    [ $# -ne 1 -o ! -s &quot;$img&quot; ]<br>then<br>    echo &quot;Usage: $me &lt;kernel-image&gt;&quot; &gt;&amp;2<br>    exit 2<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">Prepare temp files:</span><br>tmp=$(mktemp /tmp/vmlinux-XXX)<br>trap &quot;rm -f $tmp&quot; 0<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">That didn<span class="hljs-string">&#x27;t work, so retry after decompression.</span></span><br>try_decompress &#x27;\037\213\010&#x27; xy    gunzip<br>try_decompress &#x27;\3757zXZ\000&#x27; abcde unxz<br>try_decompress &#x27;BZh&#x27;          xy    bunzip2<br>try_decompress &#x27;\135\0\0\0&#x27;   xxx   unlzma<br>try_decompress &#x27;\211\114\132&#x27; xy    &#x27;lzop -d&#x27;<br>try_decompress &#x27;\002!L\030&#x27;   xxx   &#x27;lz4 -d&#x27;<br>try_decompress &#x27;(\265/\375&#x27;   xxx   unzstd<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-string">Finally check for uncompressed images or objects:</span></span><br>check_vmlinux $img<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-string">Bail out:</span></span><br>echo &quot;$me: Cannot find vmlinux.&quot; &gt;&amp;2<br></code></pre></td></tr></table></figure>
+<p>用法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">./extract-vmlinux ./bzImage &gt; vmlinux</span><br></code></pre></td></tr></table></figure>
+<h2 id="四寻找gadget">四、寻找gadget</h2>
+<p>用ROPgadget或者ropper都行，笔者比较喜欢使用ROPgadget</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">$ </span><span class="language-bash">ROPgadget --binary ./vmlinux &gt; gadget.txt</span><br><br>or<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">ropper --file ./vmlinuz --nocolor &gt; gadget2.txt</span><br></code></pre></td></tr></table></figure>
+<p>一般出来大概有个几十MB</p>
 <blockquote>
-<p>在<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/電腦科學">计算机科学</a>中，<strong>微内核</strong>（英语：Microkernel，μ-kernel），是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/内核">内核</a>的设计架构，由尽可能精简的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/電腦程式">程序</a>所组成，以实现一个<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/作業系統">操作系统</a>所需要的最基本功能，包括了底层的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/定址空間">寻址空间</a>管理、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/執行緒">线程</a>管理、与<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/进程间通讯">进程间通信</a>。</p>
-<p><em>from.</em> <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BE%AE%E5%85%A7%E6%A0%B8">维基百科</a></p>
+<p>arttnba3师傅说他直接用pwntools暴力搜。。怎么搜？</p>
 </blockquote>
-<p>对于微内核而言，大部分的系统服务（如文件管理等）都被剥离于内核之外，内核仅仅提供最为基本的一些功能：底层的寻址空间管理、线程管理、进程间通信等</p>
+<h2 id="五调试内核模块">五、调试内核模块</h2>
+<p>使用 gdb 调试内核模块和调试普通的可执行文件大致上是相同的，不过我们需要额外指定各个需要被我们调试的 section 的载入地址</p>
+<p>首先通过读取 <code>/sys/module/模块名/sections/</code> 目录下对应的文件获取对应 section 在内核中的载入地址，例如我们调试时需要用到 <code>.text</code>、<code>.data</code>、<code>.bss</code> 这三个段的数据</p>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2Kernel-microkernel-CN.png" srcset="/img/mokou.gif" lazyload alt="Kernel-microkernel-CN" /><figcaption aria-hidden="true">Kernel-microkernel-CN</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo21XwSsuLlzvc5OGP.png" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
 </figure>
-<h1 id="x02-分级保护域">0x02 分级保护域</h1>
-<p><strong>分级保护域</strong>（<strong>hierarchical protection domains</strong>）又被称作保护环，简称 Rings ，是一种将计算机不同的资源划分至不同权限的模型</p>
-<p>在一些硬件或者微代码级别上提供不同特权态模式的 CPU 架构上，保护环通常都是硬件强制的。Rings是从最高特权级（通常被叫作0级）到最低特权级（通常对应最大的数字）排列的</p>
-<p>在大多数操作系统中，Ring0 拥有最高特权，并且可以和最多的硬件直接交互（比如CPU，内存）</p>
-<p>内层ring可以任意调用外层ring的资源</p>
-<h2 id="inter环模式">1. Inter环模式</h2>
+<p>之后在使用 gdb 连接上 qemu 后，使用 <code>add-symble-file</code> 命令载入内核模块信息，默认指定为 <code>.text</code> 段</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">(gdb) add-symbol-file ./arttnba3_module.ko 0xffffffffc0002000 -s .data 0xffffffffc0004000 -s .bss 0xffffffffc000<br></code></pre></td></tr></table></figure>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2yQXZhLEHVn1b3uC.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+<img src="https://s2.loli.net/2022/01/29/XR4xu8arZFyzwCL.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
 </figure>
-<p>操作系统本身便是一个运行在内核态的程序，当计算机通电之后首先会载入 ROM（BIOS/UEFI），之后载入第二引导程序（Linux 通常用 GNU Grub），由第二引导程序来将操作内核载入到内存当中并跳转到内核入口点，将控制权移交内核</p>
-<p>内核在完成一系列的初始化过程之后，会启动一些低权限（ring3）的进程以向我们提供用户界面</p>
-<h2 id="虚拟内存空间">2. 虚拟内存空间</h2>
-<p>在现代操作系统中，计算机的虚拟内存地址空间通常被分为两块——供用户进程使用的用户空间（user space）与供操作系统内核使用的内核空间（kernel space），对于 Linux 而言，通常位于较高虚拟地址的虚拟内存空间被分配给内核使用，而位于较低虚拟地址的虚拟内存空间责备分配给用户进程使用</p>
-<ul>
-<li>32位</li>
-</ul>
+<p>之后就可以正常调试内核模块了</p>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2qLsr8xECYNpRbAI.png" srcset="/img/mokou.gif" lazyload alt="qLsr8xECYNpRbAI" /><figcaption aria-hidden="true">qLsr8xECYNpRbAI</figcaption>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2IHTbgMaNE7UmxKo.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
 </figure>
-<ul>
-<li>64位</li>
-</ul>
 <figure>
-<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2PicGo2k8NHa1ljMEfXQbh.png" srcset="/img/mokou.gif" lazyload alt="k8NHa1ljMEfXQbh" /><figcaption aria-hidden="true">k8NHa1ljMEfXQbh</figcaption>
+<img src="https://s2.loli.net/2022/01/29/chLJN7tdaKEU3WT.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
 </figure>
-<h3 id="用户态-内核态">3. 用户态 &amp; 内核态</h3>
-<ul>
-<li>用户态：CPU 运行在 ring3 + 用户进程运行环境上下文</li>
-<li>内核态：CPU 运行在 ring0 + 内核代码运行环境上下文</li>
-</ul>
-<p>通常情况下，不同用户进程间的用户地址空间是隔离的，但都共享着相同的内核地址空间，<strong>即不同的用户进程在相同的内核虚拟地址空间上都有着一致的对内核物理地址空间的映射</strong></p>
-<h1 id="x03-运行状态切换-控制流转移">0x03 运行状态切换 &amp; 控制流转移</h1>
-<ul>
-<li>用户进程往往需要使用内核所提供的各种功能，此时就需要<strong>通过系统调用等接口</strong>陷入内核，待任务完成之后再“着陆”回用户态</li>
-<li><strong>操作系统往往也需要“主动地”暂停</strong>当前进程的运行，让 CPU 陷入到内核态并获取控制权，这通常是因为有需要内核主动处理的事件（如外部中断）</li>
-</ul>
-<p>一般来说，CPU由用户陷入到内核态主要有以下几种途径：</p>
-<ul>
-<li>系统调用 （一般是int 0x80 / syscall / sysenter )</li>
-<li>异常</li>
-<li>外设产生中断</li>
-</ul>
-<p><strong>用户态 <span class="math inline">\(\rightarrow\)</span> 内核态</strong>：</p>
-<ol type="1">
-<li><strong>切换GS段寄存器</strong>： 通过 <code>swapgs</code> 切换 GS 段寄存器，将 GS 寄存器值和一个特定位置的值进行交换，目的是保存 GS 值，同时将该位置的值作为内核执行时的 GS 值使用</li>
-<li><strong>保存用户态栈帧信息</strong>： 将当前栈顶（用户空间栈顶）记录在 CPU 独占变量区域里（由 GS 寄存器所指定的<code>percpu</code> 段），将 CPU 独占区域里记录的内核栈顶放入 rsp/esp</li>
-<li><strong>保存用户态寄存器信息</strong>： 通过 push 保存各寄存器值到栈上，以便后续“着陆”回用户态</li>
-<li><strong>通过汇编指令判断是否为32位</strong> （？疑问）</li>
-<li><strong>控制权转交内核，执行相应的操作</strong></li>
-</ol>
-<p><strong>用户态 <span class="math inline">\(\leftarrow\)</span> 内核态</strong>：</p>
-<ol type="1">
-<li><code>swapgs</code> 指令恢复用户态GS寄存器</li>
-<li><code>sysretq</code> 或者<code>iretq</code> 系列指令让 CPU 运行模式回到 ring 3，恢复用户空间程序的继续运行</li>
-</ol>
-<h2 id="中断">1. 中断</h2>
-<blockquote>
-<p>咕咕咕</p>
-</blockquote>
+<p>若是你只需要对代码段进行调试，也可以通过 <code>lsmod</code> 命令或者读取 <code>/proc/modules</code> 以获取代码段的载入地址</p>
+<figure>
+<img src="https://s2.loli.net/2022/01/29/gc9kSXf4qANVmZ5.png" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
 
                 
               </div>
@@ -557,18 +486,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/25/0x2%E5%86%85%E6%A0%B8%E7%9A%84%E7%AE%80%E5%8D%95%E9%A3%9F%E7%94%A8%E5%BC%82%E9%97%BB%E5%BD%95/" title="0x2 内核的简单食用异闻录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">0x2 内核的简单食用异闻录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/20/pwnnotes-stackOverflow/" title="pwnnotes-stackOverflow">
-                        <span class="hidden-mobile">pwnnotes-stackOverflow</span>
+                      <a href="/2024/09/29/0x3LKM/" title="0x3 可装载内核模块（LKM）">
+                        <span class="hidden-mobile">0x3 可装载内核模块（LKM）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
