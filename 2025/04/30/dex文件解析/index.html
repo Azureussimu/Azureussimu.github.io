@@ -1,0 +1,1082 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Bluepoision.png">
+  <link rel="icon" href="/img/Bluepoision.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="3zureus">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="作为看壳的前置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dex文件解析">
+<meta property="og:url" content="http://example.com/2025/04/30/dex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="3zureusの小屋">
+<meta property="og:description" content="作为看壳的前置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/blogimg/dex.jpg">
+<meta property="article:published_time" content="2025-04-30T07:52:08.000Z">
+<meta property="article:modified_time" content="2025-05-07T15:17:04.560Z">
+<meta property="article:author" content="3zureus">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/blogimg/dex.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>dex文件解析 - 3zureusの小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/mokou.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>3zureusの小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/blogimg/dex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="dex文件解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-30 15:52" pubdate>
+          2025年4月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Re学习笔记"
+        id="heading-4ac63dba33292c4d0803616c69eb80a6" role="tab" data-toggle="collapse" href="#collapse-4ac63dba33292c4d0803616c69eb80a6"
+        aria-expanded="true"
+      >
+        Re学习笔记
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4ac63dba33292c4d0803616c69eb80a6"
+           role="tabpanel" aria-labelledby="heading-4ac63dba33292c4d0803616c69eb80a6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/03/30/ELF%E6%96%87%E4%BB%B6/" title="ELF文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ELF文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/25/NewStar2023-lazyActivity/" title="NewStar2023-lazyActivity"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">NewStar2023-lazyActivity</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/PEB%E5%92%8CTEB/" title="PEB和TEB"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PEB和TEB</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/04/PE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PE结构学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PE结构学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/30/dex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" title="dex文件解析"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">dex文件解析</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/03/re%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-dll%E6%B3%A8%E5%85%A5/" title="re学习记录 初试dll注入"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">re学习记录 初试dll注入</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/win%E5%BA%94%E7%94%A8%E5%B1%82%E5%8F%8D%E8%B0%83%E8%AF%95/" title="win应用层反调试"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">win应用层反调试</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/28/%E7%AC%AC%E4%B8%80%E6%AC%A1fridaHook/" title="第一次fridaHook"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">第一次fridaHook</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">dex文件解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>学壳先学结构捏，前面师傅丢了3篇，深度优先看了（</p>
+<h1 id="前置">前置</h1>
+<h2 id="jvm">JVM</h2>
+<p>JVM是Java Virtual Machine的简称，即Java虚拟机</p>
+<h2 id="dvm">DVM</h2>
+<p>DVM是Dalvik Virtual Machine的简称，是Android4.4及以前使用的虚拟机，所有Android程序都运行在Android系统进程中，每个进程对应着一个Dalvik虚拟机实例。</p>
+<p>JVM和DVM都提供了对对象生命周期管理，堆栈管理，安全和异常管理及垃圾回收等重要功能。</p>
+<p>但是DVM却不能和JVM一样能直接运行Java字节码，它只能运行.dex文件，而这个.dex文件则是由Java字节码通过Android的dx工具生成的文件。</p>
+<h2 id="art">ART</h2>
+<p>ART是Android Runtime，在Android5.0开始使用ART虚拟机来替代Dalvik虚拟机，为什么Google要换Android程序运行的虚拟机呢 因为ART虚拟机更优秀。</p>
+<p>前面说了Dalvik虚拟机会在APP打开时去运行.dex文件，而这个是实时的，也就是JIT特性(Just In Time)，这也就会导致在启动APP时会先将.dex文件转换成机器码，这就导致了APP启动慢的问题。</p>
+<p>而ART虚拟机有个很好的特性叫做AOT(ahead of time)，这个特性可以在安装APK的时候将dex直接处理成可直接供ART虚拟机使用的机器码，ART虚拟机将.dex文件转换成可直接运行的.oat文件，而且ART虚拟机天生支持多dex，所以ART虚拟机可以很大提升APP的冷启动速度。</p>
+<p>除了这个优点外，ART还提升了GC速度，提供功能更全面的Debug特性，但是缺点也就是APK安装速度慢，占用的空间多。</p>
+<h1 id="来个一图流">来个一图流</h1>
+<p><img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo27049f3effe565aac2b9f20997b6d401b.jpeg" srcset="/img/mokou.gif" lazyload alt="img" />+</p>
+<p>DEX文件头较简单，不涉及编码等，真好</p>
+<p>同时还有源码看http://androidxref.com/9.0.0_r3/xref/dalvik/libdex/DexFile.h</p>
+<p>010也有提供模板，看得也挺舒服的</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo25356320bc2aa50685cb00393621bf808.png" srcset="/img/mokou.gif" lazyload alt="在这里插入图片描述" /><figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<h1 id="dex单独编译">DEX单独编译</h1>
+<p>其实比较简单</p>
+<p>就是用Java8的jdk组件中的javac编译成.class，然后再用Android套件中的dx工具</p>
+<p>中间采了个坑，安卓套件的路径有空格SB Windows一直没识别出来：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">C:\<span class="hljs-title">Users</span>\<span class="hljs-title">xxx</span>\<span class="hljs-title">AppData</span>\<span class="hljs-title">Local</span>\<span class="hljs-title">Android</span>\<span class="hljs-title">Sdk</span>\<span class="hljs-title">build</span>-<span class="hljs-title">tools</span>\30.0.3\<span class="hljs-title">dx.bat</span> --<span class="hljs-title">dex</span> --<span class="hljs-title">output</span>=<span class="hljs-title">H.dex</span> .\<span class="hljs-title">HelloDex.class</span></span><br></code></pre></td></tr></table></figure>
+<p>这样就得到了一个dex</p>
+<h1 id="生成图">生成图</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2fbc2b6bbee232657cddb4e1db56e9b54.png" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h1 id="分层">分层</h1>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo224776e83ef4d415cbf33532f31580e81~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2d985020caa93cc8d0a8dc209b44a673a.png" srcset="/img/mokou.gif" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h2 id="dex-header">DEX HEADER</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DexHeader</span>&#123;</span><br>    u1 magic[<span class="hljs-number">8</span>];                    <span class="hljs-comment">/*魔数字段，格式如&quot;dex\n035\x00&quot;,其中035表示结构的版本*/</span><br>    u4 checksum;                    <span class="hljs-comment">/*校验码, 是小端序*/</span><br>    u1 signature[kSHA1DigertLen];   <span class="hljs-comment">/*SHA-1签名，长度20*/</span><br>    u4 file_Size;                   <span class="hljs-comment">/*Dex文件总长度*/</span><br>    u4 header_Size;                 <span class="hljs-comment">/*文件头长度，009版本=0x5C，035版本=0x70*/</span><br>    u4 endian_Tag;                  <span class="hljs-comment">/*标识字节顺序的常量，根据这个常量可以判断是否交换了字节顺序，缺省情况下=0x78563412*/</span><br>    u4 link_Size;                   <span class="hljs-comment">/*连接段大小，0表示静态链接*/</span><br>    u4 link_Offset;                 <span class="hljs-comment">/*连接段开始位置，从本文件头开始算起。 上为0此也为0*/</span><br>    u4 map_Offset;                  <span class="hljs-comment">/*map数据基地址*/</span><br>    u4 string_ids_size;             <span class="hljs-comment">/*字符串列表字符串个数*/</span><br>    u4 string_ids_off;              <span class="hljs-comment">/**/</span><br>    u4 type_ids_size;               <span class="hljs-comment">/*类型列表里类型个数*/</span><br>    u4 type_ids_offset;             <span class="hljs-comment">/**/</span><br>    u4 proto_ids_size;              <span class="hljs-comment">/*原型列表里原型个数*/</span><br>    u4 proto_ids_offset;            <span class="hljs-comment">/**/</span><br>    u4 field_ids_size;              <span class="hljs-comment">/*字段列表里字段个数*/</span><br>    u4 field_ids_offset;            <span class="hljs-comment">/**/</span><br>    u4 method_ids_size;             <span class="hljs-comment">/*方法列表里方法个数*/</span><br>    u4 method_ids_offset;           <span class="hljs-comment">/**/</span><br>    u4 class_defs_size;             <span class="hljs-comment">/*类定义列表里类的个数*/</span><br>    u4 class_defs_offset;           <span class="hljs-comment">/**/</span><br>    u4 data_size;                   <span class="hljs-comment">/*数据段大小，必须以4自己对齐*/</span><br>    u4 data_offset;                 <span class="hljs-comment">/**/</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Dex里面很多数据是小端序。包括前面的0x78563412，如下图：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250505180725654.png" srcset="/img/mokou.gif" lazyload alt="image-20250505180725654" /><figcaption aria-hidden="true">image-20250505180725654</figcaption>
+</figure>
+<h3 id="magic-value">Magic value</h3>
+<p>魔数字段，格式如<code>"dex\n035\x00"</code>,其中035表示结构的版本</p>
+<h3 id="checksum">checksum</h3>
+<p>dex文件的校验和，它可以判断dex文件是否损坏或者篡改，占用4个字节，注意这里是采用小字节序的编码方式。</p>
+<p>计算方式为去除 <code>magic</code> 、 <code>checksum</code> 以外的文件部分作 <code>alder32</code> 算法得到的校验值，用于判断 DEX 文件是否被篡改。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507153851094.png" srcset="/img/mokou.gif" lazyload alt="image-20250507153851094" /><figcaption aria-hidden="true">image-20250507153851094</figcaption>
+</figure>
+<h3 id="signature">signature</h3>
+<p>SHA-1签名，计算方式为去掉<code>magic value</code>、<code>checksum</code>和<code>signature</code>的dex文件进行SHA-1计算，即去掉头0x20个字节</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507153014577.png" srcset="/img/mokou.gif" lazyload alt="image-20250507153014577" /><figcaption aria-hidden="true">image-20250507153014577</figcaption>
+</figure>
+<h3 id="filesize">fileSize</h3>
+<p>整个dex文件的大小</p>
+<h3 id="headersize">headerSize</h3>
+<p>头大小，一般来说0x70</p>
+<h3 id="endian_tag">endian_tag</h3>
+<p>用于标记 DEX 文件是大端表示还是小端表示。由于 DEX 文件是运行在 Android 系统中的，所以一般都是小端表示, 这里具体的值就2个，</p>
+<p>表示字节序，，标准的.dex格式采用小段字节序，但具体实现可能会选择执行字节交换，所以这个改变就由这个tag来判断。</p>
+<p>，这个值也是恒定值 <code>0x12345678</code>。</p>
+<h3 id="link_size-link_off">link_size &amp; link_off</h3>
+<p>2个字段指定了链接段的大小和文件偏移，linkSize为0表示为静态链接，此时LinkOff也是0。</p>
+<h3 id="map_off">map_off</h3>
+<p>这个字段表示DexMapList的文件偏移</p>
+<h3 id="string_ids_size-string_ids_off">string_ids_size &amp; string_ids_off</h3>
+<p>这2个字段指定了dex文件中所有用到的字符串的个数和位置偏移，注意这里指的是位置偏移，而不是真正的字符串值。</p>
+<p>偏移会指向string_id_list表，表里储存的是字符串的偏移地址。</p>
+<h3 id="type_ids_size-type_ids_off">type_ids_size &amp; type_ids_off</h3>
+<p>类的类型的数量和位置偏移</p>
+<p>偏移的位置指向一个type表，表的每个单元内容是前面string_id_list的下标，对应的字符串就是对应的type</p>
+<h3 id="proto_ids_size-proto_ids_off">proto_ids_size &amp; proto_ids_off</h3>
+<p>方法原型的个数和位置偏移</p>
+<p>对应的数据还是和type字符串类似</p>
+<h3 id="field_ids_size-field_ids_off">field_ids_size &amp; field_ids_off</h3>
+<p>表示java文件中字段的信息的个数和位置偏移</p>
+<h3 id="method_ids_size-method_ids_off">method_ids_size &amp; method_ids_off</h3>
+<p>dex文件中的方法个数和偏移</p>
+<h3 id="class_defs_size-class_defs_off">class_defs_Size &amp; class_defs_off</h3>
+<p>类定义的</p>
+<hr />
+<p>下面再看一次dex结构图</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo224776e83ef4d415cbf33532f31580e81~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/mokou.gif" lazyload alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h2 id="id区">id区</h2>
+<p>id 区存储着字符串，type，prototype，field， method 资源的真正数据在文件中的偏移量，我们可以根据 id 区的偏移量去找到该 id 对应的真实数据</p>
+<h3 id="string_ids">string_ids</h3>
+<p>这个区块是一个偏移量列表，每个偏移量对应了一个真正的字符串资源，每个偏移量占32位。我们可以通过偏移量找到对应的实际字符串数据。具体格式如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>string_data_off</td>
+<td>uint</td>
+<td>从文件的开头到此项的字符串数据的偏移量</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">DexStringId</span> : &#123;<br>	<span class="hljs-attribute">stringDataOff</span>   字符串数据的起始偏移,u4<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>最终这个偏移的位置应该是落在数据区的。找到这个偏移量的位置后，根据下面的格式就可以读取出这个字符串资源的具体数据：</p>
+<table>
+
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>utf16_size</td>
+<td>uleb16</td>
+<td>字符串的解码长度，使用UTF-16编码(?真是utf16,吗，看起来像是单byte，但是010的模板说是utf16)</td>
+</tr>
+<tr class="even">
+<td>data</td>
+<td>ubyte[]</td>
+<td>具体的字符串内容，len=utf16_size</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-built_in">string</span>Data : &#123;<br>	size,    编码字符的个数<br>	<span class="hljs-built_in">string</span>   编码字符<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="type_ids">type_ids</h3>
+<p>这个区块是一个索引列表，索引的值对应字符串id区域偏移量列表中的某一项。数据格式如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>descriptor_idx</td>
+<td>uint</td>
+<td>这个类型的字符串描述在字符串id区域的索引</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">DexTypeId</span> : &#123;<br>	<span class="hljs-attribute">DescriptorIdx</span>     DexTypeID 在String ID 中的索引<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>流程大概为：读取descriptor_idx，从string_ids中读取string_data_off，从data里面读取对应的string</p>
+<p>下面是示例，后面的流程都相同，后面就不演示：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507220757655.png" srcset="/img/mokou.gif" lazyload alt="image-20250507220757655" /><figcaption aria-hidden="true">image-20250507220757655</figcaption>
+</figure>
+<p>这里是0x8，于是去string_ids中找：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507220935443.png" srcset="/img/mokou.gif" lazyload alt="image-20250507220935443" /><figcaption aria-hidden="true">image-20250507220935443</figcaption>
+</figure>
+<p>再去data找：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507221013166.png" srcset="/img/mokou.gif" lazyload alt="image-20250507221013166" /><figcaption aria-hidden="true">image-20250507221013166</figcaption>
+</figure>
+<h3 id="proto_ids">proto_ids</h3>
+<p>这个区块是一个方法原型 id 列表，数据格式为：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>shorty_idx</td>
+<td>uint</td>
+<td>一个<strong>字符串id区的索引</strong>，这个索引对应的字符串id列表项中的偏移量存储的字符串是这个方法原型的短格式描述符。</td>
+</tr>
+<tr class="even">
+<td>return_type_idx</td>
+<td>uint</td>
+<td>这个方法原型的返回值类型在<strong>类型id列表</strong>中索引</td>
+</tr>
+<tr class="odd">
+<td>parameters_off</td>
+<td>uint</td>
+<td>这个方法原型的参数值列表类型数据的偏移量。0代表没有参数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css">DexProtoID : &#123;<br>	shortyIdx,		u4,指向DexStringId的索引<br>	returnTypeIdx,  u4,指向DexTypeId的索引，返回类型<br>	parametersOff   u4,指向DexTypeList的索引 <br>&#125;<br><br>parametersOff --&gt; DexTypeList : &#123;<br>	size, u4, 参数个数<br>	DexTypeItem<span class="hljs-selector-attr">[]</span> : &#123;<br>		idx  u2,指向DexTypeId 的索引，参数类型<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2image-20250507221744040.png" srcset="/img/mokou.gif" lazyload alt="image-20250507221744040" /><figcaption aria-hidden="true">image-20250507221744040</figcaption>
+</figure>
+<h3 id="field_ids">field_ids</h3>
+<p>这个区块存储着原型 id 列表，数据格式为：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>class_idx</td>
+<td>ushort</td>
+<td>这个成员所在的类在<strong>类型id列表</strong>中的索引</td>
+</tr>
+<tr class="even">
+<td>type_idx</td>
+<td>ushort</td>
+<td>这个成员的类型在<strong>类型id列表</strong>中的索引</td>
+</tr>
+<tr class="odd">
+<td>name_idx</td>
+<td>uint</td>
+<td>这个成员的名字在<strong>字符串id列表</strong>的索引</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-title">DexFieldID :</span> &#123;<br><span class="hljs-built_in">	classIdx,</span>    u2, 类的类型，指向TypeID<br><span class="hljs-built_in">	typeIdx,</span>     u2, 字段类型，指向TypeID<br><span class="hljs-built_in">	nameIdx,</span>	 u4, 名称，指向StringID<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="method_ids">method_ids</h3>
+<p>这个区块存储着方法 id 列表，数据格式为：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>class_idx</td>
+<td>ushort</td>
+<td>这个方法所在的类在<strong>类型id列表</strong>中的索引</td>
+</tr>
+<tr class="even">
+<td>proto_idx</td>
+<td>ushort</td>
+<td>这个方法的原型在<strong>方法原型id列表</strong>中的索引</td>
+</tr>
+<tr class="odd">
+<td>name_idx</td>
+<td>uint</td>
+<td>这个方法的名字在<strong>字符串id列表</strong>的索引</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-title">DexMethodId :</span> &#123;<br><span class="hljs-built_in">	classIDx,</span>     u2,指向TypeId,类声明    <br><span class="hljs-built_in">	protoIdx,</span>	  u2,指向TypeId,原型声明<br>	nameIdx		  u4,指向StringId,名字<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="class_ids">class_ids</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>class_idx</td>
+<td>uint</td>
+<td>这个类在<strong>类型id列表</strong>中的索引</td>
+</tr>
+<tr class="even">
+<td>access_flags</td>
+<td>uint</td>
+<td>这个类的访问标记（如：public，final等）</td>
+</tr>
+<tr class="odd">
+<td>superClass_idx</td>
+<td>uint</td>
+<td>这个类的父类在<strong>类型id列表</strong>中的索引，如果此类没有父类（即它是根类，例如 <code>Object</code>），该值为常量值 <code>NO_INDEX</code></td>
+</tr>
+<tr class="even">
+<td>interfaces_off</td>
+<td>uint</td>
+<td>这个类使用的接口列表在<strong>文件</strong>中的偏移量；<br />如果没有就为0，该偏移量（如果为非零值）应该位于 <code>data</code> 区段。</td>
+</tr>
+<tr class="odd">
+<td>source_file_idx</td>
+<td>uint</td>
+<td>这个类的源码文件的文件名称在<strong>字符串id列表</strong>中的索引<br />若该值为特殊值 <code>NO_INDEX</code>，以表示缺少这种信息。</td>
+</tr>
+<tr class="even">
+<td>annotations_off</td>
+<td>uint</td>
+<td>这个类的注解数据在<strong>文件</strong>中的偏移量。</td>
+</tr>
+<tr class="odd">
+<td>class_data_off</td>
+<td>uint</td>
+<td>这个类的具体数据在<strong>文件</strong>中的偏移量</td>
+</tr>
+<tr class="even">
+<td>static_values_off</td>
+<td>uint</td>
+<td>静态成员的初始值列表在<strong>文件</strong>中的偏移量</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-title">DexClassId :</span> &#123;<br><span class="hljs-built_in">	class_idx,</span>        类的类型,u4,指向TypeId<br><span class="hljs-built_in">	access_flags,</span>     访问标志,u4,具体值代表见下面解析<br><span class="hljs-built_in">	superclass_idx,</span>	 父类类型,u4,指向TypeId<br><span class="hljs-built_in">	interfaces_off,</span>    接口偏移,u4,指向type_list偏移<br><span class="hljs-built_in">	source_file_idx,</span>   源文件名,u4,指向stringId<br><span class="hljs-built_in">	annotations_off,</span>  注解区偏移,u4,指向 annotations_directory_item<br><span class="hljs-built_in">	class_data_off,</span>    类数据偏移,u4，指向 class_dat<span class="hljs-built_in">a_item</span><br>	static_values_off  静态数据,u4,指向 encoded_array_item<br>&#125;<br>------------------------------------------------------------------------<br><span class="hljs-title">    interfaces_off --&gt; type_list :</span> &#123;<br><span class="hljs-built_in">        size,</span> u4, 参数个数<br><span class="hljs-title">        type_item[size] :</span> &#123;<br>            idx  u2,指向DexTypeId 的索引，接口类型<br>        &#125;<br>    &#125;<br><br><span class="hljs-title">    annotations_off --&gt; annotations_directory_item :</span> &#123;<br><span class="hljs-built_in">        class_annotations_off,</span>		u4,从文件开头到直接在该类上所做的注解的偏移量,应该在data区段<br><span class="hljs-built_in">        fields_size,</span>				u4,此项所注释的字段数量<br><span class="hljs-built_in">        annotated_methods_size,</span>		u4,此项所注释的方法数量<br>        annotated_parameters_size	u4,此项所注释的方法参数列表的数量<br>        field_annotations			list,len = fields_size,该列表中的元素必须按 field_idx 以升序进行排序<br>        method_annotations			list,len = annotated_methods_size,该列表中的元素必须按 method_idx 以升序进行排序。<br>        parameter_annotations		list,len = annotated_parameters_size,该列表中的元素必须按 method_idx 以升序进行排序。<br>    &#125;<br>    <br><span class="hljs-title">    class_data_off --&gt; class_data_item :</span> &#123;<br><span class="hljs-built_in">    	static_fields_size,</span>			uleb128, 定义的静态字段的数量<br><span class="hljs-built_in">    	instance_fields_size,</span>		uleb128, 定义的实例字段的数量<br><span class="hljs-built_in">    	direct_methods_size,</span>		uleb128, 定义的直接方法的数量<br><span class="hljs-built_in">    	virtual_methods_size,</span>		uleb128, 定义的虚拟方法的数量<br><span class="hljs-built_in">    	static_fields,</span>				list,定义的静态字段,这些字段必须按 field_idx 以升序进行排序。<br><span class="hljs-built_in">    	instance_fields,</span>			list,定义的实例字段,这些字段必须按 field_idx 以升序进行排序。<br><span class="hljs-built_in">    	direct_methods,</span>				list,定义的直接（static、private 或构造函数的任何一个）方法, 这些方法必须按 method_idx 以升序进行排序。<br>        virtual_methods				list,定义的虚拟（非 static、private 或构造函数）方法；此列表不得包括继承方法，除非被此项所表示的类覆盖。这些方法必须按 method_idx 以升序进行排序。虚拟方法的 method_idx 不得与任何直接方法相同。<br>    &#125;<br>    <br><span class="hljs-title">    static_values_off --&gt; encoded_array_item :</span> &#123;<br><span class="hljs-title">    	encoded_array :</span> &#123;			encoded_value, 用于表示已编码数组值的字节<br><span class="hljs-built_in">    		size,</span> 					uleb128<br>    		values					encoded_value[size]<br>    	&#125;<br>    &#125;<br>    <br><br></code></pre></td></tr></table></figure>
+<h4 id="access_flag">access_flag</h4>
+<p>具体数值请参考相关定义</p>
+<p>https://source.android.google.cn/docs/core/runtime/dex-format?hl=zh-cn#access-flags</p>
+<blockquote>
+<p><code>LEB128</code>:</p>
+<p>("<strong>L</strong>ittle-<strong>E</strong>ndian <strong>B</strong>ase <strong>128</strong>"), 表示任意有符号或无符号整数的可变长度编码.</p>
+<p>uleb128中每个字节只有7位为有效位，如果第一个字节的最高位为1，表示LEB128需要使用第二个字节，如果第二个字节的最高位为1，表示会使用到第三个字节，以此类推，直到最后的字节最高位为0，当然LEB128最多使用到5个字节，如果读取5个字节后下一个字节最高位仍为1，则表示该Dex文件无效，Dalvik虚拟机遇到这种情况是直接报错。</p>
+<p>EXP:</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Azureussimu/image_store/master/PicGo2sleb128.png" srcset="/img/mokou.gif" lazyload alt="sleb128" /><figcaption aria-hidden="true">sleb128</figcaption>
+</figure>
+<p><code>LEB128</code>编码格式中还有一种特殊的编码格式<code>uleb128p1</code></p>
+<p>这种编码格式的值为<code>uleb128</code>的值加上1。</p>
+<p>通常将这个值转换为<code>uleb128</code>格式，然后这个值的基础上减去一，得到的值就是<code>uleb128p1</code>格式的值。</p>
+<p><strong><code>NO_INDEX</code>:</strong></p>
+<p>https://source.android.google.cn/docs/core/runtime/dex-format?hl=zh-cn#no-index</p>
+<p>常量 <code>NO_INDEX</code> 用于表示索引值不存在。</p>
+<p><code>NO_INDEX</code> 的选定值可表示为 <code>uleb128p1</code> 编码中的单个字节。</p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">uint</span> <span class="hljs-type">NO_INDEX</span> = <span class="hljs-number">0xffffffff</span>;    // == -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> treated <span class="hljs-keyword">as</span> a signed <span class="hljs-type">int</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="参考资料">参考资料</h1>
+<p>https://zhuanlan.zhihu.com/p/66800634</p>
+<p>https://juejin.cn/post/7078164422761381918</p>
+<p>https://blog.csdn.net/qq_41374107/article/details/104636659</p>
+<p>https://tech.youzan.com/qian-tan-android-dexwen-jian/</p>
+<p>https://chan-shaw.github.io/2020/03/17/DEX%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</p>
+<p>https://source.android.google.cn/docs/core/runtime/dex-format?hl=zh-cn#class-def-item</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Re%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">Re学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/29/Linux%E5%B8%B8%E8%A7%81%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/" title="常见的Linux防护措施">
+                        <span class="hidden-mobile">常见的Linux防护措施</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
